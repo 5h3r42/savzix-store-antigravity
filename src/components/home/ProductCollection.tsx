@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 const products = [
   {
@@ -58,6 +61,18 @@ export function ProductCollection() {
 }
 
 function ProductCard({ product }: { product: any }) {
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    const price = parseFloat(product.price.replace("$", ""));
+     addItem({
+      id: product.name.toLowerCase().replace(/ /g, "-"), 
+      name: product.name,
+      price: price,
+      image: "/product_bottle.png", 
+    });
+  };
+
   return (
     <div className="group relative bg-card rounded-3xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-500 flex flex-col items-center text-left">
       <div className="relative w-full aspect-[3/4] bg-muted/20 overflow-hidden">
@@ -81,7 +96,10 @@ function ProductCard({ product }: { product: any }) {
         <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
         <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
         
-        <button className="w-full py-3 border border-border rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 font-bold text-xs uppercase tracking-widest">
+        <button 
+            onClick={handleAddToCart}
+            className="w-full py-3 border border-border rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 font-bold text-xs uppercase tracking-widest"
+        >
             Add to Cart
         </button>
       </div>
