@@ -6,7 +6,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
-import { clsx } from "clsx";
 
 export function CartDrawer() {
   const { isOpen, closeCart, items, updateQuantity, removeItem, subtotal } = useCart();

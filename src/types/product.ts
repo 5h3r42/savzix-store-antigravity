@@ -1,6 +1,6 @@
 export type ProductStatus = "Active" | "Draft" | "Archived";
 
-export type Product = {
+export interface Product {
   id: string;
   slug: string;
   name: string;
@@ -11,7 +11,7 @@ export type Product = {
   status: ProductStatus;
   image: string;
   createdAt: string;
-};
+}
 
 export type NewProductInput = {
   name: string;

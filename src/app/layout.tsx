@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { siteConfig } from "@/config/site";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -8,8 +9,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "SAVZIX",
-  description: "Premium skincare and wellness products.",
+  title: siteConfig.siteName,
+  description: `${siteConfig.siteName} premium skincare and wellness products.`,
 };
 
 import { Navbar } from "@/components/layout/Navbar";

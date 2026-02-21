@@ -74,7 +74,7 @@ export default function CustomerLoginPage() {
             </form>
 
             <div className="mt-12 text-center text-sm text-muted-foreground">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/register" className="text-primary hover:underline font-medium">Create one</Link>
             </div>
         </div>
@@ -86,7 +86,7 @@ export default function CustomerLoginPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
         <div className="absolute bottom-24 left-12 right-12 text-white p-8 bg-black/20 backdrop-blur-md rounded-3xl border border-white/10">
             <p className="text-xl font-light italic leading-relaxed mb-4">
-            "Savzix has completely transformed my daily ritual. It's not just skincare, it's a moment of pure luxury."
+            &quot;Savzix has completely transformed my daily ritual. It&apos;s not just skincare, it&apos;s a moment of pure luxury.&quot;
             </p>
             <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-white/20"></div>

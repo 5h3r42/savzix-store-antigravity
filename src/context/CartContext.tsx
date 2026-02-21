@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 export type CartItem = {
   id: string;
@@ -25,30 +31,33 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+function getInitialCartItems(): CartItem[] {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
+  const storedCart = localStorage.getItem("savzix-cart");
+  if (!storedCart) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(storedCart) as unknown;
+    return Array.isArray(parsed) ? (parsed as CartItem[]) : [];
+  } catch (error) {
+    console.error("Failed to parse cart data:", error);
+    return [];
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [isMounted, setIsMounted] = useState(false);
+  const [items, setItems] = useState<CartItem[]>(getInitialCartItems);
 
-  // Hydrate cart from local storage on mount
+  // Persist cart to local storage whenever items change.
   useEffect(() => {
-    setIsMounted(true);
-    const storedCart = localStorage.getItem("savzix-cart");
-    if (storedCart) {
-      try {
-        setItems(JSON.parse(storedCart));
-      } catch (error) {
-        console.error("Failed to parse cart data:", error);
-      }
-    }
-  }, []);
-
-  // Save cart to local storage whenever items change
-  useEffect(() => {
-    if (isMounted) {
-      localStorage.setItem("savzix-cart", JSON.stringify(items));
-    }
-  }, [items, isMounted]);
+    localStorage.setItem("savzix-cart", JSON.stringify(items));
+  }, [items]);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
