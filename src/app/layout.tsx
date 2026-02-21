@@ -8,8 +8,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Radiance Redefined - Premium Beauty",
-  description: "Experience the pinnacle of skincare innovation.",
+  title: "SAVZIX",
+  description: "Premium skincare and wellness products.",
 };
 
 import { Navbar } from "@/components/layout/Navbar";

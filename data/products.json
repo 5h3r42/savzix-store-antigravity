@@ -1,0 +1,50 @@
+[
+  {
+    "id": "PROD-001",
+    "slug": "aurum-elixir-serum",
+    "name": "Aurum Elixir Serum",
+    "description": "24k Gold & Peptides",
+    "category": "Serums",
+    "price": 120,
+    "stock": 45,
+    "status": "Active",
+    "image": "/product_bottle.png",
+    "createdAt": "2026-02-08T18:00:00.000Z"
+  },
+  {
+    "id": "PROD-002",
+    "slug": "nocturnal-radiance",
+    "name": "Nocturnal Radiance",
+    "description": "Overnight Repair Complex",
+    "category": "Creams",
+    "price": 95,
+    "stock": 12,
+    "status": "Active",
+    "image": "/product_bottle.png",
+    "createdAt": "2026-02-08T18:01:00.000Z"
+  },
+  {
+    "id": "PROD-003",
+    "slug": "solar-glow-oil",
+    "name": "Solar Glow Oil",
+    "description": "Sun-Kissed Nourishment",
+    "category": "Oils",
+    "price": 65,
+    "stock": 0,
+    "status": "Active",
+    "image": "/product_bottle.png",
+    "createdAt": "2026-02-08T18:02:00.000Z"
+  },
+  {
+    "id": "PROD-004",
+    "slug": "pure-essence-balm",
+    "name": "Pure Essence Balm",
+    "description": "Botanical Silk Cleanser",
+    "category": "Cleansers",
+    "price": 55,
+    "stock": 88,
+    "status": "Active",
+    "image": "/product_bottle.png",
+    "createdAt": "2026-02-08T18:03:00.000Z"
+  }
+]

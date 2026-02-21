@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingBag, Menu } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
 
@@ -15,14 +15,17 @@ export function Navbar() {
 
   return (
     <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Mobile Menu */}
-        <div className="md:hidden">
-          <Menu className="w-6 h-6" />
-        </div>
+      <div className="max-w-7xl mx-auto px-6 h-20 grid grid-cols-[1fr_auto_1fr] items-center">
+        {/* Logo (Left) */}
+        <Link
+          href="/"
+          className="justify-self-start text-2xl font-bold tracking-tighter uppercase"
+        >
+          SAVZIX
+        </Link>
 
-        {/* Links (Left) */}
-        <div className="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest text-muted-foreground">
+        {/* Links (Center) */}
+        <div className="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest text-muted-foreground justify-self-center">
           <Link href="/shop" className="hover:text-primary transition-colors">
             Shop
           </Link>
@@ -31,23 +34,14 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Logo (Center) */}
-        <Link href="/" className="text-2xl font-bold tracking-tighter uppercase">
-          Radiance
-        </Link>
-
-        {/* Links (Right) */}
-        <div className="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest text-muted-foreground">
-          <Link href="/journal" className="hover:text-primary transition-colors">
-            Journal
-          </Link>
-          <Link href="/wellness" className="hover:text-primary transition-colors">
-            Wellness
-          </Link>
-        </div>
-
         {/* Cart (Right Mobile/Desktop) */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 justify-self-end">
+          <Link
+            href="/login"
+            className="text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary"
+          >
+            Login
+          </Link>
           <button 
             onClick={openCart}
             className="relative p-2 hover:text-primary transition-colors"
