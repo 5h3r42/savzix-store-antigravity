@@ -10,6 +10,7 @@ import {
   LogOut,
   LayoutDashboard
 } from "lucide-react";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -52,10 +53,13 @@ export function AdminSidebar() {
       </div>
 
       <div className="p-4 border-t border-border">
-        <button className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-red-400 hover:bg-red-400/10 w-full rounded-xl transition-all">
-            <LogOut className="w-5 h-5" />
-            Sign Out
-        </button>
+        <SignOutButton
+          redirectTo="/admin/login"
+          className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-red-400 hover:bg-red-400/10 w-full rounded-xl transition-all"
+        >
+          <LogOut className="w-5 h-5" />
+          Sign Out
+        </SignOutButton>
       </div>
     </div>
   );

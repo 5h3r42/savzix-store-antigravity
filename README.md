@@ -1,31 +1,70 @@
 # Savzix Store
 
-This is a **Next.js** project bootstrapped with `create-next-app` and customized with a modern design based on the "Radiance Redefined" Stitch project.
+Savzix Store is a Next.js 16 storefront with Supabase-backed auth, database, and storage.
 
-## Repository
+## Stack
 
-[https://github.com/5h3r42/savzix-store-antigravity](https://github.com/5h3r42/savzix-store-antigravity)
+- Next.js App Router (React 19 + TypeScript)
+- Supabase Auth (email/password)
+- Supabase Postgres (RLS enforced)
+- Supabase Storage (`product-images` bucket)
 
-## Features
+## Local Setup
 
--   **Framework**: Next.js 16 (App Router)
--   **Styling**: Tailwind CSS v4 with Dark Mode
--   **Theme**: Custom "Radiance" gold accent (`#f9d406`) and Space Grotesk font.
--   **Components**: Responsive Navbar, Hero, Category Grid, Product Collection.
+1. Install dependencies:
 
-## Getting Started
+```bash
+npm install
+```
 
-First, run the development server:
+2. Copy environment template and fill Supabase keys:
+
+```bash
+cp .env.example .env.local
+```
+
+Required keys:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `ADMIN_EMAIL`
+
+3. Create two Supabase projects (`savzix-dev`, `savzix-prod`) and enable email/password auth.
+
+4. Apply SQL migration in each project:
+
+- Run [`supabase/migrations/001_init.sql`](supabase/migrations/001_init.sql) in the SQL editor (or through Supabase CLI).
+
+5. Start the app:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Admin Bootstrap
 
-## Learn More
+After the admin user signs up once in Supabase Auth, grant admin role:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run bootstrap:admin
+```
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This script promotes `ADMIN_EMAIL` to `profiles.role = 'admin'`.
+
+## Product Migration
+
+To migrate existing JSON products into Supabase:
+
+```bash
+npm run migrate:products
+```
+
+This script reads `data/products.json`, upserts by `slug`, and validates row counts.
+
+## Notes
+
+- `/account` routes require authentication.
+- `/admin` routes require `admin` role.
+- `/api/products?scope=public` remains public.
+- Admin product creation and uploads are restricted via auth + RLS.

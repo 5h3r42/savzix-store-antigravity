@@ -1,40 +1,12 @@
 import "server-only";
 
-import { promises as fs } from "node:fs";
-import path from "node:path";
+import type { Database } from "@/types/supabase";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { NewProductInput, Product, ProductStatus } from "@/types/product";
-
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "products.json");
 
 const ALLOWED_STATUS: ProductStatus[] = ["Active", "Draft", "Archived"];
 
-async function ensureStoreFile() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, "[]", "utf8");
-  }
-}
-
-async function readProductsFromDisk(): Promise<Product[]> {
-  await ensureStoreFile();
-  const raw = await fs.readFile(DATA_FILE, "utf8");
-
-  try {
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as Product[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-async function writeProductsToDisk(products: Product[]) {
-  await ensureStoreFile();
-  await fs.writeFile(DATA_FILE, JSON.stringify(products, null, 2), "utf8");
-}
+type ProductRow = Database["public"]["Tables"]["products"]["Row"];
 
 function slugify(value: string): string {
   return value
@@ -45,9 +17,32 @@ function slugify(value: string): string {
     .replace(/-+/g, "-");
 }
 
-function getNextProductId(products: Product[]): string {
-  const maxId = products.reduce((max, product) => {
+function mapProduct(row: ProductRow): Product {
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    description: row.description,
+    category: row.category,
+    price: Number(row.price),
+    stock: row.stock,
+    status: row.status,
+    image: row.image,
+    createdAt: row.created_at,
+  };
+}
+
+async function getNextProductId() {
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase.from("products").select("id");
+
+  if (error) {
+    throw new Error("Failed to generate product ID.");
+  }
+
+  const maxId = (data ?? []).reduce((max, product) => {
     const numericPart = Number(product.id.replace(/\D/g, ""));
+
     if (Number.isNaN(numericPart)) {
       return max;
     }
@@ -58,42 +53,75 @@ function getNextProductId(products: Product[]): string {
   return `PROD-${String(maxId + 1).padStart(3, "0")}`;
 }
 
-function getUniqueSlug(baseSlug: string, products: Product[]): string {
+async function getUniqueSlug(baseSlug: string) {
+  const supabase = await createServerSupabaseClient();
+
   let candidate = baseSlug;
   let suffix = 2;
 
-  while (products.some((product) => product.slug === candidate)) {
+  while (true) {
+    const { data, error } = await supabase
+      .from("products")
+      .select("id")
+      .eq("slug", candidate)
+      .maybeSingle();
+
+    if (error) {
+      throw new Error("Failed to generate product slug.");
+    }
+
+    if (!data) {
+      return candidate;
+    }
+
     candidate = `${baseSlug}-${suffix}`;
     suffix += 1;
   }
-
-  return candidate;
-}
-
-function sortNewestFirst(products: Product[]) {
-  return products
-    .slice()
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    );
 }
 
 export async function getAllProducts(): Promise<Product[]> {
-  const products = await readProductsFromDisk();
-  return sortNewestFirst(products);
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error("Failed to load products.");
+  }
+
+  return (data ?? []).map(mapProduct);
 }
 
 export async function getPublicProducts(): Promise<Product[]> {
-  const products = await getAllProducts();
-  return products.filter(
-    (product) => product.status === "Active" && product.stock > 0,
-  );
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("status", "Active")
+    .gt("stock", 0)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error("Failed to load public products.");
+  }
+
+  return (data ?? []).map(mapProduct);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
-  const products = await getAllProducts();
-  return products.find((product) => product.slug === slug);
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Failed to load product details.");
+  }
+
+  return data ? mapProduct(data) : undefined;
 }
 
 export async function addProduct(input: NewProductInput): Promise<Product> {
@@ -124,24 +152,33 @@ export async function addProduct(input: NewProductInput): Promise<Product> {
     throw new Error("Stock must be a valid non-negative integer.");
   }
 
-  const products = await readProductsFromDisk();
   const baseSlug = slugify(name) || `product-${Date.now()}`;
+  const [id, slug] = await Promise.all([getNextProductId(), getUniqueSlug(baseSlug)]);
 
-  const product: Product = {
-    id: getNextProductId(products),
-    slug: getUniqueSlug(baseSlug, products),
-    name,
-    description,
-    category,
-    price,
-    stock,
-    status,
-    image,
-    createdAt: new Date().toISOString(),
-  };
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .insert({
+      id,
+      slug,
+      name,
+      description,
+      category,
+      price: Number(price.toFixed(2)),
+      stock,
+      status,
+      image,
+    })
+    .select("*")
+    .single();
 
-  products.push(product);
-  await writeProductsToDisk(products);
+  if (error) {
+    if (error.code === "42501") {
+      throw new Error("You do not have permission to create products.");
+    }
 
-  return product;
+    throw new Error("Failed to create product.");
+  }
+
+  return mapProduct(data);
 }

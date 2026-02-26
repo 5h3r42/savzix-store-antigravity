@@ -1,21 +1,47 @@
 import { NextResponse } from "next/server";
 import { addProduct, getAllProducts, getPublicProducts } from "@/lib/products-store";
+import { isAdmin } from "@/lib/auth/session";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { NewProductInput } from "@/types/product";
 
 export const dynamic = "force-dynamic";
+
+async function assertAdminAccess() {
+  const supabase = await createServerSupabaseClient();
+  const hasAdminAccess = await isAdmin(supabase);
+
+  if (!hasAdminAccess) {
+    return NextResponse.json({ error: "Admin access required." }, { status: 403 });
+  }
+
+  return null;
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const scope = searchParams.get("scope");
 
-  const products =
-    scope === "public" ? await getPublicProducts() : await getAllProducts();
+  if (scope === "public") {
+    const products = await getPublicProducts();
+    return NextResponse.json({ products });
+  }
 
+  const forbiddenResponse = await assertAdminAccess();
+  if (forbiddenResponse) {
+    return forbiddenResponse;
+  }
+
+  const products = await getAllProducts();
   return NextResponse.json({ products });
 }
 
 export async function POST(request: Request) {
   try {
+    const forbiddenResponse = await assertAdminAccess();
+    if (forbiddenResponse) {
+      return forbiddenResponse;
+    }
+
     const body = (await request.json()) as Partial<NewProductInput>;
 
     const product = await addProduct({

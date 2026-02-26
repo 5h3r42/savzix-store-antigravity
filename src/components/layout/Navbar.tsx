@@ -4,17 +4,47 @@ import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
+import { createBrowserSupabaseClient } from "@/lib/supabase/client";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 
 export function Navbar() {
   const { openCart, cartCount } = useCart();
   const [mounted, setMounted] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const animationFrame = requestAnimationFrame(() => {
+    let isActive = true;
+    const supabase = createBrowserSupabaseClient();
+
+    const hydrateAuthState = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!isActive) {
+        return;
+      }
+
+      setIsAuthenticated(Boolean(user));
       setMounted(true);
+    };
+
+    void hydrateAuthState();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!isActive) {
+        return;
+      }
+
+      setIsAuthenticated(Boolean(session?.user));
     });
 
-    return () => cancelAnimationFrame(animationFrame);
+    return () => {
+      isActive = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (
@@ -41,11 +71,17 @@ export function Navbar() {
         {/* Cart (Right Mobile/Desktop) */}
         <div className="flex items-center gap-4 justify-self-end">
           <Link
-            href="/login"
+            href={isAuthenticated ? "/account" : "/login"}
             className="text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary"
           >
-            Login
+            {isAuthenticated ? "Account" : "Login"}
           </Link>
+          {mounted && isAuthenticated && (
+            <SignOutButton
+              className="text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary"
+              onSignedOut={() => setIsAuthenticated(false)}
+            />
+          )}
           <button 
             onClick={openCart}
             className="relative p-2 hover:text-primary transition-colors"

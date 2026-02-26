@@ -29,8 +29,57 @@ const initialFormState: ProductFormState = {
 export default function NewProductPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [form, setForm] = useState<ProductFormState>(initialFormState);
+
+  const uploadImage = async (file: File) => {
+    setIsUploadingImage(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch("/api/admin/uploads", {
+        method: "POST",
+        body: formData,
+      });
+
+      const payload = (await response.json().catch(() => null)) as
+        | { error?: string; url?: string }
+        | null;
+
+      if (!response.ok || !payload?.url) {
+        throw new Error(payload?.error ?? "Failed to upload image.");
+      }
+
+      return payload.url;
+    } finally {
+      setIsUploadingImage(false);
+    }
+  };
+
+  const handleUploadClick = async () => {
+    if (!imageFile) {
+      setError("Select an image first.");
+      return;
+    }
+
+    setError(null);
+
+    try {
+      const uploadedUrl = await uploadImage(imageFile);
+      setForm((prev) => ({ ...prev, image: uploadedUrl }));
+      setImageFile(null);
+    } catch (uploadError) {
+      const message =
+        uploadError instanceof Error
+          ? uploadError.message
+          : "Failed to upload image.";
+      setError(message);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +87,14 @@ export default function NewProductPage() {
     setError(null);
 
     try {
+      let imageValue = form.image;
+
+      if (imageFile) {
+        imageValue = await uploadImage(imageFile);
+        setForm((prev) => ({ ...prev, image: imageValue }));
+        setImageFile(null);
+      }
+
       const response = await fetch("/api/products", {
         method: "POST",
         headers: {
@@ -50,7 +107,7 @@ export default function NewProductPage() {
           status: form.status,
           price: Number(form.price),
           stock: Number(form.stock),
-          image: form.image,
+          image: imageValue,
         }),
       });
 
@@ -128,6 +185,26 @@ export default function NewProductPage() {
             <div className="space-y-4 rounded-xl border border-border bg-card p-6">
               <h2 className="mb-4 text-lg font-bold">Media</h2>
               <div className="space-y-2">
+                <label className="text-sm font-medium">Upload Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) =>
+                    setImageFile(event.target.files?.[0] ?? null)
+                  }
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2 text-sm outline-none file:mr-3 file:rounded file:border-0 file:bg-primary/10 file:px-3 file:py-1 file:text-xs file:font-medium file:text-primary focus:border-primary focus:ring-1 focus:ring-primary"
+                />
+                <button
+                  type="button"
+                  onClick={handleUploadClick}
+                  disabled={isUploadingImage || !imageFile}
+                  className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {isUploadingImage ? "Uploading..." : "Upload Selected Image"}
+                </button>
+              </div>
+
+              <div className="space-y-2">
                 <label className="text-sm font-medium">Image Path</label>
                 <input
                   type="text"
@@ -139,7 +216,7 @@ export default function NewProductPage() {
                   className="w-full rounded-lg border border-border bg-background px-4 py-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                 />
                 <p className="text-xs text-muted-foreground">
-                  Use a local image path from the public folder.
+                  Upload to Supabase storage or enter a URL/manual image path.
                 </p>
               </div>
             </div>
@@ -243,7 +320,7 @@ export default function NewProductPage() {
           </Link>
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isUploadingImage}
             className="flex items-center gap-2 rounded-lg bg-primary px-8 py-2 font-bold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-70"
           >
             {isLoading ? (
