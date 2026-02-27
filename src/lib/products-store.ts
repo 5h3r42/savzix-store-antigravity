@@ -94,19 +94,25 @@ export async function getAllProducts(): Promise<Product[]> {
 }
 
 export async function getPublicProducts(): Promise<Product[]> {
-  const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("status", "Active")
-    .gt("stock", 0)
-    .order("created_at", { ascending: false });
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("status", "Active")
+      .gt("stock", 0)
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    throw new Error("Failed to load public products.");
+    if (error) {
+      console.error("Failed to load public products.", error);
+      return [];
+    }
+
+    return (data ?? []).map(mapProduct);
+  } catch (error) {
+    console.error("Failed to load public products.", error);
+    return [];
   }
-
-  return (data ?? []).map(mapProduct);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {

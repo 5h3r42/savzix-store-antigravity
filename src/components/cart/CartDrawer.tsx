@@ -7,6 +7,10 @@ import { X, Minus, Plus, ShoppingBag, ArrowRight, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
+function formatPrice(value: number) {
+  return value.toFixed(2);
+}
+
 export function CartDrawer() {
   const { isOpen, closeCart, items, updateQuantity, removeItem, subtotal } = useCart();
 
@@ -90,7 +94,7 @@ export function CartDrawer() {
                                         <h3>
                                           <Link href={`/products/${item.id}`} onClick={closeCart}>{item.name}</Link>
                                         </h3>
-                                        <p className="ml-4 font-mono">${item.price * item.quantity}</p>
+                                        <p className="ml-4 font-mono">${formatPrice(item.price * item.quantity)}</p>
                                       </div>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
@@ -133,12 +137,19 @@ export function CartDrawer() {
                       <div className="border-t border-border px-4 py-6 sm:px-6 bg-muted/5">
                         <div className="flex justify-between text-base font-medium text-foreground mb-4">
                           <p className="uppercase tracking-widest text-sm">Subtotal</p>
-                          <p className="font-mono text-lg">${subtotal}</p>
+                          <p className="font-mono text-lg">${formatPrice(subtotal)}</p>
                         </div>
                         <p className="mt-0.5 text-sm text-muted-foreground mb-6">
                           Shipping and taxes calculated at checkout.
                         </p>
-                        <div className="mt-6">
+                        <div className="mt-6 space-y-3">
+                          <Link
+                            href="/cart"
+                            onClick={closeCart}
+                            className="flex w-full items-center justify-center rounded-full border border-border px-6 py-4 text-sm font-bold uppercase tracking-widest transition-colors hover:border-primary hover:text-primary"
+                          >
+                            View Cart
+                          </Link>
                           <Link
                             href="/checkout"
                             onClick={closeCart}

@@ -1,8 +1,13 @@
 import Link from "next/link";
 
-const mockOrderId = "ORD-MVP-1001";
+export default async function OrderConfirmationPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ order?: string }>;
+}) {
+  const { order } = await searchParams;
+  const orderId = order?.trim() || "ORD-MVP-1001";
 
-export default function OrderConfirmationPage() {
   return (
     <section className="min-h-[70vh] px-6 py-24 md:py-32">
       <div className="mx-auto max-w-3xl rounded-3xl border border-border bg-card p-8 text-center md:p-12">
@@ -16,7 +21,7 @@ export default function OrderConfirmationPage() {
         </p>
 
         <div className="mx-auto mb-8 inline-flex rounded-full border border-border bg-background/50 px-5 py-2 font-mono text-sm">
-          {mockOrderId}
+          {orderId}
         </div>
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

@@ -28,6 +28,11 @@ export default function AdminLoginPage() {
 
     try {
       const supabase = createBrowserSupabaseClient();
+      if (!supabase) {
+        throw new Error(
+          "Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.",
+        );
+      }
 
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,

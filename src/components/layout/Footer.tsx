@@ -47,12 +47,8 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-border flex justify-between items-center text-xs text-muted-foreground uppercase tracking-widest">
-        <p>&copy; {new Date().getFullYear()} Radiance Redefined. All rights reserved.</p>
-        <div className="flex gap-4">
-            <Link href="/admin/login" className="hover:text-primary transition-colors">Admin</Link>
-            <p>Made with Stitch</p>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-border text-center text-xs text-muted-foreground uppercase tracking-widest">
+        <p>&copy; {new Date().getFullYear()} SAVZIX. All rights reserved.</p>
       </div>
     </footer>
   );

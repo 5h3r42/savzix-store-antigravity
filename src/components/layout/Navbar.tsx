@@ -15,6 +15,17 @@ export function Navbar() {
   useEffect(() => {
     let isActive = true;
     const supabase = createBrowserSupabaseClient();
+    if (!supabase) {
+      queueMicrotask(() => {
+        if (isActive) {
+          setMounted(true);
+        }
+      });
+
+      return () => {
+        isActive = false;
+      };
+    }
 
     const hydrateAuthState = async () => {
       const {

@@ -25,10 +25,16 @@ export function SignOutButton({
 
     try {
       const supabase = createBrowserSupabaseClient();
+      if (!supabase) {
+        throw new Error("Supabase is not configured.");
+      }
+
       await supabase.auth.signOut();
       onSignedOut?.();
       router.push(redirectTo);
       router.refresh();
+    } catch (error) {
+      console.error("Failed to sign out:", error);
     } finally {
       setIsLoading(false);
     }
