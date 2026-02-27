@@ -1,12 +1,21 @@
 import "server-only";
 
-import type { Database } from "@/types/supabase";
+import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import type { Database, OrderStatus } from "@/types/supabase";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { NewProductInput, Product, ProductStatus } from "@/types/product";
 
 const ALLOWED_STATUS: ProductStatus[] = ["Active", "Draft", "Archived"];
 
 type ProductRow = Database["public"]["Tables"]["products"]["Row"];
+type OrderRow = Database["public"]["Tables"]["orders"]["Row"];
+type OrderItemRow = Database["public"]["Tables"]["order_items"]["Row"];
+
+type BestsellerOptions = {
+  days?: number;
+  statuses?: OrderStatus[];
+  limit?: number;
+};
 
 function slugify(value: string): string {
   return value
@@ -23,6 +32,7 @@ function mapProduct(row: ProductRow): Product {
     slug: row.slug,
     name: row.name,
     description: row.description,
+    brand: row.brand ?? "Brand",
     category: row.category,
     price: Number(row.price),
     stock: row.stock,
@@ -133,6 +143,7 @@ export async function getProductBySlug(slug: string): Promise<Product | undefine
 export async function addProduct(input: NewProductInput): Promise<Product> {
   const name = input.name.trim();
   const description = input.description.trim();
+  const brand = input.brand?.trim() || "Brand";
   const category = input.category.trim() || "General";
   const image = input.image?.trim() || "/product_bottle.png";
 
@@ -169,6 +180,7 @@ export async function addProduct(input: NewProductInput): Promise<Product> {
       slug,
       name,
       description,
+      brand,
       category,
       price: Number(price.toFixed(2)),
       stock,
@@ -187,4 +199,94 @@ export async function addProduct(input: NewProductInput): Promise<Product> {
   }
 
   return mapProduct(data);
+}
+
+export async function getBestsellerProducts(
+  options: BestsellerOptions = {},
+): Promise<Product[]> {
+  const days = options.days ?? 30;
+  const limit = options.limit ?? 12;
+  const statuses = options.statuses ?? ["Pending", "Confirmed"];
+
+  const fallbackProducts = await getPublicProducts();
+  const fallbackResult = fallbackProducts.slice(0, limit);
+
+  try {
+    const supabase = createAdminSupabaseClient();
+    const cutoffDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+
+    const { data: orderRows, error: orderError } = await supabase
+      .from("orders")
+      .select("id, status, created_at")
+      .in("status", statuses)
+      .gte("created_at", cutoffDate);
+
+    if (orderError) {
+      console.error("Failed to load orders for bestseller ranking.", orderError);
+      return fallbackResult;
+    }
+
+    const orders = (orderRows ?? []) as Pick<OrderRow, "id" | "status" | "created_at">[];
+    if (orders.length === 0) {
+      return fallbackResult;
+    }
+
+    const orderIds = orders.map((order) => order.id);
+    const { data: orderItemRows, error: orderItemError } = await supabase
+      .from("order_items")
+      .select("product_id, quantity")
+      .in("order_id", orderIds);
+
+    if (orderItemError) {
+      console.error("Failed to load order items for bestseller ranking.", orderItemError);
+      return fallbackResult;
+    }
+
+    const quantityByProductId = new Map<string, number>();
+    for (const row of (orderItemRows ?? []) as Pick<OrderItemRow, "product_id" | "quantity">[]) {
+      quantityByProductId.set(
+        row.product_id,
+        (quantityByProductId.get(row.product_id) ?? 0) + row.quantity,
+      );
+    }
+
+    const rankedProductIds = [...quantityByProductId.entries()]
+      .sort((left, right) => right[1] - left[1])
+      .map(([productId]) => productId);
+
+    if (rankedProductIds.length === 0) {
+      return fallbackResult;
+    }
+
+    const { data: bestsellerRows, error: bestsellerError } = await supabase
+      .from("products")
+      .select("*")
+      .in("id", rankedProductIds)
+      .eq("status", "Active")
+      .gt("stock", 0);
+
+    if (bestsellerError) {
+      console.error("Failed to load bestseller products.", bestsellerError);
+      return fallbackResult;
+    }
+
+    const bestsellerById = new Map(
+      ((bestsellerRows ?? []) as ProductRow[]).map((row) => [row.id, mapProduct(row)]),
+    );
+    const rankedProducts = rankedProductIds
+      .map((productId) => bestsellerById.get(productId))
+      .filter((product): product is Product => Boolean(product));
+
+    if (rankedProducts.length >= limit) {
+      return rankedProducts.slice(0, limit);
+    }
+
+    const seenProductIds = new Set(rankedProducts.map((product) => product.id));
+    const fallbackTopUp = fallbackProducts.filter((product) => !seenProductIds.has(product.id));
+
+    return [...rankedProducts, ...fallbackTopUp].slice(0, limit);
+  } catch (error) {
+    console.error("Failed to compute bestseller products.", error);
+    return fallbackResult;
+  }
 }

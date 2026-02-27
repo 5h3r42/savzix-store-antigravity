@@ -47,6 +47,7 @@ export async function POST(request: Request) {
     const product = await addProduct({
       name: body.name ?? "",
       description: body.description ?? "",
+      brand: body.brand ?? "Brand", // ADDED: persist product brand from admin/catalog sources.
       category: body.category ?? "General",
       price: Number(body.price ?? 0),
       stock: Number(body.stock ?? 0),

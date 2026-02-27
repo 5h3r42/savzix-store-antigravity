@@ -5,6 +5,7 @@ export interface Product {
   slug: string;
   name: string;
   description: string;
+  brand: string;
   category: string;
   price: number;
   stock: number;
@@ -16,6 +17,7 @@ export interface Product {
 export type NewProductInput = {
   name: string;
   description: string;
+  brand?: string;
   category: string;
   price: number;
   stock: number;

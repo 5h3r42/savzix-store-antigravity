@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "bootstrap:admin": "tsx scripts/bootstrap-admin.ts",
-    "migrate:products": "tsx scripts/migrate-products.ts"
+    "migrate:products": "tsx scripts/migrate-products.ts",
+    "import:product-images": "tsx scripts/import-product-images.ts",
+    "sync:catalog": "tsx scripts/sync-catalog-from-xlsx.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -19,7 +21,8 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

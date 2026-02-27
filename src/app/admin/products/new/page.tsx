@@ -9,6 +9,7 @@ import type { ProductStatus } from "@/types/product";
 type ProductFormState = {
   name: string;
   description: string;
+  brand: string;
   category: string;
   status: ProductStatus;
   price: string;
@@ -19,6 +20,7 @@ type ProductFormState = {
 const initialFormState: ProductFormState = {
   name: "",
   description: "",
+  brand: "",
   category: "Serums",
   status: "Active",
   price: "",
@@ -103,6 +105,7 @@ export default function NewProductPage() {
         body: JSON.stringify({
           name: form.name,
           description: form.description,
+          brand: form.brand || "Brand", // CHANGED: include brand in product payload.
           category: form.category,
           status: form.status,
           price: Number(form.price),
@@ -164,6 +167,19 @@ export default function NewProductPage() {
                   placeholder="e.g. Aurum Elixir Serum"
                   className="w-full rounded-lg border border-border bg-background px-4 py-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                   required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Brand</label>
+                <input
+                  type="text"
+                  value={form.brand}
+                  onChange={(e) =>
+                    setForm((prev) => ({ ...prev, brand: e.target.value }))
+                  }
+                  placeholder="e.g. ARMAF"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
 
