@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { useCart } from "@/context/CartContext";
+import { cleanTitle } from "@/lib/productText"; // ADDED: keep checkout item titles retail-clean.
 
 type CheckoutForm = {
   firstName: string;
@@ -37,16 +38,12 @@ function formatPrice(value: number) {
   }).format(value);
 }
 
-function getMockOrderId() {
-  const suffix = String(Date.now()).slice(-6);
-  return `ORD-${suffix}`;
-}
-
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, subtotal, clearCart } = useCart();
   const [form, setForm] = useState<CheckoutForm>(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const shipping =
     items.length === 0 || subtotal >= siteConfig.shippingThreshold
@@ -70,12 +67,36 @@ export default function CheckoutPage() {
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      const orderId = getMockOrderId();
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // CHANGED: persist real orders instead of mock checkout delay.
+          items: items.map((item) => ({ id: item.id, quantity: item.quantity })),
+          customer: form,
+        }),
+      });
+
+      const payload = (await response.json().catch(() => null)) as
+        | { orderId?: string; error?: string }
+        | null;
+
+      if (!response.ok || !payload?.orderId) {
+        throw new Error(payload?.error ?? "Failed to place order.");
+      }
+
       clearCart();
-      router.push(`/order-confirmation?order=${orderId}`);
+      router.push(`/order-confirmation?order=${encodeURIComponent(payload.orderId)}`);
+      router.refresh();
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to place order.";
+      setSubmitError(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -213,20 +234,30 @@ export default function CheckoutPage() {
             >
               {isSubmitting ? "Placing Order..." : "Place Order"}
             </button>
+
+            {submitError ? (
+              <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-300">
+                {submitError}
+              </p>
+            ) : null}
           </form>
 
           <aside className="h-fit rounded-3xl border border-border bg-card p-6">
             <h2 className="mb-6 text-xl font-medium">Order Summary</h2>
             <ul className="space-y-4 border-b border-border pb-6">
-              {items.map((item) => (
-                <li key={item.id} className="flex items-start justify-between gap-4 text-sm">
-                  <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="text-muted-foreground">Qty {item.quantity}</p>
-                  </div>
-                  <p className="font-mono">{formatPrice(item.price * item.quantity)}</p>
-                </li>
-              ))}
+              {items.map((item) => {
+                const itemTitle = cleanTitle(item.name); // CHANGED: remove pack suffixes in checkout summary.
+
+                return (
+                  <li key={item.id} className="flex items-start justify-between gap-4 text-sm">
+                    <div>
+                      <p className="font-medium">{itemTitle}</p>
+                      <p className="text-muted-foreground">Qty {item.quantity}</p>
+                    </div>
+                    <p className="font-mono">{formatPrice(item.price * item.quantity)}</p>
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="space-y-3 pt-6 text-sm">
@@ -245,7 +276,7 @@ export default function CheckoutPage() {
             </div>
 
             <p className="mt-6 text-xs text-muted-foreground">
-              This checkout is a demo flow. No live payment is processed yet.
+              Orders are submitted in real-time. Payment collection remains an MVP placeholder.
             </p>
           </aside>
         </div>

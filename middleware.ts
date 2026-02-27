@@ -66,6 +66,10 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  if (pathname.startsWith("/checkout") && !user) {
+    return buildRedirect(request, response, "/login", pathname);
+  }
+
   if (pathname.startsWith("/account") && !user) {
     return buildRedirect(request, response, "/login", pathname);
   }
@@ -97,5 +101,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/account/:path*", "/admin/:path*"],
+  matcher: ["/account/:path*", "/checkout", "/admin/:path*"],
 };

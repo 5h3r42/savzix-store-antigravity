@@ -16,8 +16,8 @@ export default async function OrderConfirmationPage({
         </p>
         <h1 className="mb-4 text-4xl font-light text-foreground">Thank You</h1>
         <p className="mx-auto mb-6 max-w-xl text-muted-foreground">
-          This is a launch-week placeholder confirmation page. Your order flow is
-          wired end-to-end for MVP validation.
+          Your order has been received successfully. You can continue shopping or
+          review your order history from your account.
         </p>
 
         <div className="mx-auto mb-8 inline-flex rounded-full border border-border bg-background/50 px-5 py-2 font-mono text-sm">
