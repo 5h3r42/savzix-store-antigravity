@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { cleanDescription, cleanTitle } from "@/lib/productText"; // ADDED: retail-safe product copy helpers.
 import type { Product } from "@/types/product";
 
 type ProductGridProps = {
@@ -32,6 +33,12 @@ export function ProductGrid({
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
       {products.map((product) => {
         const canBuy = product.status === "Active" && product.stock > 0;
+        const productTitle = cleanTitle(product.name); // CHANGED: remove trailing pack/quantity title noise.
+        const productDescription = cleanDescription(product.description, {
+          title: product.name,
+          brand: product.brand,
+          category: product.category,
+        }); // CHANGED: replace marketplace copy with short retail text.
 
         return (
           <div
@@ -44,7 +51,7 @@ export function ProductGrid({
             >
               <Image
                 src={product.image || "/product_bottle.png"}
-                alt={product.name}
+                alt={productTitle}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -58,17 +65,17 @@ export function ProductGrid({
                 {product.category}
               </p>
               <h3 className="mb-1 text-xl font-bold transition-colors group-hover:text-primary">
-                {product.name}
+                {productTitle}
               </h3>
               <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
-                {product.description}
+                {productDescription}
               </p>
 
               <button
                 onClick={() =>
                   addItem({
                     id: product.slug,
-                    name: product.name,
+                    name: productTitle,
                     price: product.price,
                     image: product.image || "/product_bottle.png",
                   })

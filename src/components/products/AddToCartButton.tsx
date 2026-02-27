@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
+import { cleanTitle } from "@/lib/productText"; // ADDED: clean cart item titles before storing.
 import type { Product } from "@/types/product";
 
 type AddToCartButtonProps = {
@@ -9,6 +10,7 @@ type AddToCartButtonProps = {
 
 export function AddToCartButton({ product }: AddToCartButtonProps) {
   const { addItem } = useCart();
+  const productTitle = cleanTitle(product.name); // CHANGED: remove pack suffix from PDP add-to-cart name.
 
   const canBuy = product.status === "Active" && product.stock > 0;
 
@@ -17,7 +19,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
       onClick={() =>
         addItem({
           id: product.slug,
-          name: product.name,
+          name: productTitle,
           price: product.price,
           image: product.image || "/product_bottle.png",
         })

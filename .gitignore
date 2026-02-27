@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated import artifacts
+data/image-import-manifest.json
+data/image-import-manifest.csv
+data/image-import-summary.json
+data/catalog-sync-summary.json

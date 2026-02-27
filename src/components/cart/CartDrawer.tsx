@@ -6,6 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import { cleanTitle } from "@/lib/productText"; // ADDED: ensure cart drawer titles stay retail-clean.
 
 function formatPrice(value: number) {
   return value.toFixed(2);
@@ -76,57 +77,65 @@ export function CartDrawer() {
                             </div>
                           ) : (
                             <ul role="list" className="-my-6 divide-y divide-border">
-                              {items.map((item) => (
-                                <li key={item.id} className="flex py-6">
-                                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-border">
-                                    <Image
-                                      src={item.image}
-                                      alt={item.name}
-                                      width={96}
-                                      height={96}
-                                      className="h-full w-full object-cover object-center"
-                                    />
-                                  </div>
+                              {items.map((item) => {
+                                const itemTitle = cleanTitle(item.name); // CHANGED: strip pack suffixes from cart item titles.
 
-                                  <div className="ml-4 flex flex-1 flex-col">
-                                    <div>
-                                      <div className="flex justify-between text-base font-medium text-foreground">
-                                        <h3>
-                                          <Link href={`/products/${item.id}`} onClick={closeCart}>{item.name}</Link>
-                                        </h3>
-                                        <p className="ml-4 font-mono">${formatPrice(item.price * item.quantity)}</p>
+                                return (
+                                  <li key={item.id} className="flex py-6">
+                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-border">
+                                      <Image
+                                        src={item.image}
+                                        alt={itemTitle}
+                                        width={96}
+                                        height={96}
+                                        className="h-full w-full object-cover object-center"
+                                      />
+                                    </div>
+
+                                    <div className="ml-4 flex flex-1 flex-col">
+                                      <div>
+                                        <div className="flex justify-between text-base font-medium text-foreground">
+                                          <h3>
+                                            <Link href={`/products/${item.id}`} onClick={closeCart}>
+                                              {itemTitle}
+                                            </Link>
+                                          </h3>
+                                          <p className="ml-4 font-mono">
+                                            ${formatPrice(item.price * item.quantity)}
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div className="flex flex-1 items-end justify-between text-sm">
+                                        <div className="flex items-center border border-border rounded-full">
+                                          <button
+                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                            className="p-2 hover:text-primary transition-colors"
+                                            disabled={item.quantity <= 1}
+                                          >
+                                            <Minus className="w-3 h-3" />
+                                          </button>
+                                          <span className="px-2 font-mono text-xs">{item.quantity}</span>
+                                          <button
+                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                            className="p-2 hover:text-primary transition-colors"
+                                          >
+                                            <Plus className="w-3 h-3" />
+                                          </button>
+                                        </div>
+
+                                        <button
+                                          type="button"
+                                          onClick={() => removeItem(item.id)}
+                                          className="font-medium text-destructive hover:text-destructive/80 transition-colors flex items-center gap-1 text-xs uppercase tracking-wider"
+                                        >
+                                          <Trash2 className="w-3 h-3" />
+                                          Remove
+                                        </button>
                                       </div>
                                     </div>
-                                    <div className="flex flex-1 items-end justify-between text-sm">
-                                      <div className="flex items-center border border-border rounded-full">
-                                        <button
-                                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                          className="p-2 hover:text-primary transition-colors"
-                                          disabled={item.quantity <= 1}
-                                        >
-                                          <Minus className="w-3 h-3" />
-                                        </button>
-                                        <span className="px-2 font-mono text-xs">{item.quantity}</span>
-                                        <button
-                                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                          className="p-2 hover:text-primary transition-colors"
-                                        >
-                                          <Plus className="w-3 h-3" />
-                                        </button>
-                                      </div>
-
-                                      <button
-                                        type="button"
-                                        onClick={() => removeItem(item.id)}
-                                        className="font-medium text-destructive hover:text-destructive/80 transition-colors flex items-center gap-1 text-xs uppercase tracking-wider"
-                                      >
-                                        <Trash2 className="w-3 h-3" />
-                                        Remove
-                                      </button>
-                                    </div>
-                                  </div>
-                                </li>
-                              ))}
+                                  </li>
+                                );
+                              })}
                             </ul>
                           )}
                         </div>

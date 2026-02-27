@@ -1,13 +1,11 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
+import { formatPrice } from "@/lib/formatPrice"; // CHANGED: use shared GBP formatter.
 import { getProductBySlug } from "@/lib/products-store";
+import { cleanDescription, cleanTitle } from "@/lib/productText"; // ADDED: retail-safe product copy helpers.
 
 export const dynamic = "force-dynamic";
-
-function formatPrice(price: number) {
-  return `$${price.toFixed(2)}`;
-}
 
 export default async function ProductDetail({
   params,
@@ -21,13 +19,20 @@ export default async function ProductDetail({
     notFound();
   }
 
+  const productTitle = cleanTitle(product.name); // CHANGED: remove trailing pack/quantity title noise.
+  const productDescription = cleanDescription(product.description, {
+    title: product.name,
+    brand: product.brand,
+    category: product.category,
+  }); // CHANGED: hide ASIN/Amazon/FBA artifacts in PDP copy.
+
   return (
     <section className="px-6 py-24 md:py-32">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
         <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-border bg-card">
           <Image
             src={product.image || "/product_bottle.png"}
-            alt={product.name}
+            alt={productTitle}
             fill
             className="object-cover"
           />
@@ -38,10 +43,10 @@ export default async function ProductDetail({
             {product.category}
           </p>
           <h1 className="mb-4 text-4xl font-light text-foreground md:text-5xl">
-            {product.name}
+            {productTitle}
           </h1>
           <p className="mb-8 max-w-xl text-lg text-muted-foreground">
-            {product.description}
+            {productDescription}
           </p>
 
           <p className="mb-8 font-mono text-3xl font-bold text-foreground">
