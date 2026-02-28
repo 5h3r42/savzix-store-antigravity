@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Loader2, ArrowRight } from "lucide-react";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
+type AuthMode = "login" | "signup";
+
 function getSafeRedirect(nextPath: string | null, fallback: string) {
   if (!nextPath || !nextPath.startsWith("/")) {
     return fallback;
@@ -16,15 +18,20 @@ function getSafeRedirect(nextPath: string | null, fallback: string) {
 
 export default function CustomerLoginPage() {
   const router = useRouter();
+  const [mode, setMode] = useState<AuthMode>("login"); // ADDED: support self-serve customer registration.
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+    setSuccess(null);
 
     try {
       const supabase = createBrowserSupabaseClient();
@@ -34,8 +41,53 @@ export default function CustomerLoginPage() {
         );
       }
 
+      const sanitizedEmail = email.trim().toLowerCase();
+      const nextPath = getSafeRedirect(
+        new URLSearchParams(window.location.search).get("next"),
+        "/account",
+      );
+
+      if (mode === "signup") {
+        if (password.length < 8) {
+          throw new Error("Password must be at least 8 characters.");
+        }
+
+        if (password !== confirmPassword) {
+          throw new Error("Passwords do not match.");
+        }
+
+        const { data, error: signUpError } = await supabase.auth.signUp({
+          email: sanitizedEmail,
+          password,
+          options: {
+            data: {
+              full_name: fullName.trim(),
+            },
+            emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`,
+          },
+        });
+
+        if (signUpError) {
+          throw new Error(signUpError.message);
+        }
+
+        if (data.session) {
+          router.push(nextPath);
+          router.refresh();
+          return;
+        }
+
+        setSuccess(
+          "Account created. Check your email to confirm your address, then sign in.",
+        );
+        setMode("login");
+        setPassword("");
+        setConfirmPassword("");
+        return;
+      }
+
       const { error: signInError } = await supabase.auth.signInWithPassword({
-        email,
+        email: sanitizedEmail,
         password,
       });
 
@@ -43,11 +95,7 @@ export default function CustomerLoginPage() {
         throw new Error(signInError.message);
       }
 
-      const destination = getSafeRedirect(
-        new URLSearchParams(window.location.search).get("next"),
-        "/account",
-      );
-      router.push(destination);
+      router.push(nextPath);
       router.refresh();
     } catch (loginError) {
       const message =
@@ -69,13 +117,70 @@ export default function CustomerLoginPage() {
           </Link>
 
           <div className="mb-10">
-            <h1 className="mb-4 text-4xl font-light">Welcome Back</h1>
+            <div className="mb-6 inline-flex rounded-full border border-border p-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("login");
+                  setError(null);
+                  setSuccess(null);
+                }}
+                className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
+                  mode === "login"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Sign In
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("signup");
+                  setError(null);
+                  setSuccess(null);
+                }}
+                className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
+                  mode === "signup"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Create Account
+              </button>
+            </div>
+
+            <h1 className="mb-4 text-4xl font-light">
+              {mode === "login" ? "Welcome Back" : "Create Your Account"}
+            </h1>
             <p className="text-muted-foreground">
-              Please enter your details to access your account.
+              {mode === "login"
+                ? "Please enter your details to access your account."
+                : "Create a customer account to manage orders and checkout faster."}
             </p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleAuth} className="space-y-6">
+            {mode === "signup" ? (
+              <div className="space-y-2">
+                <label
+                  htmlFor="fullName"
+                  className="text-sm font-medium uppercase tracking-wider text-muted-foreground"
+                >
+                  Full Name
+                </label>
+                <input
+                  id="fullName"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                  value={fullName}
+                  onChange={(event) => setFullName(event.target.value)}
+                  className="w-full rounded-none border-b border-border bg-transparent py-3 placeholder:text-muted/50 focus:border-primary focus:outline-none transition-all"
+                />
+              </div>
+            ) : null}
+
             <div className="space-y-2">
               <label
                 htmlFor="email"
@@ -113,9 +218,35 @@ export default function CustomerLoginPage() {
               />
             </div>
 
+            {mode === "signup" ? (
+              <div className="space-y-2">
+                <label
+                  htmlFor="confirm-password"
+                  className="text-sm font-medium uppercase tracking-wider text-muted-foreground"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  id="confirm-password"
+                  type="password"
+                  placeholder="••••••••"
+                  required
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  className="w-full rounded-none border-b border-border bg-transparent py-3 placeholder:text-muted/50 focus:border-primary focus:outline-none transition-all"
+                />
+              </div>
+            ) : null}
+
             {error && (
               <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-300">
                 {error}
+              </p>
+            )}
+
+            {success && (
+              <p className="rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-700">
+                {success}
               </p>
             )}
 
@@ -128,7 +259,7 @@ export default function CustomerLoginPage() {
                 <Loader2 className="h-5 w-5 animate-spin" />
               ) : (
                 <>
-                  Sign In
+                  {mode === "login" ? "Sign In" : "Create Account"}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </>
               )}
@@ -136,7 +267,39 @@ export default function CustomerLoginPage() {
           </form>
 
           <div className="mt-12 text-center text-sm text-muted-foreground">
-            New here? Ask an admin to create your account in Supabase Auth.
+            {mode === "login" ? (
+              <>
+                New here?{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("signup");
+                    setError(null);
+                    setSuccess(null);
+                  }}
+                  className="font-medium text-foreground transition-colors hover:text-primary"
+                >
+                  Create an account
+                </button>
+                .
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("login");
+                    setError(null);
+                    setSuccess(null);
+                  }}
+                  className="font-medium text-foreground transition-colors hover:text-primary"
+                >
+                  Sign in
+                </button>
+                .
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import React, {
   useContext,
   useState,
   useEffect,
+  useCallback,
   ReactNode,
 } from "react";
 
@@ -95,9 +96,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
-  const clearCart = () => {
-    setItems([]);
-  };
+  const clearCart = useCallback(() => {
+    // CHANGED: keep clearCart stable and avoid re-render loops on pages that clear the cart on mount.
+    setItems((currentItems) => (currentItems.length === 0 ? currentItems : []));
+  }, []);
 
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
