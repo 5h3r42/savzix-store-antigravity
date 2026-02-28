@@ -1,4 +1,5 @@
 import { CheckCircle, Clock, Package, Truck } from "lucide-react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SignOutButton } from "@/components/auth/SignOutButton";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
@@ -62,7 +63,7 @@ export default async function AccountPage() {
   const [profileResult, ordersResult] = await Promise.all([
     supabase
       .from("profiles")
-      .select("name, email")
+      .select("name, email, role")
       .eq("id", user.id)
       .maybeSingle(),
     supabase
@@ -83,6 +84,7 @@ export default async function AccountPage() {
   const profile = profileResult.data;
   const orders = ordersResult.data ?? [];
   const email = profile?.email ?? user.email ?? "";
+  const isAdminUser = profile?.role === "admin"; // ADDED: show a direct admin dashboard entry point on the customer account page.
   const displayName =
     profile?.name?.trim() ||
     email.split("@")[0] ||
@@ -104,6 +106,22 @@ export default async function AccountPage() {
 
         <div className="grid gap-12 lg:grid-cols-3">
           <div className="space-y-8">
+            {isAdminUser ? (
+              <div className="rounded-3xl border border-primary/30 bg-primary/5 p-8">
+                <p className="mb-2 text-xs uppercase tracking-[0.22em] text-primary">Admin Access</p>
+                <h2 className="mb-3 text-xl font-bold">Dashboard available</h2>
+                <p className="mb-5 text-sm text-muted-foreground">
+                  This account can manage products and orders from the admin dashboard.
+                </p>
+                <Link
+                  href="/admin"
+                  className="inline-flex rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  Open Admin Dashboard
+                </Link>
+              </div>
+            ) : null}
+
             <div className="rounded-3xl border border-border bg-card p-8">
               <h2 className="mb-6 text-xl font-bold">Profile Details</h2>
               <div className="space-y-4 text-sm">

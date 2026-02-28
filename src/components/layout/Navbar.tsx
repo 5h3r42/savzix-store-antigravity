@@ -2,56 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { SignOutButton } from "@/components/auth/SignOutButton";
 import { categories, type Category } from "@/config/categories";
-
-function renderDesktopSubcategories(
-  items: Category[] | undefined,
-  onNavigate: () => void,
-) {
-  if (!items?.length) {
-    return (
-      <p className="text-sm text-muted-foreground">
-        Browse this category collection.
-      </p>
-    );
-  }
-
-  return (
-    <ul className="space-y-3">
-      {items.map((item) => (
-        <li key={item.slug}>
-          <Link
-            href={item.href}
-            onClick={onNavigate}
-            className="text-sm font-medium text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            {item.name}
-          </Link>
-
-          {item.children?.length ? (
-            <ul className="mt-2 space-y-1 border-l border-border pl-3">
-              {item.children.map((child) => (
-                <li key={child.slug}>
-                  <Link
-                    href={child.href}
-                    onClick={onNavigate}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  >
-                    {child.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 function renderMobileSubcategories(
   items: Category[] | undefined,
@@ -96,10 +51,18 @@ function renderMobileSubcategories(
 
 export function Navbar() {
   const { openCart, cartCount } = useCart();
+  const defaultDesktopCategory = categories[0];
   const [mounted, setMounted] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdminUser, setIsAdminUser] = useState(false); // ADDED: expose admin dashboard entry points in the storefront nav.
   const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDesktopCategorySlug, setActiveDesktopCategorySlug] = useState(
+    defaultDesktopCategory?.slug ?? "",
+  );
+  const [activeDesktopChildSlug, setActiveDesktopChildSlug] = useState(
+    defaultDesktopCategory?.children?.[0]?.slug ?? "",
+  );
   const [openMobileSections, setOpenMobileSections] = useState<
     Record<string, boolean>
   >({});
@@ -107,10 +70,31 @@ export function Navbar() {
   const desktopMenuRef = useRef<HTMLDivElement>(null);
   const mobileDrawerRef = useRef<HTMLDivElement>(null);
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const activeDesktopCategory =
+    categories.find((category) => category.slug === activeDesktopCategorySlug) ??
+    defaultDesktopCategory;
+  const activeDesktopChildren = activeDesktopCategory?.children ?? [];
+  const activeDesktopChild =
+    activeDesktopChildren.find((item) => item.slug === activeDesktopChildSlug) ??
+    activeDesktopChildren[0];
+  const activeDesktopGrandchildren = activeDesktopChild?.children ?? [];
+  const hasDesktopGrandchildren = activeDesktopGrandchildren.length > 0;
 
   const handleNavigate = () => {
     setDesktopMenuOpen(false);
     setMobileMenuOpen(false);
+  };
+
+  const selectDesktopCategory = (slug: string) => {
+    const nextCategory =
+      categories.find((category) => category.slug === slug) ?? defaultDesktopCategory;
+
+    setActiveDesktopCategorySlug(nextCategory?.slug ?? "");
+    setActiveDesktopChildSlug(nextCategory?.children?.[0]?.slug ?? "");
+  };
+
+  const selectDesktopChild = (slug: string) => {
+    setActiveDesktopChildSlug(slug);
   };
 
   const toggleMobileSection = (slug: string) => {
@@ -140,11 +124,23 @@ export function Navbar() {
         data: { user },
       } = await supabase.auth.getUser();
 
+      let nextIsAdmin = false;
+      if (user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        nextIsAdmin = profile?.role === "admin";
+      }
+
       if (!isActive) {
         return;
       }
 
       setIsAuthenticated(Boolean(user));
+      setIsAdminUser(nextIsAdmin);
       setMounted(true);
     };
 
@@ -153,11 +149,26 @@ export function Navbar() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!isActive) {
-        return;
-      }
+      void (async () => {
+        let nextIsAdmin = false;
 
-      setIsAuthenticated(Boolean(session?.user));
+        if (session?.user) {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("id", session.user.id)
+            .maybeSingle();
+
+          nextIsAdmin = profile?.role === "admin";
+        }
+
+        if (!isActive) {
+          return;
+        }
+
+        setIsAuthenticated(Boolean(session?.user));
+        setIsAdminUser(nextIsAdmin);
+      })();
     });
 
     return () => {
@@ -291,39 +302,167 @@ export function Navbar() {
 
             <div
               id="shop-mega-menu"
-              className={`absolute left-1/2 top-[calc(100%+0.75rem)] w-[min(92vw,76rem)] max-h-[calc(100vh-8rem)] -translate-x-1/2 overflow-y-auto rounded-3xl border border-border bg-card p-6 shadow-2xl transition-all duration-200 ${
+              className={`absolute left-1/2 top-[calc(100%+0.85rem)] w-[min(96vw,78rem)] -translate-x-1/2 overflow-hidden rounded-[2rem] border border-border bg-background shadow-[0_24px_70px_rgba(26,26,24,0.14)] transition-all duration-200 ${
                 desktopMenuOpen
                   ? "visible translate-y-0 opacity-100"
                   : "invisible -translate-y-1 opacity-0"
               }`}
             >
-              <nav aria-label="Shop categories">
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-                  {categories.map((category) => (
-                    <section
-                      key={category.slug}
-                      className="max-h-[28rem] overflow-y-auto rounded-2xl border border-border/60 bg-background/40 p-4"
-                    >
-                      <div className="mb-3 flex items-center justify-between gap-3">
+              <nav aria-label="Shop categories" className="bg-background">
+                <div className="flex items-center justify-between border-b border-border px-6 py-4">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+                      Shop by department
+                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      Browse the Savzix range by category and collection.
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/shop"
+                    onClick={handleNavigate}
+                    className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    View all products
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </div>
+
+                <div
+                  className={`grid min-h-[30rem] ${
+                    hasDesktopGrandchildren
+                      ? "grid-cols-[18rem_18rem_minmax(0,1fr)]"
+                      : "grid-cols-[18rem_minmax(0,1fr)]"
+                  }`}
+                >
+                  <div className="border-r border-border bg-muted/45 px-4 py-5">
+                    <ul className="space-y-1">
+                      {categories.map((category) => {
+                        const isActive = category.slug === activeDesktopCategory?.slug;
+
+                        return (
+                          <li key={category.slug}>
+                            <button
+                              type="button"
+                              onMouseEnter={() => selectDesktopCategory(category.slug)}
+                              onFocus={() => selectDesktopCategory(category.slug)}
+                              className={`flex w-full items-center justify-between gap-3 rounded-xl px-4 py-3 text-left text-[1.05rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                isActive
+                                  ? "bg-[#dbe6ef] text-foreground"
+                                  : "text-foreground hover:bg-background"
+                              }`}
+                            >
+                              <span>{category.name}</span>
+                              <ChevronRight
+                                className={`h-4 w-4 transition-transform ${
+                                  isActive ? "text-primary" : "text-muted-foreground"
+                                }`}
+                              />
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+
+                  <div
+                    className={`px-5 py-6 ${hasDesktopGrandchildren ? "border-r border-border" : ""}`}
+                  >
+                    <div className="mb-5 flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                          {activeDesktopCategory?.name}
+                        </p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          Start with the main collections in this department.
+                        </p>
+                      </div>
+                      {activeDesktopCategory ? (
                         <Link
-                          href={category.href}
+                          href={activeDesktopCategory.href}
                           onClick={handleNavigate}
-                          className="text-base font-semibold text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                        >
-                          {category.name}
-                        </Link>
-                        <Link
-                          href={category.href}
-                          onClick={handleNavigate}
-                          className="text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                          className="text-xs font-semibold uppercase tracking-[0.2em] text-primary transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         >
                           View all
                         </Link>
+                      ) : null}
+                    </div>
+
+                    {activeDesktopChildren.length > 0 ? (
+                      <ul className="space-y-2">
+                        {activeDesktopChildren.map((item) => {
+                          const isActive = item.slug === activeDesktopChild?.slug;
+
+                          return (
+                            <li key={item.slug}>
+                              <Link
+                                href={item.href}
+                                onClick={handleNavigate}
+                                onMouseEnter={() => selectDesktopChild(item.slug)}
+                                onFocus={() => selectDesktopChild(item.slug)}
+                                className={`flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                  isActive
+                                    ? "bg-[#dbe6ef] text-foreground"
+                                    : "text-foreground hover:bg-muted/50 hover:text-foreground"
+                                }`}
+                              >
+                                <span>{item.name}</span>
+                                <ChevronRight
+                                  className={`h-4 w-4 ${
+                                    isActive ? "text-primary" : "text-muted-foreground"
+                                  }`}
+                                />
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      <div className="rounded-2xl bg-muted/45 px-4 py-5 text-sm text-muted-foreground">
+                        Browse everything inside {activeDesktopCategory?.name?.toLowerCase()}.
+                      </div>
+                    )}
+                  </div>
+
+                  {hasDesktopGrandchildren ? (
+                    <div className="px-6 py-6">
+                      <div className="mb-5 flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                            {activeDesktopChild?.name}
+                          </p>
+                          <p className="mt-1 text-sm text-muted-foreground">
+                            Browse the next level inside this section.
+                          </p>
+                        </div>
+                        {activeDesktopChild ? (
+                          <Link
+                            href={activeDesktopChild.href}
+                            onClick={handleNavigate}
+                            className="text-xs font-semibold uppercase tracking-[0.2em] text-primary transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                          >
+                            View all
+                          </Link>
+                        ) : null}
                       </div>
 
-                      {renderDesktopSubcategories(category.children, handleNavigate)}
-                    </section>
-                  ))}
+                      <ul className="space-y-2">
+                        {activeDesktopGrandchildren.map((item) => (
+                          <li key={item.slug}>
+                            <Link
+                              href={item.href}
+                              onClick={handleNavigate}
+                              className="flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-base text-foreground transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            >
+                              <span>{item.name}</span>
+                              <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
               </nav>
             </div>
@@ -345,15 +484,32 @@ export function Navbar() {
             </button>
 
             <Link
-              href={isAuthenticated ? "/account" : "/login"}
+              href={
+                isAuthenticated
+                  ? isAdminUser
+                    ? "/admin"
+                    : "/account"
+                  : "/login"
+              }
               className="hidden text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:inline-flex"
             >
-              {isAuthenticated ? "Account" : "Login"}
+              {isAuthenticated ? (isAdminUser ? "Admin" : "Account") : "Login"}
             </Link>
+            {mounted && isAuthenticated && isAdminUser && (
+              <Link
+                href="/account"
+                className="hidden text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:inline-flex"
+              >
+                Account
+              </Link>
+            )}
             {mounted && isAuthenticated && (
               <SignOutButton
                 className="hidden text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:inline-flex"
-                onSignedOut={() => setIsAuthenticated(false)}
+                onSignedOut={() => {
+                  setIsAuthenticated(false);
+                  setIsAdminUser(false);
+                }}
               />
             )}
             <button
@@ -413,6 +569,33 @@ export function Navbar() {
           </div>
 
           <nav aria-label="Mobile shop categories" className="h-[calc(100%-3rem)] overflow-y-auto pr-1">
+            {mounted && (
+              <div className="mb-4 rounded-2xl border border-border bg-background px-4 py-3">
+                <Link
+                  href={
+                    isAuthenticated
+                      ? isAdminUser
+                        ? "/admin"
+                        : "/account"
+                      : "/login"
+                  }
+                  onClick={handleNavigate}
+                  className="block text-sm font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {isAuthenticated ? (isAdminUser ? "Admin Dashboard" : "My Account") : "Login"}
+                </Link>
+                {isAuthenticated && isAdminUser ? (
+                  <Link
+                    href="/account"
+                    onClick={handleNavigate}
+                    className="mt-2 block text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    Customer account
+                  </Link>
+                ) : null}
+              </div>
+            )}
+
             <ul className="space-y-2">
               {categories.map((category) => {
                 const isOpen = Boolean(openMobileSections[category.slug]);
