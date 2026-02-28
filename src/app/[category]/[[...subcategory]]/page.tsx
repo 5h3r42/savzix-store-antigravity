@@ -1,5 +1,9 @@
 import { notFound, redirect } from "next/navigation";
-import { isKnownCategoryPath, normalizeCategoryPath } from "@/config/categories";
+import {
+  normalizeRoutePath,
+  resolveLegacyCategoryPath,
+  toCategoryHref,
+} from "@/config/category-taxonomy";
 
 type CategoryLandingRouteProps = {
   params: Promise<{
@@ -13,12 +17,12 @@ export default async function CategoryLandingRoute({
 }: CategoryLandingRouteProps) {
   const { category, subcategory } = await params;
   const pathSegments = [category, ...(subcategory ?? [])].filter(Boolean);
-  const requestedPath = normalizeCategoryPath(`/${pathSegments.join("/")}`);
+  const requestedPath = normalizeRoutePath(`/${pathSegments.join("/")}`);
+  const canonicalPath = resolveLegacyCategoryPath(requestedPath);
 
-  if (!isKnownCategoryPath(requestedPath)) {
+  if (!canonicalPath) {
     notFound();
   }
 
-  // ADDED: category landing paths resolve into filtered /shop to prevent route 404s.
-  redirect(`/shop?categoryPath=${encodeURIComponent(requestedPath)}`);
+  redirect(toCategoryHref(canonicalPath));
 }

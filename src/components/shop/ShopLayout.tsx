@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
+import { normalizeTaxonomyPath } from "@/config/category-taxonomy";
 import {
   matchesCategoryRouteFilter,
   resolveCategoryRouteFilter,
@@ -15,6 +16,10 @@ import type { ShopProduct, ShopSortKey } from "@/components/shop/types";
 type ShopLayoutProps = {
   products: ShopProduct[];
   routeCategoryPath?: string | null;
+  title?: string;
+  description?: string;
+  browseLabel?: string | null;
+  viewAllHref?: string | null;
 };
 
 const DEFAULT_PAGE_SIZE = 24;
@@ -33,7 +38,14 @@ function timestamp(value: string) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-export function ShopLayout({ products, routeCategoryPath = null }: ShopLayoutProps) {
+export function ShopLayout({
+  products,
+  routeCategoryPath = null,
+  title = "Shop",
+  description = "Discover premium beauty, fragrance, wellness, and daily essentials.",
+  browseLabel = null,
+  viewAllHref = "/shop",
+}: ShopLayoutProps) {
   const [sortKey, setSortKey] = useState<ShopSortKey>("newest"); // ADDED: in-memory PLP sorting.
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -45,17 +57,42 @@ export function ShopLayout({ products, routeCategoryPath = null }: ShopLayoutPro
     () => resolveCategoryRouteFilter(routeCategoryPath),
     [routeCategoryPath]
   );
+  const normalizedTaxonomyPath = useMemo(
+    () => (routeCategoryPath ? normalizeTaxonomyPath(routeCategoryPath) : null),
+    [routeCategoryPath]
+  );
   const routeCategoryName = useMemo(
     () => (routeCategoryPath ? getCategoryNameForPath(routeCategoryPath) : null),
     [routeCategoryPath]
   );
 
   const routeScopedProducts = useMemo(() => {
+    if (!routeCategoryPath) {
+      return products;
+    }
+
+    if (normalizedTaxonomyPath) {
+      const taxonomyMatchedProducts = products.filter((product) => {
+        const primaryPath = product.primaryCategoryPath?.trim() ?? "";
+        const topLevelPath = product.topLevelCategoryPath?.trim() ?? "";
+
+        return (
+          primaryPath === normalizedTaxonomyPath ||
+          primaryPath.startsWith(`${normalizedTaxonomyPath}/`) ||
+          topLevelPath === normalizedTaxonomyPath
+        );
+      });
+
+      if (taxonomyMatchedProducts.length > 0) {
+        return taxonomyMatchedProducts;
+      }
+    }
+
     if (!routeFilterRule) {
       return products;
     }
 
-    // ADDED: apply category route filter first, before user-driven sidebar filters.
+    // CHANGED: only fall back to keyword heuristics when relational or classified taxonomy data is absent.
     return products.filter((product) =>
       matchesCategoryRouteFilter(
         {
@@ -66,7 +103,7 @@ export function ShopLayout({ products, routeCategoryPath = null }: ShopLayoutPro
         routeFilterRule
       )
     );
-  }, [products, routeFilterRule]);
+  }, [normalizedTaxonomyPath, products, routeCategoryPath, routeFilterRule]);
 
   const categories = useMemo(
     () =>
@@ -226,22 +263,38 @@ export function ShopLayout({ products, routeCategoryPath = null }: ShopLayoutPro
     <section className="px-4 py-10 md:px-6 md:py-12">
       <div className="mx-auto max-w-7xl space-y-6">
         <header className="space-y-2">
-          <h1 className="text-3xl font-semibold text-foreground md:text-4xl">Shop</h1>
+          <h1 className="text-3xl font-semibold text-foreground md:text-4xl">{title}</h1>
           <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-            Discover premium beauty, fragrance, wellness, and daily essentials.
+            {description}
           </p>
+          {browseLabel ? (
+            <p className="text-sm text-muted-foreground">
+              Browsing:{" "}
+              <span className="font-medium text-foreground">{browseLabel}</span>{" "}
+              {viewAllHref ? (
+                <Link
+                  href={viewAllHref}
+                  className="ml-2 text-primary underline underline-offset-4"
+                >
+                  View all
+                </Link>
+              ) : null}
+            </p>
+          ) : null}
           {routeCategoryPath && routeFilterRule ? (
             <p className="text-sm text-muted-foreground">
               Browsing:{" "}
               <span className="font-medium text-foreground">
                 {routeCategoryName ?? routeCategoryPath}
               </span>{" "}
-              <Link
-                href="/shop"
-                className="ml-2 text-primary underline underline-offset-4"
-              >
-                View all
-              </Link>
+              {viewAllHref ? (
+                <Link
+                  href={viewAllHref}
+                  className="ml-2 text-primary underline underline-offset-4"
+                >
+                  View all
+                </Link>
+              ) : null}
             </p>
           ) : null}
           <p className="text-sm text-muted-foreground">{filteredProducts.length} results</p>

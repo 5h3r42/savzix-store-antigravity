@@ -1,4 +1,5 @@
 import { normalizeCategoryPath } from "@/config/categories";
+import { normalizeTaxonomyPath } from "@/config/category-taxonomy";
 
 export type CategoryRouteFilterRule = {
   includeCategories?: string[];
@@ -35,7 +36,7 @@ const TOP_LEVEL_CATEGORY_RULES: Record<string, CategoryRouteFilterRule> = {
   },
   "/beauty": {
     includeCategories: ["Beauty", "Health & Personal Care"],
-    includeKeywords: ["nail", "polish", "false nails", "manicure", "pedicure"],
+    includeKeywords: ["beauty", "cosmetic", "make-up", "makeup", "nail", "skincare"],
   },
   "/fragrance": {
     includeCategories: ["Beauty"],
@@ -65,6 +66,9 @@ const TOP_LEVEL_CATEGORY_RULES: Record<string, CategoryRouteFilterRule> = {
       "oral care",
       "pain relief",
       "care",
+      "medicine",
+      "first aid",
+      "cbd",
     ],
   },
   "/suncare-travel": {
@@ -115,6 +119,10 @@ const EXACT_CATEGORY_RULES: Record<string, CategoryRouteFilterRule> = {
       "remover",
     ],
   },
+  "/beauty-skincare/nails": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["nail", "polish", "false nails", "manicure", "pedicure", "cuticle"],
+  },
   "/beauty/nails": {
     includeCategories: ["Beauty"],
     includeKeywords: ["nail", "polish", "false nails", "manicure", "pedicure", "cuticle"],
@@ -133,6 +141,98 @@ const EXACT_CATEGORY_RULES: Record<string, CategoryRouteFilterRule> = {
       "lotion",
     ],
   },
+};
+
+const EXACT_TAXONOMY_RULES: Record<string, CategoryRouteFilterRule> = {
+  "beauty-skincare/cosmetics": EXACT_CATEGORY_RULES["/beauty-skincare/cosmetics"],
+  "beauty-skincare/nails": EXACT_CATEGORY_RULES["/beauty-skincare/nails"],
+  "beauty-skincare/skin-care": EXACT_CATEGORY_RULES["/beauty-skincare/skin-care"],
+  "suncare-travel/suncare": {
+    includeCategories: ["Beauty", "Health & Personal Care"],
+    includeKeywords: ["sun", "spf", "suncare", "after sun", "sun cream", "sun lotion"],
+  },
+  "suncare-travel/travel": {
+    includeCategories: ["Beauty", "Health & Personal Care", "Grocery"],
+    includeKeywords: ["travel", "mini", "portable", "pocket", "carry on", "travel size"],
+  },
+  "toiletries/washing-bathing": {
+    includeCategories: ["Beauty", "Health & Personal Care", "Grocery"],
+    includeKeywords: ["soap", "body wash", "shower", "bath", "washing", "hand wash"],
+  },
+  "toiletries/dental-care": {
+    includeCategories: ["Health & Personal Care", "Beauty"],
+    includeKeywords: ["dental", "toothpaste", "toothbrush", "mouthwash", "oral care"],
+  },
+  "toiletries/hair-care": {
+    includeCategories: ["Beauty", "Health & Personal Care"],
+    includeKeywords: ["hair care", "haircare", "shampoo", "conditioner", "hair mask", "styling"],
+  },
+  "electrical/batteries": {
+    includeCategories: ["Electronics & Photo", "Home & Kitchen", "Automotive"],
+    includeKeywords: ["battery", "batteries", "power cell"],
+  },
+  "health-wellness/first-aid": {
+    includeCategories: ["Health & Personal Care"],
+    includeKeywords: ["first aid", "bandage", "plaster", "antiseptic", "wound"],
+  },
+  "health-wellness/medicine-treatment": {
+    includeCategories: ["Health & Personal Care", "Grocery"],
+    includeKeywords: ["medicine", "treatment", "relief", "pain", "tablet", "capsule"],
+  },
+  "health-wellness/cbd": {
+    includeCategories: ["Health & Personal Care", "Grocery"],
+    includeKeywords: ["cbd", "cannabidiol"],
+  },
+  "gift-sets/beauty": {
+    includeCategories: ["Beauty", "Health & Personal Care"],
+    includeKeywords: ["beauty gift", "gift set", "cosmetic gift", "nail gift"],
+  },
+  "gift-sets/fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["fragrance gift", "perfume gift", "gift set", "eau de"],
+  },
+  "gift-sets/toiletries": {
+    includeCategories: ["Beauty", "Health & Personal Care", "Grocery"],
+    includeKeywords: ["toiletry gift", "bath gift", "body gift", "gift set"],
+  },
+  "gift-sets/alcohol": {
+    includeCategories: ["Grocery"],
+    includeKeywords: ["alcohol", "spirit", "whisky", "wine", "gin", "gift set"],
+  },
+  "fragrance/womens-mass-market-fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["for women", "women", "woman", "ladies", "body mist", "eau de toilette"],
+  },
+  "fragrance/mens-mass-market-fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["for men", "men", "man", "aftershave", "body spray", "eau de toilette"],
+  },
+  "fragrance/womens-luxury-fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["for women", "women", "woman", "parfum", "luxury", "eau de parfum"],
+  },
+  "fragrance/mens-luxury-fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["for men", "men", "man", "parfum", "luxury", "eau de parfum"],
+  },
+  "fragrance/unisex-luxury-fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["unisex", "luxury", "parfum", "niche", "eau de parfum"],
+  },
+  "fragrance/womens-celebrity-fragrance": {
+    includeCategories: ["Beauty"],
+    includeKeywords: ["celebrity", "for women", "women", "woman", "perfume"],
+  },
+};
+
+const TOP_LEVEL_TAXONOMY_RULES: Record<string, CategoryRouteFilterRule> = {
+  "beauty-skincare": TOP_LEVEL_CATEGORY_RULES["/beauty-skincare"],
+  fragrance: TOP_LEVEL_CATEGORY_RULES["/fragrance"],
+  "gift-sets": TOP_LEVEL_CATEGORY_RULES["/gift-sets"],
+  "health-wellness": TOP_LEVEL_CATEGORY_RULES["/health-wellness"],
+  "suncare-travel": TOP_LEVEL_CATEGORY_RULES["/suncare-travel"],
+  electrical: TOP_LEVEL_CATEGORY_RULES["/electrical"],
+  toiletries: TOP_LEVEL_CATEGORY_RULES["/toiletries"],
 };
 
 function containsAny(haystack: string, values: string[] | undefined) {
@@ -168,13 +268,28 @@ export function resolveCategoryRouteFilter(
     return EXACT_CATEGORY_RULES[normalizedPath];
   }
 
+  const taxonomyPath = normalizeTaxonomyPath(normalizedPath);
+
+  if (taxonomyPath && EXACT_TAXONOMY_RULES[taxonomyPath]) {
+    return EXACT_TAXONOMY_RULES[taxonomyPath];
+  }
+
   const segments = normalizedPath.split("/").filter(Boolean);
   if (segments.length === 0) {
-    return null;
+    return taxonomyPath ? TOP_LEVEL_TAXONOMY_RULES[taxonomyPath] ?? null : null;
   }
 
   const topLevelPath = `/${segments[0]}`;
-  return TOP_LEVEL_CATEGORY_RULES[topLevelPath] ?? null;
+  if (TOP_LEVEL_CATEGORY_RULES[topLevelPath]) {
+    return TOP_LEVEL_CATEGORY_RULES[topLevelPath];
+  }
+
+  const taxonomySegments = taxonomyPath.split("/").filter(Boolean);
+  if (taxonomySegments.length === 0) {
+    return null;
+  }
+
+  return TOP_LEVEL_TAXONOMY_RULES[taxonomySegments[0]] ?? null;
 }
 
 export function matchesCategoryRouteFilter(

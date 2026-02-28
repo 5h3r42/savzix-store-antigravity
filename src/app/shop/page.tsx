@@ -14,87 +14,11 @@
 
 import { ShopLayout } from "@/components/shop/ShopLayout"; // CHANGED: switch /shop to the new retail PLP layout.
 import { isKnownCategoryPath, normalizeCategoryPath } from "@/config/categories";
-import type { ShopProduct } from "@/components/shop/types"; // ADDED: shared /shop product type.
-import { normalizeText } from "@/lib/normalizeText"; // ADDED: normalize odd source strings for clean UI.
+import { getProductsForCategoryPath } from "@/lib/category-taxonomy";
+import { mapProductsToShopProducts } from "@/lib/shop-products";
 import { getPublicProducts } from "@/lib/products-store";
-import type { Product } from "@/types/product";
 
 export const dynamic = "force-dynamic";
-
-type ProductWithOptionalFields = Product & {
-  title?: string | null;
-  brand?: string | null;
-  image_url?: string | null;
-  availability?: number | string | boolean | null;
-  created_at?: string | null;
-};
-
-function safeText(value: unknown, fallback: string) {
-  // ADDED: normalized text with fallback for missing/malformed fields.
-  if (typeof value !== "string") {
-    return fallback;
-  }
-
-  const normalized = normalizeText(value);
-  return normalized.length > 0 ? normalized : fallback;
-}
-
-function safePrice(value: unknown) {
-  // ADDED: parse numeric/string prices safely for GBP formatting downstream.
-  if (typeof value === "number" && Number.isFinite(value)) {
-    return value;
-  }
-
-  if (typeof value === "string") {
-    const parsed = Number.parseFloat(value.replace(/[^0-9.-]/g, ""));
-    return Number.isFinite(parsed) ? parsed : 0;
-  }
-
-  return 0;
-}
-
-function resolveInStock(value: unknown) {
-  // ADDED: default in-stock unless the source explicitly provides 0/false.
-  if (typeof value === "number") {
-    return value !== 0;
-  }
-
-  if (typeof value === "string") {
-    const parsed = Number.parseFloat(value);
-    return Number.isFinite(parsed) ? parsed !== 0 : true;
-  }
-
-  if (typeof value === "boolean") {
-    return value;
-  }
-
-  return true;
-}
-
-function mapToShopProduct(product: Product): ShopProduct {
-  // ADDED: normalize existing product source for the retail /shop UI.
-  const source = product as ProductWithOptionalFields;
-  const imageFromSource =
-    (typeof source.image === "string" && source.image.trim().length > 0
-      ? source.image.trim()
-      : null) ??
-    (typeof source.image_url === "string" && source.image_url.trim().length > 0
-      ? source.image_url.trim()
-      : null) ??
-    "/product_bottle.png";
-
-  return {
-    id: safeText(source.id, `product-${Date.now()}`),
-    slug: safeText(source.slug, safeText(source.id, "product")),
-    title: safeText(source.name ?? source.title, "Untitled product"),
-    brand: safeText(source.brand, "Brand"),
-    category: safeText(source.category, "Other"),
-    price: safePrice(source.price),
-    inStock: resolveInStock(source.stock ?? source.availability),
-    imageUrl: imageFromSource,
-    createdAt: safeText(source.createdAt ?? source.created_at, new Date(0).toISOString()),
-  };
-}
 
 type ShopPageProps = {
   searchParams: Promise<{
@@ -110,13 +34,36 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
       ? normalizedCategoryPath
       : null; // ADDED: only accept known category paths from config.
 
-  const products = await getPublicProducts(); // CHANGED: keep existing data source.
-  const normalizedProducts = products.map(mapToShopProduct); // ADDED: UI-safe product shape.
+  let products = await getPublicProducts(); // CHANGED: keep existing data source.
+  let browseLabel: string | null = null;
+  let description =
+    "Discover premium beauty, fragrance, wellness, and daily essentials.";
+  let fallbackRouteCategoryPath = routeCategoryPath;
+
+  if (routeCategoryPath) {
+    try {
+      const categoryResult = await getProductsForCategoryPath(routeCategoryPath);
+
+      if (categoryResult.category) {
+        products = categoryResult.products;
+        browseLabel = categoryResult.category.name;
+        description =
+          categoryResult.category.description?.trim() || description;
+        fallbackRouteCategoryPath = null; // ADDED: route-scoped products now come from relational category assignments.
+      }
+    } catch (error) {
+      console.error("Failed to load relational category products. Falling back to route filters.", error);
+    }
+  }
+
+  const normalizedProducts = await mapProductsToShopProducts(products); // ADDED: attach primary taxonomy metadata to public shop products.
 
   return (
     <ShopLayout
       products={normalizedProducts}
-      routeCategoryPath={routeCategoryPath}
+      routeCategoryPath={fallbackRouteCategoryPath}
+      description={description}
+      browseLabel={browseLabel}
     />
   ); // CHANGED: render retail PLP shell + route-aware filters.
 }

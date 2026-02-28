@@ -343,8 +343,9 @@ export function Navbar() {
 
                         return (
                           <li key={category.slug}>
-                            <button
-                              type="button"
+                            <Link
+                              href={category.href}
+                              onClick={handleNavigate}
                               onMouseEnter={() => selectDesktopCategory(category.slug)}
                               onFocus={() => selectDesktopCategory(category.slug)}
                               className={`flex w-full items-center justify-between gap-3 rounded-xl px-4 py-3 text-left text-[1.05rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
@@ -359,7 +360,7 @@ export function Navbar() {
                                   isActive ? "text-primary" : "text-muted-foreground"
                                 }`}
                               />
-                            </button>
+                            </Link>
                           </li>
                         );
                       })}

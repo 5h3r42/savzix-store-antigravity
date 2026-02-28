@@ -4,6 +4,11 @@ export type ShopProduct = {
   title: string;
   brand: string;
   category: string;
+  subcategory?: string | null;
+  primaryCategoryPath?: string | null;
+  primaryCategoryName?: string | null;
+  topLevelCategoryPath?: string | null;
+  topLevelCategoryName?: string | null;
   price: number;
   inStock: boolean;
   imageUrl: string;
