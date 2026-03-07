@@ -1,0 +1,11 @@
+Use case: stylized-concept
+Asset type: ecommerce category banner
+Primary request: refined category banner for a beauty and fragrance storefront
+Scene/background: soft neutral backdrop with subtle premium texture
+Subject: a restrained arrangement of beauty and fragrance forms with no visible labels
+Style/medium: premium editorial still life
+Composition/framing: wide landscape crop; centered subject cluster; open edges for responsive cropping
+Lighting/mood: bright but soft studio light; elegant; clean
+Color palette: warm neutrals with a muted gold accent
+Constraints: no text; no logos; no watermark; no visible brand names
+Avoid: clutter; loud gradients; heavy shadows; cheap stock-photo styling

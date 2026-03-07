@@ -4,19 +4,19 @@ import { ArrowUpRight } from "lucide-react";
 const featuredCollections = [
   {
     title: "Fragrance",
-    href: "/fragrance",
+    href: "/c/fragrance",
     description:
       "Signature scents for every mood, from fresh daytime picks to bold evening choices.",
   },
   {
     title: "Gift Sets",
-    href: "/gift-sets",
+    href: "/c/gift-sets",
     description:
       "Curated bundles designed for thoughtful gifting and effortless self-care routines.",
   },
   {
     title: "Beauty Bestsellers",
-    href: "/beauty-skincare",
+    href: "/c/beauty-skincare",
     description:
       "Top-performing beauty essentials chosen by customers for everyday results.",
   },

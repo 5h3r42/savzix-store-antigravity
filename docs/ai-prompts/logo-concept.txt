@@ -1,0 +1,8 @@
+Use case: logo-brand
+Asset type: brand logo concept board
+Primary request: logo concept for Savzix, an ecommerce brand for beauty, fragrance, toiletries, and essentials
+Style/medium: vector-friendly flat logo exploration
+Composition/framing: centered mark on a plain light background with generous padding
+Color palette: black, warm ivory, muted gold
+Constraints: original mark only; strong silhouette; balanced negative space; no mockup scene; no watermark
+Avoid: generic beauty icons; stock monograms; thin illegible linework; gradients; 3D embossing

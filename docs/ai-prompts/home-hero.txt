@@ -1,0 +1,11 @@
+Use case: stylized-concept
+Asset type: homepage hero image
+Primary request: premium beauty and fragrance ecommerce hero image for Savzix
+Scene/background: soft studio environment with subtle glass, liquid, and light refraction cues
+Subject: elegant arrangement of beauty bottles and fragrance silhouettes with no visible labels
+Style/medium: premium editorial product photography
+Composition/framing: wide composition; subjects weighted left; generous negative space on the right for headline and CTA
+Lighting/mood: soft diffused light; calm; polished; premium
+Color palette: warm ivory, soft sand, muted gold, restrained charcoal
+Constraints: no text; no logos; no watermark; no visible brand names; leave clear space for UI
+Avoid: clutter; cheesy lens flare; oversaturated colors; cheap stock-photo vibe
