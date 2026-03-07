@@ -1,8 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
-import { normalizeTaxonomyPath } from "@/config/category-taxonomy";
+import {
+  getTaxonomyNodeByPath,
+  normalizeTaxonomyPath,
+} from "@/config/category-taxonomy";
 import {
   matchesCategoryRouteFilter,
   resolveCategoryRouteFilter,
@@ -15,6 +19,7 @@ import type { ShopProduct, ShopSortKey } from "@/components/shop/types";
 
 type ShopLayoutProps = {
   products: ShopProduct[];
+  activeCategoryPath?: string | null;
   routeCategoryPath?: string | null;
   title?: string;
   description?: string;
@@ -23,6 +28,58 @@ type ShopLayoutProps = {
 };
 
 const DEFAULT_PAGE_SIZE = 24;
+
+type ShopHeaderContentProps = {
+  title: string;
+  description: string;
+  browseLabel?: string | null;
+  fallbackBrowseLabel?: string | null;
+  showFallbackBrowse?: boolean;
+  viewAllHref?: string | null;
+  filteredCount: number;
+  headingClassName: string;
+  bodyClassName: string;
+  browseTextClassName: string;
+  browseValueClassName: string;
+  linkClassName: string;
+};
+
+function ShopHeaderContent({
+  title,
+  description,
+  browseLabel = null,
+  fallbackBrowseLabel = null,
+  showFallbackBrowse = false,
+  viewAllHref = null,
+  filteredCount,
+  headingClassName,
+  bodyClassName,
+  browseTextClassName,
+  browseValueClassName,
+  linkClassName,
+}: ShopHeaderContentProps) {
+  const visibleBrowseLabel =
+    browseLabel ?? (showFallbackBrowse ? fallbackBrowseLabel : null);
+
+  return (
+    <>
+      <h1 className={headingClassName}>{title}</h1>
+      <p className={bodyClassName}>{description}</p>
+      {visibleBrowseLabel ? (
+        <p className={browseTextClassName}>
+          Browsing:{" "}
+          <span className={browseValueClassName}>{visibleBrowseLabel}</span>{" "}
+          {viewAllHref ? (
+            <Link href={viewAllHref} className={linkClassName}>
+              View all
+            </Link>
+          ) : null}
+        </p>
+      ) : null}
+      <p className={browseTextClassName}>{filteredCount} results</p>
+    </>
+  );
+}
 
 function parsePriceInput(value: string) {
   if (!value.trim()) {
@@ -40,6 +97,7 @@ function timestamp(value: string) {
 
 export function ShopLayout({
   products,
+  activeCategoryPath = null,
   routeCategoryPath = null,
   title = "Shop",
   description = "Discover premium beauty, fragrance, wellness, and daily essentials.",
@@ -57,9 +115,21 @@ export function ShopLayout({
     () => resolveCategoryRouteFilter(routeCategoryPath),
     [routeCategoryPath]
   );
+  const activeCategoryNode = useMemo(() => {
+    const categoryPath = activeCategoryPath ?? routeCategoryPath;
+    return categoryPath ? getTaxonomyNodeByPath(categoryPath) : null;
+  }, [activeCategoryPath, routeCategoryPath]);
+  const activeRouteFilterRule = useMemo(
+    () => resolveCategoryRouteFilter(activeCategoryPath),
+    [activeCategoryPath]
+  );
   const normalizedTaxonomyPath = useMemo(
     () => (routeCategoryPath ? normalizeTaxonomyPath(routeCategoryPath) : null),
     [routeCategoryPath]
+  );
+  const activeCategoryName = useMemo(
+    () => (activeCategoryPath ? getCategoryNameForPath(activeCategoryPath) : null),
+    [activeCategoryPath]
   );
   const routeCategoryName = useMemo(
     () => (routeCategoryPath ? getCategoryNameForPath(routeCategoryPath) : null),
@@ -258,49 +328,73 @@ export function ShopLayout({
       sortKey,
     ]
   );
+  const heroImage = activeCategoryNode?.heroImage ?? null;
+  const shouldShowRouteBrowse =
+    !browseLabel &&
+    Boolean((activeCategoryPath && activeRouteFilterRule) || (routeCategoryPath && routeFilterRule));
+  const fallbackBrowseLabel = activeCategoryName ?? routeCategoryName ?? routeCategoryPath;
 
   return (
     <section className="px-4 py-10 md:px-6 md:py-12">
-      <div className="mx-auto max-w-7xl space-y-6">
-        <header className="space-y-2">
-          <h1 className="text-3xl font-semibold text-foreground md:text-4xl">{title}</h1>
-          <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-            {description}
-          </p>
-          {browseLabel ? (
-            <p className="text-sm text-muted-foreground">
-              Browsing:{" "}
-              <span className="font-medium text-foreground">{browseLabel}</span>{" "}
-              {viewAllHref ? (
-                <Link
-                  href={viewAllHref}
-                  className="ml-2 text-primary underline underline-offset-4"
-                >
-                  View all
-                </Link>
-              ) : null}
-            </p>
-          ) : null}
-          {routeCategoryPath && routeFilterRule ? (
-            <p className="text-sm text-muted-foreground">
-              Browsing:{" "}
-              <span className="font-medium text-foreground">
-                {routeCategoryName ?? routeCategoryPath}
-              </span>{" "}
-              {viewAllHref ? (
-                <Link
-                  href={viewAllHref}
-                  className="ml-2 text-primary underline underline-offset-4"
-                >
-                  View all
-                </Link>
-              ) : null}
-            </p>
-          ) : null}
-          <p className="text-sm text-muted-foreground">{filteredProducts.length} results</p>
-        </header>
+      <div className="mx-auto max-w-[1440px] space-y-6">
+        {heroImage ? (
+          <header className="relative isolate min-h-[360px] w-full overflow-hidden rounded-[2rem] border border-border bg-[#f7eded] lg:aspect-[3/1] lg:min-h-0">
+            <div className="absolute inset-0">
+              <div className="absolute inset-3 sm:inset-4 lg:inset-6">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={heroImage.src}
+                    alt={heroImage.alt}
+                    fill
+                    priority
+                    sizes="(min-width: 1536px) 1440px, 100vw"
+                    className="object-contain object-right"
+                  />
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(251,244,244,0.95)_0%,rgba(251,244,244,0.86)_28%,rgba(251,244,244,0.5)_50%,rgba(251,244,244,0.12)_72%,rgba(251,244,244,0)_100%)]" />
+            </div>
+            <div className="relative z-10 flex min-h-[360px] items-center px-6 py-8 sm:min-h-[420px] sm:px-8 sm:py-10 lg:h-full lg:min-h-0 lg:px-10 lg:py-12">
+              <div className="max-w-xl space-y-2">
+                <ShopHeaderContent
+                  title={title}
+                  description={description}
+                  browseLabel={browseLabel}
+                  fallbackBrowseLabel={fallbackBrowseLabel}
+                  showFallbackBrowse={shouldShowRouteBrowse}
+                  viewAllHref={viewAllHref}
+                  filteredCount={filteredProducts.length}
+                  headingClassName="text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
+                  bodyClassName="max-w-lg text-sm text-foreground/72 md:text-base"
+                  browseTextClassName="text-sm text-foreground/72"
+                  browseValueClassName="font-medium text-foreground"
+                  linkClassName="ml-2 text-primary underline underline-offset-4"
+                />
+              </div>
+            </div>
+          </header>
+        ) : (
+          <div className="mx-auto w-full max-w-7xl">
+            <header className="space-y-2">
+              <ShopHeaderContent
+                title={title}
+                description={description}
+                browseLabel={browseLabel}
+                fallbackBrowseLabel={fallbackBrowseLabel}
+                showFallbackBrowse={shouldShowRouteBrowse}
+                viewAllHref={viewAllHref}
+                filteredCount={filteredProducts.length}
+                headingClassName="text-3xl font-semibold text-foreground md:text-4xl"
+                bodyClassName="max-w-2xl text-sm text-muted-foreground md:text-base"
+                browseTextClassName="text-sm text-muted-foreground"
+                browseValueClassName="font-medium text-foreground"
+                linkClassName="ml-2 text-primary underline underline-offset-4"
+              />
+            </header>
+          </div>
+        )}
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-[280px_1fr]">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-[280px_1fr]">
           <ShopFilters
             categories={categories}
             brands={brands}

@@ -61,6 +61,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   return (
     <ShopLayout
       products={normalizedProducts}
+      activeCategoryPath={routeCategoryPath}
       routeCategoryPath={fallbackRouteCategoryPath}
       description={description}
       browseLabel={browseLabel}
