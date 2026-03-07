@@ -3,10 +3,15 @@ export function InnerCircle() {
     <section className="bg-card border-b border-border py-32 text-center">
       <div className="max-w-4xl mx-auto px-6 space-y-8">
         <h2 className="text-4xl md:text-5xl font-light tracking-tight text-foreground">
-          Join The <span className="text-primary italic font-serif">Radiance</span> Inner Circle
+          Join the <span className="text-primary italic font-serif">SAVZIX</span> Inner Circle
         </h2>
         <p className="text-lg text-muted-foreground font-light max-w-xl mx-auto">
-          Exclusive access to new launches, limited editions, and skin rituals. Unlock 15% off your first order.
+          Get early access to new arrivals, limited offers, and everyday essentials
+          across beauty, fragrance, and wellness.{" "}
+          <span className="font-medium text-foreground">
+            Enjoy 15% off your first order
+          </span>{" "}
+          when you subscribe.
         </p>
         
         <form className="max-w-md mx-auto flex flex-col md:flex-row gap-4">
