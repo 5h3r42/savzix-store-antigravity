@@ -8,6 +8,7 @@
     "dev:webpack": "next dev --webpack",
     "build:webpack": "next build --webpack",
     "start": "next start",
+    "start:standalone": "node scripts/start-standalone.mjs",
     "lint": "eslint",
     "image:setup": "python3 -m venv .venv-imagegen && ./.venv-imagegen/bin/pip install --upgrade pip openai pillow",
     "image:gen": "sh -c 'if [ -f ./.env.local ]; then set -a; . ./.env.local; set +a; fi; test -x ./.venv-imagegen/bin/python || { echo \"Run npm run image:setup first.\" >&2; exit 1; }; CODEX_HOME=\"${CODEX_HOME:-$HOME/.codex}\"; exec ./.venv-imagegen/bin/python \"$CODEX_HOME/skills/imagegen/scripts/image_gen.py\" generate \"$@\"' --",

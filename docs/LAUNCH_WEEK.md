@@ -1,75 +1,95 @@
-# Launch Week Plan (MVP)
+# SAVZIX Launch Readiness Runbook
 
-## MVP Scope
-The MVP flow for launch week is:
+## Current Launch Scope
 
-1. Shop listing (`/shop`)
-2. Product detail (`/products/[id]`)
-3. Cart (drawer from global navbar)
-4. Checkout placeholder (`/checkout`)
-5. Order confirmation placeholder (`/order-confirmation`)
+The current launch path in the repository is:
 
-The checkout page is intentionally a redirect/placeholder workflow in Day 1. Payment processing is out of scope for today.
+`/shop -> /products/[id] -> cart -> /checkout -> Stripe Checkout -> /order-confirmation`
 
-## Route Flow
-`/shop -> /products/[id] -> cart drawer -> /checkout -> /order-confirmation`
+Supporting routes already in the app include:
 
-## Day-by-Day Checklist
+- `/account`
+- `/admin`
+- `/c/[...path]` canonical category routes
+- legal and support pages under `/contact`, `/shipping`, `/returns`, `/faq`, `/privacy`, `/terms`, and `/cookies`
 
-### Day 1: Scope Lock + Foundation
-- [x] Lock MVP route and flow boundaries.
-- [x] Add launch-week and data-model docs.
-- [x] Add environment template (`.env.example`).
-- [x] Add site-level config contract (`src/config/site.ts`).
-- [x] Align TypeScript Product contract with model spec.
-- [x] Add `/checkout` and `/order-confirmation` placeholders.
-- [x] Make lint/build baseline clean.
+## Required Environment Variables
 
-### Day 2: Catalog Hardening
-- [ ] Add filtering and sorting on shop page.
-- [ ] Improve product detail content structure (ingredients/usage sections).
-- [ ] Add empty/loading/error states for product fetches.
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SITE_NAME`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `ADMIN_EMAIL`
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
 
-### Day 3: Cart + Pricing Rules
-- [ ] Add shipping calculation with threshold logic.
-- [ ] Add cart total summary breakdown (subtotal/shipping/total).
-- [ ] Validate quantity and out-of-stock edge cases.
+Use `.env.example` as the local template.
 
-### Day 4: Checkout UX (No Payment Integration)
-- [ ] Add customer details form for checkout placeholder.
-- [ ] Add order summary card and confirmation preview.
-- [ ] Add form validation and submission state handling.
+## Database Setup
 
-### Day 5: Auth + Account Stability
-- [ ] Refine customer login placeholders and account routing.
-- [ ] Add route guards and safe redirects for account/admin pages.
-- [ ] Improve error messaging and fallback UX.
+Apply these migrations in order:
 
-### Day 6: QA + Performance Pass
-- [ ] Run full lint/build checks and fix regressions.
-- [ ] Verify responsive layouts and major route journeys.
-- [ ] Run accessibility and basic SEO checks.
+1. `supabase/migrations/001_init.sql`
+2. `supabase/migrations/002_add_brand_to_products.sql`
+3. `supabase/migrations/003_categories_taxonomy.sql`
+4. `supabase/migrations/004_orders_payment_and_customer_fields.sql`
 
-### Day 7: Launch Readiness
-- [ ] Final smoke test of all MVP routes.
-- [ ] Confirm environment variables in deployment.
-- [ ] Freeze scope, create launch notes, and publish.
+Then run:
 
-## Risks
-- Data persistence currently relies on local JSON/file-backed flow; production scaling needs DB migration.
-- Placeholder checkout may create expectation mismatch if not clearly labeled during QA.
-- Missing authentication hardening could affect admin/customer experience.
-- Inventory consistency can drift without transactional order handling.
+```bash
+npm run seed:categories
+npm run backfill:product-categories
+```
 
-## Non-Goals (MVP Week)
-- Real payment gateway integration.
-- Advanced promotions, discounts, gift cards, and coupon engines.
-- Full OMS/fulfillment pipeline integration.
-- Multi-currency and multi-region tax automation.
-- Enterprise analytics and experimentation tooling.
+Production strategy: taxonomy is required for launch. The runtime fallback in storefront code is a resilience path only.
 
-## Launch Readiness Criteria
-- All MVP routes work end-to-end without 404s.
-- `npm run lint` and `npm run build` pass.
-- Core docs and env template are present and consistent.
-- Checkout is explicitly marked as placeholder until payments are implemented.
+## Validation Commands
+
+```bash
+npm run lint
+npm run build
+npm run start:standalone
+```
+
+## Local Stripe Test
+
+1. Start the app:
+
+```bash
+npm run dev
+```
+
+2. Forward Stripe webhooks:
+
+```bash
+stripe listen --forward-to http://localhost:3000/api/stripe/webhook
+```
+
+3. Update `STRIPE_WEBHOOK_SECRET` in `.env.local` with the signing secret shown by Stripe CLI for that local listener.
+4. Sign in with a customer account.
+5. Add an in-stock product to the cart.
+6. Complete checkout and pay with a Stripe test card.
+7. Verify:
+
+- the order record is created
+- Stripe redirects to `/order-confirmation`
+- the webhook marks the order as paid
+- stock is decremented after payment confirmation
+- the order is visible in `/account` and `/admin/orders`
+
+## Launch Checklist
+
+- `npm run lint` passes
+- `npm run build` passes
+- legal/support routes are live and linked from the footer
+- admin bootstrap has been run for the production admin user
+- Stripe production webhook points to `/api/stripe/webhook`
+- taxonomy seed/backfill has been run after migrations
+- checkout succeeds with a live test order in the target environment
+
+## Current Deferrals
+
+- Admin Customers and Admin Settings are intentionally redirected to `/admin/orders` and are not launch-critical.
+- Analytics and error monitoring are not part of the current repo-backed launch checklist.

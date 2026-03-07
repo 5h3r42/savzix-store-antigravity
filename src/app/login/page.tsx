@@ -305,7 +305,7 @@ export default function CustomerLoginPage() {
       </div>
 
       <div className="relative hidden bg-muted/20 lg:block">
-        <div className="absolute inset-0 bg-[url('/hero_bg.jpg')] bg-cover bg-center mix-blend-overlay opacity-50"></div>
+        <div className="absolute inset-0 bg-[url('/home/fragrance-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
         <div className="absolute bottom-24 left-12 right-12 rounded-3xl border border-white/10 bg-black/20 p-8 text-white backdrop-blur-md">
           <p className="mb-4 text-xl font-light italic leading-relaxed">
