@@ -26,7 +26,7 @@ function slugify(value: string): string {
     .replace(/-+/g, "-");
 }
 
-function mapProduct(row: ProductRow): Product {
+export function mapProductRow(row: ProductRow): Product {
   return {
     id: row.id,
     slug: row.slug,
@@ -100,7 +100,7 @@ export async function getAllProducts(): Promise<Product[]> {
     throw new Error("Failed to load products.");
   }
 
-  return (data ?? []).map(mapProduct);
+  return (data ?? []).map(mapProductRow);
 }
 
 export async function getPublicProducts(): Promise<Product[]> {
@@ -118,11 +118,26 @@ export async function getPublicProducts(): Promise<Product[]> {
       return [];
     }
 
-    return (data ?? []).map(mapProduct);
+    return (data ?? []).map(mapProductRow);
   } catch (error) {
     console.error("Failed to load public products.", error);
     return [];
   }
+}
+
+export async function getProductById(productId: string): Promise<Product | undefined> {
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", productId)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Failed to load product.");
+  }
+
+  return data ? mapProductRow(data) : undefined;
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
@@ -137,7 +152,7 @@ export async function getProductBySlug(slug: string): Promise<Product | undefine
     throw new Error("Failed to load product details.");
   }
 
-  return data ? mapProduct(data) : undefined;
+  return data ? mapProductRow(data) : undefined;
 }
 
 export async function addProduct(input: NewProductInput): Promise<Product> {
@@ -198,7 +213,7 @@ export async function addProduct(input: NewProductInput): Promise<Product> {
     throw new Error("Failed to create product.");
   }
 
-  return mapProduct(data);
+  return mapProductRow(data);
 }
 
 export async function getBestsellerProducts(
@@ -271,7 +286,7 @@ export async function getBestsellerProducts(
     }
 
     const bestsellerById = new Map(
-      ((bestsellerRows ?? []) as ProductRow[]).map((row) => [row.id, mapProduct(row)]),
+      ((bestsellerRows ?? []) as ProductRow[]).map((row) => [row.id, mapProductRow(row)]),
     );
     const rankedProducts = rankedProductIds
       .map((productId) => bestsellerById.get(productId))

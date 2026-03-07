@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { useCart } from "@/context/CartContext";
 import { cleanTitle } from "@/lib/productText"; // ADDED: keep checkout item titles retail-clean.
@@ -39,11 +38,15 @@ function formatPrice(value: number) {
 }
 
 export default function CheckoutPage() {
-  const router = useRouter();
-  const { items, subtotal, clearCart } = useCart();
+  const { items, subtotal } = useCart();
   const [form, setForm] = useState<CheckoutForm>(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [paymentCancelled, setPaymentCancelled] = useState(false);
+
+  useEffect(() => {
+    setPaymentCancelled(new URLSearchParams(window.location.search).get("cancelled") === "1");
+  }, []);
 
   const shipping =
     items.length === 0 || subtotal >= siteConfig.shippingThreshold
@@ -83,16 +86,14 @@ export default function CheckoutPage() {
       });
 
       const payload = (await response.json().catch(() => null)) as
-        | { orderId?: string; error?: string }
+        | { orderId?: string; checkoutUrl?: string; error?: string }
         | null;
 
-      if (!response.ok || !payload?.orderId) {
+      if (!response.ok || !payload?.orderId || !payload.checkoutUrl) {
         throw new Error(payload?.error ?? "Failed to place order.");
       }
 
-      clearCart();
-      router.push(`/order-confirmation?order=${encodeURIComponent(payload.orderId)}`);
-      router.refresh();
+      window.location.assign(payload.checkoutUrl);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Failed to place order.";
@@ -137,6 +138,12 @@ export default function CheckoutPage() {
           <p className="mb-3 text-xs uppercase tracking-[0.35em] text-primary">Checkout</p>
           <h1 className="text-4xl font-light text-foreground md:text-5xl">Complete Your Order</h1>
         </div>
+
+        {paymentCancelled ? (
+          <div className="mb-6 rounded-2xl border border-border bg-card px-5 py-4 text-sm text-muted-foreground">
+            Payment was cancelled. Your cart is still saved, so you can review it and try again.
+          </div>
+        ) : null}
 
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
           <form
@@ -232,7 +239,7 @@ export default function CheckoutPage() {
               disabled={isSubmitting}
               className="inline-flex w-full items-center justify-center rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isSubmitting ? "Placing Order..." : "Place Order"}
+              {isSubmitting ? "Redirecting..." : "Continue to Secure Payment"}
             </button>
 
             {submitError ? (
@@ -276,7 +283,7 @@ export default function CheckoutPage() {
             </div>
 
             <p className="mt-6 text-xs text-muted-foreground">
-              Orders are submitted in real-time. Payment collection remains an MVP placeholder.
+              You will be redirected to Stripe to complete your payment securely.
             </p>
           </aside>
         </div>

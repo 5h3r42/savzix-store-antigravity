@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev": "next dev",
+    "build": "next build",
+    "dev:webpack": "next dev --webpack",
+    "build:webpack": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
+    "image:setup": "python3 -m venv .venv-imagegen && ./.venv-imagegen/bin/pip install --upgrade pip openai pillow",
+    "image:gen": "sh -c 'if [ -f ./.env.local ]; then set -a; . ./.env.local; set +a; fi; test -x ./.venv-imagegen/bin/python || { echo \"Run npm run image:setup first.\" >&2; exit 1; }; CODEX_HOME=\"${CODEX_HOME:-$HOME/.codex}\"; exec ./.venv-imagegen/bin/python \"$CODEX_HOME/skills/imagegen/scripts/image_gen.py\" generate \"$@\"' --",
+    "image:edit": "sh -c 'if [ -f ./.env.local ]; then set -a; . ./.env.local; set +a; fi; test -x ./.venv-imagegen/bin/python || { echo \"Run npm run image:setup first.\" >&2; exit 1; }; CODEX_HOME=\"${CODEX_HOME:-$HOME/.codex}\"; exec ./.venv-imagegen/bin/python \"$CODEX_HOME/skills/imagegen/scripts/image_gen.py\" edit \"$@\"' --",
+    "image:batch": "sh -c 'if [ -f ./.env.local ]; then set -a; . ./.env.local; set +a; fi; test -x ./.venv-imagegen/bin/python || { echo \"Run npm run image:setup first.\" >&2; exit 1; }; CODEX_HOME=\"${CODEX_HOME:-$HOME/.codex}\"; exec ./.venv-imagegen/bin/python \"$CODEX_HOME/skills/imagegen/scripts/image_gen.py\" generate-batch \"$@\"' --",
     "bootstrap:admin": "tsx scripts/bootstrap-admin.ts",
     "migrate:products": "tsx scripts/migrate-products.ts",
     "import:product-images": "tsx scripts/import-product-images.ts",
-    "sync:catalog": "tsx scripts/sync-catalog-from-xlsx.ts"
+    "sync:catalog": "tsx scripts/sync-catalog-from-xlsx.ts",
+    "seed:categories": "tsx scripts/seed-categories-taxonomy.ts",
+    "backfill:product-categories": "tsx scripts/backfill-product-categories.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -21,6 +29,7 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "stripe": "^20.4.0",
     "tailwind-merge": "^3.4.0",
     "xlsx": "^0.18.5"
   },

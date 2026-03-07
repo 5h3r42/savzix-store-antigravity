@@ -36,6 +36,22 @@ type ShopProductCategoryMeta = {
   topLevelCategoryName: string | null;
 };
 
+function isMissingTaxonomyTableError(error: {
+  code?: string | null;
+  message?: string | null;
+} | null) {
+  // Keep the storefront working when the optional taxonomy migration is not applied.
+  if (!error) {
+    return false;
+  }
+
+  return (
+    error.code === "PGRST205" ||
+    error.message?.includes("public.categories") === true ||
+    error.message?.includes("public.product_categories") === true
+  );
+}
+
 function safeText(value: unknown, fallback: string) {
   if (typeof value !== "string") {
     return fallback;
@@ -89,6 +105,10 @@ async function loadProductCategoryMeta(productIds: string[]) {
       .in("product_id", productIds);
 
     if (linksError) {
+      if (isMissingTaxonomyTableError(linksError)) {
+        return new Map<string, ShopProductCategoryMeta>();
+      }
+
       console.error("Failed to load product category links.", linksError);
       return new Map<string, ShopProductCategoryMeta>();
     }
@@ -107,6 +127,10 @@ async function loadProductCategoryMeta(productIds: string[]) {
       .eq("is_active", true);
 
     if (categoriesError) {
+      if (isMissingTaxonomyTableError(categoriesError)) {
+        return new Map<string, ShopProductCategoryMeta>();
+      }
+
       console.error("Failed to load category metadata for shop products.", categoriesError);
       return new Map<string, ShopProductCategoryMeta>();
     }

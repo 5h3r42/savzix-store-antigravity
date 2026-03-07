@@ -1,14 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Plus, Search, Filter, Eye, Edit, Trash2 } from "lucide-react";
+import { formatPrice } from "@/lib/formatPrice";
 import { getAllProducts } from "@/lib/products-store";
 import type { Product } from "@/types/product";
 
 export const dynamic = "force-dynamic";
-
-function formatPrice(price: number) {
-  return `$${price.toFixed(2)}`;
-}
 
 function getInventoryStatus(product: Product) {
   if (product.status !== "Active") {
@@ -118,12 +115,13 @@ export default async function AdminProductsPage() {
                         >
                           <Eye className="h-4 w-4" />
                         </button>
-                        <button
+                        <Link
+                          href={`/admin/products/${encodeURIComponent(product.id)}/categories`}
                           className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
-                          title="Edit"
+                          title="Categories"
                         >
                           <Edit className="h-4 w-4" />
-                        </button>
+                        </Link>
                         <button
                           className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-red-500/10 hover:text-red-500"
                           title="Delete"

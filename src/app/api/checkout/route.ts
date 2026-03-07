@@ -1,20 +1,39 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/config/site";
 import { getSessionContext } from "@/lib/auth/session";
+import { cleanTitle } from "@/lib/productText";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getSiteUrl, getStripeClient } from "@/lib/stripe";
 
 type CheckoutRequestItem = {
   id: string;
   quantity: number;
 };
 
+type CheckoutCustomerPayload = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
+  notes?: string;
+};
+
 type CheckoutRequestPayload = {
   items?: CheckoutRequestItem[];
+  customer?: CheckoutCustomerPayload;
 };
 
 function toMoney(value: number) {
   return Number(value.toFixed(2));
+}
+
+function toMinorUnits(value: number) {
+  return Math.round(toMoney(value) * 100);
 }
 
 function generateOrderId() {
@@ -39,6 +58,52 @@ function sanitizeItems(items: CheckoutRequestItem[] | undefined) {
     .filter((item) => item.id.length > 0 && Number.isInteger(item.quantity) && item.quantity > 0);
 }
 
+function sanitizeText(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function sanitizeCustomer(customer: CheckoutCustomerPayload | undefined) {
+  return {
+    firstName: sanitizeText(customer?.firstName),
+    lastName: sanitizeText(customer?.lastName),
+    email: sanitizeText(customer?.email).toLowerCase(),
+    phone: sanitizeText(customer?.phone),
+    address: sanitizeText(customer?.address),
+    city: sanitizeText(customer?.city),
+    postalCode: sanitizeText(customer?.postalCode),
+    country: sanitizeText(customer?.country) || "United Kingdom",
+    notes: sanitizeText(customer?.notes),
+  };
+}
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function validateCustomer(customer: ReturnType<typeof sanitizeCustomer>) {
+  if (!customer.firstName || !customer.lastName) {
+    return "First name and last name are required.";
+  }
+
+  if (!isValidEmail(customer.email)) {
+    return "A valid email address is required.";
+  }
+
+  if (!customer.phone) {
+    return "A phone number is required.";
+  }
+
+  if (!customer.address || !customer.city || !customer.postalCode) {
+    return "Complete shipping address is required.";
+  }
+
+  if (customer.country.toLowerCase() !== "united kingdom") {
+    return "Launch checkout is currently available for United Kingdom orders only.";
+  }
+
+  return null;
+}
+
 export async function POST(request: Request) {
   try {
     const supabase = await createServerSupabaseClient();
@@ -50,8 +115,15 @@ export async function POST(request: Request) {
 
     const payload = (await request.json()) as CheckoutRequestPayload;
     const items = sanitizeItems(payload.items);
+    const customer = sanitizeCustomer(payload.customer);
+
     if (items.length === 0) {
       return NextResponse.json({ error: "Your cart is empty." }, { status: 400 });
+    }
+
+    const customerValidationError = validateCustomer(customer);
+    if (customerValidationError) {
+      return NextResponse.json({ error: customerValidationError }, { status: 400 });
     }
 
     const adminSupabase = createAdminSupabaseClient();
@@ -61,11 +133,11 @@ export async function POST(request: Request) {
       await Promise.all([
         adminSupabase
           .from("products")
-          .select("id, slug, price, stock, status")
+          .select("id, slug, name, image, price, stock, status")
           .in("slug", itemIds),
         adminSupabase
           .from("products")
-          .select("id, slug, price, stock, status")
+          .select("id, slug, name, image, price, stock, status")
           .in("id", itemIds),
       ]);
 
@@ -123,6 +195,18 @@ export async function POST(request: Request) {
     const { error: orderError } = await adminSupabase.from("orders").insert({
       id: orderId,
       user_id: session.user.id,
+      customer_email: customer.email,
+      customer_first_name: customer.firstName,
+      customer_last_name: customer.lastName,
+      customer_phone: customer.phone,
+      shipping_address_line1: customer.address,
+      shipping_city: customer.city,
+      shipping_postal_code: customer.postalCode,
+      shipping_country: customer.country,
+      notes: customer.notes || null,
+      currency: siteConfig.currency,
+      payment_provider: "stripe",
+      payment_status: "unpaid",
       subtotal: toMoney(subtotal),
       shipping: toMoney(shipping),
       total: toMoney(total),
@@ -153,7 +237,81 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ orderId }, { status: 201 });
+    try {
+      const stripe = getStripeClient();
+      const siteUrl = getSiteUrl();
+      const checkoutSession = await stripe.checkout.sessions.create({
+        mode: "payment",
+        customer_email: customer.email,
+        client_reference_id: orderId,
+        success_url: `${siteUrl}/order-confirmation?order=${encodeURIComponent(orderId)}`,
+        cancel_url: `${siteUrl}/checkout?cancelled=1`,
+        metadata: {
+          order_id: orderId,
+          user_id: session.user.id,
+        },
+        payment_intent_data: {
+          metadata: {
+            order_id: orderId,
+            user_id: session.user.id,
+          },
+        },
+        line_items: [
+          ...resolvedItems.map(({ item, product }) => ({
+            quantity: item.quantity,
+            price_data: {
+              currency: siteConfig.currency.toLowerCase(),
+              unit_amount: toMinorUnits(Number(product!.price)),
+              product_data: {
+                name: cleanTitle(product!.name),
+                images:
+                  typeof product!.image === "string" && product!.image.startsWith("https://")
+                    ? [product!.image]
+                    : undefined,
+              },
+            },
+          })),
+          ...(shipping > 0
+            ? [
+                {
+                  quantity: 1,
+                  price_data: {
+                    currency: siteConfig.currency.toLowerCase(),
+                    unit_amount: toMinorUnits(shipping),
+                    product_data: {
+                      name: "Shipping",
+                    },
+                  },
+                },
+              ]
+            : []),
+        ],
+      });
+
+      const { error: sessionSaveError } = await adminSupabase
+        .from("orders")
+        .update({ stripe_checkout_session_id: checkoutSession.id })
+        .eq("id", orderId);
+
+      if (sessionSaveError || !checkoutSession.url) {
+        throw new Error("Failed to prepare secure payment session.");
+      }
+
+      return NextResponse.json(
+        { orderId, checkoutUrl: checkoutSession.url },
+        { status: 201 },
+      );
+    } catch (stripeError) {
+      await adminSupabase.from("order_items").delete().eq("order_id", orderId);
+      await adminSupabase.from("orders").delete().eq("id", orderId);
+
+      const message =
+        stripeError instanceof Error
+          ? stripeError.message
+          : "Failed to create payment session.";
+
+      return NextResponse.json({ error: message }, { status: 500 });
+    }
   } catch (error) {
     console.error("Checkout route failed.", error);
     return NextResponse.json({ error: "Checkout failed." }, { status: 500 });
