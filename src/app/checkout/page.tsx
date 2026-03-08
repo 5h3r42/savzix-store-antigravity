@@ -38,7 +38,7 @@ function formatPrice(value: number) {
 }
 
 export default function CheckoutPage() {
-  const { items, subtotal } = useCart();
+  const { hasHydrated, items, subtotal } = useCart();
   const [form, setForm] = useState<CheckoutForm>(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -53,6 +53,20 @@ export default function CheckoutPage() {
       ? 0
       : siteConfig.shippingFlatRate;
   const total = subtotal + shipping;
+
+  if (!hasHydrated) {
+    return (
+      <section className="px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-3xl rounded-3xl border border-border bg-card p-8 text-center md:p-12">
+          <p className="mb-3 text-xs uppercase tracking-[0.35em] text-primary">Checkout</p>
+          <h1 className="mb-4 text-4xl font-light text-foreground">Preparing Checkout</h1>
+          <p className="mx-auto max-w-xl text-muted-foreground">
+            Loading your saved cart and checkout details.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   const handleChange =
     (field: keyof CheckoutForm) =>

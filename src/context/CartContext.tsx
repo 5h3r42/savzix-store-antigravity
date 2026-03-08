@@ -22,6 +22,7 @@ type CartContextType = {
   openCart: () => void;
   closeCart: () => void;
   toggleCart: () => void;
+  hasHydrated: boolean;
   items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">) => void;
   removeItem: (id: string) => void;
@@ -33,7 +34,7 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-function getInitialCartItems(): CartItem[] {
+function readStoredCartItems(): CartItem[] {
   if (typeof window === "undefined") {
     return [];
   }
@@ -54,12 +55,34 @@ function getInitialCartItems(): CartItem[] {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [items, setItems] = useState<CartItem[]>(getInitialCartItems);
+  const [items, setItems] = useState<CartItem[]>([]);
+  const [hasHydrated, setHasHydrated] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    queueMicrotask(() => {
+      if (cancelled) {
+        return;
+      }
+
+      setItems(readStoredCartItems());
+      setHasHydrated(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Persist cart to local storage whenever items change.
   useEffect(() => {
+    if (!hasHydrated) {
+      return;
+    }
+
     localStorage.setItem("savzix-cart", JSON.stringify(items));
-  }, [items]);
+  }, [hasHydrated, items]);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
@@ -98,6 +121,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = useCallback(() => {
     // CHANGED: keep clearCart stable and avoid re-render loops on pages that clear the cart on mount.
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("savzix-cart");
+    }
+
     setItems((currentItems) => (currentItems.length === 0 ? currentItems : []));
   }, []);
 
@@ -115,6 +142,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         openCart,
         closeCart,
         toggleCart,
+        hasHydrated,
         items,
         addItem,
         removeItem,

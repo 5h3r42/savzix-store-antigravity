@@ -11,6 +11,13 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: siteConfig.siteName,
   description: `${siteConfig.siteName} premium skincare and wellness products.`,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 import { Navbar } from "@/components/layout/Navbar";

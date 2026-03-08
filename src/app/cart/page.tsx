@@ -15,12 +15,29 @@ function formatPrice(value: number) {
 }
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, subtotal } = useCart();
+  const { hasHydrated, items, updateQuantity, removeItem, subtotal } = useCart();
   const shipping =
     items.length === 0 || subtotal >= siteConfig.shippingThreshold
       ? 0
       : siteConfig.shippingFlatRate;
   const total = subtotal + shipping;
+
+  if (!hasHydrated) {
+    return (
+      <section className="px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-7xl space-y-10">
+          <div>
+            <p className="mb-3 text-xs uppercase tracking-[0.35em] text-primary">Cart</p>
+            <h1 className="text-4xl font-light text-foreground md:text-5xl">Your Shopping Bag</h1>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-card p-12 text-center text-muted-foreground">
+            Loading your cart...
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="px-6 py-24 md:py-32">
