@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, ArrowRight } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
 type AuthMode = "login" | "signup";
@@ -113,7 +114,7 @@ export default function CustomerLoginPage() {
       <div className="relative z-10 flex flex-col justify-center bg-background px-8 py-12 lg:px-24">
         <div className="mx-auto w-full max-w-md">
           <Link href="/" className="mb-12 inline-block">
-            <span className="text-2xl font-bold tracking-tighter">SAVZIX</span>
+            <BrandLogo priority className="h-16 w-auto" />
           </Link>
 
           <div className="mb-10">

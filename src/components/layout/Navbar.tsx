@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronRight, Menu, ShoppingBag, X } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { useCart } from "@/context/CartContext";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { SignOutButton } from "@/components/auth/SignOutButton";
@@ -273,9 +274,12 @@ export function Navbar() {
         <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6">
           <Link
             href="/"
-            className="justify-self-start font-serif text-4xl italic lowercase tracking-tight text-[#b38407] transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-5xl"
+            className="inline-flex justify-self-start rounded-md transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            savzix
+            <BrandLogo
+              priority
+              className="h-11 w-auto md:h-12"
+            />
           </Link>
 
           <div

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, ArrowRight } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
 function getSafeRedirect(nextPath: string | null, fallback: string) {
@@ -92,9 +93,9 @@ export default function AdminLoginPage() {
 
       <div className="w-full max-w-md">
         <div className="mb-10 text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-[0_0_30px_-5px_var(--color-primary)]">
-            <span className="text-3xl font-bold text-primary-foreground">S</span>
-          </div>
+          <Link href="/" className="mx-auto mb-6 inline-flex rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+            <BrandLogo priority variant="mark" className="h-16 w-16" />
+          </Link>
           <h1 className="mb-2 text-3xl font-bold tracking-tight">Admin Portal</h1>
           <p className="text-muted-foreground">Secure access for Savzix staff only.</p>
         </div>
