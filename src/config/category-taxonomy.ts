@@ -2,10 +2,6 @@ export type TaxonomyNode = {
   name: string;
   slug: string;
   description?: string;
-  heroImage?: {
-    src: string;
-    alt: string;
-  };
   sortOrder?: number;
   legacyPaths?: string[];
   children?: TaxonomyNode[];
@@ -24,10 +20,6 @@ export type FlatTaxonomyNode = {
   path: string;
   href: string;
   description?: string;
-  heroImage?: {
-    src: string;
-    alt: string;
-  };
   sortOrder: number;
   parentPath: string | null;
   legacyPaths: string[];
@@ -82,10 +74,6 @@ export const taxonomyTree: TaxonomyNode[] = [
     name: "Beauty & Skincare",
     slug: "beauty-skincare",
     description: "Shop cosmetics, nails, and skincare essentials.",
-    heroImage: {
-      src: "/categories/beauty-skincare-banner.webp",
-      alt: "Beauty and skincare products arranged on a soft pink background",
-    },
     sortOrder: 0,
     legacyPaths: ["/beauty-skincare", "/beauty"],
     children: [
@@ -378,7 +366,6 @@ function flattenTaxonomy(
       path,
       href: toCategoryHref(path),
       description: node.description,
-      heroImage: node.heroImage,
       sortOrder: node.sortOrder ?? 0,
       parentPath,
       legacyPaths: (node.legacyPaths ?? []).map(normalizeRoutePath),

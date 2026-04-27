@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import {
+  flatTaxonomy,
   getTaxonomyNodeByPath,
   normalizeTaxonomyPath,
 } from "@/config/category-taxonomy";
@@ -28,6 +29,109 @@ type ShopLayoutProps = {
 };
 
 const DEFAULT_PAGE_SIZE = 24;
+const HERO_PRODUCT_LIMIT = 4;
+const MAIN_SHOP_HERO = {
+  src: "/shop/main-shop-hero.png",
+  alt: "Curated SAVZIX product selection arranged on a warm neutral surface",
+};
+const HERO_PRODUCT_LAYOUTS = [
+  {
+    wrapperClass:
+      "absolute left-[18%] top-[8%] h-[28%] w-[30%] sm:left-[20%] sm:w-[28%] lg:left-[18%]",
+    imageClass: "object-contain drop-shadow-[0_20px_28px_rgba(73,54,31,0.16)]",
+  },
+  {
+    wrapperClass:
+      "absolute right-[3%] top-[10%] h-[48%] w-[28%] rotate-[8deg] sm:right-[5%] sm:w-[26%]",
+    imageClass: "object-contain drop-shadow-[0_24px_32px_rgba(73,54,31,0.18)]",
+  },
+  {
+    wrapperClass:
+      "absolute left-[27%] bottom-[6%] h-[42%] w-[22%] -rotate-[10deg] sm:left-[28%] sm:w-[20%]",
+    imageClass: "object-contain drop-shadow-[0_24px_34px_rgba(73,54,31,0.18)]",
+  },
+  {
+    wrapperClass:
+      "absolute right-[16%] bottom-[2%] h-[48%] w-[23%] rotate-[10deg] sm:right-[17%] sm:w-[21%]",
+    imageClass: "object-contain drop-shadow-[0_28px_36px_rgba(73,54,31,0.18)]",
+  },
+] as const;
+
+const CATEGORY_HERO_THEMES: Record<
+  string,
+  {
+    surface: string;
+    glowA: string;
+    glowB: string;
+    mesh: string;
+    badge: string;
+  }
+> = {
+  "beauty-skincare": {
+    surface: "bg-[linear-gradient(135deg,#fbf0ea_0%,#f7ece4_45%,#f1e1d3_100%)]",
+    glowA: "bg-[#f4d5cd]/80",
+    glowB: "bg-[#cbeef1]/75",
+    mesh:
+      "bg-[radial-gradient(circle_at_16%_18%,rgba(181,138,18,0.18),transparent_26%),radial-gradient(circle_at_78%_24%,rgba(89,190,202,0.18),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(232,181,165,0.2),transparent_24%)]",
+    badge: "bg-white/82 text-foreground/70",
+  },
+  fragrance: {
+    surface: "bg-[linear-gradient(135deg,#f6efe8_0%,#efe1d6_50%,#e6d0c2_100%)]",
+    glowA: "bg-[#e8c8b8]/70",
+    glowB: "bg-[#d7b38a]/60",
+    mesh:
+      "bg-[radial-gradient(circle_at_18%_18%,rgba(181,138,18,0.18),transparent_28%),radial-gradient(circle_at_82%_28%,rgba(141,99,56,0.16),transparent_22%),radial-gradient(circle_at_72%_76%,rgba(244,220,198,0.28),transparent_24%)]",
+    badge: "bg-white/82 text-foreground/70",
+  },
+  "gift-sets": {
+    surface: "bg-[linear-gradient(135deg,#f3efe7_0%,#efe5d3_48%,#e2d3bb_100%)]",
+    glowA: "bg-[#ead7aa]/72",
+    glowB: "bg-[#d8c2ef]/58",
+    mesh:
+      "bg-[radial-gradient(circle_at_18%_18%,rgba(181,138,18,0.18),transparent_28%),radial-gradient(circle_at_80%_24%,rgba(181,138,18,0.12),transparent_22%),radial-gradient(circle_at_70%_74%,rgba(167,133,211,0.16),transparent_22%)]",
+    badge: "bg-white/84 text-foreground/70",
+  },
+  "health-wellness": {
+    surface: "bg-[linear-gradient(135deg,#edf5ee_0%,#e7f1e8_42%,#d8e9dc_100%)]",
+    glowA: "bg-[#cbe6d1]/80",
+    glowB: "bg-[#bde0de]/72",
+    mesh:
+      "bg-[radial-gradient(circle_at_16%_18%,rgba(102,153,118,0.16),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(77,170,161,0.16),transparent_24%),radial-gradient(circle_at_70%_76%,rgba(181,138,18,0.12),transparent_24%)]",
+    badge: "bg-white/84 text-foreground/70",
+  },
+  "suncare-travel": {
+    surface: "bg-[linear-gradient(135deg,#fff2de_0%,#f9e7c8_46%,#efd3a8_100%)]",
+    glowA: "bg-[#ffd793]/74",
+    glowB: "bg-[#b9dff5]/68",
+    mesh:
+      "bg-[radial-gradient(circle_at_16%_18%,rgba(255,182,72,0.18),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(89,177,220,0.18),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(181,138,18,0.14),transparent_24%)]",
+    badge: "bg-white/82 text-foreground/70",
+  },
+  electrical: {
+    surface: "bg-[linear-gradient(135deg,#f3f1ee_0%,#ece9e5_48%,#ddd9d5_100%)]",
+    glowA: "bg-[#dad3cb]/76",
+    glowB: "bg-[#c9d6e8]/60",
+    mesh:
+      "bg-[radial-gradient(circle_at_18%_18%,rgba(140,122,98,0.18),transparent_28%),radial-gradient(circle_at_80%_24%,rgba(119,146,184,0.16),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(181,138,18,0.12),transparent_22%)]",
+    badge: "bg-white/84 text-foreground/70",
+  },
+  toiletries: {
+    surface: "bg-[linear-gradient(135deg,#eef6f5_0%,#e6f0ef_46%,#d7e7e5_100%)]",
+    glowA: "bg-[#c7e1de]/76",
+    glowB: "bg-[#f0ddd0]/62",
+    mesh:
+      "bg-[radial-gradient(circle_at_16%_18%,rgba(82,155,148,0.16),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(181,138,18,0.12),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(232,195,170,0.18),transparent_24%)]",
+    badge: "bg-white/84 text-foreground/70",
+  },
+  default: {
+    surface: "bg-[linear-gradient(135deg,#f8f4ee_0%,#f0ebe3_46%,#e6ddd1_100%)]",
+    glowA: "bg-primary/12",
+    glowB: "bg-[#cfe3ea]/60",
+    mesh:
+      "bg-[radial-gradient(circle_at_16%_18%,rgba(181,138,18,0.14),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(111,163,180,0.14),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(220,197,166,0.18),transparent_24%)]",
+    badge: "bg-white/82 text-foreground/70",
+  },
+};
 
 type ShopHeaderContentProps = {
   title: string;
@@ -93,6 +197,11 @@ function parsePriceInput(value: string) {
 function timestamp(value: string) {
   const parsed = new Date(value).getTime();
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getCategoryHeroTheme(categoryPath: string | null) {
+  const topLevelPath = categoryPath?.split("/")[0] ?? "default";
+  return CATEGORY_HERO_THEMES[topLevelPath] ?? CATEGORY_HERO_THEMES.default;
 }
 
 export function ShopLayout({
@@ -328,7 +437,31 @@ export function ShopLayout({
       sortKey,
     ]
   );
-  const heroImage = activeCategoryNode?.heroImage ?? null;
+  const heroProducts = useMemo(() => {
+    const seenImages = new Set<string>();
+
+    return routeScopedProducts.filter((product) => {
+      const image = product.imageUrl?.trim();
+
+      if (!image || seenImages.has(image)) {
+        return false;
+      }
+
+      seenImages.add(image);
+      return true;
+    }).slice(0, HERO_PRODUCT_LIMIT);
+  }, [routeScopedProducts]);
+  const heroTheme = useMemo(
+    () => getCategoryHeroTheme(activeCategoryNode?.path ?? routeCategoryPath ?? null),
+    [activeCategoryNode?.path, routeCategoryPath]
+  );
+  const childCategoryLinks = useMemo(() => {
+    if (!activeCategoryNode) {
+      return [];
+    }
+
+    return flatTaxonomy.filter((node) => node.parentPath === activeCategoryNode.path).slice(0, 4);
+  }, [activeCategoryNode]);
   const shouldShowRouteBrowse =
     !browseLabel &&
     Boolean((activeCategoryPath && activeRouteFilterRule) || (routeCategoryPath && routeFilterRule));
@@ -337,25 +470,116 @@ export function ShopLayout({
   return (
     <section className="px-4 py-10 md:px-6 md:py-12">
       <div className="mx-auto max-w-[1440px] space-y-6">
-        {heroImage ? (
-          <header className="relative isolate min-h-[360px] w-full overflow-hidden rounded-[2rem] border border-border bg-[#f7eded] lg:aspect-[3/1] lg:min-h-0">
+        {activeCategoryNode ? (
+          <header
+            className={`relative isolate overflow-hidden rounded-[2rem] border border-border/70 ${heroTheme.surface}`}
+          >
             <div className="absolute inset-0">
-              <div className="absolute inset-3 sm:inset-4 lg:inset-6">
-                <div className="relative h-full w-full">
-                  <Image
-                    src={heroImage.src}
-                    alt={heroImage.alt}
-                    fill
-                    priority
-                    sizes="(min-width: 1536px) 1440px, 100vw"
-                    className="object-contain object-right"
-                  />
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(251,244,244,0.95)_0%,rgba(251,244,244,0.86)_28%,rgba(251,244,244,0.5)_50%,rgba(251,244,244,0.12)_72%,rgba(251,244,244,0)_100%)]" />
+              <div className={`absolute -left-20 top-0 h-72 w-72 rounded-full blur-3xl ${heroTheme.glowA}`} />
+              <div className={`absolute right-0 top-16 h-80 w-80 rounded-full blur-3xl ${heroTheme.glowB}`} />
+              <div className={`absolute inset-0 ${heroTheme.mesh}`} />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/55 via-background/20 to-transparent" />
             </div>
-            <div className="relative z-10 flex min-h-[360px] items-center px-6 py-8 sm:min-h-[420px] sm:px-8 sm:py-10 lg:h-full lg:min-h-0 lg:px-10 lg:py-12">
-              <div className="max-w-xl space-y-2">
+            <div className="relative z-10 grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,560px)] lg:items-center lg:gap-12 lg:px-10 lg:py-12">
+              <div className="max-w-xl space-y-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] ${heroTheme.badge}`}>
+                    {activeCategoryNode.parentPath ? "Subcategory" : "Main Category"}
+                  </span>
+                  <span className="text-xs uppercase tracking-[0.28em] text-foreground/55">
+                    {routeScopedProducts.length} products
+                  </span>
+                </div>
+                <ShopHeaderContent
+                  title={title}
+                  description={description}
+                  browseLabel={browseLabel}
+                  fallbackBrowseLabel={fallbackBrowseLabel}
+                  showFallbackBrowse={shouldShowRouteBrowse}
+                  viewAllHref={viewAllHref}
+                  filteredCount={filteredProducts.length}
+                  headingClassName="text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
+                  bodyClassName="max-w-lg text-sm text-foreground/72 md:text-base"
+                  browseTextClassName="text-sm text-foreground/72"
+                  browseValueClassName="font-medium text-foreground"
+                  linkClassName="ml-2 text-primary underline underline-offset-4"
+                />
+                {childCategoryLinks.length > 0 ? (
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {childCategoryLinks.map((category) => (
+                      <Link
+                        key={category.path}
+                        href={category.href}
+                        className="rounded-full border border-foreground/12 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/72 transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {category.name}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+
+              <div className="relative min-h-[320px] lg:min-h-[420px]">
+                {heroProducts.length > 0 ? (
+                  <div className="relative min-h-[320px] overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,rgba(255,253,249,0.7)_0%,rgba(255,249,239,0.46)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] lg:min-h-[420px]">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_6%_20%,rgba(255,255,255,0.92),rgba(255,255,255,0.58)_28%,transparent_62%)]" />
+                    <div className="absolute left-[-2%] top-[8%] h-[72%] w-[58%] rounded-full bg-white/62 blur-2xl" />
+                    <div className="absolute bottom-[-22%] right-[6%] h-[74%] w-[64%] rounded-full border border-white/45 bg-[linear-gradient(135deg,rgba(239,226,206,0.66),rgba(224,204,178,0.34))]" />
+                    <div className="absolute right-[-2%] top-0 h-[24%] w-[36%] rounded-bl-[2rem] bg-[repeating-linear-gradient(-14deg,rgba(233,214,191,0.7)_0px,rgba(233,214,191,0.7)_10px,rgba(245,233,217,0.82)_10px,rgba(245,233,217,0.82)_22px)] opacity-90" />
+                    <div className="absolute inset-y-[12%] left-[46%] w-px bg-white/35" />
+
+                    {heroProducts.map((product, index) => {
+                      const layout = HERO_PRODUCT_LAYOUTS[index];
+
+                      if (!layout) {
+                        return null;
+                      }
+
+                      return (
+                        <div key={`${product.id}-${index}`} className={layout.wrapperClass}>
+                          <Image
+                            src={product.imageUrl}
+                            alt={product.title}
+                            fill
+                            priority={index === 0}
+                            sizes="(min-width: 1024px) 240px, 42vw"
+                            className={layout.imageClass}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="flex min-h-[320px] items-end rounded-[1.75rem] border border-dashed border-foreground/12 bg-white/54 p-6 lg:min-h-[420px]">
+                    <p className="max-w-xs text-sm text-foreground/60">
+                      Category hero imagery will populate automatically as products with images are
+                      published to this section.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </header>
+        ) : (
+          <header className="relative isolate overflow-hidden rounded-[2rem] border border-border/70 bg-[linear-gradient(135deg,#f8f2e8_0%,#f4ecdf_48%,#efe3d2_100%)]">
+            <div className="absolute inset-0">
+              <Image
+                src={MAIN_SHOP_HERO.src}
+                alt={MAIN_SHOP_HERO.alt}
+                fill
+                priority
+                sizes="(min-width: 1536px) 1440px, 100vw"
+                className="object-cover object-right"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,246,239,0.95)_0%,rgba(248,246,239,0.9)_30%,rgba(248,246,239,0.56)_54%,rgba(248,246,239,0.16)_74%,rgba(248,246,239,0)_100%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(181,138,18,0.14),_transparent_38%)]" />
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background/45 via-background/15 to-transparent" />
+            </div>
+            <div className="relative z-10 flex min-h-[340px] items-center px-6 py-8 sm:min-h-[400px] sm:px-8 sm:py-10 lg:min-h-[440px] lg:px-10 lg:py-12">
+              <div className="max-w-xl space-y-4">
+                <span className="inline-flex rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground/70">
+                  SAVZIX Shop
+                </span>
                 <ShopHeaderContent
                   title={title}
                   description={description}
@@ -373,25 +597,6 @@ export function ShopLayout({
               </div>
             </div>
           </header>
-        ) : (
-          <div className="mx-auto w-full max-w-7xl">
-            <header className="space-y-2">
-              <ShopHeaderContent
-                title={title}
-                description={description}
-                browseLabel={browseLabel}
-                fallbackBrowseLabel={fallbackBrowseLabel}
-                showFallbackBrowse={shouldShowRouteBrowse}
-                viewAllHref={viewAllHref}
-                filteredCount={filteredProducts.length}
-                headingClassName="text-3xl font-semibold text-foreground md:text-4xl"
-                bodyClassName="max-w-2xl text-sm text-muted-foreground md:text-base"
-                browseTextClassName="text-sm text-muted-foreground"
-                browseValueClassName="font-medium text-foreground"
-                linkClassName="ml-2 text-primary underline underline-offset-4"
-              />
-            </header>
-          </div>
         )}
 
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-[280px_1fr]">
