@@ -1,8 +1,16 @@
 # Savzix Store Agent Guide
 
+## Project Control Rules
+
+- Work on one task only.
+- Do not scan the full repo; inspect only the files needed for the active task.
+- Do not add new features unless the active task explicitly requires them.
+- Focus on stability and conversion.
+
 This repository is a production-focused ecommerce codebase. Treat changes to checkout, auth, orders, admin, taxonomy, and catalog data as high impact.
 
 ## Project Overview
+
 - SAVZIX is a Next.js storefront for beauty, fragrance, gift sets, toiletries, health and wellness, and related essentials.
 - The current launch path in the repo is `/shop -> /products/[slug] -> /cart -> /checkout -> Stripe Checkout -> /order-confirmation`.
 - Major product areas already implemented:
@@ -14,6 +22,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   - catalog, taxonomy, and image import scripts
 
 ## Stack
+
 - Framework: Next.js 16 App Router
 - UI: React 19 with strict TypeScript
 - Styling: Tailwind CSS 4 via `src/app/globals.css` theme variables, with `Space_Grotesk` loaded through `next/font`
@@ -23,6 +32,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
 - Validation: `npm run lint` and `npm run build`; there is no automated test suite in the repo today
 
 ## Repository Structure
+
 - `src/app/`
   - App Router routes
   - storefront routes: `page.tsx`, `shop/page.tsx`, `products/[id]/page.tsx`, `cart/page.tsx`, `checkout/page.tsx`, `order-confirmation/page.tsx`
@@ -55,6 +65,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   - generated image candidates that should not be treated as approved production assets
 
 ## Engineering Rules
+
 - Follow existing patterns before introducing new ones. This repo already has working patterns for server components, client interactivity, Supabase access, Stripe checkout, and static content pages.
 - Prefer server components by default. Add `"use client"` only when browser state, events, local storage, or direct DOM access are required.
 - Use the correct Supabase client for the context:
@@ -77,6 +88,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
 ## Project-Specific Workflows
 
 ### Local Development
+
 1. Install dependencies:
    ```bash
    npm install
@@ -101,6 +113,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
    ```
 
 ### Validation
+
 - Minimum validation after meaningful changes:
   ```bash
   npm run lint
@@ -112,6 +125,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   ```
 
 ### Admin Bootstrap
+
 - After the intended admin user signs up once in Supabase Auth, grant admin access:
   ```bash
   npm run bootstrap:admin
@@ -119,6 +133,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
 - This promotes `ADMIN_EMAIL` to `profiles.role = 'admin'`.
 
 ### Stripe Checkout and Webhooks
+
 - Local webhook testing uses Stripe CLI:
   ```bash
   stripe listen --forward-to http://localhost:3000/api/stripe/webhook
@@ -132,6 +147,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   - order appears correctly in `/account` and `/admin/orders`
 
 ### Taxonomy and Category Changes
+
 - The taxonomy tree currently originates in `src/config/category-taxonomy.ts`.
 - `scripts/seed-categories-taxonomy.ts` seeds that tree into the `categories` table.
 - `scripts/backfill-product-categories.ts` classifies active products and writes `product_categories`.
@@ -143,16 +159,19 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   - verify `/c/...`, `/shop?categoryPath=...`, and admin category assignment flows
 
 ### Catalog and Image Operations
+
 - Legacy JSON migration:
   ```bash
   npm run migrate:products
   ```
+
   - reads `data/products.json`
 - Catalog sync from XLSX:
   ```bash
   npm run sync:catalog -- --dry-run
   npm run sync:catalog -- --run
   ```
+
   - reads an XLSX catalog plus `data/image-import-manifest.json`
   - upserts products by slug
   - writes a summary JSON into `data/`
@@ -161,11 +180,13 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   npm run import:product-images -- --dry-run
   npm run import:product-images -- --run
   ```
+
   - uploads into the public `product-images` bucket
   - writes JSON and CSV manifests plus a summary in `data/`
 - Important: `scripts/sync-catalog-from-xlsx.ts` and `scripts/import-product-images.ts` ship with author-specific absolute default source paths. Override them with explicit CLI args such as `--xlsx` or `--source` outside the original machine.
 
 ### AI Image Workflow
+
 - Setup:
   ```bash
   npm run image:setup
@@ -176,6 +197,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
 - Do not hotlink temporary generated image URLs into the app.
 
 ## Guardrails for Future Edits
+
 - Do not rename or move core routes without checking navbar links, footer links, middleware, redirects, docs, and Stripe callback assumptions:
   - `/shop`
   - `/c/[...path]`
@@ -202,6 +224,7 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   - do not create a second taxonomy source of truth separate from the existing config tree plus seeded DB tables
 
 ## Working Style for AI Agents
+
 - Read the relevant route, supporting lib files, and the matching doc before editing.
 - Explain the planned change briefly, then make the smallest complete production-ready edit.
 - Prefer reuse and composition over duplication.
@@ -213,3 +236,35 @@ This repository is a production-focused ecommerce codebase. Treat changes to che
   - `node_modules/`
   - generated summaries/manifests in `data/`
   - generated candidate assets in `output/imagegen/`
+
+  ## Task Execution Protocol
+
+- Always read PROJECT_STATUS.md before starting any task.
+- Work on ONE task only.
+- Do not expand scope beyond the current task.
+- Do not refactor unrelated code.
+- Keep changes minimal and production-safe.
+
+### After every completed task
+
+Codex must automatically update:
+
+- PROJECT_STATUS.md
+- TASKS.md
+- CHANGELOG.md
+
+Update rules:
+
+- Move completed task from TASKS.md to Done
+- Remove fixed issues from PROJECT_STATUS.md Known Issues
+- Add completed work to PROJECT_STATUS.md
+- Add CHANGELOG.md entry with:
+  - date
+  - task
+  - files changed
+  - summary
+  - validation/tests
+  - next task
+
+- Do not ask for confirmation when updating tracking files
+- Do not modify application code during tracking updates

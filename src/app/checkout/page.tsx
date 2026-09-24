@@ -226,14 +226,14 @@ export default function CheckoutPage() {
                 <select
                   value={form.country}
                   onChange={handleChange("country")}
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary sm:col-span-2"
+                  disabled
+                  className="rounded-xl border border-border bg-background px-4 py-3 text-muted-foreground outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-100 sm:col-span-2"
                 >
                   <option>United Kingdom</option>
-                  <option>United States</option>
-                  <option>United Arab Emirates</option>
-                  <option>Canada</option>
-                  <option>Australia</option>
                 </select>
+                <p className="text-xs text-muted-foreground sm:col-span-2">
+                  Launch checkout currently supports United Kingdom delivery addresses only.
+                </p>
               </div>
             </div>
 

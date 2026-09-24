@@ -52,12 +52,10 @@ export default async function AdminOrderDetailPage({ params }: AdminOrderDetailP
     }
 
     const adminSupabase = createAdminSupabaseClient();
-    const { error } = await adminSupabase
-      .from("orders")
-      .update({ status: "Cancelled" })
-      .eq("id", orderId)
-      .eq("status", "Pending")
-      .eq("payment_status", "unpaid");
+    const { error } = await adminSupabase.rpc("release_order_stock_reservation", {
+      p_order_id: orderId,
+      p_status: "Cancelled",
+    });
 
     if (error) {
       throw new Error("Failed to cancel order.");

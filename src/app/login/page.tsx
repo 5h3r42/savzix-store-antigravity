@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, ArrowRight } from "lucide-react";
@@ -27,6 +27,17 @@ export default function CustomerLoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loginError = new URLSearchParams(window.location.search).get("error");
+
+    setLoginErrorMessage(
+      loginError === "link-expired"
+        ? "Your login link has expired. Please request a new one."
+        : null,
+    );
+  }, []);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -239,6 +250,12 @@ export default function CustomerLoginPage() {
               </div>
             ) : null}
 
+            {loginErrorMessage && !error && !success ? (
+              <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-amber-700">
+                {loginErrorMessage}
+              </p>
+            ) : null}
+
             {error && (
               <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-300">
                 {error}
@@ -306,7 +323,8 @@ export default function CustomerLoginPage() {
       </div>
 
       <div className="relative hidden bg-muted/20 lg:block">
-        <div className="absolute inset-0 bg-[url('/home/fragrance-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-50"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(160deg,#16130f_0%,#2a2218_48%,#4c3822_100%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(36,87,166,0.28),transparent_30%),radial-gradient(circle_at_80%_24%,rgba(255,255,255,0.12),transparent_24%),radial-gradient(circle_at_62%_72%,rgba(36,87,166,0.16),transparent_26%)]"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
         <div className="absolute bottom-24 left-12 right-12 rounded-3xl border border-white/10 bg-black/20 p-8 text-white backdrop-blur-md">
           <p className="mb-4 text-xl font-light italic leading-relaxed">

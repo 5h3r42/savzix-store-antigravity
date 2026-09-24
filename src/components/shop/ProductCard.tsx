@@ -19,26 +19,26 @@ export function ProductCard({ product }: ProductCardProps) {
   const productHref = product.slug ? `/products/${product.slug}` : "/shop";
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-shadow duration-200 hover:shadow-md">
+    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-shadow duration-200 hover:shadow-sm">
       <Link href={productHref} className="block">
-        <div className="relative aspect-square overflow-hidden bg-gray-50">
+        <div className="relative aspect-square overflow-hidden bg-muted">
           <Image
             src={product.imageUrl || "/product_bottle.png"}
             alt={displayTitle}
             fill
-            className="object-contain p-4"
+            className="object-contain p-5 mix-blend-multiply"
             sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
           />
         </div>
       </Link>
 
       <div className="flex flex-1 flex-col gap-3 p-4">
-        <p className="text-[11px] uppercase tracking-wide text-gray-500">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
           {product.brand}
         </p>
 
         <Link href={productHref} className="focus-visible:outline-none">
-          <h3 className="line-clamp-2 text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+          <h3 className="line-clamp-2 text-[15px] font-semibold text-foreground transition-colors group-hover:text-primary">
             {displayTitle}
           </h3>
         </Link>
@@ -59,9 +59,9 @@ export function ProductCard({ product }: ProductCardProps) {
             })
           }
           disabled={!canBuy}
-          className="mt-auto h-10 w-full rounded-lg border border-border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-auto h-10 w-full rounded-lg bg-foreground px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#0b1f33] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {canBuy ? "Add to cart" : "Out of stock"}
+          {canBuy ? "Add to basket" : "Out of stock"}
         </button>
       </div>
     </article>

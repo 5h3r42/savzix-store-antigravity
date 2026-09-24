@@ -18,6 +18,8 @@
     "migrate:products": "tsx scripts/migrate-products.ts",
     "import:product-images": "tsx scripts/import-product-images.ts",
     "sync:catalog": "tsx scripts/sync-catalog-from-xlsx.ts",
+    "sync:keepa-catalogue": "tsx scripts/sync-keepa-catalogue.ts",
+    "sync:keepa-prices": "tsx scripts/sync-keepa-prices-and-categories.ts",
     "seed:categories": "tsx scripts/seed-categories-taxonomy.ts",
     "backfill:product-categories": "tsx scripts/backfill-product-categories.ts"
   },

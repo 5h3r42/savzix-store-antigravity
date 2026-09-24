@@ -47,5 +47,15 @@ data/image-import-manifest.json
 data/image-import-manifest.csv
 data/image-import-summary.json
 data/catalog-sync-summary.json
+data/keepa-catalogue-sync-summary.json
+data/keepa-price-category-sync-summary.json
+data/*.xlsx
+data/product images/
+Images/**/*.xlsx
 output/imagegen/
+output/hostinger-backups/
 tmp/imagegen/
+
+# local tool state
+.playwright-cli/
+supabase/.temp/

@@ -1,0 +1,69 @@
+# Project Status
+
+## Current Phase
+
+UI Polish + Pre-Launch Fixes
+
+## Key Area Snapshot
+
+- `src/app`: App Router storefront, product, cart, checkout, order confirmation, account, legal/support, and admin routes are present.
+- `src/components`: Domain components are grouped by storefront, shop, products, cart, auth, layout, admin, and content.
+- Checkout flow: Cart hands off to `/checkout`, which calls `/api/checkout` and then Stripe Checkout. Webhook handling exists under `/api/stripe/webhook`.
+- Admin: Dashboard, orders, products, product creation, login, and placeholder customer/settings areas are present. Admin remains partial.
+
+## Completed Work
+
+- Storefront pages (PDP, PLP)
+- Cart + checkout
+- Cart now clears only after Stripe marks payment as paid
+- Supabase integration
+- Admin (partial)
+- Documented the approved navy, blue, and white retail design direction in `design.md`; gold is retired from the design system.
+- Applied the approved retail design system to the shared storefront shell, home page sections, product cards, and footer: white surfaces, navy actions, blue links, compact retail spacing, and a horizontal category rail.
+- Created a one-product catalogue package from the Keepa export, including original product images and a source-derived product-details record.
+- Added the reusable `keepa-product-packager` user skill for preparing validated local product packages from Keepa XLSX exports.
+- Created a 250-product launch asset set in category folders, with 1,095 validated WebP images and complete source-derived product-details files.
+- Applied the approved retail prototype direction to the live SAVZIX storefront shell and home page while preserving the existing commerce architecture. The header now prioritises search, category browsing is clearer, and the home page uses practical campaign, department, and reassurance sections.
+- Centred the desktop category rail while retaining horizontal scrolling for smaller screens.
+- Set the product-free landing-page sequence to New arrivals, Offers, Bestsellers, Popular departments, and Trusted brands. Product-led content will be introduced once the catalogue is imported.
+- Authenticated Codex to a project-scoped, read-only Supabase MCP connection for the new `savzix.com` project (`vhoukfbnkgowhvxskkfi`). It has documentation, database-read, and development-read access only.
+- Removed the desktop category mega-menu hover trigger from the search area; the horizontal category rail remains the category-navigation control.
+- Applied the core catalogue schema and brand metadata migration to the new `savzix.com` Supabase project. Added the first live product, Aveeno Baby Soothing Relief Emollient Cream 150 ml, at £7.99 with 25 units of stock and a publicly verified product image.
+- Updated product-card imagery so white source-image canvases blend into the muted PLP image surface without altering branded product assets or the approved landing page.
+- Removed live product imagery from category headers. Category products now appear only in the results grid; category-header artwork remains purely decorative.
+- Updated the Keepa product-packager workflow to retain original product images beside numbered WebP upload candidates and require background-quality review before upload.
+- Simplified the product-detail price row to show only the selling price, removing the repeated size and per-litre price labels.
+- Imported the prepared 250-product Keepa launch catalogue into Supabase as hidden Draft records with source-derived descriptions, zero price, and zero stock. Uploaded and verified all 1,095 category-organised WebP product images with no failures.
+- Applied the category-taxonomy schema and seeded the approved category tree in Supabase. Assigned all 250 imported products to primary categories and supporting parent categories, and applied 202 barcode-verified selling prices from `data/Real Price.xlsx`; 48 unresolved prices remain unchanged for review.
+- Activated the 202 barcode-priced catalogue products with stock set to 10 each. The 48 products without a safe price remain Drafts with zero stock.
+- Replaced the shop product grid's load-more interaction with accessible numbered pagination, 24 products per page, compact overflow handling, item ranges, and Previous/Next controls.
+
+## In Progress
+
+- Checkout reliability
+- UI polish
+- Review the 48 unresolved catalogue prices; the 202 verified products are active with stock 10 each
+
+## Locked Decisions
+
+- The home-page composition is approved and must not be changed without explicit user direction: Hero, New arrivals, Offers, Bestsellers, Popular departments, Trusted brands, reassurance strip, and footer.
+
+## Known Issues
+
+- Stock not locked before payment
+- Missing SEO
+- Missing legal pages
+- Production deployment variables still need to be updated to the new Supabase project before the live `savzix.com` site can show the new catalogue.
+
+## Notes From Light Audit
+
+- Legal routes are present for privacy and terms, but content/completeness still needs launch review.
+- Checkout code references stock reservation logic, but the stock-locking flow still needs end-to-end verification before launch.
+
+## Next 5 Tasks
+
+1. Add stock locking before payment
+2. Create legal pages (privacy, terms)
+3. Add basic SEO (metadata, sitemap)
+4. Complete the remaining shop and product-detail page visual alignment
+5. Verify Stripe retry flow end-to-end in a live test session

@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/config/site";
 import { getSessionContext } from "@/lib/auth/session";
@@ -28,6 +29,8 @@ type CheckoutRequestPayload = {
   customer?: CheckoutCustomerPayload;
 };
 
+const RESERVATION_WINDOW_MINUTES = 30;
+
 function toMoney(value: number) {
   return Number(value.toFixed(2));
 }
@@ -38,9 +41,7 @@ function toMinorUnits(value: number) {
 
 function generateOrderId() {
   const timestamp = Date.now().toString().slice(-8);
-  const randomSuffix = Math.floor(Math.random() * 1000)
-    .toString()
-    .padStart(3, "0");
+  const randomSuffix = randomUUID().replace(/-/g, "").slice(0, 6).toUpperCase();
 
   return `ORD-${timestamp}-${randomSuffix}`;
 }
@@ -55,7 +56,9 @@ function sanitizeItems(items: CheckoutRequestItem[] | undefined) {
       id: typeof item.id === "string" ? item.id.trim() : "",
       quantity: Number(item.quantity),
     }))
-    .filter((item) => item.id.length > 0 && Number.isInteger(item.quantity) && item.quantity > 0);
+    .filter(
+      (item) => item.id.length > 0 && Number.isInteger(item.quantity) && item.quantity > 0,
+    );
 }
 
 function sanitizeText(value: unknown) {
@@ -133,11 +136,11 @@ export async function POST(request: Request) {
       await Promise.all([
         adminSupabase
           .from("products")
-          .select("id, slug, name, image, price, stock, status")
+          .select("id, slug, name, image, price, stock, reserved_quantity, status")
           .in("slug", itemIds),
         adminSupabase
           .from("products")
-          .select("id, slug, name, image, price, stock, status")
+          .select("id, slug, name, image, price, stock, reserved_quantity, status")
           .in("id", itemIds),
       ]);
 
@@ -168,8 +171,8 @@ export async function POST(request: Request) {
       ({ item, product }) =>
         !product ||
         product.status !== "Active" ||
-        product.stock < item.quantity ||
-        Number(product.price) < 0,
+        Number(product.price) < 0 ||
+        product.stock - product.reserved_quantity < item.quantity,
     );
 
     if (invalidProduct) {
@@ -191,49 +194,52 @@ export async function POST(request: Request) {
         : siteConfig.shippingFlatRate;
     const total = subtotal + shipping;
     const orderId = generateOrderId();
+    const reservationExpiresAt = new Date(
+      Date.now() + RESERVATION_WINDOW_MINUTES * 60 * 1000,
+    );
 
-    const { error: orderError } = await adminSupabase.from("orders").insert({
-      id: orderId,
-      user_id: session.user.id,
-      customer_email: customer.email,
-      customer_first_name: customer.firstName,
-      customer_last_name: customer.lastName,
-      customer_phone: customer.phone,
-      shipping_address_line1: customer.address,
-      shipping_city: customer.city,
-      shipping_postal_code: customer.postalCode,
-      shipping_country: customer.country,
-      notes: customer.notes || null,
-      currency: siteConfig.currency,
-      payment_provider: "stripe",
-      payment_status: "unpaid",
-      subtotal: toMoney(subtotal),
-      shipping: toMoney(shipping),
-      total: toMoney(total),
-      status: "Pending",
-    });
-
-    if (orderError) {
-      return NextResponse.json({ error: "Failed to create order." }, { status: 500 });
-    }
-
-    const orderItemPayload = resolvedItems.map(({ item, product }) => ({
-      order_id: orderId,
+    const reservationItems = resolvedItems.map(({ item, product }) => ({
       product_id: product!.id,
       quantity: item.quantity,
       unit_price: toMoney(Number(product!.price)),
     }));
 
-    const { error: orderItemsError } = await adminSupabase
-      .from("order_items")
-      .insert(orderItemPayload);
+    // Reserve stock and persist the unpaid order in one database transaction.
+    const { error: reserveOrderError } = await adminSupabase.rpc(
+      "create_order_with_stock_reservation",
+      {
+        p_order_id: orderId,
+        p_user_id: session.user.id,
+        p_customer_email: customer.email,
+        p_customer_first_name: customer.firstName,
+        p_customer_last_name: customer.lastName,
+        p_customer_phone: customer.phone,
+        p_shipping_address_line1: customer.address,
+        p_shipping_city: customer.city,
+        p_shipping_postal_code: customer.postalCode,
+        p_shipping_country: customer.country,
+        p_notes: customer.notes,
+        p_currency: siteConfig.currency,
+        p_payment_provider: "stripe",
+        p_subtotal: toMoney(subtotal),
+        p_shipping: toMoney(shipping),
+        p_total: toMoney(total),
+        p_reservation_expires_at: reservationExpiresAt.toISOString(),
+        p_items: reservationItems,
+      },
+    );
 
-    if (orderItemsError) {
-      await adminSupabase.from("orders").delete().eq("id", orderId);
+    if (reserveOrderError) {
+      const message =
+        reserveOrderError.message || "Failed to reserve stock for checkout.";
+      const isInventoryError =
+        message.includes("Insufficient stock") ||
+        message.includes("Product unavailable") ||
+        message.includes("could not be reserved");
 
       return NextResponse.json(
-        { error: "Failed to create order items." },
-        { status: 500 },
+        { error: message },
+        { status: isInventoryError ? 400 : 500 },
       );
     }
 
@@ -246,6 +252,7 @@ export async function POST(request: Request) {
         client_reference_id: orderId,
         success_url: `${siteUrl}/order-confirmation?order=${encodeURIComponent(orderId)}`,
         cancel_url: `${siteUrl}/checkout?cancelled=1`,
+        expires_at: Math.floor(reservationExpiresAt.getTime() / 1000),
         metadata: {
           order_id: orderId,
           user_id: session.user.id,
@@ -294,6 +301,11 @@ export async function POST(request: Request) {
         .eq("id", orderId);
 
       if (sessionSaveError || !checkoutSession.url) {
+        await adminSupabase.rpc("release_order_stock_reservation", {
+          p_order_id: orderId,
+          p_payment_status: "failed",
+          p_status: "Cancelled",
+        });
         throw new Error("Failed to prepare secure payment session.");
       }
 
@@ -302,8 +314,11 @@ export async function POST(request: Request) {
         { status: 201 },
       );
     } catch (stripeError) {
-      await adminSupabase.from("order_items").delete().eq("order_id", orderId);
-      await adminSupabase.from("orders").delete().eq("id", orderId);
+      await adminSupabase.rpc("release_order_stock_reservation", {
+        p_order_id: orderId,
+        p_payment_status: "failed",
+        p_status: "Cancelled",
+      });
 
       const message =
         stripeError instanceof Error

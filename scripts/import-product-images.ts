@@ -26,6 +26,7 @@ type DiscoveryStats = {
 };
 
 type FolderInfo = {
+  categorySlug: string;
   folderName: string;
   folderPath: string;
   folderSlug: string;
@@ -33,6 +34,7 @@ type FolderInfo = {
 
 type SourceImage = {
   sourcePath: string;
+  categorySlug: string;
   folderName: string;
   folderSlug: string;
   sequence: string;
@@ -41,6 +43,7 @@ type SourceImage = {
 
 type ManifestRow = {
   source_path: string;
+  category_slug: string;
   folder_name: string;
   folder_slug: string;
   sequence: string;
@@ -96,7 +99,6 @@ const DEFAULT_QUALITY = 80;
 const DEFAULT_CONCURRENCY = 6;
 const DEFAULT_MAX_DIMENSION = 1200;
 
-const IMAGE_EXTENSIONS = new Set([".webp", ".jpg", ".jpeg", ".png", ".avif"]);
 const collator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
 function required(name: string): string {
@@ -241,28 +243,43 @@ function parseArgs(argv: string[]): CliOptions {
 }
 
 async function listProductFolders(sourceRoot: string): Promise<FolderInfo[]> {
-  const entries = await fs.readdir(sourceRoot, { withFileTypes: true });
+  const categoryEntries = await fs.readdir(sourceRoot, { withFileTypes: true });
   const folders: FolderInfo[] = [];
   const slugOwner = new Map<string, string>();
 
-  const directoryEntries = entries
+  const directories = categoryEntries
     .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
     .sort((a, b) => collator.compare(a.name, b.name));
 
-  for (const entry of directoryEntries) {
-    const folderName = entry.name;
-    const folderPath = path.join(sourceRoot, folderName);
-    const folderSlug = slugify(folderName);
+  for (const categoryEntry of directories) {
+    const categorySlug = slugify(categoryEntry.name);
+    const categoryPath = path.join(sourceRoot, categoryEntry.name);
+    const productEntries = (await fs.readdir(categoryPath, { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
+      .sort((a, b) => collator.compare(a.name, b.name));
 
-    const existingOwner = slugOwner.get(folderSlug);
-    if (existingOwner && existingOwner !== folderName) {
-      throw new Error(
-        `Folder slug collision: "${existingOwner}" and "${folderName}" both normalize to "${folderSlug}".`,
-      );
+    for (const productEntry of productEntries) {
+      const folderName = productEntry.name;
+      const folderPath = path.join(categoryPath, folderName);
+      const detailsPath = path.join(folderPath, "product-details.txt");
+      const detailsStat = await fs.stat(detailsPath).catch(() => null);
+
+      if (!detailsStat?.isFile()) {
+        continue;
+      }
+
+      const folderSlug = slugify(folderName);
+
+      const existingOwner = slugOwner.get(folderSlug);
+      if (existingOwner && existingOwner !== folderName) {
+        throw new Error(
+          `Folder slug collision: "${existingOwner}" and "${folderName}" both normalize to "${folderSlug}".`,
+        );
+      }
+
+      slugOwner.set(folderSlug, folderName);
+      folders.push({ categorySlug, folderName, folderPath, folderSlug });
     }
-
-    slugOwner.set(folderSlug, folderName);
-    folders.push({ folderName, folderPath, folderSlug });
   }
 
   return folders;
@@ -272,40 +289,30 @@ async function collectImageFiles(
   directory: string,
   stats: DiscoveryStats,
 ): Promise<string[]> {
+  const entries = await fs.readdir(directory, { withFileTypes: true });
   const files: string[] = [];
 
-  async function walk(currentPath: string): Promise<void> {
-    const entries = await fs.readdir(currentPath, { withFileTypes: true });
-    entries.sort((a, b) => collator.compare(a.name, b.name));
-
-    for (const entry of entries) {
-      if (entry.name.startsWith(".")) {
-        stats.skippedHidden += 1;
-        continue;
-      }
-
-      const fullPath = path.join(currentPath, entry.name);
-
-      if (entry.isDirectory()) {
-        await walk(fullPath);
-        continue;
-      }
-
-      if (!entry.isFile()) {
-        continue;
-      }
-
-      const extension = path.extname(entry.name).toLowerCase();
-      if (!IMAGE_EXTENSIONS.has(extension)) {
-        stats.skippedNonImage += 1;
-        continue;
-      }
-
-      files.push(fullPath);
+  for (const entry of entries) {
+    if (entry.name.startsWith(".")) {
+      stats.skippedHidden += 1;
+      continue;
     }
-  }
 
-  await walk(directory);
+    if (!entry.isFile()) {
+      continue;
+    }
+
+    const isUploadCandidate =
+      path.extname(entry.name).toLowerCase() === ".webp" &&
+      !entry.name.toLowerCase().includes("-original");
+
+    if (!isUploadCandidate) {
+      stats.skippedNonImage += 1;
+      continue;
+    }
+
+    files.push(path.join(directory, entry.name));
+  }
 
   files.sort((first, second) => {
     const fileNameCompare = collator.compare(path.basename(first), path.basename(second));
@@ -326,6 +333,7 @@ function toSequence(index: number): string {
 function toCsv(rows: ManifestRow[]): string {
   const header: Array<keyof ManifestRow> = [
     "source_path",
+    "category_slug",
     "folder_name",
     "folder_slug",
     "sequence",
@@ -421,6 +429,7 @@ async function processImage(
 
   return {
     source_path: image.sourcePath,
+    category_slug: image.categorySlug,
     folder_name: image.folderName,
     folder_slug: image.folderSlug,
     sequence: image.sequence,
@@ -497,7 +506,7 @@ async function main() {
 
     for (const [index, filePath] of files.entries()) {
       const sequence = toSequence(index);
-      const storagePath = `${options.prefix}/${folder.folderSlug}/${folder.folderSlug}-${sequence}.webp`;
+      const storagePath = `${options.prefix}/${folder.categorySlug}/${folder.folderSlug}/${folder.folderSlug}-${sequence}.webp`;
 
       if (pathSet.has(storagePath)) {
         throw new Error(`Duplicate storage path generated: ${storagePath}`);
@@ -506,6 +515,7 @@ async function main() {
       pathSet.add(storagePath);
       sourceImages.push({
         sourcePath: filePath,
+        categorySlug: folder.categorySlug,
         folderName: folder.folderName,
         folderSlug: folder.folderSlug,
         sequence,
@@ -573,7 +583,7 @@ async function main() {
   }
   for (const failure of failures) {
     const parts = failure.storage_path.split("/");
-    const folderSlug = parts.length >= 2 ? parts[1] : null;
+    const folderSlug = parts.length >= 3 ? parts[2] : null;
     if (folderSlug && perFolderCounts[folderSlug]) {
       perFolderCounts[folderSlug].failed += 1;
     }

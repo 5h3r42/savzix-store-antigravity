@@ -22,6 +22,7 @@ export default async function OrderConfirmationPage({
     : { data: null };
 
   const paymentStatus = orderRecord?.payment_status ?? "unpaid";
+  const shouldClearCart = orderRecord?.payment_status === "paid";
   const title =
     paymentStatus === "paid"
       ? "Payment Successful"
@@ -37,7 +38,7 @@ export default async function OrderConfirmationPage({
 
   return (
     <section className="min-h-[70vh] px-6 py-24 md:py-32">
-      {orderRecord ? <ClearCartOnMount /> : null}
+      {shouldClearCart ? <ClearCartOnMount /> : null}
       <div className="mx-auto max-w-3xl rounded-3xl border border-border bg-card p-8 text-center md:p-12">
         <p className="mb-3 text-xs uppercase tracking-[0.35em] text-primary">
           Order Confirmation

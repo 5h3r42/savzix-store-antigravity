@@ -21,22 +21,12 @@ async function updateOrderPaymentState(
   paymentIntentId?: string | null,
 ) {
   const supabase = createAdminSupabaseClient();
-  const update: Record<string, string | null> = {
-    payment_status: paymentStatus,
-    status: "Cancelled",
-  };
-
-  if (paymentIntentId) {
-    update.stripe_payment_intent_id = paymentIntentId;
-  }
-
-  const query = supabase
-    .from("orders")
-    .update(update)
-    .eq("id", orderId)
-    .neq("payment_status", "paid");
-
-  const { error } = await query;
+  const { error } = await supabase.rpc("release_order_stock_reservation", {
+    p_order_id: orderId,
+    p_payment_status: paymentStatus,
+    p_status: "Cancelled",
+    p_payment_intent_id: paymentIntentId ?? null,
+  });
 
   if (error) {
     throw new Error(`Failed to update order ${orderId}: ${error.message}`);

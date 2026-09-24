@@ -1,93 +1,46 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { ProductCard } from "@/components/shop/ProductCard";
-import type { ShopProduct } from "@/components/shop/types";
+import { ArrowRight, Droplets, HeartPulse, Sparkles, SprayCan } from "lucide-react";
 import { categories } from "@/config/categories";
-import { normalizeTaxonomyPath } from "@/config/category-taxonomy";
-import { getPublicProducts } from "@/lib/products-store";
-import { mapProductsToShopProducts } from "@/lib/shop-products";
 
-const topCategories = categories;
+const departments = [
+  { slug: "beauty-skincare", copy: "Cleansers, moisturisers and treatments", Icon: Sparkles },
+  { slug: "fragrance", copy: "Everyday scents and gifting favourites", Icon: SprayCan },
+  { slug: "toiletries", copy: "Daily essentials for home and travel", Icon: Droplets },
+  { slug: "health-wellness", copy: "Everyday wellbeing and care", Icon: HeartPulse },
+] as const;
 
-function groupProductsByTopLevelCategory(products: ShopProduct[]) {
-  const productsByCategory = new Map<string, ShopProduct[]>();
-
-  for (const product of products) {
-    const topLevelPath = product.topLevelCategoryPath?.trim();
-
-    if (!topLevelPath) {
-      continue;
-    }
-
-    const existing = productsByCategory.get(topLevelPath) ?? [];
-    existing.push(product);
-    productsByCategory.set(topLevelPath, existing);
-  }
-
-  return productsByCategory;
-}
-
-export async function CategoryGrid() {
-  const publicProducts = await getPublicProducts();
-  const normalizedProducts = await mapProductsToShopProducts(publicProducts);
-  const productsByCategory = groupProductsByTopLevelCategory(normalizedProducts);
+export function CategoryGrid() {
+  const topCategories = departments.flatMap((department) => {
+    const category = categories.find((item) => item.slug === department.slug);
+    return category ? [{ ...department, category }] : [];
+  });
 
   return (
-    <section className="border-b border-border bg-muted/10 py-20">
+    <section className="border-b border-border bg-white py-14">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-10 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-2 text-xs uppercase tracking-[0.35em] text-primary">Explore</p>
-            <h2 className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
-              Top <span className="font-serif italic text-primary">Categories</span>
-            </h2>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">Shop with confidence</p>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">Popular departments</h2>
           </div>
-          <span className="hidden text-sm text-muted-foreground md:inline">
-            {topCategories.length} categories
-          </span>
+          <Link href="/shop" className="hidden text-sm font-bold text-primary hover:text-foreground md:inline">View all departments</Link>
         </div>
 
-        <div className="space-y-10">
-          {topCategories.map((category) => {
-            const categoryPath = normalizeTaxonomyPath(category.href);
-            const categoryProducts = (productsByCategory.get(categoryPath) ?? []).slice(0, 4);
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {topCategories.map((categoryEntry) => {
+            const { category, Icon, copy } = categoryEntry;
 
             return (
-              <section
+              <Link
                 key={category.slug}
-                className="overflow-hidden rounded-[2rem] border border-border bg-background/95 p-6 md:p-8"
+                href={category.href}
+                className="group min-h-40 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary"
               >
-                <div className="mb-6 flex flex-col gap-3 border-b border-border/70 pb-5 md:flex-row md:items-end md:justify-between">
-                  <div>
-                    <p className="mb-2 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-                      Category
-                    </p>
-                    <h3 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-                      {category.name}
-                    </h3>
-                  </div>
-
-                  <Link
-                    href={category.href}
-                    className="inline-flex items-center gap-2 self-start rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary transition-colors hover:border-primary hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 md:self-auto"
-                  >
-                    View all
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </div>
-
-                {categoryProducts.length > 0 ? (
-                  <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                    {categoryProducts.map((product) => (
-                      <ProductCard key={`${category.slug}-${product.id}`} product={product} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="rounded-2xl border border-dashed border-border bg-card/60 p-8 text-sm text-muted-foreground">
-                    No products are published in this category yet.
-                  </div>
-                )}
-              </section>
+                <span className="mb-6 flex h-11 w-11 items-center justify-center rounded-lg bg-muted text-primary"><Icon className="h-5 w-5" /></span>
+                <h3 className="text-lg font-bold text-foreground">{category.name}</h3>
+                <p className="mt-2 text-sm leading-5 text-muted-foreground">{copy}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">Shop now <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+              </Link>
             );
           })}
         </div>

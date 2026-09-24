@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type BrandLogoVariant = "horizontal" | "mark";
+type BrandLogoVariant = "horizontal" | "mark" | "wordmark";
 
 type BrandLogoProps = {
   variant?: BrandLogoVariant;
@@ -9,7 +9,7 @@ type BrandLogoProps = {
 };
 
 const logoAssets: Record<
-  BrandLogoVariant,
+  Exclude<BrandLogoVariant, "wordmark">,
   {
     src: string;
     width: number;
@@ -18,15 +18,15 @@ const logoAssets: Record<
   }
 > = {
   horizontal: {
-    src: "/brand/savzix-logo-horizontal.webp",
-    width: 969,
-    height: 250,
-    sizes: "(min-width: 768px) 180px, 140px",
+    src: "/brand/savzix-logo-icon-transparent.png",
+    width: 216,
+    height: 216,
+    sizes: "(min-width: 768px) 72px, 60px",
   },
   mark: {
-    src: "/brand/savzix-logo-mark.webp",
-    width: 256,
-    height: 256,
+    src: "/brand/savzix-logo-icon-transparent.png",
+    width: 216,
+    height: 216,
     sizes: "64px",
   },
 };
@@ -36,7 +36,7 @@ export function BrandLogo({
   className,
   priority = false,
 }: BrandLogoProps) {
-  const asset = logoAssets[variant];
+  const asset = logoAssets[variant === "wordmark" ? "mark" : variant];
 
   return (
     <Image

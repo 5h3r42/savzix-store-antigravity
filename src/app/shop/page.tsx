@@ -23,11 +23,12 @@ export const dynamic = "force-dynamic";
 type ShopPageProps = {
   searchParams: Promise<{
     categoryPath?: string;
+    q?: string;
   }>;
 };
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
-  const { categoryPath } = await searchParams;
+  const { categoryPath, q } = await searchParams;
   const normalizedCategoryPath = categoryPath ? normalizeCategoryPath(categoryPath) : null;
   const routeCategoryPath =
     normalizedCategoryPath && isKnownCategoryPath(normalizedCategoryPath)
@@ -57,14 +58,23 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   }
 
   const normalizedProducts = await mapProductsToShopProducts(products); // ADDED: attach primary taxonomy metadata to public shop products.
+  const searchQuery = q?.trim() ?? "";
+  const visibleProducts = searchQuery
+    ? normalizedProducts.filter((product) =>
+        `${product.brand} ${product.title} ${product.category} ${product.subcategory ?? ""}`
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()),
+      )
+    : normalizedProducts;
 
   return (
     <ShopLayout
-      products={normalizedProducts}
+      products={visibleProducts}
       activeCategoryPath={routeCategoryPath}
       routeCategoryPath={fallbackRouteCategoryPath}
-      description={description}
       browseLabel={browseLabel}
+      title={searchQuery ? `Results for “${searchQuery}”` : undefined}
+      description={searchQuery ? "Browse matching SAVZIX products." : description}
     />
   ); // CHANGED: render retail PLP shell + route-aware filters.
 }

@@ -14,13 +14,21 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get("code");
   const nextPath = getSafeRedirect(requestUrl.searchParams.get("next"), "/account");
   const redirectUrl = new URL(nextPath, requestUrl.origin);
+  const loginRedirectUrl = new URL("/login", requestUrl.origin);
+  loginRedirectUrl.searchParams.set("next", nextPath);
 
   if (!code) {
-    return NextResponse.redirect(redirectUrl);
+    loginRedirectUrl.searchParams.set("error", "link-expired");
+    return NextResponse.redirect(loginRedirectUrl);
   }
 
   const supabase = await createServerSupabaseClient();
-  await supabase.auth.exchangeCodeForSession(code);
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+  if (error) {
+    loginRedirectUrl.searchParams.set("error", "link-expired");
+    return NextResponse.redirect(loginRedirectUrl);
+  }
 
   return NextResponse.redirect(redirectUrl);
 }

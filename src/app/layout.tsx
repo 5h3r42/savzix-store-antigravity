@@ -41,7 +41,7 @@ export default function RootLayout({
         <CartProvider>
           <Navbar />
           <CartDrawer />
-          <main className="flex-1 pt-20">{children}</main>
+          <main className="flex-1 pt-[9.5rem]">{children}</main>
           <Footer />
         </CartProvider>
       </body>

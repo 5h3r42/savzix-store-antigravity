@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronRight, Menu, ShoppingBag, X } from "lucide-react";
-import { BrandLogo } from "@/components/brand/BrandLogo";
+import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { SignOutButton } from "@/components/auth/SignOutButton";
@@ -270,31 +269,31 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6">
+      <nav className="fixed z-50 w-full border-b border-border bg-white shadow-sm">
+        <div className="hidden bg-foreground px-4 py-2 text-center text-xs font-semibold text-white sm:block">Free UK delivery on orders over £50 <span className="mx-2">•</span> Secure checkout <span className="mx-2">•</span> Easy returns</div>
+        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 md:grid-cols-[auto_minmax(18rem,42rem)_auto] md:gap-6">
           <Link
             href="/"
             className="inline-flex justify-self-start rounded-md transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            <BrandLogo
-              priority
-              className="h-11 w-auto md:h-12"
-            />
+            <span className="text-xl font-extrabold tracking-[0.08em] text-foreground md:text-2xl">SAVZIX</span>
           </Link>
 
           <div
             ref={desktopMenuRef}
-            className="relative hidden justify-self-center md:block"
-            onMouseEnter={() => setDesktopMenuOpen(true)}
-            onMouseLeave={() => setDesktopMenuOpen(false)}
+            className="relative hidden w-full max-w-xl justify-self-center md:block"
           >
+            <form action="/shop" className="flex h-11 w-full items-center gap-3 rounded-lg border border-transparent bg-muted px-4 focus-within:border-primary">
+              <Search className="h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+              <input name="q" type="search" placeholder="Search skincare, beauty and everyday essentials" className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground" />
+            </form>
             <button
               type="button"
               aria-haspopup="true"
               aria-expanded={desktopMenuOpen}
               aria-controls="shop-mega-menu"
               onClick={() => setDesktopMenuOpen((previous) => !previous)}
-              className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="hidden"
             >
               Shop
               <ChevronDown
@@ -529,6 +528,16 @@ export function Navbar() {
                 </span>
               )}
             </button>
+          </div>
+        </div>
+        <div className="overflow-x-auto border-t border-border bg-white scrollbar-none">
+          <div className="mx-auto flex w-max min-w-full max-w-7xl px-4 md:justify-center md:px-6">
+            {categories.map((category) => (
+              <Link key={category.slug} href={category.href} className="whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary">
+                {category.name}
+              </Link>
+            ))}
+            <Link href="/shop" className="whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-primary transition-colors hover:border-primary">Offers</Link>
           </div>
         </div>
       </nav>
