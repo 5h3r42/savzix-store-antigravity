@@ -45,6 +45,7 @@
 - Replaced the storefront header's text-only brand name with the supplied transparent SAVZIX wordmark and verified its desktop and mobile presentation.
 - Made the storefront responsive across mobile and tablet, including the shared header/search, home and category heroes, catalogue filters/grid, and product-detail layout.
 - Removed the remaining dollar-formatted prices and confirmed storefront, order, and Stripe checkout currency handling is consistently GBP.
+- Added a VAT-inclusive breakdown to cart and checkout totals, exposed the company VAT number, and carried the VAT details into Stripe Checkout without increasing gross customer prices.
 
 ## This Week
 
@@ -57,3 +58,4 @@
 - Reviews system
 - Email flows
 - Upsells
+- Add per-product VAT rates before introducing non-standard-rated goods

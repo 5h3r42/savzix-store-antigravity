@@ -54,6 +54,7 @@ UI Polish + Pre-Launch Fixes
 - Replaced the storefront header's text-only SAVZIX branding with the supplied transparent SAVZIX wordmark, preserving the existing home link, focus treatment, and responsive header layout.
 - Completed a storefront-wide mobile and tablet responsive pass: added mobile search, removed the redundant mobile category rail, separated hero copy from artwork below desktop, introduced tablet-friendly catalogue filters and product grids, and converted the product detail page to a balanced tablet split layout.
 - Standardised all remaining price displays on GBP: the cart drawer and legacy product grid now use the shared `en-GB` currency formatter, the admin product form labels prices as GBP, and Stripe Checkout continues to create `gbp` line items backed by GBP orders.
+- Added VAT-inclusive checkout treatment for the VAT-registered business: cart and checkout summaries expose the 20% VAT contained in the gross total without increasing customer prices, the VAT number is displayed at checkout, and Stripe Checkout receives inclusive tax behaviour plus VAT metadata and customer-facing VAT text.
 
 ## In Progress
 
@@ -74,6 +75,7 @@ UI Polish + Pre-Launch Fixes
 
 - Legal routes are present for privacy and terms, but content/completeness still needs launch review.
 - Local Stripe sandbox testing confirms the stock-reservation flow releases expired sessions and decrements stock only after successful webhook confirmation. Production deployment variables and a deployed test-mode webhook still require launch verification.
+- The current catalogue is treated as standard-rated at 20%. Add a per-product VAT classification before listing any reduced-rate, zero-rated, or exempt goods.
 
 ## Next 5 Tasks
 

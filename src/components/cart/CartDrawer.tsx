@@ -146,7 +146,7 @@ export function CartDrawer() {
                           <p className="font-mono text-lg">{formatPrice(subtotal)}</p>
                         </div>
                         <p className="mt-0.5 text-sm text-muted-foreground mb-6">
-                          Shipping and taxes calculated at checkout.
+                          Prices include VAT. Shipping is confirmed at checkout.
                         </p>
                         <div className="mt-6 space-y-3">
                           <Link

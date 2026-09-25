@@ -5,6 +5,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { useCart } from "@/context/CartContext";
 import { cleanTitle } from "@/lib/productText"; // ADDED: keep checkout item titles retail-clean.
+import { calculateIncludedVat, formatVatRate } from "@/lib/vat";
 
 type CheckoutForm = {
   firstName: string;
@@ -53,6 +54,7 @@ export default function CheckoutPage() {
       ? 0
       : siteConfig.shippingFlatRate;
   const total = subtotal + shipping;
+  const includedVat = calculateIncludedVat(total, siteConfig.vatRate);
 
   if (!hasHydrated) {
     return (
@@ -290,15 +292,22 @@ export default function CheckoutPage() {
                 <span className="text-muted-foreground">Shipping</span>
                 <span className="font-mono">{formatPrice(shipping)}</span>
               </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  VAT included ({formatVatRate(siteConfig.vatRate)})
+                </span>
+                <span className="font-mono">{formatPrice(includedVat)}</span>
+              </div>
               <div className="flex items-center justify-between border-t border-border pt-3">
                 <span className="font-medium">Total</span>
                 <span className="font-mono text-lg font-bold">{formatPrice(total)}</span>
               </div>
             </div>
 
-            <p className="mt-6 text-xs text-muted-foreground">
-              You will be redirected to Stripe to complete your payment securely.
-            </p>
+            <div className="mt-6 space-y-1 text-xs text-muted-foreground">
+              <p>All prices include VAT where applicable. VAT number {siteConfig.vatNumber}.</p>
+              <p>You will be redirected to Stripe to complete your payment securely.</p>
+            </div>
           </aside>
         </div>
       </div>

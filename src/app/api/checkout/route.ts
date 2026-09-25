@@ -6,6 +6,8 @@ import { cleanTitle } from "@/lib/productText";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getSiteUrl, getStripeClient } from "@/lib/stripe";
+import { calculateIncludedVat, formatVatRate } from "@/lib/vat";
+import { formatPrice } from "@/lib/formatPrice";
 
 type CheckoutRequestItem = {
   id: string;
@@ -193,6 +195,8 @@ export async function POST(request: Request) {
         ? 0
         : siteConfig.shippingFlatRate;
     const total = subtotal + shipping;
+    const includedVat = calculateIncludedVat(total, siteConfig.vatRate);
+    const vatRateLabel = formatVatRate(siteConfig.vatRate);
     const orderId = generateOrderId();
     const reservationExpiresAt = new Date(
       Date.now() + RESERVATION_WINDOW_MINUTES * 60 * 1000,
@@ -256,11 +260,24 @@ export async function POST(request: Request) {
         metadata: {
           order_id: orderId,
           user_id: session.user.id,
+          prices_include_vat: "true",
+          vat_amount: includedVat.toFixed(2),
+          vat_number: siteConfig.vatNumber,
+          vat_rate: vatRateLabel,
         },
         payment_intent_data: {
           metadata: {
             order_id: orderId,
             user_id: session.user.id,
+            prices_include_vat: "true",
+            vat_amount: includedVat.toFixed(2),
+            vat_number: siteConfig.vatNumber,
+            vat_rate: vatRateLabel,
+          },
+        },
+        custom_text: {
+          submit: {
+            message: `Total includes ${formatPrice(includedVat)} VAT at ${vatRateLabel}. VAT number ${siteConfig.vatNumber}.`,
           },
         },
         line_items: [
@@ -268,6 +285,7 @@ export async function POST(request: Request) {
             quantity: item.quantity,
             price_data: {
               currency: siteConfig.currency.toLowerCase(),
+              tax_behavior: "inclusive" as const,
               unit_amount: toMinorUnits(Number(product!.price)),
               product_data: {
                 name: cleanTitle(product!.name),
@@ -284,6 +302,7 @@ export async function POST(request: Request) {
                   quantity: 1,
                   price_data: {
                     currency: siteConfig.currency.toLowerCase(),
+                    tax_behavior: "inclusive" as const,
                     unit_amount: toMinorUnits(shipping),
                     product_data: {
                       name: "Shipping",

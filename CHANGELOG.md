@@ -2,6 +2,12 @@
 
 ## 2026-09-25
 
+- Task: Include VAT in the cart and checkout experience.
+- Files changed: `src/config/site.ts`, `src/lib/vat.ts`, `src/app/cart/page.tsx`, `src/app/checkout/page.tsx`, `src/components/cart/CartDrawer.tsx`, `src/app/api/checkout/route.ts`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added the registered VAT number and standard 20% VAT rate to the site configuration plus a shared VAT-inclusive calculator. Cart and checkout summaries now show the VAT contained in the gross total while keeping the customer total unchanged. Stripe Checkout line items are declared tax-inclusive, and the session and PaymentIntent receive the VAT amount, rate, inclusion status, and VAT number as metadata; the hosted payment page also receives a customer-facing VAT message.
+- Validation/tests: Verified a £60.00 checkout displays £10.00 VAT included at 20%, retains a £60.00 total, and shows VAT number `GB498138444`. Confirmed the cart drawer no longer says taxes will be added at checkout. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Add per-product VAT classification before introducing any reduced-rate, zero-rated, or exempt goods; otherwise continue launch-priority SEO and deployment work.
+
 - Task: Standardise all prices and checkout currency on GBP.
 - Files changed: `src/components/cart/CartDrawer.tsx`, `src/components/products/ProductGrid.tsx`, `src/app/admin/products/new/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Replaced the cart drawer's manual dollar prefix and the legacy product grid's dollar formatter with the shared `en-GB`/GBP formatter. Updated the admin product price field to display a pound sign and explicitly label the value as GBP. Confirmed the checkout API already stores orders as `GBP` and sends lowercase `gbp` currency codes to Stripe for product and shipping line items.

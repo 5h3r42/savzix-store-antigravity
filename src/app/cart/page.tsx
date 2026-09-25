@@ -6,6 +6,7 @@ import { ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { siteConfig } from "@/config/site";
 import { cleanTitle } from "@/lib/productText"; // ADDED: sanitize displayed cart titles.
+import { calculateIncludedVat, formatVatRate } from "@/lib/vat";
 
 function formatPrice(value: number) {
   return new Intl.NumberFormat("en-GB", {
@@ -21,6 +22,7 @@ export default function CartPage() {
       ? 0
       : siteConfig.shippingFlatRate;
   const total = subtotal + shipping;
+  const includedVat = calculateIncludedVat(total, siteConfig.vatRate);
 
   if (!hasHydrated) {
     return (
@@ -137,6 +139,12 @@ export default function CartPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Shipping</span>
                   <span className="font-mono">{formatPrice(shipping)}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    VAT included ({formatVatRate(siteConfig.vatRate)})
+                  </span>
+                  <span className="font-mono">{formatPrice(includedVat)}</span>
                 </div>
                 <div className="border-t border-border pt-3">
                   <div className="flex items-center justify-between">
