@@ -18,10 +18,10 @@ const logoAssets: Record<
   }
 > = {
   horizontal: {
-    src: "/brand/savzix-logo-icon-transparent.png",
-    width: 216,
-    height: 216,
-    sizes: "(min-width: 768px) 72px, 60px",
+    src: "/brand/savzix-logo-transparent.webp",
+    width: 814,
+    height: 201,
+    sizes: "(min-width: 768px) 146px, 130px",
   },
   mark: {
     src: "/brand/savzix-logo-icon-transparent.png",
@@ -36,7 +36,7 @@ export function BrandLogo({
   className,
   priority = false,
 }: BrandLogoProps) {
-  const asset = logoAssets[variant === "wordmark" ? "mark" : variant];
+  const asset = logoAssets[variant === "wordmark" ? "horizontal" : variant];
 
   return (
     <Image

@@ -40,7 +40,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowA: string;
     glowB: string;
     mesh: string;
-    badge: string;
   }
 > = {
   "beauty-skincare": {
@@ -49,7 +48,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#cbeef1]/75",
     mesh:
       "bg-[radial-gradient(circle_at_16%_18%,rgba(36,87,166,0.18),transparent_26%),radial-gradient(circle_at_78%_24%,rgba(89,190,202,0.18),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(232,181,165,0.2),transparent_24%)]",
-    badge: "bg-white/82 text-foreground/70",
   },
   fragrance: {
     surface: "bg-[linear-gradient(135deg,#f6efe8_0%,#efe1d6_50%,#e6d0c2_100%)]",
@@ -57,7 +55,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#d7b38a]/60",
     mesh:
       "bg-[radial-gradient(circle_at_18%_18%,rgba(36,87,166,0.18),transparent_28%),radial-gradient(circle_at_82%_28%,rgba(141,99,56,0.16),transparent_22%),radial-gradient(circle_at_72%_76%,rgba(244,220,198,0.28),transparent_24%)]",
-    badge: "bg-white/82 text-foreground/70",
   },
   "gift-sets": {
     surface: "bg-[linear-gradient(135deg,#f3efe7_0%,#efe5d3_48%,#e2d3bb_100%)]",
@@ -65,7 +62,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#d8c2ef]/58",
     mesh:
       "bg-[radial-gradient(circle_at_18%_18%,rgba(36,87,166,0.18),transparent_28%),radial-gradient(circle_at_80%_24%,rgba(36,87,166,0.12),transparent_22%),radial-gradient(circle_at_70%_74%,rgba(167,133,211,0.16),transparent_22%)]",
-    badge: "bg-white/84 text-foreground/70",
   },
   "health-wellness": {
     surface: "bg-[linear-gradient(135deg,#edf5ee_0%,#e7f1e8_42%,#d8e9dc_100%)]",
@@ -73,7 +69,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#bde0de]/72",
     mesh:
       "bg-[radial-gradient(circle_at_16%_18%,rgba(102,153,118,0.16),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(77,170,161,0.16),transparent_24%),radial-gradient(circle_at_70%_76%,rgba(36,87,166,0.12),transparent_24%)]",
-    badge: "bg-white/84 text-foreground/70",
   },
   "suncare-travel": {
     surface: "bg-[linear-gradient(135deg,#fff2de_0%,#f9e7c8_46%,#efd3a8_100%)]",
@@ -81,7 +76,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#b9dff5]/68",
     mesh:
       "bg-[radial-gradient(circle_at_16%_18%,rgba(255,182,72,0.18),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(89,177,220,0.18),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(36,87,166,0.14),transparent_24%)]",
-    badge: "bg-white/82 text-foreground/70",
   },
   electrical: {
     surface: "bg-[linear-gradient(135deg,#f3f1ee_0%,#ece9e5_48%,#ddd9d5_100%)]",
@@ -89,7 +83,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#c9d6e8]/60",
     mesh:
       "bg-[radial-gradient(circle_at_18%_18%,rgba(140,122,98,0.18),transparent_28%),radial-gradient(circle_at_80%_24%,rgba(119,146,184,0.16),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(36,87,166,0.12),transparent_22%)]",
-    badge: "bg-white/84 text-foreground/70",
   },
   toiletries: {
     surface: "bg-[linear-gradient(135deg,#eef6f5_0%,#e6f0ef_46%,#d7e7e5_100%)]",
@@ -97,7 +90,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#f0ddd0]/62",
     mesh:
       "bg-[radial-gradient(circle_at_16%_18%,rgba(82,155,148,0.16),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(36,87,166,0.12),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(232,195,170,0.18),transparent_24%)]",
-    badge: "bg-white/84 text-foreground/70",
   },
   default: {
     surface: "bg-[linear-gradient(135deg,#f8f4ee_0%,#f0ebe3_46%,#e6ddd1_100%)]",
@@ -105,7 +97,6 @@ const CATEGORY_HERO_THEMES: Record<
     glowB: "bg-[#cfe3ea]/60",
     mesh:
       "bg-[radial-gradient(circle_at_16%_18%,rgba(36,87,166,0.14),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(111,163,180,0.14),transparent_22%),radial-gradient(circle_at_70%_76%,rgba(220,197,166,0.18),transparent_24%)]",
-    badge: "bg-white/82 text-foreground/70",
   },
 };
 
@@ -117,6 +108,7 @@ type ShopHeaderContentProps = {
   showFallbackBrowse?: boolean;
   viewAllHref?: string | null;
   filteredCount: number;
+  showResultCount?: boolean;
   headingClassName: string;
   bodyClassName: string;
   browseTextClassName: string;
@@ -132,6 +124,7 @@ function ShopHeaderContent({
   showFallbackBrowse = false,
   viewAllHref = null,
   filteredCount,
+  showResultCount = true,
   headingClassName,
   bodyClassName,
   browseTextClassName,
@@ -156,7 +149,9 @@ function ShopHeaderContent({
           ) : null}
         </p>
       ) : null}
-      <p className={browseTextClassName}>{filteredCount} results</p>
+      {showResultCount ? (
+        <p className={browseTextClassName}>{filteredCount} results</p>
+      ) : null}
     </>
   );
 }
@@ -445,8 +440,16 @@ export function ShopLayout({
                     alt={categoryHeroImage.alt}
                     fill
                     priority
-                    sizes="(min-width: 1536px) 1440px, 100vw"
-                    className="object-cover object-right"
+                    sizes="(max-width: 639px) 100vw, 1px"
+                    className="object-contain object-bottom sm:hidden"
+                  />
+                  <div
+                    role="img"
+                    aria-label={categoryHeroImage.alt}
+                    className="absolute inset-0 hidden bg-cover bg-right sm:block"
+                    style={{
+                      backgroundImage: `url("${categoryHeroImage.desktopSrc ?? categoryHeroImage.src}")`,
+                    }}
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,246,239,0.95)_0%,rgba(248,246,239,0.88)_30%,rgba(248,246,239,0.56)_54%,rgba(248,246,239,0.16)_74%,rgba(248,246,239,0)_100%)]" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(36,87,166,0.12),_transparent_38%)]" />
@@ -460,24 +463,13 @@ export function ShopLayout({
               )}
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/55 via-background/20 to-transparent" />
             </div>
-            <div className="relative z-10 flex min-h-[360px] items-center px-6 py-8 sm:min-h-[420px] sm:px-8 sm:py-10 lg:min-h-[460px] lg:px-10 lg:py-12">
+            <div className="relative z-10 flex min-h-[460px] items-start px-6 pb-[220px] pt-8 sm:min-h-[380px] sm:items-center sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-10 lg:py-12">
               <div className="max-w-xl space-y-5">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] ${heroTheme.badge}`}>
-                    {activeCategoryNode.parentPath ? "Subcategory" : "Main Category"}
-                  </span>
-                  <span className="text-xs uppercase tracking-[0.28em] text-foreground/55">
-                    {routeScopedProducts.length} products
-                  </span>
-                </div>
                 <ShopHeaderContent
-                  title={title}
+                  title={activeCategoryNode.name}
                   description={description}
-                  browseLabel={browseLabel}
-                  fallbackBrowseLabel={fallbackBrowseLabel}
-                  showFallbackBrowse={shouldShowRouteBrowse}
-                  viewAllHref={viewAllHref}
                   filteredCount={filteredProducts.length}
+                  showResultCount={false}
                   headingClassName="text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
                   bodyClassName="max-w-lg text-sm text-foreground/72 md:text-base"
                   browseTextClassName="text-sm text-foreground/72"
@@ -490,7 +482,8 @@ export function ShopLayout({
                       <Link
                         key={category.path}
                         href={category.href}
-                        className="rounded-full border border-foreground/12 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/72 transition-colors hover:border-primary hover:text-primary"
+                        aria-label={`Shop ${category.name}`}
+                        className="rounded-full border border-foreground/12 bg-white/75 px-4 py-2 text-sm font-semibold text-foreground/72 transition-colors hover:border-primary hover:text-primary"
                       >
                         {category.name}
                       </Link>
@@ -559,6 +552,9 @@ export function ShopLayout({
           />
 
           <div className="space-y-4">
+            <p className="text-sm text-muted-foreground md:hidden">
+              {filteredProducts.length} products
+            </p>
             <div className="sticky top-20 z-20 flex items-center gap-3 rounded-xl border border-border bg-background/95 p-3 backdrop-blur md:hidden">
               <button
                 type="button"

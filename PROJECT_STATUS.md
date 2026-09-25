@@ -47,6 +47,11 @@ UI Polish + Pre-Launch Fixes
 - Reduced the hero artwork scale on tablet and desktop so the complete five-product composition sits cleanly on the right with more breathing room; mobile retains the existing crop behavior.
 - Corrected the hero artwork at source: the five-product group now begins earlier, retains intentional right-edge clearance, and uses a shorter copy fade so the Aveeno product remains clear without CSS position workarounds.
 - Fixed the storefront's Supabase auth-lock runtime overlay by removing the duplicate navbar `getUser()` request and deferring profile lookup until after `onAuthStateChange` releases its lock.
+- Created and applied seven distinct premium category hero images using five real catalogue products per composition, with copy-safe layouts for Beauty & Skincare, Fragrance, Gift Sets, Health & Wellness, Suncare & Travel, Electrical, and Toiletries. Documented the reusable production prompts and product selections.
+- Corrected the shared category-hero presentation so every full composition fits inside the banner without cropping; mobile now separates the copy and artwork with deliberate spacing.
+- Simplified every taxonomy category hero around the customer-facing category name, removed duplicated taxonomy and result metadata, reduced desktop height, improved subcategory-link readability, and kept the single product count beside the catalogue controls.
+- Blended the contained category artwork into the wider tablet and desktop hero background, removing the visible vertical colour boundary while preserving complete, uncropped product compositions and the existing mobile stack.
+- Replaced the storefront header's text-only SAVZIX branding with the supplied transparent SAVZIX wordmark, preserving the existing home link, focus treatment, and responsive header layout.
 
 ## In Progress
 

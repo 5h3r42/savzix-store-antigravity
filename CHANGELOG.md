@@ -2,6 +2,36 @@
 
 ## 2026-09-25
 
+- Task: Replace the storefront header branding with the supplied SAVZIX logo.
+- Files changed: `public/brand/savzix-logo-transparent.webp`, `src/components/brand/BrandLogo.tsx`, `src/components/layout/Navbar.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Promoted the supplied transparent SAVZIX WebP into the public brand assets, updated the reusable horizontal/wordmark logo configuration to use its native 814 × 201 proportions, and replaced the header's text-only brand name with the responsive image. Preserved the square mark used by the admin login and added an explicit accessible label to the storefront home link.
+- Validation/tests: Confirmed the asset and its Next.js optimized response return HTTP 200; visually inspected the supplied source and live header in the in-app browser at the normal desktop viewport and 390 × 844 mobile viewport; verified the full wordmark remains visible without clipping or displacing search, menu, account, or cart controls. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue the remaining shop and product-detail page visual alignment.
+
+- Task: Blend category artwork seamlessly into the full-width hero section.
+- Files changed: `src/components/shop/ShopLayout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a tablet-and-desktop mask to the shared category artwork layer so the left edge of each contained 16:9 composition fades naturally into the wider hero background. This removes the beige/grey vertical boundary without cropping, stretching, regenerating, or obscuring the product group. Mobile keeps its intentional stacked copy-and-image presentation.
+- Validation/tests: Verified all seven category routes at 1440 × 900; each retained `object-fit: contain`, applied the expected 36%–56% edge mask, displayed the correct heading, and produced no console warnings/errors or visible framework error overlay. Visually inspected the Fragrance result at desktop and mobile sizes, then navigated from Fragrance to Gift Sets and confirmed the route and H1 updated. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue the remaining shop and product-detail page visual alignment.
+
+- Task: Apply the category-hero content audit across all taxonomy categories.
+- Files changed: `src/components/shop/ShopLayout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Replaced the generic `Shop` heading with each active category name, removed the internal Main Category/Subcategory badge, duplicated product/result counts, Browsing label, and redundant View all link from category heroes. Reduced the desktop hero to approximately 400px, improved subcategory-link legibility and accessible labels, and placed the single mobile product count beside the catalogue controls. The main `/shop` hero remains unchanged.
+- Validation/tests: Verified Beauty & Skincare, Fragrance, Gift Sets, Health & Wellness, Suncare & Travel, Electrical, and Toiletries at 1440 × 900. Every route displayed its expected H1, a 402px hero, no duplicated metadata, no console warnings/errors, and no visible framework error overlay. Verified Beauty & Skincare at 390 × 844 with a 462px hero and one `68 products` label near the controls, then navigated to Fragrance and confirmed the URL and H1 updated. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue the remaining shop and product-detail page visual alignment.
+
+- Task: Fit all category images inside the shared hero section.
+- Files changed: `src/components/shop/ShopLayout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Replaced cover-cropping with right-aligned image containment so every category composition remains fully visible inside the desktop banner. On mobile, bottom-aligned the full artwork and reserved dedicated space beneath the copy, preventing text and category links from overlapping the image.
+- Validation/tests: Verified all seven category routes at a 1440 × 900 viewport using Chrome through Playwright; each hero reported `object-fit: contain`, complete fitted dimensions, no console warnings/errors, and no visible framework error overlay. Verified Gift Sets at 390 × 844 with a measured 20px gap between the content and artwork, then navigated through the category rail to Beauty & Skincare and confirmed the route and description updated. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue the remaining shop and product-detail page visual alignment.
+
+- Task: Create and replace the top-level category hero images.
+- Files changed: `public/categories/beauty-skincare-hero-v2.png`, `public/categories/fragrance-hero.png`, `public/categories/gift-sets-hero.png`, `public/categories/health-wellness-hero.png`, `public/categories/suncare-travel-hero.png`, `public/categories/electrical-hero.png`, `public/categories/toiletries-hero.png`, `src/config/category-taxonomy.ts`, `docs/category-hero-prompts.md`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Generated seven distinct premium 1672 × 941 category compositions using five matching catalogue products in each image. Preserved left-side negative space for live category copy, connected every top-level taxonomy node to its matching local asset with descriptive alt text, and documented the exact product selections and reusable prompts. Renamed the Beauty & Skincare asset to a cache-safe filename so the replacement loads immediately.
+- Validation/tests: Visually verified all seven category routes in the in-app browser, including correct artwork, readable live copy, complete product groups, and route-specific image alt text. `git diff --check`, `npm run lint`, and `npm run build` passed.
+- Next task: Continue the remaining shop and product-detail page visual alignment.
+
 - Task: Fix the Supabase auth-lock runtime error on the storefront.
 - Files changed: `src/components/layout/Navbar.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Removed the navbar's competing `getUser()` initialization request and made `onAuthStateChange` the single source of initial and subsequent browser auth state. Kept the auth callback synchronous, deferred the admin-profile query until after Supabase releases its auth lock, and guarded deferred results against unmounts and stale auth events.

@@ -7,6 +7,7 @@ import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-
 import { useCart } from "@/context/CartContext";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { SignOutButton } from "@/components/auth/SignOutButton";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { categories, type Category } from "@/config/categories";
 
 function renderMobileSubcategories(
@@ -284,9 +285,14 @@ export function Navbar() {
         <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 md:grid-cols-[auto_minmax(18rem,42rem)_auto] md:gap-6">
           <Link
             href="/"
+            aria-label="SAVZIX home"
             className="inline-flex justify-self-start rounded-md transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            <span className="text-xl font-extrabold tracking-[0.08em] text-foreground md:text-2xl">SAVZIX</span>
+            <BrandLogo
+              variant="horizontal"
+              priority
+              className="h-8 w-auto md:h-9"
+            />
           </Link>
 
           <div

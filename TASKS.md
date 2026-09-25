@@ -38,6 +38,11 @@
 - Reduced and right-aligned the premium hero artwork on tablet and desktop without changing hero copy or layout.
 - Re-composed the premium hero source image to balance copy space, product placement, right-edge clearance, and product contrast.
 - Fixed the Supabase auth-lock `AbortError` overlay on the storefront while preserving customer and admin navigation state.
+- Generated, documented, and applied seven premium category hero images using five matching catalogue products per category.
+- Fitted all category artwork inside the shared hero banner and separated mobile copy from the complete image.
+- Simplified all category heroes with category-specific headings, one catalogue-level product count, clearer subcategory links, and a shorter desktop layout.
+- Removed the visible desktop boundary between each contained category image and its hero background with a responsive edge blend.
+- Replaced the storefront header's text-only brand name with the supplied transparent SAVZIX wordmark and verified its desktop and mobile presentation.
 
 ## This Week
 

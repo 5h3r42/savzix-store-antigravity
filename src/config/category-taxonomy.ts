@@ -4,6 +4,7 @@ export type TaxonomyNode = {
   description?: string;
   heroImage?: {
     src: string;
+    desktopSrc?: string;
     alt: string;
   };
   sortOrder?: number;
@@ -26,6 +27,7 @@ export type FlatTaxonomyNode = {
   description?: string;
   heroImage?: {
     src: string;
+    desktopSrc?: string;
     alt: string;
   };
   sortOrder: number;
@@ -83,8 +85,9 @@ export const taxonomyTree: TaxonomyNode[] = [
     slug: "beauty-skincare",
     description: "Shop cosmetics, nails, and skincare essentials.",
     heroImage: {
-      src: "/categories/beauty-skincare-hero.png",
-      alt: "Beauty and skincare products arranged on a warm neutral surface",
+      src: "/categories/beauty-skincare-hero-v2.png",
+      desktopSrc: "/categories/beauty-skincare-hero-wide.png",
+      alt: "Beauty and skincare products arranged in a warm premium studio",
     },
     sortOrder: 0,
     legacyPaths: ["/beauty-skincare", "/beauty"],
@@ -118,7 +121,8 @@ export const taxonomyTree: TaxonomyNode[] = [
     description: "Explore fragrance picks across women's, men's, luxury, and celebrity scents.",
     heroImage: {
       src: "/categories/fragrance-hero.png",
-      alt: "Fragrance products arranged on a warm champagne-toned luxury surface",
+      desktopSrc: "/categories/fragrance-hero-wide.png",
+      alt: "Luxury fragrance bottles arranged on a midnight and champagne studio set",
     },
     sortOrder: 1,
     legacyPaths: ["/fragrance"],
@@ -165,6 +169,11 @@ export const taxonomyTree: TaxonomyNode[] = [
     name: "Gift Sets",
     slug: "gift-sets",
     description: "Discover ready-to-gift beauty, fragrance, toiletries, and alcohol sets.",
+    heroImage: {
+      src: "/categories/gift-sets-hero.png",
+      desktopSrc: "/categories/gift-sets-hero-wide.png",
+      alt: "Premium beauty and fragrance gift sets arranged with burgundy ribbon",
+    },
     sortOrder: 2,
     legacyPaths: ["/gift-sets"],
     children: [
@@ -198,6 +207,11 @@ export const taxonomyTree: TaxonomyNode[] = [
     name: "Health & Wellness",
     slug: "health-wellness",
     description: "Everyday wellness, treatment, and personal health essentials.",
+    heroImage: {
+      src: "/categories/health-wellness-hero.png",
+      desktopSrc: "/categories/health-wellness-hero-wide.png",
+      alt: "Everyday health and wellness products arranged in a clean blue studio",
+    },
     sortOrder: 3,
     legacyPaths: ["/health-wellness"],
     children: [
@@ -237,6 +251,11 @@ export const taxonomyTree: TaxonomyNode[] = [
     name: "Suncare & Travel",
     slug: "suncare-travel",
     description: "Shop suncare and travel-ready everyday essentials.",
+    heroImage: {
+      src: "/categories/suncare-travel-hero.png",
+      desktopSrc: "/categories/suncare-travel-hero-wide.png",
+      alt: "Suncare products arranged in a bright coastal-inspired studio",
+    },
     sortOrder: 4,
     legacyPaths: ["/suncare-travel"],
     children: [
@@ -258,6 +277,11 @@ export const taxonomyTree: TaxonomyNode[] = [
     name: "Electrical",
     slug: "electrical",
     description: "Shop practical electrical, grooming, and wellbeing tools.",
+    heroImage: {
+      src: "/categories/electrical-hero.png",
+      desktopSrc: "/categories/electrical-hero-wide.png",
+      alt: "Personal care electrical products arranged on graphite and copper plinths",
+    },
     sortOrder: 5,
     legacyPaths: ["/electrical"],
     children: [
@@ -315,6 +339,11 @@ export const taxonomyTree: TaxonomyNode[] = [
     name: "Toiletries",
     slug: "toiletries",
     description: "Shop bathing, dental, hair, hygiene, and family toiletries.",
+    heroImage: {
+      src: "/categories/toiletries-hero.png",
+      desktopSrc: "/categories/toiletries-hero-wide.png",
+      alt: "Everyday toiletries arranged in a fresh mint and white studio",
+    },
     sortOrder: 6,
     legacyPaths: ["/toiletries"],
     children: [
