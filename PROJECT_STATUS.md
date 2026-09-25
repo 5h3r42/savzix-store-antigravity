@@ -43,6 +43,9 @@ UI Polish + Pre-Launch Fixes
 - Applied Supabase migrations `004` and `005` to the `savzix.com` project, restricted stock/order RPC execution to the service role, and completed the Stripe sandbox workflow end to end. Verified pending stock reservation, expired-session release, successful payment confirmation, exact-once stock decrement, cart clearing, order confirmation, and customer order history.
 - Replaced the Trusted brands text row with locally served original Aveeno, CeraVe, Dove, Lynx, and NIVEA brand marks in a centered, responsive layout.
 - Removed the redundant Trusted brands heading above the logo row, leaving the marks as the sole content of that landing-page section.
+- Replaced the home-page hero artwork with a premium five-product catalogue composition featuring Aveeno, Dove, Lynx, Beauty of Joseon, and Bio-Oil while preserving the approved hero copy block and page structure unchanged.
+- Reduced the hero artwork scale on tablet and desktop so the complete five-product composition sits cleanly on the right with more breathing room; mobile retains the existing crop behavior.
+- Corrected the hero artwork at source: the five-product group now begins earlier, retains intentional right-edge clearance, and uses a shorter copy fade so the Aveeno product remains clear without CSS position workarounds.
 
 ## In Progress
 

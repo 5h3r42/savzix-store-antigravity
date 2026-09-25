@@ -34,6 +34,9 @@
 - Applied Supabase migrations 004 and 005 with service-role-only RPC permissions, then verified the complete Stripe sandbox payment, expired-session stock release, successful stock decrement, cart clearing, confirmation page, and account order history.
 - Replaced the landing-page Trusted brands text row with a centered, responsive row of verified brand logos.
 - Removed the redundant Trusted brands heading from the logo-only landing-page section.
+- Generated and applied a premium five-product catalogue hero image without altering the approved hero copy block.
+- Reduced and right-aligned the premium hero artwork on tablet and desktop without changing hero copy or layout.
+- Re-composed the premium hero source image to balance copy space, product placement, right-edge clearance, and product contrast.
 
 ## This Week
 

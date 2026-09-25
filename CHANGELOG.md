@@ -2,6 +2,12 @@
 
 ## 2026-09-25
 
+- Task: Correct the premium hero image composition at source.
+- Files changed: `public/home/premium-catalogue-hero-v2.png`, `src/components/home/Hero.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Re-composed the existing five-product studio artwork so the full group starts earlier, feels connected to the copy, and leaves deliberate clearance after the Bio-Oil bottle and riser. Applied the corrected asset under a cache-safe filename and shortened the white copy gradient so it no longer unnecessarily washes over the Aveeno product. The hero copy block, product count, image scale, section height, and landing-page order remain unchanged.
+- Validation/tests: Inspected the revised 1774 × 887 source image, verified the final result in the user's actual Chrome storefront tab and the in-app browser, confirmed all five products remain complete and recognizable with balanced left and right spacing, and confirmed all above-the-fold copy is unchanged. `npm run lint` and `npm run build` passed.
+- Next task: Continue approved storefront polish without altering the locked hero copy or landing-page section order.
+
 - Task: Simplify the Trusted brands logo section.
 - Files changed: `src/components/home/LandingCollections.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Removed the redundant section heading above the centered brand-logo row while retaining all logo assets, responsive layout behavior, and the approved home-page section order.

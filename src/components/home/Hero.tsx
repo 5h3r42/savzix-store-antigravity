@@ -13,14 +13,14 @@ export function Hero() {
       <section className="relative overflow-hidden bg-background">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/home/main-home-hero.png"
-            alt="Curated SAVZIX product selection arranged on a warm neutral surface"
+            src="/home/premium-catalogue-hero-v2.png"
+            alt="Five SAVZIX beauty and personal care products arranged in a premium studio setting"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[68%_center] brightness-[1.02] contrast-[1.02]"
+            className="object-cover object-[68%_center] brightness-[1.02] contrast-[1.02] md:object-contain md:object-right"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.88)_30%,rgba(255,255,255,0.48)_52%,rgba(255,255,255,0.06)_76%,rgba(255,255,255,0)_88%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.88)_30%,rgba(255,255,255,0.4)_48%,rgba(255,255,255,0)_60%)]"></div>
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/35 to-transparent"></div>
         </div>
 
