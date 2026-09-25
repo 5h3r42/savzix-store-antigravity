@@ -1,6 +1,44 @@
 # Changelog
 
+## 2026-09-25
+
+- Task: Simplify the Trusted brands logo section.
+- Files changed: `src/components/home/LandingCollections.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Removed the redundant section heading above the centered brand-logo row while retaining all logo assets, responsive layout behavior, and the approved home-page section order.
+- Validation/tests: Browser accessibility inspection confirmed the title is absent and all five brand-logo alt texts remain present; `npm run lint` and `npm run build` passed.
+- Next task: Continue the remaining approved storefront polish without altering the locked home-page composition.
+
+- Task: Replace the Trusted brands text row with centered brand-logo assets.
+- Files changed: `src/components/home/LandingCollections.tsx`, `public/brand/logos/aveeno.svg`, `public/brand/logos/cerave.png`, `public/brand/logos/dove.png`, `public/brand/logos/lynx.png`, `public/brand/logos/nivea.svg`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Replaced the plain brand-name text with a locally served, centered responsive grid of official Aveeno, CeraVe, Dove, Lynx, and NIVEA logo assets. The layout is two columns on small screens, three on small tablets, and five balanced columns on desktop.
+- Validation/tests: Browser review verified all five marks load with meaningful alt text and sit in a centered row without wrapping at the local desktop viewport; `npm run lint` and `npm run build` passed.
+- Next task: Continue the remaining approved storefront polish without altering the locked home-page composition.
+
+- Task: Apply the outstanding order/stock migrations and test the complete payment workflow.
+- Files changed: `supabase/migrations/004_orders_payment_and_customer_fields.sql`, `supabase/migrations/005_stock_reservations.sql`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; schema and sandbox order changes in Supabase project `vhoukfbnkgowhvxskkfi`.
+- Summary: Applied migrations 004 and 005 transactionally, hardened all payment and stock-reservation RPCs to service-role-only execution, and completed a £44.98 Stripe sandbox purchase. The first abandoned sandbox session was explicitly expired to verify reservation release; the replacement session completed successfully. Test records were retained for audit under confirmed order `ORD-24373075-977520` and cancelled order `ORD-24135117-0AD0CB`.
+- Validation/tests: Confirmed anonymous RPC access returns 401; unpaid checkout reserved one unit of each product without changing stock; `checkout.session.expired` returned HTTP 200 and restored both reservations to zero; `checkout.session.completed` returned HTTP 200; the paid order is `Confirmed`/`paid` with a PaymentIntent and paid timestamp; Aveeno stock changed 25 to 24 and Body Lotion stock changed 10 to 9 exactly once; both reserved quantities are zero; the cart cleared; the confirmation page reported success; and account history shows the confirmed £44.98 order. `npm run lint` and `npm run build` were run after the workflow verification.
+- Next task: Configure production Supabase and Stripe webhook variables, then repeat this sandbox checkout against the deployed environment before launch.
+
 ## 2026-09-24
+
+- Task: Remove the standalone logo from the customer login form.
+- Files changed: `src/app/login/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Removed the redundant linked brand mark above the Sign In/Create Account switch and cleaned up its unused imports. The shared SAVZIX storefront header remains unchanged.
+- Validation/tests: `npm run lint` and `npm run build` passed; browser verification confirmed the login form now begins with the authentication switch and contains no standalone logo image.
+- Next task: Continue the remaining authentication-page visual cleanup as directed.
+
+- Task: Test the local Stripe payment flow.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; no application code changed.
+- Summary: Confirmed the app uses a Stripe test key, authenticated a disposable confirmed customer, started a local webhook forwarder, populated checkout, and submitted a two-item £44.98 test order. Checkout stopped before Stripe because the connected Supabase project does not have `products.reserved_quantity`; a separate read also confirmed `orders.customer_email` is absent, showing migrations 004 and 005 are not applied. The UI displayed a controlled error and retained the cart.
+- Validation/tests: Verified `/checkout` rendered correctly, test authentication succeeded, the cart contained both products, form submission reached `/api/checkout`, browser console had no warnings or errors, Supabase returned schema error `42703`, no order was created, and the disposable user/listener/log were removed afterward.
+- Next task: Apply migrations 004 and 005 to project `vhoukfbnkgowhvxskkfi`, then repeat the test through Stripe Checkout, webhook confirmation, stock decrement, order history, and cart clearing.
+
+- Task: Add four products to each landing-page product section.
+- Files changed: `src/app/page.tsx`, `src/components/home/LandingCollections.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Populated New arrivals with the four newest active products, Offers with the four lowest-priced active products, and Bestsellers with four products from the existing order-ranking flow and catalogue fallback. Reused the standard product card so product links, prices, stock state, and Add to basket behavior remain consistent with the shop.
+- Validation/tests: `npm run lint` and `npm run build` passed; browser verification confirmed exactly four linked, purchasable product cards under each of the three product-led sections while Popular departments and Trusted brands retained their approved treatments.
+- Next task: Review the selected products and add explicit promotion metadata before presenting Offers as discounted pricing.
 
 - Task: Replace shop load-more behavior with numbered pagination.
 - Files changed: `src/components/shop/ProductGrid.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.

@@ -2,7 +2,7 @@
 
 ## Today
 
-- Fix stock issue
+- Review the next launch-priority task
 
 ## Completed
 
@@ -28,6 +28,12 @@
 - Seeded the Supabase category taxonomy, assigned all 250 imported products to categories, and applied 202 EAN-verified prices from `data/Real Price.xlsx` while preserving 48 unresolved products for review.
 - Activated the 202 verified-price products with stock set to 10 each; retained the 48 unresolved-price products as zero-stock Drafts.
 - Replaced the shop's Load more button with accessible numbered product pages and Previous/Next navigation.
+- Added four live catalogue product cards to each landing-page product section: New arrivals, Offers, and Bestsellers.
+- Ran a Stripe test-mode checkout smoke test and identified the missing Supabase order/reservation schema before any payment or order was created.
+- Removed the duplicate standalone logo above the customer sign-in and account-creation form.
+- Applied Supabase migrations 004 and 005 with service-role-only RPC permissions, then verified the complete Stripe sandbox payment, expired-session stock release, successful stock decrement, cart clearing, confirmation page, and account order history.
+- Replaced the landing-page Trusted brands text row with a centered, responsive row of verified brand logos.
+- Removed the redundant Trusted brands heading from the logo-only landing-page section.
 
 ## This Week
 

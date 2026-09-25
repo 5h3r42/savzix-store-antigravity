@@ -37,10 +37,15 @@ UI Polish + Pre-Launch Fixes
 - Applied the category-taxonomy schema and seeded the approved category tree in Supabase. Assigned all 250 imported products to primary categories and supporting parent categories, and applied 202 barcode-verified selling prices from `data/Real Price.xlsx`; 48 unresolved prices remain unchanged for review.
 - Activated the 202 barcode-priced catalogue products with stock set to 10 each. The 48 products without a safe price remain Drafts with zero stock.
 - Replaced the shop product grid's load-more interaction with accessible numbered pagination, 24 products per page, compact overflow handling, item ranges, and Previous/Next controls.
+- Populated the landing page's New arrivals, Offers, and Bestsellers sections with four live, in-stock catalogue products each while preserving the approved section order and department/brand treatments.
+- Ran an initial test-mode checkout smoke test that confirmed authentication, cart persistence, checkout validation, and controlled handling of the then-missing order and stock-reservation schema.
+- Removed the duplicate standalone logo from the customer login form while retaining the shared storefront header branding.
+- Applied Supabase migrations `004` and `005` to the `savzix.com` project, restricted stock/order RPC execution to the service role, and completed the Stripe sandbox workflow end to end. Verified pending stock reservation, expired-session release, successful payment confirmation, exact-once stock decrement, cart clearing, order confirmation, and customer order history.
+- Replaced the Trusted brands text row with locally served original Aveeno, CeraVe, Dove, Lynx, and NIVEA brand marks in a centered, responsive layout.
+- Removed the redundant Trusted brands heading above the logo row, leaving the marks as the sole content of that landing-page section.
 
 ## In Progress
 
-- Checkout reliability
 - UI polish
 - Review the 48 unresolved catalogue prices; the 202 verified products are active with stock 10 each
 
@@ -50,7 +55,6 @@ UI Polish + Pre-Launch Fixes
 
 ## Known Issues
 
-- Stock not locked before payment
 - Missing SEO
 - Missing legal pages
 - Production deployment variables still need to be updated to the new Supabase project before the live `savzix.com` site can show the new catalogue.
@@ -58,12 +62,12 @@ UI Polish + Pre-Launch Fixes
 ## Notes From Light Audit
 
 - Legal routes are present for privacy and terms, but content/completeness still needs launch review.
-- Checkout code references stock reservation logic, but the stock-locking flow still needs end-to-end verification before launch.
+- Local Stripe sandbox testing confirms the stock-reservation flow releases expired sessions and decrements stock only after successful webhook confirmation. Production deployment variables and a deployed test-mode webhook still require launch verification.
 
 ## Next 5 Tasks
 
-1. Add stock locking before payment
-2. Create legal pages (privacy, terms)
-3. Add basic SEO (metadata, sitemap)
-4. Complete the remaining shop and product-detail page visual alignment
-5. Verify Stripe retry flow end-to-end in a live test session
+1. Create legal pages (privacy, terms)
+2. Add basic SEO (metadata, sitemap)
+3. Complete the remaining shop and product-detail page visual alignment
+4. Configure the production deployment for the new Supabase project and Stripe webhook
+5. Repeat the verified sandbox checkout against the deployed environment before launch

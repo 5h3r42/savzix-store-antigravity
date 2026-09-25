@@ -116,3 +116,6 @@ begin
   return true;
 end;
 $$;
+
+revoke all on function public.confirm_paid_order(text, text) from public, anon, authenticated;
+grant execute on function public.confirm_paid_order(text, text) to service_role;

@@ -349,3 +349,59 @@ begin
   return true;
 end;
 $$;
+
+revoke all on function public.release_order_stock_reservation(text, text, text, text)
+from public, anon, authenticated;
+grant execute on function public.release_order_stock_reservation(text, text, text, text)
+to service_role;
+
+revoke all on function public.release_expired_order_reservations(timestamptz)
+from public, anon, authenticated;
+grant execute on function public.release_expired_order_reservations(timestamptz)
+to service_role;
+
+revoke all on function public.create_order_with_stock_reservation(
+  text,
+  uuid,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  numeric,
+  numeric,
+  numeric,
+  timestamptz,
+  jsonb
+)
+from public, anon, authenticated;
+grant execute on function public.create_order_with_stock_reservation(
+  text,
+  uuid,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  text,
+  numeric,
+  numeric,
+  numeric,
+  timestamptz,
+  jsonb
+)
+to service_role;
+
+revoke all on function public.confirm_paid_order(text, text) from public, anon, authenticated;
+grant execute on function public.confirm_paid_order(text, text) to service_role;
