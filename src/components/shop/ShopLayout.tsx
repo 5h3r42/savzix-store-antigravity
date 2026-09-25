@@ -435,23 +435,26 @@ export function ShopLayout({
             <div className="absolute inset-0">
               {categoryHeroImage ? (
                 <>
-                  <Image
-                    src={categoryHeroImage.src}
-                    alt={categoryHeroImage.alt}
-                    fill
-                    priority
-                    sizes="(max-width: 639px) 100vw, 1px"
-                    className="object-contain object-bottom sm:hidden"
-                  />
+                  <div className="absolute inset-x-0 bottom-0 h-[240px] sm:h-[360px] lg:hidden">
+                    <Image
+                      src={categoryHeroImage.src}
+                      alt={categoryHeroImage.alt}
+                      fill
+                      priority
+                      sizes="(max-width: 1023px) 100vw, 1px"
+                      className="object-contain object-bottom"
+                    />
+                  </div>
                   <div
                     role="img"
                     aria-label={categoryHeroImage.alt}
-                    className="absolute inset-0 hidden bg-cover bg-right sm:block"
+                    className="absolute inset-0 hidden bg-cover bg-right lg:block"
                     style={{
                       backgroundImage: `url("${categoryHeroImage.desktopSrc ?? categoryHeroImage.src}")`,
                     }}
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,246,239,0.95)_0%,rgba(248,246,239,0.88)_30%,rgba(248,246,239,0.56)_54%,rgba(248,246,239,0.16)_74%,rgba(248,246,239,0)_100%)]" />
+                  <div className="absolute inset-x-0 top-0 h-[260px] bg-gradient-to-b from-[#f8f6ef] via-[#f8f6ef]/95 to-transparent lg:hidden" />
+                  <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(248,246,239,0.95)_0%,rgba(248,246,239,0.88)_30%,rgba(248,246,239,0.56)_54%,rgba(248,246,239,0.16)_74%,rgba(248,246,239,0)_100%)] lg:block" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(36,87,166,0.12),_transparent_38%)]" />
                 </>
               ) : (
@@ -463,7 +466,7 @@ export function ShopLayout({
               )}
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/55 via-background/20 to-transparent" />
             </div>
-            <div className="relative z-10 flex min-h-[460px] items-start px-6 pb-[220px] pt-8 sm:min-h-[380px] sm:items-center sm:px-8 sm:py-10 lg:min-h-[400px] lg:px-10 lg:py-12">
+            <div className="relative z-10 flex min-h-[470px] items-start px-6 pb-[235px] pt-8 sm:min-h-[590px] sm:px-8 sm:pb-[370px] sm:pt-10 lg:min-h-[400px] lg:items-center lg:px-10 lg:py-12">
               <div className="max-w-xl space-y-5">
                 <ShopHeaderContent
                   title={activeCategoryNode.name}
@@ -532,7 +535,7 @@ export function ShopLayout({
           </header>
         )}
 
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-[280px_1fr]">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 lg:grid-cols-[280px_1fr]">
           <ShopFilters
             categories={categories}
             brands={brands}
@@ -552,10 +555,10 @@ export function ShopLayout({
           />
 
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground md:hidden">
+            <p className="text-sm text-muted-foreground lg:hidden">
               {filteredProducts.length} products
             </p>
-            <div className="sticky top-20 z-20 flex items-center gap-3 rounded-xl border border-border bg-background/95 p-3 backdrop-blur md:hidden">
+            <div className="sticky top-36 z-20 flex items-center gap-3 rounded-xl border border-border bg-background/95 p-3 backdrop-blur sm:top-44 md:top-40 lg:hidden">
               <button
                 type="button"
                 aria-label="Open product filters"
@@ -567,7 +570,7 @@ export function ShopLayout({
               <ShopSort value={sortKey} onChange={setSortKey} className="min-w-0 flex-1" />
             </div>
 
-            <div className="hidden items-center justify-between md:flex">
+            <div className="hidden items-center justify-between lg:flex">
               <p className="text-sm text-muted-foreground">
                 Showing {filteredProducts.length} of {routeScopedProducts.length}
               </p>

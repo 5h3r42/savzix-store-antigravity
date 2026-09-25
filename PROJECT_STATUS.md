@@ -52,6 +52,7 @@ UI Polish + Pre-Launch Fixes
 - Simplified every taxonomy category hero around the customer-facing category name, removed duplicated taxonomy and result metadata, reduced desktop height, improved subcategory-link readability, and kept the single product count beside the catalogue controls.
 - Blended the contained category artwork into the wider tablet and desktop hero background, removing the visible vertical colour boundary while preserving complete, uncropped product compositions and the existing mobile stack.
 - Replaced the storefront header's text-only SAVZIX branding with the supplied transparent SAVZIX wordmark, preserving the existing home link, focus treatment, and responsive header layout.
+- Completed a storefront-wide mobile and tablet responsive pass: added mobile search, removed the redundant mobile category rail, separated hero copy from artwork below desktop, introduced tablet-friendly catalogue filters and product grids, and converted the product detail page to a balanced tablet split layout.
 
 ## In Progress
 

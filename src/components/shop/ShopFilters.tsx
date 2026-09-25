@@ -252,7 +252,7 @@ export function ShopFilters({
 
   return (
     <>
-      <aside className="hidden md:block">
+      <aside className="hidden lg:block">
         <div className="sticky top-28 rounded-xl border border-border bg-card p-5">
           <FiltersPanel
             categories={categories}
@@ -275,7 +275,7 @@ export function ShopFilters({
 
       {isMobileOpen ? (
         <div
-          className="fixed inset-0 z-50 md:hidden"
+          className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby={`mobile-filters-title-${panelId}`}

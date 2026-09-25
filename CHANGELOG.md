@@ -2,6 +2,12 @@
 
 ## 2026-09-25
 
+- Task: Make the storefront tablet and mobile responsive.
+- Files changed: `src/app/layout.tsx`, `src/app/products/[id]/page.tsx`, `src/components/home/Hero.tsx`, `src/components/layout/Navbar.tsx`, `src/components/shop/ShopFilters.tsx`, `src/components/shop/ShopLayout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a dedicated mobile search row and removed the redundant mobile category rail; separated home and category copy from product artwork below the desktop breakpoint; moved the catalogue sidebar breakpoint to desktop so tablets receive a full-width product grid and filter drawer; and introduced a balanced two-column product-detail layout for tablets with correctly sized thumbnails. Desktop presentation and the approved home-page content remain unchanged.
+- Validation/tests: Visually verified the home, category, product-detail, cart, checkout, login, and account routes at 320 × 700, 390 × 844, 768 × 1024, and 1440 × 900. Confirmed no page-level horizontal overflow on the seven key routes at mobile and tablet widths; exercised mobile search, category-menu expansion, the tablet filter drawer, add-to-basket, and the cart drawer; confirmed the final browser pass added no console warnings or errors. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Review the cart drawer's currency formatting separately, then continue launch-priority SEO and deployment work.
+
 - Task: Replace the storefront header branding with the supplied SAVZIX logo.
 - Files changed: `public/brand/savzix-logo-transparent.webp`, `src/components/brand/BrandLogo.tsx`, `src/components/layout/Navbar.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Promoted the supplied transparent SAVZIX WebP into the public brand assets, updated the reusable horizontal/wordmark logo configuration to use its native 814 × 201 proportions, and replaced the header's text-only brand name with the responsive image. Preserved the square mark used by the admin login and added an explicit accessible label to the storefront home link.

@@ -301,7 +301,7 @@ export function Navbar() {
           >
             <form action="/shop" className="flex h-11 w-full items-center gap-3 rounded-lg border border-transparent bg-muted px-4 focus-within:border-primary">
               <Search className="h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-              <input name="q" type="search" placeholder="Search skincare, beauty and everyday essentials" className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground" />
+              <input name="q" type="search" placeholder="Search products" className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground" />
             </form>
             <button
               type="button"
@@ -546,7 +546,21 @@ export function Navbar() {
             </button>
           </div>
         </div>
-        <div className="overflow-x-auto border-t border-border bg-white scrollbar-none">
+
+        <form action="/shop" className="flex border-t border-border bg-white px-4 py-3 md:hidden">
+          <div className="flex h-11 w-full items-center gap-3 rounded-lg bg-muted px-4 focus-within:ring-2 focus-within:ring-primary/30">
+            <Search className="h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+            <input
+              name="q"
+              type="search"
+              aria-label="Search products"
+              placeholder="Search products"
+              className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+            />
+          </div>
+        </form>
+
+        <div className="hidden overflow-x-auto border-t border-border bg-white scrollbar-none md:block">
           <div className="mx-auto flex w-max min-w-full max-w-7xl px-4 md:justify-center md:px-6">
             {categories.map((category) => (
               <Link key={category.slug} href={category.href} className="whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary">

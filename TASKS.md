@@ -43,6 +43,7 @@
 - Simplified all category heroes with category-specific headings, one catalogue-level product count, clearer subcategory links, and a shorter desktop layout.
 - Removed the visible desktop boundary between each contained category image and its hero background with a responsive edge blend.
 - Replaced the storefront header's text-only brand name with the supplied transparent SAVZIX wordmark and verified its desktop and mobile presentation.
+- Made the storefront responsive across mobile and tablet, including the shared header/search, home and category heroes, catalogue filters/grid, and product-detail layout.
 
 ## This Week
 

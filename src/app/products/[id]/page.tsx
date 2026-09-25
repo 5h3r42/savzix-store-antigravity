@@ -45,40 +45,40 @@ export default async function ProductDetail({
           <span className="max-w-[20rem] truncate text-foreground">{productTitle}</span>
         </nav>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.88fr)] lg:gap-16">
-          <div className="grid gap-4 sm:grid-cols-[88px_minmax(0,1fr)]">
-            <div className="order-2 flex gap-3 sm:order-1 sm:flex-col">
-              <div className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-lg border-2 border-primary bg-muted sm:w-full">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,0.9fr)] md:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.88fr)] lg:gap-16">
+          <div className="grid gap-4 lg:grid-cols-[88px_minmax(0,1fr)]">
+            <div className="order-2 flex gap-3 lg:order-1 lg:flex-col">
+              <div className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-lg border-2 border-primary bg-muted lg:w-full">
                 <Image
                   src={product.image || "/product_bottle.png"}
                   alt=""
                   fill
-                  sizes="88px"
+                  sizes="(max-width: 1023px) 64px, 88px"
                   className="object-contain p-2 mix-blend-multiply"
                 />
               </div>
             </div>
 
-            <div className="relative order-1 aspect-square overflow-hidden rounded-2xl border border-border bg-muted sm:order-2">
+            <div className="relative order-1 aspect-square overflow-hidden rounded-2xl border border-border bg-muted lg:order-2">
               <Image
                 src={product.image || "/product_bottle.png"}
                 alt={productTitle}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 52vw"
-                className="object-contain p-8 mix-blend-multiply sm:p-12"
+                className="object-contain p-8 mix-blend-multiply md:p-10 lg:p-12"
               />
             </div>
           </div>
 
-          <div className="self-start lg:pt-2">
+          <div className="self-start md:pt-2">
             <Link
               href="/shop"
               className="text-sm font-semibold uppercase tracking-[0.14em] text-primary hover:underline"
             >
               {product.brand}
             </Link>
-            <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+            <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-foreground lg:text-4xl">
               {productTitle}
             </h1>
 
