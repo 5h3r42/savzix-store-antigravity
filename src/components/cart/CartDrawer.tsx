@@ -6,11 +6,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import { formatPrice } from "@/lib/formatPrice";
 import { cleanTitle } from "@/lib/productText"; // ADDED: ensure cart drawer titles stay retail-clean.
-
-function formatPrice(value: number) {
-  return value.toFixed(2);
-}
 
 export function CartDrawer() {
   const { isOpen, closeCart, items, updateQuantity, removeItem, subtotal } = useCart();
@@ -101,7 +98,7 @@ export function CartDrawer() {
                                             </Link>
                                           </h3>
                                           <p className="ml-4 font-mono">
-                                            ${formatPrice(item.price * item.quantity)}
+                                            {formatPrice(item.price * item.quantity)}
                                           </p>
                                         </div>
                                       </div>
@@ -146,7 +143,7 @@ export function CartDrawer() {
                       <div className="border-t border-border px-4 py-6 sm:px-6 bg-muted/5">
                         <div className="flex justify-between text-base font-medium text-foreground mb-4">
                           <p className="uppercase tracking-widest text-sm">Subtotal</p>
-                          <p className="font-mono text-lg">${formatPrice(subtotal)}</p>
+                          <p className="font-mono text-lg">{formatPrice(subtotal)}</p>
                         </div>
                         <p className="mt-0.5 text-sm text-muted-foreground mb-6">
                           Shipping and taxes calculated at checkout.

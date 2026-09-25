@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { formatPrice } from "@/lib/formatPrice";
 import { cleanDescription, cleanTitle } from "@/lib/productText"; // ADDED: retail-safe product copy helpers.
 import type { Product } from "@/types/product";
 
@@ -10,10 +11,6 @@ type ProductGridProps = {
   products: Product[];
   emptyMessage?: string;
 };
-
-function formatPrice(price: number) {
-  return `$${price.toFixed(2)}`;
-}
 
 export function ProductGrid({
   products,

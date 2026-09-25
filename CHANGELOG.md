@@ -2,6 +2,12 @@
 
 ## 2026-09-25
 
+- Task: Standardise all prices and checkout currency on GBP.
+- Files changed: `src/components/cart/CartDrawer.tsx`, `src/components/products/ProductGrid.tsx`, `src/app/admin/products/new/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Replaced the cart drawer's manual dollar prefix and the legacy product grid's dollar formatter with the shared `en-GB`/GBP formatter. Updated the admin product price field to display a pound sign and explicitly label the value as GBP. Confirmed the checkout API already stores orders as `GBP` and sends lowercase `gbp` currency codes to Stripe for product and shipping line items.
+- Validation/tests: Verified the live checkout summary and cart drawer both display `£60.00`; searched the application for remaining customer-facing dollar or USD price formatting; confirmed the database migration constrains order currency to GBP; `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue the launch-priority SEO and deployment work.
+
 - Task: Make the storefront tablet and mobile responsive.
 - Files changed: `src/app/layout.tsx`, `src/app/products/[id]/page.tsx`, `src/components/home/Hero.tsx`, `src/components/layout/Navbar.tsx`, `src/components/shop/ShopFilters.tsx`, `src/components/shop/ShopLayout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Added a dedicated mobile search row and removed the redundant mobile category rail; separated home and category copy from product artwork below the desktop breakpoint; moved the catalogue sidebar breakpoint to desktop so tablets receive a full-width product grid and filter drawer; and introduced a balanced two-column product-detail layout for tablets with correctly sized thumbnails. Desktop presentation and the approved home-page content remain unchanged.

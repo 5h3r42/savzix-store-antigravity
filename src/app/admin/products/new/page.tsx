@@ -282,10 +282,10 @@ export default function NewProductPage() {
               <h2 className="mb-4 text-lg font-bold">Pricing & Inventory</h2>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Price</label>
+                <label className="text-sm font-medium">Price (GBP)</label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    $
+                    £
                   </span>
                   <input
                     type="number"

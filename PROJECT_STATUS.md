@@ -53,6 +53,7 @@ UI Polish + Pre-Launch Fixes
 - Blended the contained category artwork into the wider tablet and desktop hero background, removing the visible vertical colour boundary while preserving complete, uncropped product compositions and the existing mobile stack.
 - Replaced the storefront header's text-only SAVZIX branding with the supplied transparent SAVZIX wordmark, preserving the existing home link, focus treatment, and responsive header layout.
 - Completed a storefront-wide mobile and tablet responsive pass: added mobile search, removed the redundant mobile category rail, separated hero copy from artwork below desktop, introduced tablet-friendly catalogue filters and product grids, and converted the product detail page to a balanced tablet split layout.
+- Standardised all remaining price displays on GBP: the cart drawer and legacy product grid now use the shared `en-GB` currency formatter, the admin product form labels prices as GBP, and Stripe Checkout continues to create `gbp` line items backed by GBP orders.
 
 ## In Progress
 

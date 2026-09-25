@@ -44,6 +44,7 @@
 - Removed the visible desktop boundary between each contained category image and its hero background with a responsive edge blend.
 - Replaced the storefront header's text-only brand name with the supplied transparent SAVZIX wordmark and verified its desktop and mobile presentation.
 - Made the storefront responsive across mobile and tablet, including the shared header/search, home and category heroes, catalogue filters/grid, and product-detail layout.
+- Removed the remaining dollar-formatted prices and confirmed storefront, order, and Stripe checkout currency handling is consistently GBP.
 
 ## This Week
 
