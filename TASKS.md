@@ -37,6 +37,7 @@
 - Generated and applied a premium five-product catalogue hero image without altering the approved hero copy block.
 - Reduced and right-aligned the premium hero artwork on tablet and desktop without changing hero copy or layout.
 - Re-composed the premium hero source image to balance copy space, product placement, right-edge clearance, and product contrast.
+- Fixed the Supabase auth-lock `AbortError` overlay on the storefront while preserving customer and admin navigation state.
 
 ## This Week
 

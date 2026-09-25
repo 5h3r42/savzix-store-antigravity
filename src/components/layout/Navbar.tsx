@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import type { Session } from "@supabase/supabase-js";
 import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
@@ -106,6 +107,8 @@ export function Navbar() {
 
   useEffect(() => {
     let isActive = true;
+    let authStateVersion = 0;
+    let profileLookupTimer: ReturnType<typeof setTimeout> | null = null;
     const supabase = createBrowserSupabaseClient();
     if (!supabase) {
       queueMicrotask(() => {
@@ -119,60 +122,67 @@ export function Navbar() {
       };
     }
 
-    const hydrateAuthState = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      let nextIsAdmin = false;
-      if (user) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", user.id)
-          .maybeSingle();
-
-        nextIsAdmin = profile?.role === "admin";
-      }
-
+    const syncAuthState = (session: Session | null) => {
       if (!isActive) {
         return;
       }
 
-      setIsAuthenticated(Boolean(user));
-      setIsAdminUser(nextIsAdmin);
-      setMounted(true);
-    };
+      const stateVersion = ++authStateVersion;
+      const user = session?.user ?? null;
 
-    void hydrateAuthState();
+      setIsAuthenticated(Boolean(user));
+      setIsAdminUser(false);
+      setMounted(true);
+
+      if (profileLookupTimer) {
+        clearTimeout(profileLookupTimer);
+        profileLookupTimer = null;
+      }
+
+      if (!user) {
+        return;
+      }
+
+      // Supabase holds its auth lock while this callback runs. Defer any
+      // additional client request until the callback has returned.
+      profileLookupTimer = setTimeout(() => {
+        profileLookupTimer = null;
+
+        if (!isActive || stateVersion !== authStateVersion) {
+          return;
+        }
+
+        void (async () => {
+          const { data: profile, error } = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("id", user.id)
+            .maybeSingle();
+
+          if (!isActive || stateVersion !== authStateVersion) {
+            return;
+          }
+
+          if (error) {
+            console.error("Unable to load the current user's profile:", error);
+          }
+
+          setIsAdminUser(profile?.role === "admin");
+        })();
+      }, 0);
+    };
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      void (async () => {
-        let nextIsAdmin = false;
-
-        if (session?.user) {
-          const { data: profile } = await supabase
-            .from("profiles")
-            .select("role")
-            .eq("id", session.user.id)
-            .maybeSingle();
-
-          nextIsAdmin = profile?.role === "admin";
-        }
-
-        if (!isActive) {
-          return;
-        }
-
-        setIsAuthenticated(Boolean(session?.user));
-        setIsAdminUser(nextIsAdmin);
-      })();
+      syncAuthState(session);
     });
 
     return () => {
       isActive = false;
+      if (profileLookupTimer) {
+        clearTimeout(profileLookupTimer);
+      }
       subscription.unsubscribe();
     };
   }, []);

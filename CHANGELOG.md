@@ -2,6 +2,12 @@
 
 ## 2026-09-25
 
+- Task: Fix the Supabase auth-lock runtime error on the storefront.
+- Files changed: `src/components/layout/Navbar.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Removed the navbar's competing `getUser()` initialization request and made `onAuthStateChange` the single source of initial and subsequent browser auth state. Kept the auth callback synchronous, deferred the admin-profile query until after Supabase releases its auth lock, and guarded deferred results against unmounts and stale auth events.
+- Validation/tests: Reproduced the `Runtime AbortError: Lock broken by another request with the 'steal' option` overlay and four Supabase orphaned-lock warnings in the in-app browser; reloaded after the fix and waited beyond the previous five-second lock timeout with no new warnings or errors and no framework overlay. Confirmed the authenticated Account/Sign Out navigation state and opened/closed the cart successfully. `npm run lint` and `npm run build` passed.
+- Next task: Continue the remaining shop and product-detail page visual alignment.
+
 - Task: Correct the premium hero image composition at source.
 - Files changed: `public/home/premium-catalogue-hero-v2.png`, `src/components/home/Hero.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Re-composed the existing five-product studio artwork so the full group starts earlier, feels connected to the copy, and leaves deliberate clearance after the Bio-Oil bottle and riser. Applied the corrected asset under a cache-safe filename and shortened the white copy gradient so it no longer unnecessarily washes over the Aveeno product. The hero copy block, product count, image scale, section height, and landing-page order remain unchanged.
