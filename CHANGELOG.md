@@ -2,6 +2,18 @@
 
 ## 2026-09-26
 
+- Task: Replace the storefront favicon with the supplied SAVZIX icon.
+- Files changed: `src/app/icon.png`, `src/app/favicon.ico`, `src/app/layout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Promoted the supplied `data/Logo/favicon.png` artwork into the Next.js app, updated root metadata to use `/icon.png`, and removed the obsolete conventional ICO that browsers were still receiving first. The source PNG remains unchanged in `data/Logo/`.
+- Validation/tests: Confirmed the source and promoted PNG have identical SHA-256 hashes; `npm run lint`, `npm run build`, and `git diff --check` passed. Browser metadata inspection confirmed `/icon.png` is now the only primary favicon entry.
+- Next task: Continue the remaining legal-content and launch-readiness review.
+
+- Task: Add registered company information to the shared footer.
+- Files changed: `src/config/site.ts`, `src/components/layout/Footer.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Centralised the legal company name, registration number, and registered address alongside the existing VAT number, then added a semantic Company column as the first left-hand footer section. The footer now displays AITECH INNOVATIONS LTD, 483 Green Lanes, London N13 4BS, England, company number `15076403`, and VAT registration `GB498138444` across the storefront.
+- Validation/tests: `npm run lint`, `npm run build`, and `git diff --check` passed. Browser inspection confirmed the four-column desktop presentation and readable stacked mobile layout at 390 × 844.
+- Next task: Continue the remaining legal-content and launch-readiness review.
+
 - Task: Add a customer enquiry form to the Contact Us page.
 - Files changed: `src/app/contact/page.tsx`, `src/components/content/ContactForm.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Added a mobile-first contact form with persistent labels for name, email, optional order number, enquiry topic, and message; browser validation, length limits, a spam honeypot, accessible live status text, and structured `mailto:` preparation for `support@savzix.com`. The support address remains available as a direct fallback link, and the form clearly explains that the customer reviews the email before sending.

@@ -12,10 +12,7 @@ export const metadata: Metadata = {
   title: siteConfig.siteName,
   description: `${siteConfig.siteName} premium skincare and wellness products.`,
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/icon.png", type: "image/png" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };

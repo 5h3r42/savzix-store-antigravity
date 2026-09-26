@@ -59,6 +59,8 @@ UI Polish + Pre-Launch Fixes
 - Fixed the three checkout-path accessibility findings: basket quantity controls now have product-specific accessible names, the closed mobile navigation is removed from the accessibility tree, and checkout fields use persistent visible labels with appropriate autocomplete metadata.
 - Completed the Keepa-to-Supabase product-title cleanup across the full 251-product catalogue. The final pass updated 128 remaining titles in place, capped retail names at 90 characters, preserved pack counts and supported variants, and left every product ID, slug, price, stock, and status unchanged.
 - Added an accessible, responsive Contact Us form for product information, order support, delivery, returns, account help, and general enquiries. Submissions prepare a structured email to `support@savzix.com` for the customer to review and send from their email app.
+- Added the registered business identity as the leading left-hand column in the shared site footer: AITECH INNOVATIONS LTD, registered address, company number `15076403`, and VAT registration `GB498138444`.
+- Replaced the legacy browser favicon with the supplied SAVZIX blue “A” PNG and made `/icon.png` the sole primary favicon metadata entry.
 
 ## In Progress
 

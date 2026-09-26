@@ -6,6 +6,8 @@
 
 ## Completed
 
+- Replaced the legacy favicon with the supplied SAVZIX icon PNG and removed the obsolete ICO metadata source.
+- Added the registered company name, address, company number, and VAT registration as the first left-hand column in the responsive shared footer.
 - Added a responsive Contact Us enquiry form with validation, spam honeypot protection, structured email preparation, and a visible `support@savzix.com` fallback link.
 - Completed SEO-oriented title normalization across all 251 Keepa products, including 128 final Supabase title updates without changing product identity, pricing, stock, or status.
 - Fixed the audited basket quantity labels, closed mobile-navigation accessibility state, and persistent checkout form labels.
