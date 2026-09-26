@@ -2,6 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import XLSX from "xlsx";
+import { buildRetailProductTitle } from "./lib/retail-product-title";
 
 type Mode = "dry-run" | "run";
 type ProductStatus = "Active" | "Draft" | "Archived";
@@ -288,18 +289,26 @@ async function main() {
       continue;
     }
 
-    const title = text(sourceRow.Title);
-    const slug = slugify(title);
+    const sourceTitle = text(sourceRow.Title);
+    const slug = slugify(sourceTitle);
     if (slug !== folderSlug) {
-      throw new Error(`Slug mismatch for ${title}: manifest=${folderSlug}, workbook=${slug}`);
+      throw new Error(
+        `Slug mismatch for ${sourceTitle}: manifest=${folderSlug}, workbook=${slug}`,
+      );
     }
+
+    const retailTitle = buildRetailProductTitle(sourceRow).title;
 
     payload.push({
       id: existingBySlug.get(slug) ?? nextId(),
       slug,
-      name: title,
+      name: retailTitle,
       description: sourceDescription(sourceRow),
-      brand: text(sourceRow.Brand) || text(sourceRow.Manufacturer) || title.split(/\s+/)[0] || "Brand",
+      brand:
+        text(sourceRow.Brand) ||
+        text(sourceRow.Manufacturer) ||
+        sourceTitle.split(/\s+/)[0] ||
+        "Brand",
       category,
       price: Number(options.defaultPrice.toFixed(2)),
       stock: options.defaultStock,

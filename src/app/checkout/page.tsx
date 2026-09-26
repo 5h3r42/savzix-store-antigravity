@@ -169,70 +169,46 @@ export default function CheckoutPage() {
             <div>
               <h2 className="mb-4 text-xl font-medium">Contact Information</h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                <input
-                  required
-                  value={form.firstName}
-                  onChange={handleChange("firstName")}
-                  placeholder="First name"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary"
-                />
-                <input
-                  required
-                  value={form.lastName}
-                  onChange={handleChange("lastName")}
-                  placeholder="Last name"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary"
-                />
-                <input
-                  required
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange("email")}
-                  placeholder="Email"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary sm:col-span-2"
-                />
-                <input
-                  required
-                  value={form.phone}
-                  onChange={handleChange("phone")}
-                  placeholder="Phone"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary sm:col-span-2"
-                />
+                <label className="grid gap-2 text-sm font-medium" htmlFor="firstName">
+                  First name
+                  <input id="firstName" name="firstName" autoComplete="given-name" required value={form.firstName} onChange={handleChange("firstName")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
+                <label className="grid gap-2 text-sm font-medium" htmlFor="lastName">
+                  Last name
+                  <input id="lastName" name="lastName" autoComplete="family-name" required value={form.lastName} onChange={handleChange("lastName")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
+                <label className="grid gap-2 text-sm font-medium sm:col-span-2" htmlFor="email">
+                  Email address
+                  <input id="email" name="email" autoComplete="email" required type="email" value={form.email} onChange={handleChange("email")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
+                <label className="grid gap-2 text-sm font-medium sm:col-span-2" htmlFor="phone">
+                  Phone number
+                  <input id="phone" name="phone" autoComplete="tel" required type="tel" value={form.phone} onChange={handleChange("phone")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
               </div>
             </div>
 
             <div>
               <h2 className="mb-4 text-xl font-medium">Shipping Address</h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                <input
-                  required
-                  value={form.address}
-                  onChange={handleChange("address")}
-                  placeholder="Street address"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary sm:col-span-2"
-                />
-                <input
-                  required
-                  value={form.city}
-                  onChange={handleChange("city")}
-                  placeholder="City"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary"
-                />
-                <input
-                  required
-                  value={form.postalCode}
-                  onChange={handleChange("postalCode")}
-                  placeholder="Postal code"
-                  className="rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary"
-                />
-                <select
-                  value={form.country}
-                  onChange={handleChange("country")}
-                  disabled
-                  className="rounded-xl border border-border bg-background px-4 py-3 text-muted-foreground outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-100 sm:col-span-2"
-                >
-                  <option>United Kingdom</option>
-                </select>
+                <label className="grid gap-2 text-sm font-medium sm:col-span-2" htmlFor="address">
+                  Street address
+                  <input id="address" name="address" autoComplete="street-address" required value={form.address} onChange={handleChange("address")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
+                <label className="grid gap-2 text-sm font-medium" htmlFor="city">
+                  City
+                  <input id="city" name="city" autoComplete="address-level2" required value={form.city} onChange={handleChange("city")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
+                <label className="grid gap-2 text-sm font-medium" htmlFor="postalCode">
+                  Postal code
+                  <input id="postalCode" name="postalCode" autoComplete="postal-code" required value={form.postalCode} onChange={handleChange("postalCode")} className="rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+                </label>
+                <label className="grid gap-2 text-sm font-medium sm:col-span-2" htmlFor="country">
+                  Country
+                  <select id="country" name="country" autoComplete="country-name" value={form.country} onChange={handleChange("country")} disabled className="rounded-xl border border-border bg-background px-4 py-3 font-normal text-muted-foreground outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-100">
+                    <option>United Kingdom</option>
+                  </select>
+                </label>
                 <p className="text-xs text-muted-foreground sm:col-span-2">
                   Launch checkout currently supports United Kingdom delivery addresses only.
                 </p>
@@ -241,13 +217,10 @@ export default function CheckoutPage() {
 
             <div>
               <h2 className="mb-4 text-xl font-medium">Order Notes</h2>
-              <textarea
-                rows={4}
-                value={form.notes}
-                onChange={handleChange("notes")}
-                placeholder="Delivery notes (optional)"
-                className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-primary"
-              />
+              <label className="grid gap-2 text-sm font-medium" htmlFor="notes">
+                Delivery notes <span className="font-normal text-muted-foreground">(optional)</span>
+                <textarea id="notes" name="notes" rows={4} value={form.notes} onChange={handleChange("notes")} className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 font-normal outline-none transition-colors focus:border-primary" />
+              </label>
             </div>
 
             <button

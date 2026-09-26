@@ -6,6 +6,9 @@
 
 ## Completed
 
+- Added safe SEO-oriented Keepa title normalization and refreshed 62 Supabase product titles without changing product identity, pricing, stock, or status.
+- Fixed the audited basket quantity labels, closed mobile-navigation accessibility state, and persistent checkout form labels.
+- Audited the core SAVZIX consumer journey on desktop and mobile, documented conversion and accessibility risks, and produced a reusable website-audit prompt with screenshot evidence.
 - Fixed cart clearing issue so failed or expired Stripe payments keep the cart intact
 - Documented the approved SAVZIX retail design system (navy/blue/white palette, Space Grotesk typography, and user-controlled category rail).
 - Applied the approved retail storefront design to the shared navigation, home page, product cards, and footer.

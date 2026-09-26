@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-09-26
+
+- Task: Improve Keepa product titles and refresh the live Supabase catalogue.
+- Files changed: `scripts/lib/retail-product-title.ts`, `scripts/refresh-keepa-product-titles.ts`, `scripts/sync-keepa-catalogue.ts`, `package.json`, `data/keepa-title-refresh-report.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added conservative, deterministic retail-title normalization to future Keepa catalogue imports and a dedicated title-only refresh command. Matched all 251 live products, safely updated 62 names in Supabase, preserved slugs and all commerce fields, and held 27 questionable changes for manual review. The representative Bio-Oil title is now `Bio-Oil Natural Skincare Oil for Scars & Stretch Marks 60ml`.
+- Validation/tests: Completed a dry run and reviewed every eligible title before applying updates; the run verified all written names in Supabase. Refreshed the live product page and confirmed the cleaned title appears in the breadcrumb, image alternative text, H1, and product copy. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Manually review the 27 held title candidates and then clean imported product descriptions.
+
+- Task: Fix the three checkout-path accessibility findings.
+- Files changed: `src/components/cart/CartDrawer.tsx`, `src/components/layout/Navbar.tsx`, `src/app/checkout/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added product-specific names to basket decrement and increment controls, conditionally rendered the mobile category dialog only while open, and replaced checkout placeholder-only fields with persistent visible labels, field names, input types, and browser autocomplete metadata.
+- Validation/tests: `npm run lint`, `npm run build`, and `git diff --check` passed. Browser verification at 390 × 844 confirmed the closed menu is absent from the accessibility tree, the open menu is exposed as a dialog, basket quantity controls announce the product name, checkout fields retain visible labels, and no console warnings or errors were produced.
+- Next task: Clean the imported catalogue titles and descriptions before refining promotion presentation.
+
+- Task: Audit SAVZIX from a consumer and accessibility perspective.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; audit report and six screenshots saved under `/tmp/savzix-consumer-audit/`.
+- Summary: Reviewed the home, Beauty & Skincare catalogue, representative product detail, basket drawer, checkout, and mobile home experience. Documented strengths, conversion friction, accessibility risks, and a prioritised remediation plan, plus a reusable prompt for future audits. No application code was changed.
+- Validation/tests: Captured and visually inspected six screenshots, reviewed the browser accessibility tree for each core step, checked the 390 × 844 mobile viewport, confirmed the tested journey produced no browser console warnings or errors, and did not submit payment.
+- Next task: Fix the checkout field labelling, basket quantity-control names, and closed mobile-menu accessibility state before lower-priority catalogue copy and promotion improvements.
+
 ## 2026-09-25
 
 - Task: Include VAT in the cart and checkout experience.

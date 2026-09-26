@@ -105,18 +105,27 @@ export function CartDrawer() {
                                       <div className="flex flex-1 items-end justify-between text-sm">
                                         <div className="flex items-center border border-border rounded-full">
                                           <button
+                                            type="button"
+                                            aria-label={`Decrease quantity of ${itemTitle}`}
                                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                                             className="p-2 hover:text-primary transition-colors"
                                             disabled={item.quantity <= 1}
                                           >
-                                            <Minus className="w-3 h-3" />
+                                            <Minus className="w-3 h-3" aria-hidden="true" />
                                           </button>
-                                          <span className="px-2 font-mono text-xs">{item.quantity}</span>
+                                          <span
+                                            className="px-2 font-mono text-xs"
+                                            aria-label={`Quantity: ${item.quantity}`}
+                                          >
+                                            {item.quantity}
+                                          </span>
                                           <button
+                                            type="button"
+                                            aria-label={`Increase quantity of ${itemTitle}`}
                                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                             className="p-2 hover:text-primary transition-colors"
                                           >
-                                            <Plus className="w-3 h-3" />
+                                            <Plus className="w-3 h-3" aria-hidden="true" />
                                           </button>
                                         </div>
 

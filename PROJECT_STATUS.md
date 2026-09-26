@@ -55,6 +55,9 @@ UI Polish + Pre-Launch Fixes
 - Completed a storefront-wide mobile and tablet responsive pass: added mobile search, removed the redundant mobile category rail, separated hero copy from artwork below desktop, introduced tablet-friendly catalogue filters and product grids, and converted the product detail page to a balanced tablet split layout.
 - Standardised all remaining price displays on GBP: the cart drawer and legacy product grid now use the shared `en-GB` currency formatter, the admin product form labels prices as GBP, and Stripe Checkout continues to create `gbp` line items backed by GBP orders.
 - Added VAT-inclusive checkout treatment for the VAT-registered business: cart and checkout summaries expose the 20% VAT contained in the gross total without increasing customer prices, the VAT number is displayed at checkout, and Stripe Checkout receives inclusive tax behaviour plus VAT metadata and customer-facing VAT text.
+- Completed a screenshot-led consumer audit of the home, Beauty & Skincare catalogue, product detail, basket, checkout, and mobile home journey. The main conversion priorities are catalogue-copy cleanup, clearer promotional pricing, persistent checkout field labels, accessible basket quantity controls, and hiding the off-canvas mobile menu from assistive technology when closed.
+- Fixed the three checkout-path accessibility findings: basket quantity controls now have product-specific accessible names, the closed mobile navigation is removed from the accessibility tree, and checkout fields use persistent visible labels with appropriate autocomplete metadata.
+- Added a conservative Keepa-to-Supabase product-title cleanup pipeline. Refreshed 62 safe catalogue titles in place, preserved every product ID and slug plus price, stock, and status, and held 27 questionable title changes for manual review.
 
 ## In Progress
 
@@ -76,6 +79,8 @@ UI Polish + Pre-Launch Fixes
 - Legal routes are present for privacy and terms, but content/completeness still needs launch review.
 - Local Stripe sandbox testing confirms the stock-reservation flow releases expired sessions and decrements stock only after successful webhook confirmation. Production deployment variables and a deployed test-mode webhook still require launch verification.
 - The current catalogue is treated as standard-rated at 20%. Add a per-product VAT classification before listing any reduced-rate, zero-rated, or exempt goods.
+- Consumer audit evidence and the reusable audit prompt are saved under `/tmp/savzix-consumer-audit/consumer-audit.md`; its three checkout-path accessibility findings are now resolved.
+- The Keepa title refresh report is saved at `data/keepa-title-refresh-report.json`; source rows with missing or questionable data remain unchanged for manual review.
 
 ## Next 5 Tasks
 

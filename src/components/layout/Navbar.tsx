@@ -572,18 +572,12 @@ export function Navbar() {
         </div>
       </nav>
 
-      <div
-        className={`fixed inset-0 z-[70] md:hidden ${
-          mobileMenuOpen ? "" : "pointer-events-none"
-        }`}
-        aria-hidden={!mobileMenuOpen}
-      >
+      {mobileMenuOpen ? (
+      <div className="fixed inset-0 z-[70] md:hidden">
         <button
           type="button"
           aria-label="Close menu backdrop"
-          className={`absolute inset-0 bg-black/40 transition-opacity duration-200 ${
-            mobileMenuOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className="absolute inset-0 bg-black/40"
           onClick={() => setMobileMenuOpen(false)}
         />
 
@@ -593,9 +587,7 @@ export function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Shop categories"
-          className={`absolute left-0 top-0 h-full w-[88vw] max-w-sm border-r border-border bg-card p-5 shadow-2xl transition-transform duration-200 ${
-            mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className="absolute left-0 top-0 h-full w-[88vw] max-w-sm border-r border-border bg-card p-5 shadow-2xl"
         >
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm uppercase tracking-[0.25em] text-muted-foreground">
@@ -687,6 +679,7 @@ export function Navbar() {
           </nav>
         </aside>
       </div>
+      ) : null}
     </>
   );
 }
