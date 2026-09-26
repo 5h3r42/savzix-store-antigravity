@@ -140,7 +140,7 @@ async function main() {
       proposed_title: result.title,
       warnings: result.warnings,
       changed,
-      eligible: changed && result.warnings.length === 0,
+      eligible: changed,
     });
   }
 

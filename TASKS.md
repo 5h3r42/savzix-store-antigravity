@@ -6,7 +6,8 @@
 
 ## Completed
 
-- Added safe SEO-oriented Keepa title normalization and refreshed 62 Supabase product titles without changing product identity, pricing, stock, or status.
+- Added a responsive Contact Us enquiry form with validation, spam honeypot protection, structured email preparation, and a visible `support@savzix.com` fallback link.
+- Completed SEO-oriented title normalization across all 251 Keepa products, including 128 final Supabase title updates without changing product identity, pricing, stock, or status.
 - Fixed the audited basket quantity labels, closed mobile-navigation accessibility state, and persistent checkout form labels.
 - Audited the core SAVZIX consumer journey on desktop and mobile, documented conversion and accessibility risks, and produced a reusable website-audit prompt with screenshot evidence.
 - Fixed cart clearing issue so failed or expired Stripe payments keep the cart intact

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { StaticContentPage } from "@/components/content/StaticContentPage";
+import { ContactForm } from "@/components/content/ContactForm";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -32,16 +33,24 @@ export default function ContactPage() {
         },
       ]}
       footer={
-        <p className="text-sm leading-7 text-muted-foreground md:text-base">
-          Email us at{" "}
-          <Link
-            href={`mailto:${siteConfig.supportEmail}`}
-            className="font-semibold text-primary hover:underline"
-          >
-            {siteConfig.supportEmail}
-          </Link>
-          .
-        </p>
+        <div className="space-y-7">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Send us a message
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">
+              Complete the form below or email{" "}
+              <Link
+                href={`mailto:${siteConfig.supportEmail}`}
+                className="font-semibold text-primary hover:underline"
+              >
+                {siteConfig.supportEmail}
+              </Link>
+              .
+            </p>
+          </div>
+          <ContactForm supportEmail={siteConfig.supportEmail} />
+        </div>
       }
     />
   );

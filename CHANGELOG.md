@@ -2,6 +2,18 @@
 
 ## 2026-09-26
 
+- Task: Add a customer enquiry form to the Contact Us page.
+- Files changed: `src/app/contact/page.tsx`, `src/components/content/ContactForm.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a mobile-first contact form with persistent labels for name, email, optional order number, enquiry topic, and message; browser validation, length limits, a spam honeypot, accessible live status text, and structured `mailto:` preparation for `support@savzix.com`. The support address remains available as a direct fallback link, and the form clearly explains that the customer reviews the email before sending.
+- Validation/tests: `npm run lint`, `npm run build`, and `git diff --check` passed. Browser validation confirmed the email link, labelled fields, required-field error handling, and responsive 390 × 844 layout without triggering an external email client.
+- Next task: Add a server-side transactional email provider if direct in-page submission becomes a requirement.
+
+- Task: Complete the product-title refresh across the full catalogue.
+- Files changed: `scripts/lib/retail-product-title.ts`, `scripts/refresh-keepa-product-titles.ts`, `data/keepa-title-refresh-report.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Expanded title normalization to cover wholesale pack placement, source typos, foreign-language and promotional tails, overlong marketplace copy, gift sets, fragrances, electrical products, and known malformed source rows. Matched all 251 products and applied 128 remaining title-only updates; all final generated titles are 90 characters or fewer and no rows were skipped.
+- Validation/tests: Reviewed the complete dry-run change set before applying it, verified every written name against Supabase, and refreshed the representative Alfaparf product page to confirm the cleaned title appears in the breadcrumb, image alternative text, H1, and product copy. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Clean and standardise imported product descriptions.
+
 - Task: Improve Keepa product titles and refresh the live Supabase catalogue.
 - Files changed: `scripts/lib/retail-product-title.ts`, `scripts/refresh-keepa-product-titles.ts`, `scripts/sync-keepa-catalogue.ts`, `package.json`, `data/keepa-title-refresh-report.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Added conservative, deterministic retail-title normalization to future Keepa catalogue imports and a dedicated title-only refresh command. Matched all 251 live products, safely updated 62 names in Supabase, preserved slugs and all commerce fields, and held 27 questionable changes for manual review. The representative Bio-Oil title is now `Bio-Oil Natural Skincare Oil for Scars & Stretch Marks 60ml`.
