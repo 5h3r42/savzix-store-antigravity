@@ -67,6 +67,7 @@ UI Polish + Pre-Launch Fixes
 - Replaced the static home-page hero artwork with an accessible four-slide category carousel for Beauty & Skincare, Fragrance, Gift Sets, and Toiletries. The original SAVZIX composition remains contained and right-aligned for Beauty & Skincare to preserve its copy-safe space, while category-wide artwork fills the other slides without letterboxing. The hero uses matching category links, six-second rotation, dot navigation, interaction pausing, and reduced-motion support.
 - Positioned the carousel dot navigation at the centre bottom edge of the home-page hero image area, separating it from the CTAs while keeping it keyboard accessible.
 - Added stable daily product rotation to the New Arrivals, Offers, and Bestsellers home-page collections. Each section now selects four products from its leading twelve eligible products using the Europe/London calendar date, so selections remain consistent throughout a day and update automatically the next day.
+- Added an About Us page describing SAVZIX as a UK retailer trading since 2023 for beauty, skincare, fragrance, gift sets, toiletries, health and wellness, and everyday essentials. Linked it from the shared footer's Legal column.
 
 ## In Progress
 

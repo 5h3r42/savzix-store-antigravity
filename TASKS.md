@@ -6,6 +6,7 @@
 
 ## Completed
 
+- Added the SAVZIX About Us page and its Legal-footer link, with UK trading-since-2023 and product-range information.
 - Replaced the static home-page hero with an accessible four-slide Beauty & Skincare, Fragrance, Gift Sets, and Toiletries category carousel using approved assets, matching CTAs, dot navigation, six-second rotation, and reduced-motion support. The original Beauty artwork keeps its copy-safe contained layout while wide category artwork fills the remaining slides.
 - Centred the home-page hero carousel dots at the bottom of the image area.
 - Added deterministic daily rotation for the four products shown in each New Arrivals, Offers, and Bestsellers home-page collection.

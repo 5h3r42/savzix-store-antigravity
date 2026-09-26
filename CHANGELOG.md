@@ -2,6 +2,12 @@
 
 ## 2026-09-26
 
+- Task: Add the SAVZIX About Us page.
+- Files changed: `src/app/about/page.tsx`, `src/components/layout/Footer.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a metadata-backed About Us page using the shared static-content layout. The page states that SAVZIX has traded since 2023 and explains its beauty, skincare, fragrance, toiletries, gift sets, health and wellness, electrical, and everyday-essentials range. Added an About Us link under Legal in the shared footer.
+- Validation/tests: `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
 - Task: Rotate home-page product collections daily.
 - Files changed: `src/app/page.tsx`, `src/lib/daily-collection-rotation.ts`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Added a reusable, Europe/London date-based selector. New Arrivals rotates within the newest twelve active products, Offers within the twelve lowest-priced active products, and Bestsellers within the top twelve sales-ranked or fallback products. Each collection displays four stable products all day, then advances its window the following day.
