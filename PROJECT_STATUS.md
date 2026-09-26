@@ -64,6 +64,9 @@ UI Polish + Pre-Launch Fixes
 - Deployed the current SAVZIX Next.js storefront to the existing Hostinger `savzix.com` Node.js application, configured the production Supabase and Stripe environment variables, and verified the live homepage and shop load the active catalogue.
 - Created the reusable `savzix-catalogue-import` skill for the validated local-package-to-Supabase workflow. It enforces final white-background packshot review, SEO title and evidence-backed description checks, GBP pricing, taxonomy assignment, dry-run-first imports, post-write verification, and safe stopping conditions for uncertain products.
 - Added 250 new non-duplicate Keepa catalogue products using 1,305 newly uploaded product images. Assigned taxonomy to all products; activated 190 with barcode-verified GBP prices and stock 10, while keeping 60 unresolved-price products safely as zero-stock Drafts.
+- Replaced the static home-page hero artwork with an accessible four-slide category carousel for Beauty & Skincare, Fragrance, Gift Sets, and Toiletries. The original SAVZIX composition remains contained and right-aligned for Beauty & Skincare to preserve its copy-safe space, while category-wide artwork fills the other slides without letterboxing. The hero uses matching category links, six-second rotation, dot navigation, interaction pausing, and reduced-motion support.
+- Positioned the carousel dot navigation at the centre bottom edge of the home-page hero image area, separating it from the CTAs while keeping it keyboard accessible.
+- Added stable daily product rotation to the New Arrivals, Offers, and Bestsellers home-page collections. Each section now selects four products from its leading twelve eligible products using the Europe/London calendar date, so selections remain consistent throughout a day and update automatically the next day.
 
 ## In Progress
 

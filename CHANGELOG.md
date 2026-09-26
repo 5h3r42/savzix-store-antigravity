@@ -2,6 +2,30 @@
 
 ## 2026-09-26
 
+- Task: Rotate home-page product collections daily.
+- Files changed: `src/app/page.tsx`, `src/lib/daily-collection-rotation.ts`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a reusable, Europe/London date-based selector. New Arrivals rotates within the newest twelve active products, Offers within the twelve lowest-priced active products, and Bestsellers within the top twelve sales-ranked or fallback products. Each collection displays four stable products all day, then advances its window the following day.
+- Validation/tests: Confirmed same-day selections are identical and next-day selections advance with an inline selector check. Browser verification confirmed all three sections render four products. `npm run lint` and `npm run build` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
+- Task: Position home-page hero slide navigation within the image area.
+- Files changed: `src/components/home/Hero.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Moved the accessible carousel dot controls from beneath the CTA group to the centred bottom edge of the full hero section, preserving their labels and selected state.
+- Validation/tests: Visually verified the centred bottom placement on the local desktop hero. `npm run lint` and `npm run build` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
+- Task: Correct the rotating home-page hero image composition.
+- Files changed: `src/components/home/Hero.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Restored the original Beauty & Skincare artwork to its contained, right-aligned presentation so product packaging no longer competes with heading, description, or CTAs. Kept wide category slides full-height to prevent top and bottom letterboxing, reduced the desktop hero height and title scale, strengthened the copy-side fade, and brought dot navigation closer to the CTAs.
+- Validation/tests: Visually verified the original Beauty slide and full-height Gift Sets slide at 1440 × 900, including readable copy and unobstructed CTAs. `npm run lint` and `npm run build` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
+- Task: Rotate approved category artwork on the landing-page hero.
+- Files changed: `src/components/home/Hero.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Replaced the one-image hero with the approved Beauty & Skincare, Fragrance, Gift Sets, and Toiletries category carousel. The original SAVZIX composition remains the Beauty & Skincare slide; category artwork fills the desktop hero without letterboxing. Each slide has matching copy, a direct category CTA, a restrained opacity transition, and accessible dot navigation. Automatic movement pauses while users hover or focus within the hero and is disabled for reduced-motion preferences.
+- Validation/tests: Confirmed the local carousel rendered active slide content, the original SAVZIX composition, full-height category imagery without top or bottom bands, direct CTA URLs, and dot navigation in the browser. `npm run lint` and `npm run build` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
 - Task: Add a second duplicate-safe 250-product SAVZIX catalogue batch.
 - Files changed: `scripts/import-product-images.ts`, `data/product images/`, `data/new-250-*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Supabase Storage and catalogue data.
 - Summary: Selected and packaged 250 new products from the Keepa source while excluding all prior package titles and 342 known identity codes. Uploaded 1,305 new WebP assets, created and verified 250 new product records, assigned 463 category links, and activated only the 190 products with barcode-verified GBP prices. Nine unsuitable primary image packages were replaced in the batch; 60 products without safe price evidence remain Draft with zero stock.

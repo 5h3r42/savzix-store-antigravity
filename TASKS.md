@@ -6,6 +6,9 @@
 
 ## Completed
 
+- Replaced the static home-page hero with an accessible four-slide Beauty & Skincare, Fragrance, Gift Sets, and Toiletries category carousel using approved assets, matching CTAs, dot navigation, six-second rotation, and reduced-motion support. The original Beauty artwork keeps its copy-safe contained layout while wide category artwork fills the remaining slides.
+- Centred the home-page hero carousel dots at the bottom of the image area.
+- Added deterministic daily rotation for the four products shown in each New Arrivals, Offers, and Bestsellers home-page collection.
 - Added 250 non-duplicate Keepa products with 1,305 uploaded images, verified GBP price activation for 190 products, and safe Draft handling for 60 unresolved-price products.
 - Created the reusable `savzix-catalogue-import` skill and invocation prompt for validated local product-package imports, Supabase image upload, catalogue creation, GBP pricing, taxonomy assignment, and verification.
 - Deployed the current SAVZIX storefront to the existing Hostinger `savzix.com` Node.js app, configured production Supabase and Stripe variables, and verified the live catalogue.
