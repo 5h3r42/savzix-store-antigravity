@@ -1,0 +1,121 @@
+{
+  "accepted": 250,
+  "category_counts": {
+    "beauty-skincare": 85,
+    "electrical": 10,
+    "fragrance": 55,
+    "gift-sets": 15,
+    "health-wellness": 30,
+    "suncare-travel": 10,
+    "toiletries": 45
+  },
+  "rejected_for_image_style": [
+    {
+      "category": "beauty-skincare",
+      "name": "CHARLIE BLUE by Revlon Eau Fraiche Spray 3.4 oz Women"
+    },
+    {
+      "category": "fragrance",
+      "name": "Burberry Eau De Toilette"
+    },
+    {
+      "category": "fragrance",
+      "name": "Calvin Klein Obsession Men Night Eau de Toilette 125ml spray"
+    },
+    {
+      "category": "gift-sets",
+      "name": "NIVEA MEN Feel Fully Sensitive Gift Set, 8-Piece Collection"
+    },
+    {
+      "category": "gift-sets",
+      "name": "NIVEA MEN Feel So Smooth Gift Set, 3-Piece Collection"
+    },
+    {
+      "category": "health-wellness",
+      "name": "BODYFORM - ULTRA NORMAL"
+    },
+    {
+      "category": "health-wellness",
+      "name": "BODYFORM - Ultra Goodnight Long"
+    },
+    {
+      "category": "health-wellness",
+      "name": "BODYFORM Maxi Long Sanitary Towels £1.49 10'S (0% VAT), (Pack of 1)"
+    },
+    {
+      "category": "toiletries",
+      "name": "Asevi Colonia Concentrated Fabric Conditioner, Intense Freshness, Liquid, 1 Litre, 60 Washes Per Bottle, 3 Pack"
+    }
+  ],
+  "replacement_products": [
+    {
+      "category": "beauty-skincare",
+      "name": "Collection Cosmetics Bronze Glow- Mosaic Sunkissed- 15g"
+    },
+    {
+      "category": "fragrance",
+      "name": "Charlie Blue FOR WOMEN by Revlon - 100 ml EDT Spray"
+    },
+    {
+      "category": "fragrance",
+      "name": "Charlie Gold FOR WOMEN by Revlon - 100 ml EDT Spray"
+    },
+    {
+      "category": "gift-sets",
+      "name": "Ted Baker Floret Celeste Gift Set, Celeste Fragrance EDT with Aromatic Musk Scent and Body Lotion with Nourishing Olive Fruit Oil and Vitamin E 100ml"
+    },
+    {
+      "category": "gift-sets",
+      "name": "Weleda Skin Food Face Care Gift Set with Cleansing Balm & Wash Cloth"
+    },
+    {
+      "category": "health-wellness",
+      "name": "Bonjela Junior Gel, 15 g, Packaging May Vary"
+    },
+    {
+      "category": "health-wellness",
+      "name": "Bubble T Cosmetics Jasmine Tea Bath Salts, 1kg, Relaxing Mineral Soak"
+    },
+    {
+      "category": "health-wellness",
+      "name": "Carefree Cotton Feel Normal Sanitary Napkins, 56 pcs."
+    },
+    {
+      "category": "toiletries",
+      "name": "Astonish Shower Crème, Cosy Cashmere, Cleanses and Moisturises, Jasmine and Ylang Ylang Scented, 400ml"
+    }
+  ],
+  "primary_image_alternates": [
+    {
+      "category": "beauty-skincare",
+      "name": "BOURJOIS 29135408018 Beauty Care Velvet Ink Lip Tono 18 for Adults, Designed for Daily Beauty and Care",
+      "selected_image": "02.webp"
+    },
+    {
+      "category": "fragrance",
+      "name": "Cerruti Image Eau De Toilette for Women, 75ml",
+      "selected_image": "03.webp"
+    },
+    {
+      "category": "gift-sets",
+      "name": "NIVEA Nourishing Moments of Joy Gift Set, Creme Care Shower Gel, Rich Nourishing Body Lotion, Intensive Moisture Hand Cream, Skincare Collection Pack",
+      "selected_image": "02.webp"
+    },
+    {
+      "category": "health-wellness",
+      "name": "BEAUTY FORMULAS Vitamin C BRIGHTENING Facial Tonic",
+      "selected_image": "02.webp"
+    },
+    {
+      "category": "health-wellness",
+      "name": "Beauty of Joseon Glow Deep Serum Niacinamide + Alpha Arbutin + Rice Bran Water | Daily Korean Skincare for Dullness, Dark Spots, Radiance, and Hydration, 30ml, 1.01 fl.oz",
+      "selected_image": "02.webp"
+    },
+    {
+      "category": "toiletries",
+      "name": "Argan Oil - Shampoo - 300ml",
+      "selected_image": "02.webp"
+    }
+  ],
+  "generated_at": "2026-09-26T17:25:08.784Z"
+}

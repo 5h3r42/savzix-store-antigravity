@@ -6,6 +6,9 @@
 
 ## Completed
 
+- Added 250 non-duplicate Keepa products with 1,305 uploaded images, verified GBP price activation for 190 products, and safe Draft handling for 60 unresolved-price products.
+- Created the reusable `savzix-catalogue-import` skill and invocation prompt for validated local product-package imports, Supabase image upload, catalogue creation, GBP pricing, taxonomy assignment, and verification.
+- Deployed the current SAVZIX storefront to the existing Hostinger `savzix.com` Node.js app, configured production Supabase and Stripe variables, and verified the live catalogue.
 - Replaced the legacy favicon with the supplied SAVZIX icon PNG and removed the obsolete ICO metadata source.
 - Added the registered company name, address, company number, and VAT registration as the first left-hand column in the responsive shared footer.
 - Added a responsive Contact Us enquiry form with validation, spam honeypot protection, structured email preparation, and a visible `support@savzix.com` fallback link.

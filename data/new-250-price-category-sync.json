@@ -1,0 +1,668 @@
+{
+  "mode": "run",
+  "keepa_xlsx": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/Keepa/KeepaExport-2026-09-20-savzix-store.xlsx",
+  "price_xlsx": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/Pricecheck/Real Price.xlsx",
+  "products_prepared": 250,
+  "prices_matched": 190,
+  "matched_by_ean": 190,
+  "matched_by_exact_title": 0,
+  "prices_unresolved": 60,
+  "unresolved_by_reason": {
+    "no-match": 50,
+    "invalid-price": 6,
+    "conflicting-prices": 4
+  },
+  "category_assignments_prepared": 463,
+  "primary_category_counts": {
+    "beauty-skincare/cosmetics": 18,
+    "beauty-skincare/nails": 1,
+    "beauty-skincare/skin-care": 66,
+    "electrical": 2,
+    "electrical/batteries": 8,
+    "fragrance": 24,
+    "fragrance/mens-mass-market-fragrance": 10,
+    "fragrance/unisex-luxury-fragrance": 3,
+    "fragrance/womens-celebrity-fragrance": 2,
+    "fragrance/womens-mass-market-fragrance": 14,
+    "gift-sets/beauty": 2,
+    "gift-sets/fragrance": 2,
+    "gift-sets/toiletries": 11,
+    "health-wellness": 17,
+    "health-wellness/baby-child-health": 1,
+    "health-wellness/medicine-treatment": 20,
+    "suncare-travel/suncare": 2,
+    "suncare-travel/travel": 1,
+    "toiletries": 9,
+    "toiletries/dental-care": 3,
+    "toiletries/hair-care": 27,
+    "toiletries/mens-toiletries": 1,
+    "toiletries/washing-bathing": 5,
+    "toiletries/wipes-tissues": 1
+  },
+  "products_verified": 250,
+  "category_assignments_verified": 463,
+  "products_remain_draft": 60,
+  "products_activated": 190,
+  "activated_stock_per_product": 10,
+  "unresolved_products": [
+    {
+      "slug": "alfaparf-milano-semi-di-lino-moisture-nutritive-detangling-fluid-125ml-no-rinse-detangling-fluid",
+      "title": "Alfaparf Milano Semi Di Lino Moisture Nutritive Detangling Fluid 125ml",
+      "reason": "no-match",
+      "codes": [
+        "8022297152530"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "alfaparf-milano-semi-di-lino-volume-volumizing-mousse-conditioner-200-ml",
+      "title": "Alfaparf Milano Semi di Lino Volume Volumizing Mousse Conditioner 200ml",
+      "reason": "conflicting-prices",
+      "codes": [
+        "8022297104386",
+        "8022297111308"
+      ],
+      "candidatePrices": [
+        17.5,
+        37.95
+      ]
+    },
+    {
+      "slug": "always-ultra-sanitary-pads-women-s-size-3-day-night-28-sanitary-towels-with-wings-giga-pack-thin-and-super-absorbent-odour-neutralising-and-leakage-protection",
+      "title": "Always Ultra Sanitary Pads Women's Size 3, Day & Night (28 Sanitary Towels",
+      "reason": "invalid-price",
+      "codes": [
+        "8006540732540"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "always-ultra-sanitary-pads-women-s-size-5-secure-night-extra-22-sanitary-towels-with-wings-giga-pack-thin-and-super-absorbent-odour-neutralising-and-leakage-protection",
+      "title": "Always Ultra Sanitary Pads Women's Size 5, Secure Night Extra (22 Sanitary Towels",
+      "reason": "invalid-price",
+      "codes": [
+        "8006540732748"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "always-ultra-sanitary-towels-size-2-long-x26",
+      "title": "Always Ultra Sanitary Towels Size 2 Long x26",
+      "reason": "no-match",
+      "codes": [
+        "8006540822494"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "argan-oil-moroccan-argan-oil-extract-conditioner-300ml",
+      "title": "Argan Oil - Moroccan Argan Oil Extract Conditioner - 300ml",
+      "reason": "invalid-price",
+      "codes": [
+        "749447111350",
+        "773490650788",
+        "776578786577",
+        "5050577970805",
+        "5060120164087",
+        "8452650100036",
+        "8800224842088"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "argan-oil-shampoo-300ml",
+      "title": "Argan Oil - Shampoo - 300ml",
+      "reason": "invalid-price",
+      "codes": [
+        "730158409881",
+        "797142355524",
+        "5060120164063",
+        "8025971003319"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "asevi-sensations-fabric-conditioner-laundry-conditioner-liquid-fabric-conditioner-1320ml-60-washes-dreams",
+      "title": "Asevi Sensations Fabric Conditioner, Laundry Conditioner 1320ml",
+      "reason": "no-match",
+      "codes": [
+        "8411582889662"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "astonish-hand-wash-limited-edition-600ml",
+      "title": "Astonish Hand Wash Limited Edition 600ml",
+      "reason": "no-match",
+      "codes": [
+        "5060060215276"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "beauty-formulas-vitamin-c-moisturiser",
+      "title": "BEAUTY Formulas Vitamin C MOISTURISER",
+      "reason": "no-match",
+      "codes": [
+        "5012251013376"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "benylin-chesty-coughs-non-drowsy-1x-150ml-non-drowsy-cough-syrup-for-deep-penetrating-relief-for-mucus-relief-and-reduces-chest-congestion-cough-syrup-soothes-your-cough-fast",
+      "title": "Benylin Chesty Coughs Non-Drowsy 150ml, Non-Drowsy Cough Syrup for Deep Penetrating Relief",
+      "reason": "no-match",
+      "codes": [
+        "5010123727703",
+        "5010123820220"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "benylin-childrens-dry-cough-and-sore-throat-syrup-1x-125ml-relieves-sore-throat-cough-medicine-for-children-aged-1-year-suitable-for-day-and-night-use",
+      "title": "Benylin Children's Dry Cough and Sore Throat Syrup 125ml",
+      "reason": "conflicting-prices",
+      "codes": [
+        "3574661237008",
+        "3574661712796"
+      ],
+      "candidatePrices": [
+        4.3,
+        5
+      ]
+    },
+    {
+      "slug": "benylin-dry-and-tickly-cough-syrup-1x-150ml-cough-medicine-for-adults-and-children-glycerol-and-sucrose-soothing-syrup-relieves-irritated-and-sore-throat",
+      "title": "Benylin Dry and Tickly Cough Syrup 150ml, Cough Medicine for Adults and Children",
+      "reason": "conflicting-prices",
+      "codes": [
+        "3574661370194"
+      ],
+      "candidatePrices": [
+        6.75,
+        6.45
+      ]
+    },
+    {
+      "slug": "bourjois-always-fabulous-powder-410-golden-beige-7g",
+      "title": "Bourjois Always Fabulous Powder 410 Golden Beige 7g",
+      "reason": "no-match",
+      "codes": [
+        "3616305133083"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "bourjois-healthy-mix-clean-vegan-eyelash-extension-vegan-001-ultra-black-7-ml",
+      "title": "Bourjois Healthy Mix Clean & Vegan Eyelash Extension Vegan 001 Ultra Black 7ml",
+      "reason": "no-match",
+      "codes": [
+        "3616303398231"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "bourjois-healthy-mix-clean-waterproof-mascara-001-waterproof-black-volume-increasing-mascara-with-wrapping-formula-tubing-technology-vegan-full-eyelash-look-10-ml",
+      "title": "Bourjois Healthy Mix Clean Waterproof Mascara 001 Waterproof Black 10ml",
+      "reason": "no-match",
+      "codes": [
+        "3616305708878"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "bourjois-rouge-velvet-the-lipstick-47-rose-brule-2-4-g",
+      "title": "Bourjois, Rouge Velvet The Lipstick 47 Rose Brûlé 2.4g",
+      "reason": "no-match",
+      "codes": [
+        "3616306373389"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "bubble-t-cosmetics-waffle-and-ice-cream-bath-fizzer-set",
+      "title": "Bubble T Cosmetics Waffle and Ice Cream Bath Fizzer Set",
+      "reason": "no-match",
+      "codes": [
+        "5060591037521"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "bubble-t-face-sheet-mask-in-matcha-with-aloe-vera-niacinamide-20ml",
+      "title": "Bubble T Face sheet mask in Matcha with Aloe Vera & Niacinamide (20ml)",
+      "reason": "no-match",
+      "codes": [
+        "5060591035725"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "burberry-50-mm-brit-edp-50-ml",
+      "title": "BURBERRY,50 mm Brit Edp 50ml",
+      "reason": "no-match",
+      "codes": [
+        "3614226905062"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "burberry-brit-for-him-eau-de-toilette-100ml",
+      "title": "Burberry Brit For Him Eau de Toilette 100ml",
+      "reason": "no-match",
+      "codes": [
+        "3386463023617",
+        "3614226905154",
+        "5045252668009"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "burberry-brit-rhythm-him-30ml",
+      "title": "Burberry Brit Rhythm Him 30ml",
+      "reason": "no-match",
+      "codes": [
+        "3423470300154",
+        "5045410636413"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "burberry-london-eau-de-parfum-50-ml",
+      "title": "Burberry London Eau de Parfum - 50ml",
+      "reason": "no-match",
+      "codes": [
+        "3386463038895",
+        "3614226905192",
+        "5045252668122"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "burberry-london-for-men-eau-de-toilette-50-ml",
+      "title": "BURBERRY London for Men Eau de Toilette 50ml",
+      "reason": "no-match",
+      "codes": [
+        "3614226904997"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-beauty-eau-de-parfum-30-ml",
+      "title": "Calvin Klein Beauty Eau de Parfum - 30ml",
+      "reason": "no-match",
+      "codes": [
+        "191156915352",
+        "885892566953",
+        "3607340216046",
+        "3607342139497"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-beauty-eau-de-parfum-for-women-floral-ambery-fragrance-with-notes-of-neo-lily-ambrette-seeds-and-cedarwood-high-longevity-100ml",
+      "title": "CALVIN KLEIN Beauty - Eau de Parfum for Women 100ml",
+      "reason": "no-match",
+      "codes": [
+        "3607340213267",
+        "3607342137172",
+        "768826075847"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-ck-all-eau-de-toilette-200-ml",
+      "title": "Calvin Klein CK All Eau de Toilette 200ml",
+      "reason": "no-match",
+      "codes": [
+        "3614223164462"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-ck-be-et-50-vp-unisex-fragrance-black",
+      "title": "CALVIN KLEIN Ck Be Et 50 Vp - Unisex Fragrance - Black",
+      "reason": "no-match",
+      "codes": [
+        "88300104680"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-ck-be-unisex-eau-de-toilette-for-all-woody-fragrance-with-notes-of-juniper-berry-white-spices-and-sandalwood-medium-longevity-200ml",
+      "title": "CALVIN KLEIN CK Be - Unisex Eau de Toilette 200ml",
+      "reason": "no-match",
+      "codes": [
+        "88300104437"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-ck-one-shock-for-her-eau-de-toilette-100-ml",
+      "title": "Calvin Klein CK One shock for Her Eau de Toilette 100ml",
+      "reason": "no-match",
+      "codes": [
+        "3607342402065"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-ck-one-unisex-eau-de-toilette-for-all-citrus-aromatic-fragrance-with-notes-of-green-tea-nutmeg-and-musk-medium-longevity-200ml",
+      "title": "CALVIN KLEIN CK One - Unisex Eau de Toilette 200ml",
+      "reason": "conflicting-prices",
+      "codes": [
+        "72671183894",
+        "88300107438",
+        "113333984005",
+        "754495207139",
+        "885106405139",
+        "885122350048",
+        "885164885669",
+        "885175527152",
+        "885296672502",
+        "885296824871",
+        "885380647805",
+        "885397630883",
+        "885428490776",
+        "885454088282",
+        "885459971121",
+        "885471487853",
+        "885497988822",
+        "885724269984",
+        "885891754672",
+        "3607342401426",
+        "5053204009626",
+        "5054596277273"
+      ],
+      "candidatePrices": [
+        59,
+        45
+      ]
+    },
+    {
+      "slug": "calvin-klein-eternity-eau-de-parfum-for-women-floral-fragrance-with-notes-of-bergamot-white-rose-and-sandalwood-high-longevity-30ml",
+      "title": "CALVIN KLEIN Eternity - Eau de Parfum for Women 30ml",
+      "reason": "no-match",
+      "codes": [
+        "88300601387"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-eternity-moment-eau-de-parfum-for-women-30-ml",
+      "title": "Calvin Klein Eternity Moment Eau de Parfum for Women - 30ml",
+      "reason": "no-match",
+      "codes": [
+        "8264284006",
+        "82642840060",
+        "88300147953",
+        "88300156009",
+        "88300178445",
+        "875592000321",
+        "5054249161393",
+        "5054596224932",
+        "5055307585748",
+        "6909121865922"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-eternity-moment-eau-de-parfum-for-women-floral-fragrance-with-notes-of-sweet-lychee-pink-peony-and-raspberry-cashmere-high-longevity-50-ml",
+      "title": "CALVIN KLEIN Eternity Moment - Eau de Parfum for Women 50ml",
+      "reason": "no-match",
+      "codes": [
+        "88300139484",
+        "88300139477",
+        "90174310487",
+        "700999543952",
+        "885212301882",
+        "885301569322",
+        "885892059684"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-eternity-summer-woman-2019-100ml-edp-spray",
+      "title": "Calvin Klein Eternity Summer Woman 2019 100ml EDP Spray",
+      "reason": "no-match",
+      "codes": [
+        "88300601400",
+        "3614228893787"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-euphoria-eau-de-toilette-for-men-20-ml",
+      "title": "Calvin Klein Euphoria Eau de Toilette for Men 20ml",
+      "reason": "no-match",
+      "codes": [
+        "3607343811033",
+        "3607349635534"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-obsession-eau-de-parfum-for-women-ambery-fragrance-with-notes-of-mandarin-jasmine-oakmoss-high-longevity-spray-1-7oz",
+      "title": "CALVIN KLEIN Obsession - Eau de Parfum for Women 1.7oz",
+      "reason": "no-match",
+      "codes": [
+        "88300150441",
+        "88300603305",
+        "777782484815",
+        "885892027461"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "calvin-klein-obsession-night-for-women-edp-spray-100ml",
+      "title": "Calvin Klein Obsession Night For Women Edp Spray 100ml",
+      "reason": "no-match",
+      "codes": [
+        "88300150410"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "cerruti-image-eau-de-toilette-for-women-75ml",
+      "title": "Cerruti Image Eau De Toilette for Women 75ml",
+      "reason": "no-match",
+      "codes": [
+        "5050456523757"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "cetaphil-hydrating-foaming-cream-cleanser-236ml",
+      "title": "Cetaphil Hydrating Foaming Cream Cleanser 236ml",
+      "reason": "no-match",
+      "codes": [
+        "5020465203278"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "charlie-blue-for-women-by-revlon-100-ml-edt-spray",
+      "title": "Charlie Blue FOR WOMEN by Revlon - 100ml EDT Spray",
+      "reason": "no-match",
+      "codes": [
+        "309970686420",
+        "827136905746",
+        "5000386004628"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "chupa-chups-set-of-7-lip-balms-assorted-fruity-flavours-watermelon-lemon-orange-strawberry-apple-pineapple-peach",
+      "title": "Chupa Chups Set of 7 Lip Balms, Assorted Fruity Flavours – Watermelon",
+      "reason": "no-match",
+      "codes": [
+        "5013692274104"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "clarins-hydrating-foaming-cleanser-125ml",
+      "title": "Clarins Hydrating Foaming Cleanser 125ml",
+      "reason": "no-match",
+      "codes": [
+        "3666057216503"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "clarins-instant-eye-make-up-remover-125ml",
+      "title": "Clarins Instant Eye Make-Up Remover 125ml",
+      "reason": "no-match",
+      "codes": [
+        "3666057014857"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "clarins-lip-perfector-23-pomegranate-glow-12ml",
+      "title": "Clarins Lip Perfector 23 Pomegranate Glow 12ml",
+      "reason": "no-match",
+      "codes": [
+        "3666057319310",
+        "3666057159343"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "clear-simple-pregnancy-test-sticks-white",
+      "title": "Clear & Simple Pregnancy Test Sticks,White",
+      "reason": "no-match",
+      "codes": [
+        "5060337727181"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "clinique-cheek-pop-blush-pop-05-nude-pop-for-women-0-12-oz-blush",
+      "title": "Clinique Cheek Pop Blush Pop - 05 Nude Pop For Women 0.12oz Blush",
+      "reason": "invalid-price",
+      "codes": [
+        "192333101162"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "clinique-moisture-surge-100h-auto-replenishing-hydrator-oil-free-face-moisturiser-with-hyaluronic-acid-aloe-vera-bioferment-for-all-skin-types-hydrating-moisturising-15ml",
+      "title": "Clinique Moisture Surge 100H Auto-Replenishing Hydrator Oil Free Face Moisturiser 15ml",
+      "reason": "no-match",
+      "codes": [
+        "192333066911"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "coco-eve-sunny-honey-back-tan-applicator",
+      "title": "Coco & Eve Sunny Honey Back Tan Applicator",
+      "reason": "no-match",
+      "codes": [
+        "8886482912213"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "collection-cosmectics-gloss-me-up-juicy-infusion-lip-gloss-peach-9ml",
+      "title": "Collection Cosmectics Gloss Me Up Juicy Infusion Lip Gloss- Peach- 9ml",
+      "reason": "no-match",
+      "codes": [
+        "5054805046799"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "collection-cosmetics-blurring-blush-stick-5g-daydream",
+      "title": "Collection Cosmetics Blurring Blush Stick- 5g- Daydream",
+      "reason": "no-match",
+      "codes": [
+        "5054805061785"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "collection-cosmetics-blurring-blush-stick-5g-rosy",
+      "title": "Collection Cosmetics Blurring Blush Stick- 5g- Rosy",
+      "reason": "no-match",
+      "codes": [
+        "5054805060092"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "collection-cosmetics-bronze-glow-matte-light-terracotta-15g",
+      "title": "Collection Cosmetics Bronze Glow- Matte- Light Terracotta- 15g",
+      "reason": "no-match",
+      "codes": [
+        "5054805028665"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "collection-cosmetics-bronze-glow-matte-terracotta-15g",
+      "title": "Collection Cosmetics Bronze Glow- Matte Terracotta- 15g",
+      "reason": "no-match",
+      "codes": [
+        "5015337009744"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "collection-cosmetics-filter-finish-primer-illuminator-spf-30-fair-30ml",
+      "title": "Collection Cosmetics Filter Finish Primer & Illuminator-SPF 30- Fair- 30ml",
+      "reason": "no-match",
+      "codes": [
+        "5054805063208"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "la-vie-est-belle-by-lancome-l-eau-de-parfum-spray-1-oz-duo-gift-set-eau-de-parfum-2-x-30ml",
+      "title": "La Vie Est Belle By Lancome L'eau De Parfum 1oz",
+      "reason": "invalid-price",
+      "codes": [
+        "3660732547067"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "nivea-men-feel-xl-sooothed-sensitive-care-xl-duo",
+      "title": "Nivea Men Feel XL Sooothed Sensitive Care XL Duo",
+      "reason": "no-match",
+      "codes": [
+        "5025970017556"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "nivea-nourishing-moments-of-joy-gift-set-creme-care-shower-gel-rich-nourishing-body-lotion-intensive-moisture-hand-cream-skincare-collection-pack",
+      "title": "NIVEA Nourishing Moments of Joy Gift Set",
+      "reason": "no-match",
+      "codes": [
+        "5025970017808"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "sanctuary-spa-relax-calm-pamper-gifts-for-women-3-pcs-spa-gift-set-with-vitamimn-c-bath-crystals-body-scrub-bubble-bath-cruelty-free-mothers-day-gifts-gifts-for-women-gift-for-her",
+      "title": "Sanctuary Spa Relax & Calm Pamper Gifts for Women – 3 Pcs Spa Gift Set",
+      "reason": "no-match",
+      "codes": [
+        "5037200001259"
+      ],
+      "candidatePrices": []
+    },
+    {
+      "slug": "weleda-skin-food-face-care-gift-set-with-cleansing-balm-wash-cloth",
+      "title": "Weleda Skin Food Face Care Gift Set with Cleansing Balm & Wash Cloth",
+      "reason": "no-match",
+      "codes": [
+        "5013455498983"
+      ],
+      "candidatePrices": []
+    }
+  ],
+  "created_at": "2026-09-26T17:28:06.406Z"
+}

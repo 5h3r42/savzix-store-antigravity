@@ -2,6 +2,24 @@
 
 ## 2026-09-26
 
+- Task: Add a second duplicate-safe 250-product SAVZIX catalogue batch.
+- Files changed: `scripts/import-product-images.ts`, `data/product images/`, `data/new-250-*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Supabase Storage and catalogue data.
+- Summary: Selected and packaged 250 new products from the Keepa source while excluding all prior package titles and 342 known identity codes. Uploaded 1,305 new WebP assets, created and verified 250 new product records, assigned 463 category links, and activated only the 190 products with barcode-verified GBP prices. Nine unsuitable primary image packages were replaced in the batch; 60 products without safe price evidence remain Draft with zero stock.
+- Validation/tests: Image and catalogue dry runs prepared 250 products with no slug collisions; live image upload completed with 1,305 successes and zero failures; Supabase verification found all 250 records with 190 valid Active products and 60 valid Draft products; `npm run lint` and `npm run build` passed.
+- Next task: Review the 60 new unresolved-price products before activation, then continue the existing 48-price review.
+
+- Task: Create a reusable SAVZIX catalogue-import skill.
+- Files changed: `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/SKILL.md`, `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/references/savzix-pipeline.md`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a discoverable operator skill for the full validated product workflow: final local packshot review, UK-English SEO titles and source-supported descriptions, GBP price controls, taxonomy assignment, Supabase image upload, dry-run-first catalogue writes, and post-import verification. The skill rejects uncertain images, identities, prices, and category assignments rather than inventing catalogue data.
+- Validation/tests: Ran the skill creator validator successfully; reviewed the existing SAVZIX image-import, Keepa catalogue, price/category, and title-refresh scripts to align the instructions with the live workflow. No catalogue or Supabase data was changed.
+- Next task: Use `$savzix-catalogue-import` to prepare a reviewed import batch, then run the dry-run workflow before authorising any Supabase write.
+
+- Task: Deploy the current SAVZIX storefront to Hostinger production.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Hostinger deployment and environment configuration for `savzix.com`.
+- Summary: Replaced the March 2026 Hostinger Node.js build with the validated current repository archive, then configured the production site, Supabase, admin, and Stripe environment variables. Diagnosed mismatched Supabase API keys from Hostinger runtime logs, corrected them, and confirmed the live homepage and shop now render the current storefront with active catalogue products.
+- Validation/tests: `npm run lint` and `npm run build` passed locally; both Hostinger builds completed successfully; `https://savzix.com/` and `/shop` returned HTTP 200; browser inspection confirmed the approved current homepage, live product cards, GBP pricing, category navigation, footer company details, and no empty-catalogue state. No live payment was submitted. Hostinger reported 17 dependency advisories during installation, including one critical advisory, which remains for a separate dependency-review task.
+- Next task: Verify production authentication and Stripe checkout handoff, then complete one explicitly authorised live payment and webhook confirmation before launch.
+
 - Task: Replace the storefront favicon with the supplied SAVZIX icon.
 - Files changed: `src/app/icon.png`, `src/app/favicon.ico`, `src/app/layout.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Promoted the supplied `data/Logo/favicon.png` artwork into the Next.js app, updated root metadata to use `/icon.png`, and removed the obsolete conventional ICO that browsers were still receiving first. The source PNG remains unchanged in `data/Logo/`.

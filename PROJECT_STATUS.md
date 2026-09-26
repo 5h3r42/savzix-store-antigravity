@@ -61,11 +61,14 @@ UI Polish + Pre-Launch Fixes
 - Added an accessible, responsive Contact Us form for product information, order support, delivery, returns, account help, and general enquiries. Submissions prepare a structured email to `support@savzix.com` for the customer to review and send from their email app.
 - Added the registered business identity as the leading left-hand column in the shared site footer: AITECH INNOVATIONS LTD, registered address, company number `15076403`, and VAT registration `GB498138444`.
 - Replaced the legacy browser favicon with the supplied SAVZIX blue “A” PNG and made `/icon.png` the sole primary favicon metadata entry.
+- Deployed the current SAVZIX Next.js storefront to the existing Hostinger `savzix.com` Node.js application, configured the production Supabase and Stripe environment variables, and verified the live homepage and shop load the active catalogue.
+- Created the reusable `savzix-catalogue-import` skill for the validated local-package-to-Supabase workflow. It enforces final white-background packshot review, SEO title and evidence-backed description checks, GBP pricing, taxonomy assignment, dry-run-first imports, post-write verification, and safe stopping conditions for uncertain products.
+- Added 250 new non-duplicate Keepa catalogue products using 1,305 newly uploaded product images. Assigned taxonomy to all products; activated 190 with barcode-verified GBP prices and stock 10, while keeping 60 unresolved-price products safely as zero-stock Drafts.
 
 ## In Progress
 
 - UI polish
-- Review the 48 unresolved catalogue prices; the 202 verified products are active with stock 10 each
+- Review the 108 unresolved catalogue prices; 392 verified-price products are active with stock 10 each
 
 ## Locked Decisions
 
@@ -75,12 +78,11 @@ UI Polish + Pre-Launch Fixes
 
 - Missing SEO
 - Missing legal pages
-- Production deployment variables still need to be updated to the new Supabase project before the live `savzix.com` site can show the new catalogue.
 
 ## Notes From Light Audit
 
 - Legal routes are present for privacy and terms, but content/completeness still needs launch review.
-- Local Stripe sandbox testing confirms the stock-reservation flow releases expired sessions and decrements stock only after successful webhook confirmation. Production deployment variables and a deployed test-mode webhook still require launch verification.
+- Local Stripe sandbox testing confirms the stock-reservation flow releases expired sessions and decrements stock only after successful webhook confirmation. The production Stripe webhook and live keys are configured; a deliberately authorised production payment and webhook confirmation still require launch verification.
 - The current catalogue is treated as standard-rated at 20%. Add a per-product VAT classification before listing any reduced-rate, zero-rated, or exempt goods.
 - Consumer audit evidence and the reusable audit prompt are saved under `/tmp/savzix-consumer-audit/consumer-audit.md`; its three checkout-path accessibility findings are now resolved.
 - The final Keepa title refresh report is saved at `data/keepa-title-refresh-report.json`; all 251 products matched a source row and no proposed title was skipped.
@@ -90,5 +92,5 @@ UI Polish + Pre-Launch Fixes
 1. Create legal pages (privacy, terms)
 2. Add basic SEO (metadata, sitemap)
 3. Complete the remaining shop and product-detail page visual alignment
-4. Configure the production deployment for the new Supabase project and Stripe webhook
-5. Repeat the verified sandbox checkout against the deployed environment before launch
+4. Verify production authentication and the deployed Stripe checkout handoff
+5. Complete an authorised production payment and webhook confirmation before launch

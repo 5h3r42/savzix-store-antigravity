@@ -1,0 +1,2627 @@
+{
+  "mode": "dry-run",
+  "source_root": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/product images",
+  "bucket": "product-images",
+  "prefix": "products",
+  "quality": 80,
+  "max_dimension": 1200,
+  "concurrency": 6,
+  "started_at": "2026-09-26T17:25:20.525Z",
+  "completed_at": "2026-09-26T17:25:58.482Z",
+  "duration_ms": 37957,
+  "folders_discovered": 519,
+  "discovered_images": 1305,
+  "processed_images": 1305,
+  "succeeded": 1305,
+  "failed": 0,
+  "skipped_hidden": 0,
+  "skipped_non_image": 1911,
+  "bytes_before_total": 141710962,
+  "bytes_after_total": 72033764,
+  "bytes_saved_total": 69677198,
+  "reduction_percent": 49.17,
+  "per_folder_counts": {
+    "0-14-oz-long-last-lipstick-no-12-blushing-nude-soft-shine": {
+      "folder_name": "0.14 oz Long Last Lipstick - No. 12 Blushing Nude ( Soft Shine )",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-bourjois-paris-volume-glamour-coup-de-theatre-mascara-7ml-02-black": {
+      "folder_name": "2 x Bourjois Paris Volume Glamour Coup De Theatre Mascara 7ml - 02 Black",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-bourjois-rouge-velvet-ink-lipstick-11-raisin-terdit-3-5ml": {
+      "folder_name": "2 x Bourjois Rouge Velvet Ink Lipstick - 11 Raisin-Terdit 3.5ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-max-factor-masterpiece-2-in-1-lash-wow-volume-length-mascara-7ml-black": {
+      "folder_name": "2 x Max Factor Masterpiece 2 in 1 Lash Wow Volume & Length Mascara 7ml - Black",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-max-factor-miracle-pure-concealer-24h-hydration-shade-08-7-8ml": {
+      "folder_name": "2 x Max Factor Miracle Pure Concealer 24H Hydration - Shade 08 7.8ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-vaseline-intensive-care-essential-healing-body-lotion-600-ml-rich": {
+      "folder_name": "2 x Vaseline Intensive Care Essential Healing Body Lotion 600 ml Rich",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-pack-hair-shaper-medium-hold-fudge-professional-structuring-cream-75g": {
+      "folder_name": "2-pack Hair Shaper Medium Hold Fudge Professional Structuring Cream 75g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2in1-best-shine-and-polish-300ml-white": {
+      "folder_name": "2IN1 BEST SHINE AND POLISH 300ML, White",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2x-maybelline-the-colossal-volum-express-mascara-glam-black-10-7ml-waterproof": {
+      "folder_name": "2x Maybelline The Colossal Volum' Express Mascara Glam Black 10.7ml - Waterproof",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-500ml-xbc-aqueous-cream-emollient-large-tub-relief-for-dry-skin": {
+      "folder_name": "3 x 500ml XBC Aqueous Cream Emollient Large Tub Relief for Dry Skin",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-bourjois-paris-volume-glamour-coup-de-theatre-mascara-7ml-02-black": {
+      "folder_name": "3 x Bourjois Paris Volume Glamour Coup De Theatre Mascara 7ml - 02 Black",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-bourjois-rouge-velvet-ink-lipstick-11-raisin-terdit-3-5ml": {
+      "folder_name": "3 x Bourjois Rouge Velvet Ink Lipstick - 11 Raisin-Terdit 3.5ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-garnier-color-sensation-intense-permanent-colour-cream-7-0-delicate-opal-blonde": {
+      "folder_name": "3 x Garnier Color Sensation Intense Permanent Colour Cream 7.0 Delicate Opal Blonde",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-max-factor-masterpiece-2-in-1-lash-wow-volume-length-mascara-7ml-black": {
+      "folder_name": "3 x Max Factor Masterpiece 2 in 1 Lash Wow Volume & Length Mascara 7ml - Black",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-max-factor-miracle-pure-concealer-24h-hydration-shade-08-7-8ml": {
+      "folder_name": "3 x Max Factor Miracle Pure Concealer 24H Hydration - Shade 08 7.8ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-max-factor-pan-stik-25-fair-9g": {
+      "folder_name": "3 x Max Factor Pan Stik 25 Fair 9g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-max-factor-pan-stik-foundation-14-cool-copper-9g": {
+      "folder_name": "3 x Max Factor Pan Stik Foundation, 14 Cool Copper, 9g,",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-revlon-colorsilk-hair-colour-31-dark-auburn": {
+      "folder_name": "3 x Revlon Colorsilk Hair Colour 31 Dark Auburn",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-dove-purely-pampering-nourishing-lotion-moisturising-cream-body-lotion-with-shea-butter-vanilla-250ml": {
+      "folder_name": "3× Dove Purely Pampering Nourishing Lotion Moisturising Cream Body Lotion with Shea Butter & Vanilla 250ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3x-maybelline-the-colossal-volum-express-mascara-glam-black-10-7ml-waterproof": {
+      "folder_name": "3x Maybelline The Colossal Volum' Express Mascara Glam Black 10.7ml - Waterproof",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "6-pc-face-kit": {
+      "folder_name": "6 PC Face Kit",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "6-x-got2b-oil-licious-50ml": {
+      "folder_name": "6 x GOT2B Oil-licious 50ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "7-piece-travel-bottle-set-3-packs": {
+      "folder_name": "7 Piece Travel Bottle Set - 3 Packs",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "7-piece-travel-bottle-set-airline-approved-2-packs": {
+      "folder_name": "7 Piece Travel Bottle Set Airline Approved - 2 Packs",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "150ml-beauty-formulas-with-activated-charcoal-detox-cleanser": {
+      "folder_name": "150ml Beauty Formulas with Activated Charcoal Detox Cleanser",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "1342-elizabeth-arden-eight-hour-hand-cream-75-ml": {
+      "folder_name": "1342 Elizabeth Arden - EIGHT HOUR hand cream 75 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-ultra-strong-gel-200-ml": {
+      "folder_name": "Alberto Balsam Ultra Strong Gel, 200 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-wet-look-gel-200-millilitre": {
+      "folder_name": "Alberto Balsam Wet Look Gel, 200 millilitre",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-hair-loss-products-200-ml": {
+      "folder_name": "AlfaParf Hair Loss Products, 200 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-hair-mascaras-500-ml": {
+      "folder_name": "ALFAPARF Hair Mascaras, 500 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-lisse-design-keratin-therapy-the-oil-50ml-silk-effect-oil-elixir": {
+      "folder_name": "Alfaparf Lisse Design Keratin Therapy The Oil 50ml - Silk-Effect Oil Elixir",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-scalp-renew-energizing-tonic-125-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Scalp Renew Energizing Tonic, 125 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-smoothing-oil-hydrating-hair-oil-for-frizzy-hair-enhances-brightness-and-protects-from-heat-3-3-oz": {
+      "folder_name": "Alfaparf Milano Semi di Lino Smoothing Oil - Hydrating Hair Oil for Frizzy Hair - Enhances Brightness and Protects from Heat - 3.3 oz",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-style-care-amplifying-mousse-250ml-mousse-capelli-fini-tenuta-leggera": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Style&Care Amplifying Mousse 250ml - mousse capelli fini tenuta leggera",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-style-care-flexible-mousse-250ml-mousse-modellante-tenuta-media": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Style&Care Flexible Mousse 250ml - mousse modellante tenuta media",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-style-care-original-hairspray-500ml-lacca-illuminante-tenuta-forte": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Style&Care Original Hairspray 500ml - lacca illuminante tenuta forte",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-style-care-texturizing-balm-150ml-balsamo-texturizzante-tenuta-leggera": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Style&Care Texturizing Balm 150ml - balsamo texturizzante tenuta leggera",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-sublime-cristalli-liquidi-the-original-50ml-illuminating-serum": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Sublime Cristalli Liquidi The Original 50ml - Illuminating serum",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-semi-di-lino-curls-defining-cream-125ml": {
+      "folder_name": "Alfaparf Semi di Lino Curls Defining Cream 125ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-semi-di-lino-curls-multi-benefit-moisturizing-oil-for-curly-hair-100ml": {
+      "folder_name": "Alfaparf Semi di Lino Curls Multi Benefit Moisturizing Oil For Curly Hair 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "all-gone-eye-and-lip-makeup-remover-gentle-waterproof-makeup-cleanser-for-eyes-and-lips-100ml": {
+      "folder_name": "All Gone Eye and Lip Makeup Remover, Gentle Waterproof Makeup Cleanser for Eyes and Lips, 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "anua-60-pack-cotton-toner-pads": {
+      "folder_name": "ANUA 60 Pack Cotton Toner Pads",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "anua-bha-2-gentle-exfoliating-toner-150-ml": {
+      "folder_name": "ANUA BHA 2% Gentle Exfoliating Toner (150 ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "anua-heartleaf-77-toner-pads-korean-skincare-70-count": {
+      "folder_name": "Anua Heartleaf 77 Toner Pads, Korean Skincare, 70 Count",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "ariana-grande-body-mist-236-ml": {
+      "folder_name": "Ariana Grande Body Mist, 236 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "armaf-club-de-nuit-woman-body-spray-200ml": {
+      "folder_name": "ARMAF Club De Nuit Woman Body Spray, 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "astonish-cream-cleaner-lemon-fresh-500ml": {
+      "folder_name": "Astonish Cream Cleaner Lemon Fresh - 500ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "astonish-foam-fresh-eucalyptus-3-x-48g": {
+      "folder_name": "Astonish Foam & Fresh Eucalyptus 3 x 48g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "astonish-specialist-extra-strength-antibacterial-surface-cleanser-750ml": {
+      "folder_name": "Astonish Specialist Extra Strength Antibacterial Surface Cleanser 750ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aussie-sos-hair-rescue-all-in-one-hair-oil-100ml-to-detangle-and-smoothen-hair-while-helping-prevent-split-ends-and-keeping-hair-hydrated-for-100-hours-vegan-formula-package-may-vary": {
+      "folder_name": "Aussie SOS Hair Rescue All In One Hair Oil 100ml to Detangle and Smoothen Hair While Helping Prevent Split Ends and Keeping Hair Hydrated For 100 Hours. Vegan Formula (Package may vary)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-calm-and-restore-nourishing-oat-cleanser-7-8-fl-oz": {
+      "folder_name": "Aveeno Calm and Restore Nourishing Oat Cleanser - 7.8 fl oz",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-after-shower-mist-for-sensitive-skin-1-x-200ml": {
+      "folder_name": "Aveeno Daily Moisturising After-Shower Mist for Sensitive Skin (1 x 200ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-body-lotion-for-sensitive-and-dry-skin-1x-200ml": {
+      "folder_name": "Aveeno Daily Moisturising Body Lotion for Sensitive and Dry Skin (1x 200ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-body-lotion-for-sensitive-skin-1-x-300ml": {
+      "folder_name": "Aveeno Daily Moisturising Body Lotion for Sensitive Skin (1 x 300ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-body-lotion-for-sensitive-skin-1-x-500ml": {
+      "folder_name": "Aveeno Daily Moisturising Body Lotion for Sensitive Skin (1 x 500ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-creamy-oil-for-dry-sensitive-skin-1-x-300ml": {
+      "folder_name": "Aveeno Daily Moisturising Creamy Oil for Dry, Sensitive Skin (1 x 300ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-creamy-oil-300ml": {
+      "folder_name": "Aveeno Daily Moisturising Creamy Oil, 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-daily-moisturising-yogurt-body-cream-apricot-honey-scent-300ml": {
+      "folder_name": "Aveeno Daily Moisturising Yogurt Body Cream, Apricot & Honey Scent 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-face-calm-restore-nourishing-oat-cleanser-1x-200ml": {
+      "folder_name": "AVEENO Face CALM+RESTORE Nourishing Oat Cleanser (1x 200ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-face-calm-restore-oat-rich-balm-for-very-dry-and-sensitive-skin-50ml": {
+      "folder_name": "AVEENO Face CALM+RESTORE Oat Rich Balm for Very Dry and Sensitive Skin 50ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-moisturising-cream-for-dry-and-sensitive-skin-1x-100ml": {
+      "folder_name": "Aveeno Moisturising Cream for Dry and Sensitive Skin (1x 100ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-skin-relief-body-oil-spray-for-very-dry-sensitive-skin-1-x-200ml": {
+      "folder_name": "Aveeno Skin Relief Body Oil Spray for Very Dry, Sensitive Skin (1 x 200ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-skin-relief-moisturising-hand-cream-with-72-hour-hydration-1x-75ml": {
+      "folder_name": "Aveeno Skin Relief Moisturising Hand Cream with 72-Hour Hydration (1x 75ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-skin-relief-moisturising-lotion-for-sensitive-skin-1-x-500ml": {
+      "folder_name": "Aveeno Skin Relief Moisturising Lotion for Sensitive Skin (1 x 500ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-skin-relief-moisturising-lotion-for-sensitive-skin-1x-200ml": {
+      "folder_name": "Aveeno Skin Relief Moisturising Lotion for Sensitive Skin (1x 200ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-skin-relief-moisturising-lotion-for-sensitive-skin-1x-300ml": {
+      "folder_name": "Aveeno Skin Relief Moisturising Lotion for Sensitive Skin (1x 300ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-yogurt-vanilla-cream": {
+      "folder_name": "AVEENO YOGURT VANILLA CREAM",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "babor-seacreation-the-rich-cream-50-ml": {
+      "folder_name": "Babor SeaCreation The Rich Cream, 50 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-formulas-australian-tea-tree-skin-clarifying-blemish-gel": {
+      "folder_name": "Beauty Formulas Australian Tea Tree Skin Clarifying Blemish Gel",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-formulas-retinol-75ml-moisturiser": {
+      "folder_name": "BEAUTY FORMULAS RETINOL 75ML MOISTURISER",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-of-joseon-ginseng-essence-water-150ml-5fl-oz": {
+      "folder_name": "Beauty of Joseon Ginseng Essence Water, 150ml, 5fl.oz.",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-of-joseon-green-plum-refreshing-cleanser-plum-water-mung-bean-extract-daily-korean-skincare-face-cleanser-for-all-skin-types-ph-balanced-and-non-drying-100-ml-3-38-fl-oz": {
+      "folder_name": "Beauty of Joseon Green Plum Refreshing Cleanser Plum Water + Mung Bean Extract | Daily Korean Skincare Face Cleanser for All Skin Types, pH-Balanced and Non-Drying 100 ml, 3.38 fl. oz.",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bed-head-by-tigi-hard-head-hairspray-for-extra-strong-hold-385-ml": {
+      "folder_name": "Bed Head by Tigi Hard Head Hairspray for Extra Strong Hold 385 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bed-head-by-tigi-hard-head-hairspray-extra-strong-hold-hair-spray-385ml": {
+      "folder_name": "Bed Head by TIGI Hard Head Hairspray, Extra Strong Hold Hair Spray, 385ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bigbuy-beauty-byphasse-solution-micellaire-demaquillante-500ml": {
+      "folder_name": "BigBuy Beauty BYPHASSE Solution micellaire démaquillante 500ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-dry-skin-gel-moisturiser-for-face-and-body-100ml": {
+      "folder_name": "Bio-Oil Dry Skin Gel Moisturiser for Face and Body 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-dry-skin-gel-moisturiser-for-face-and-body-200ml": {
+      "folder_name": "Bio-Oil Dry Skin Gel Moisturiser for Face and Body 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-natural-skincare-oil-for-scars-and-stretch-marks-60ml": {
+      "folder_name": "Bio-Oil Natural Skincare Oil for Scars and Stretch Marks, 60ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-natural-skincare-oil-for-scars-and-stretch-marks-200ml": {
+      "folder_name": "Bio-Oil Natural Skincare Oil for Scars and Stretch Marks, 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-skincare-oil-200ml": {
+      "folder_name": "Bio-Oil Skincare Oil 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-skincare-oil-for-scars-and-stretch-marks-125ml": {
+      "folder_name": "Bio-Oil Skincare Oil for Scars and Stretch Marks, 125ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bio-oil-skincare-oil-for-scars-and-stretch-marks-200ml": {
+      "folder_name": "Bio-Oil Skincare Oil for Scars and Stretch Marks, 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "body-lotion-300-ml": {
+      "folder_name": "Body Lotion 300 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "body-mist-citrus-spritz-250ml": {
+      "folder_name": "Body Mist Citrus Spritz (250ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bourjois-1005-11154-healthy-mix-hair-colord-beautifier-004-for-adults-designed-for-healthy-looking-hair-care-and-styling": {
+      "folder_name": "BOURJOIS 1005-11154 Healthy Mix Hair Colord Beautifier 004 for Adults, Designed for Healthy-Looking Hair Care and Styling",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bourjois-1005-11178-healthy-mix-hair-colord-beautifier-006-for-adults-built-for-healthy-looking-hair-care-and-styling": {
+      "folder_name": "BOURJOIS 1005-11178 Healthy Mix Hair Colord Beautifier 006 for Adults, Built for Healthy-Looking Hair Care and Styling",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bourjois-29135408001-beauty-care-velvet-ink-lip-tono-1-for-adults-designed-for-daily-beauty-and-care": {
+      "folder_name": "BOURJOIS 29135408001 Beauty Care Velvet Ink Lip Tono 1 for Adults, Designed for Daily Beauty and Care",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bourjois-29135408018-beauty-care-velvet-ink-lip-tono-18-for-adults-designed-for-daily-beauty-and-care": {
+      "folder_name": "BOURJOIS 29135408018 Beauty Care Velvet Ink Lip Tono 18 for Adults, Designed for Daily Beauty and Care",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "bourjois-always-fabulous-powder-100-rose-ivory-7-g": {
+      "folder_name": "Bourjois Always Fabulous Powder 100 Rose Ivory, 7 g",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "bourjois-always-fabulous-powder-410-golden-beige-7g": {
+      "folder_name": "Bourjois Always Fabulous Powder 410 Golden Beige 7g",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "bourjois-fabulous-ink-lacquer-04-cherry-cute-3-5ml": {
+      "folder_name": "Bourjois Fabulous Ink Lacquer - 04 - Cherry Cute, 3.5ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "bourjois-healthy-mix-clean-vegan-eyelash-extension-vegan-001-ultra-black-7-ml": {
+      "folder_name": "Bourjois Healthy Mix Clean & Vegan Eyelash Extension Vegan 001 Ultra Black 7 ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "bourjois-healthy-mix-clean-waterproof-mascara-001-waterproof-black-volume-increasing-mascara-with-wrapping-formula-tubing-technology-vegan-full-eyelash-look-10-ml": {
+      "folder_name": "Bourjois Healthy Mix Clean Waterproof Mascara 001 Waterproof Black, Volume-Increasing Mascara with Wrapping Formula Tubing Technology Vegan Full Eyelash Look 10 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bourjois-paris-rouge-velvet-lipstick-2-4g-22-moka-dero": {
+      "folder_name": "Bourjois Paris Rouge Velvet Lipstick 2.4g - 22 Moka-dero",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bourjois-velvet-contour-lipstick-35-perfect-date-creamy-texture-precise-application-with-shea-butter-and-grape-seed-oil-long-lasts-up-to-8-hours-no-smudging-1-14-g": {
+      "folder_name": "Bourjois Velvet Contour Lipstick, 35 Perfect Date, Creamy Texture, Precise Application, with Shea Butter and Grape Seed Oil, Long Lasts up to 8 Hours, No Smudging, 1.14 g",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "bourjois-velvet-the-pencil-6-framboise-griffee-3g-30g": {
+      "folder_name": "Bourjois Velvet The Pencil - 6 Framboise Griffée, 3g (30g)",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "bourjois-rouge-velvet-the-lipstick-47-rose-brule-2-4-g": {
+      "folder_name": "Bourjois, Rouge Velvet The Lipstick 47 Rose Brûlé 2.4 g",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "bourjois-rouge-velvet-the-lipstick-lipstick-48-mocha-mour-2-4-g": {
+      "folder_name": "Bourjois, Rouge Velvet The Lipstick Lipstick 48 Mocha'Mour, 2.4 g",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "bubble-t-cosmetics-waffle-and-ice-cream-bath-fizzer-set": {
+      "folder_name": "Bubble T Cosmetics Waffle and Ice Cream Bath Fizzer Set",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "bubble-t-face-sheet-mask-in-matcha-with-aloe-vera-niacinamide-20ml": {
+      "folder_name": "Bubble T Face sheet mask in Matcha with Aloe Vera & Niacinamide (20ml)",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bubble-t-lip-balm-matcha-4g": {
+      "folder_name": "Bubble T Lip Balm Matcha (4g)",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "by-terry-baume-de-rose-micellar-water-200ml": {
+      "folder_name": "By Terry Baume De Rose Micellar Water 200ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "carmex-cherry-moisturising-lip-balm-sticks-for-dry-chapped-lips-pack-of-2": {
+      "folder_name": "Carmex Cherry Moisturising Lip Balm Sticks for Dry, Chapped Lips (Pack of 2)",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "carmex-classic-winter-lip-balm-for-dry-cracked-lips-10g-each-pack-of-2": {
+      "folder_name": "Carmex Classic Winter Lip Balm for Dry, Cracked Lips (10g Each, Pack of 2)",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "carmex-lip-balm-peach-mango-burst-tube-10g": {
+      "folder_name": "Carmex Lip Balm Peach & Mango Burst Tube 10g",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "carmex-moisturising-lip-balm-tube-pineapple-mint-11-6ml": {
+      "folder_name": "Carmex Moisturising Lip Balm Tube - Pineapple Mint, 11.6ml",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "cerave-blemish-control-cleanser-for-blemish-prone-oily-skin-236ml": {
+      "folder_name": "CeraVe Blemish Control Cleanser for Blemish-Prone Oily Skin, 236ml",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "cerave-blemish-control-gel-moisturiser-with-2-salicylic-acid-40ml": {
+      "folder_name": "CeraVe Blemish Control Gel Moisturiser with 2% Salicylic Acid, 40ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "cerave-hydrating-cleanser-for-normal-to-dry-skin-with-hyaluronic-acid-236ml": {
+      "folder_name": "CeraVe Hydrating Cleanser for Normal to Dry Skin with Hyaluronic Acid 236ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "cerave-hydrating-foaming-oil-cleanser-for-normal-to-very-dry-skin-473ml": {
+      "folder_name": "CeraVe Hydrating Foaming Oil Cleanser for Normal to Very Dry Skin, 473ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "cerave-pm-face-care-night-moisturising-lotion-for-normal-to-dry-skin-52ml": {
+      "folder_name": "CeraVe PM Face Care Night Moisturising Lotion for Normal to Dry Skin, 52ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "cerave-sa-smoothing-cream-pot-for-dry-rough-and-bumpy-skin-340g": {
+      "folder_name": "CeraVe SA Smoothing Cream Pot for Dry, Rough and Bumpy Skin, 340g",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "cetaphil-daily-hydrating-face-moisturiser-88ml": {
+      "folder_name": "Cetaphil Daily Hydrating Face Moisturiser 88ml",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "cetaphil-hydrating-foaming-cream-cleanser-236ml": {
+      "folder_name": "Cetaphil Hydrating Foaming Cream Cleanser 236ml",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "cetaphil-moisturising-cream-face-hand-and-body-85g": {
+      "folder_name": "Cetaphil Moisturising Cream Face Hand and Body 85g",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "cetaphil-moisturising-lotion-236ml": {
+      "folder_name": "Cetaphil Moisturising Lotion 236ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "charlie-blue-by-revlon-eau-fraiche-spray-3-4-oz-women": {
+      "folder_name": "CHARLIE BLUE by Revlon Eau Fraiche Spray 3.4 oz Women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "charlie-gold-revlon-3-4-oz-efs-spray-for-women": {
+      "folder_name": "Charlie Gold Revlon 3.4 oz EFS Spray For Women",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "chupa-chups-set-of-7-lip-balms-assorted-fruity-flavours-watermelon-lemon-orange-strawberry-apple-pineapple-peach": {
+      "folder_name": "Chupa Chups Set of 7 Lip Balms, Assorted Fruity Flavours – Watermelon, Lemon, Orange, Strawberry, Apple, Pineapple & Peach",
+      "succeeded": 11,
+      "failed": 0
+    },
+    "clarins-beauty-flash-peel-50ml": {
+      "folder_name": "Clarins Beauty Flash Peel 50ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clarins-brow-duo-02-auburn-2-8-g": {
+      "folder_name": "CLARINS Brow Duo - 02 Auburn 2,8 g",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "clarins-extra-firming-energy-50ml": {
+      "folder_name": "Clarins Extra-Firming Energy 50ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clarins-gentle-eye-make-up-remover-125ml": {
+      "folder_name": "Clarins Gentle Eye Make-Up Remover 125ml",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "clarins-gentle-renewing-cleansing-mousse-150ml": {
+      "folder_name": "Clarins Gentle Renewing Cleansing Mousse 150ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clarins-hand-nail-treatment-cream-100ml": {
+      "folder_name": "Clarins Hand & Nail Treatment Cream 100ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clarins-hydrating-foaming-cleanser-125ml": {
+      "folder_name": "Clarins Hydrating Foaming Cleanser 125ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "clarins-hydrating-toning-lotion-200ml-alcohol-free-toner-with-aloe-vera-saffron-extracts-refreshing-balancing-for-normal-to-dry-skin": {
+      "folder_name": "Clarins Hydrating Toning Lotion 200ml | Alcohol-Free Toner with Aloe Vera & Saffron Extracts | Refreshing & Balancing for Normal to Dry Skin",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clarins-instant-eye-make-up-remover-125ml": {
+      "folder_name": "Clarins Instant Eye Make-Up Remover 125ml",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "clarins-joli-rouge-velvet-lipstick-732v-grenadine-3-5-g": {
+      "folder_name": "CLARINS Joli Rouge Velvet Lipstick - 732V Grenadine 3,5 g",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clarins-lip-comfort-oil-intense-02-intense-plum-7-ml": {
+      "folder_name": "CLARINS LIP COMFORT OIL INTENSE 02 INTENSE PLUM 7 ML",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "clarins-lip-comfort-oil-intense-red-05": {
+      "folder_name": "Clarins Lip Comfort Oil Intense Red 05",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "clarins-lip-perfector-23-pomegranate-glow-12ml": {
+      "folder_name": "Clarins Lip Perfector 23 Pomegranate Glow 12ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "clarins-tinted-oleo-serum-healthy-glow-nourishing-skin-tint-no-2-5-30-ml": {
+      "folder_name": "CLARINS Tinted Oleo-Serum Healthy-Glow & Nourishing Skin Tint No.2.5 (30 ml)",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "clarins-total-cleansing-oil-150ml": {
+      "folder_name": "Clarins Total Cleansing Oil 150ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "clarins-wonder-volume-mascara-xxl-8ml": {
+      "folder_name": "Clarins Wonder Volume Mascara XXL 8ml",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "clean-clear-advantage-fast-action-spot-treatment-gel-15ml": {
+      "folder_name": "Clean & Clear Advantage Fast Action Spot Treatment Gel 15ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "clean-clear-blackhead-clearing-daily-scrub-150-ml": {
+      "folder_name": "Clean & Clear Blackhead Clearing Daily Scrub, 150 ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "clean-clear-blackhead-clearing-oil-free-cleanser-200ml-clnclr02": {
+      "folder_name": "Clean & Clear Blackhead Clearing Oil-Free Cleanser, 200ml,CLNCLR02",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "clean-clear-dual-action-oil-free-moisturiser-100ml": {
+      "folder_name": "Clean & Clear Dual Action Oil-Free Moisturiser, 100ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "clean-clear-morning-energy-skin-energising-daily-facial-scrub-150-ml": {
+      "folder_name": "Clean & Clear Morning Energy Skin Energising Daily Facial Scrub 150 ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "clean-and-clear-exfoliating-daily-wash-150ml": {
+      "folder_name": "Clean and Clear Exfoliating Daily Wash, 150ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "clean-reserve-buriti-hydrating-body-lotion": {
+      "folder_name": "Clean Reserve Buriti Hydrating Body Lotion",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "clear-simple-pregnancy-test-sticks-white": {
+      "folder_name": "Clear & Simple Pregnancy Test Sticks,White",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "clinique-exfoliating-scrub-peeling-100-ml": {
+      "folder_name": "Clinique - Exfoliating Scrub Peeling - 100 ml",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "clinique-clarifying-lotion-3-400-ml": {
+      "folder_name": "Clinique – Clarifying Lotion 3 400 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clinique-anti-blemish-clarifying-lotion-exfoliating-facial-toner-with-salicylic-acid-reduces-oil-unclogs-pores-200-ml": {
+      "folder_name": "Clinique Anti-Blemish Clarifying Lotion Exfoliating Facial Toner With Salicylic Acid | Reduces Oil + Unclogs Pores, 200 ml.",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clinique-cheek-pop-blush-pop-05-nude-pop-for-women-0-12-oz-blush": {
+      "folder_name": "Clinique Cheek Pop Blush Pop - 05 Nude Pop For Women 0.12 oz Blush",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "clinique-clarifying-lotion-1-face-exfoliator-for-very-dry-skin-types": {
+      "folder_name": "Clinique Clarifying Lotion 1 Face Exfoliator For Very Dry Skin Types",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clinique-clarifying-lotion-2-200ml": {
+      "folder_name": "Clinique Clarifying lotion 2 200ml",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "clinique-clarifying-lotion-3-face-exfoliator-for-combination-oily-skin-types-200ml": {
+      "folder_name": "Clinique Clarifying Lotion 3 Face Exfoliator For Combination Oily Skin Types, 200ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clinique-even-better-clinical-radical-dark-spot-corrector-interrupter-duo-2x100ml": {
+      "folder_name": "Clinique Even Better Clinical Radical Dark Spot Corrector + Interrupter Duo 2x100ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "clinique-even-better-clinical-radical-dark-spot-white-50-ml-pack-of-1": {
+      "folder_name": "Clinique Even Better Clinical Radical Dark Spot White, 50 ml (Pack of 1)",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "clinique-high-impact-mascara-lengthening-volumising-safe-for-sensitive-eyes": {
+      "folder_name": "Clinique High Impact Mascara | Lengthening, Volumising + Safe For Sensitive Eyes",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "clinique-moisture-surge-100h-auto-replenishing-hydrator-oil-free-face-moisturiser-with-hyaluronic-acid-aloe-vera-bioferment-for-all-skin-types-hydrating-moisturising-15ml": {
+      "folder_name": "Clinique Moisture Surge 100H Auto-Replenishing Hydrator Oil Free Face Moisturiser With Hyaluronic Acid + Aloe Vera Bioferment for All Skin Types | Hydrating + Moisturising, 15ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clinique-moisture-surge-oil-free-overnight-face-mask-hydrating-plumping-100-ml": {
+      "folder_name": "Clinique Moisture Surge Oil Free Overnight Face Mask | Hydrating + Plumping, 100 ml.",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clinique-take-the-day-off-make-up-remover-for-lids-lashes-lips-125ml": {
+      "folder_name": "Clinique Take The Day Off Make-Up Remover for Lids, Lashes & Lips 125ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "collection-cosmectics-gloss-me-up-juicy-infusion-lip-gloss-cherry-9ml": {
+      "folder_name": "Collection Cosmectics Gloss Me Up Juicy Infusion Lip Gloss- Cherry- 9ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "collection-cosmectics-gloss-me-up-juicy-infusion-lip-gloss-peach-9ml": {
+      "folder_name": "Collection Cosmectics Gloss Me Up Juicy Infusion Lip Gloss- Peach- 9ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "collection-cosmectics-gloss-me-up-lip-gloss-clear-10ml": {
+      "folder_name": "Collection Cosmectics Gloss Me Up Lip Gloss- Clear- 10ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "collection-cosmectics-gloss-me-up-lip-gloss-dragon-fruit-10ml": {
+      "folder_name": "Collection Cosmectics Gloss Me Up Lip Gloss- Dragon Fruit- 10ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "collection-cosmectics-gloss-me-up-lip-gloss-pink-lychee-10ml": {
+      "folder_name": "Collection Cosmectics Gloss Me Up Lip Gloss- Pink Lychee- 10ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "collection-cosmectics-gloss-me-up-lip-gloss-pink-rasberry-10ml": {
+      "folder_name": "Collection Cosmectics Gloss Me Up Lip Gloss- Pink Rasberry- 10ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "collection-cosmetics-2-in-1-cheek-lip-stain-long-lasting-and-hydrating-for-all-skin-types-5-ml-poppy": {
+      "folder_name": "Collection Cosmetics 2 in 1 Cheek & Lip Stain, Long Lasting and Hydrating, For All Skin Types, 5 ml, Poppy",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-2-in-1-cheek-lip-stain-long-lasting-and-hydrating-for-all-skin-types-5ml-rosie": {
+      "folder_name": "Collection Cosmetics 2 in 1 Cheek & Lip Stain, Long Lasting and Hydrating, For All Skin Types, 5ml, Rosie",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-3-in-1-sculpting-eyebrow-pencil-brunette-1g": {
+      "folder_name": "Collection Cosmetics 3-in-1 Sculpting Eyebrow Pencil- Brunette- 1g",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-3-in-1-sculpting-eyebrow-pencil-dark-brunette-1g": {
+      "folder_name": "Collection Cosmetics 3-in-1 Sculpting Eyebrow Pencil- Dark Brunette- 1g",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-blurring-blush-stick-5g-daydream": {
+      "folder_name": "Collection Cosmetics Blurring Blush Stick- 5g- Daydream",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-blurring-blush-stick-5g-rosy": {
+      "folder_name": "Collection Cosmetics Blurring Blush Stick- 5g- Rosy",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-bronze-glow-matte-terracotta-15g": {
+      "folder_name": "Collection Cosmetics Bronze Glow- Matte Terracotta- 15g",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "collection-cosmetics-bronze-glow-matte-light-terracotta-15g": {
+      "folder_name": "Collection Cosmetics Bronze Glow- Matte- Light Terracotta- 15g",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "collection-cosmetics-bronze-glow-mosaic-sunkissed-15g": {
+      "folder_name": "Collection Cosmetics Bronze Glow- Mosaic Sunkissed- 15g",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "collection-cosmetics-bronze-glow-shimmering-light-15g": {
+      "folder_name": "Collection Cosmetics Bronze Glow- Shimmering Light- 15g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "collection-cosmetics-bronze-glow-highly-pigmented-bronzer-15g-matte-dark-terracotta": {
+      "folder_name": "Collection Cosmetics Bronze Glow, Highly Pigmented Bronzer, 15g, Matte Dark Terracotta",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aaa-1-5v-duracell-plus-alkaline-battery-pack-of-4": {
+      "folder_name": "AAA 1.5V Duracell Plus Alkaline Battery (Pack of 4)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "battery-set-lithium-duracell-dl-2032-2": {
+      "folder_name": "BATTERY SET LITHIUM DURACELL DL 2032 (2)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "braun-series-7-bt7420-professional-beard-trimmer-for-men-40-length-settings-barber-tools-charging-base-travel-case-beard-stencil-rechargeable-battery": {
+      "folder_name": "Braun Series 7 BT7420, Professional Beard Trimmer for Men, 40 Length Settings, Barber Tools, Charging Base, Travel Case, Beard Stencil, Rechargeable Battery",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "carmen-c81054cop-noir-hair-straightener-with-ceramic-plates-and-anti-tangle-360-swivel-cord-black-copper": {
+      "folder_name": "Carmen C81054COP Noir Hair Straightener with Ceramic Plates and Anti Tangle 360° Swivel Cord, Black & Copper",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "carmen-hair-dryer-with-concentrator-nozzle-three-heat-settings-2-speed-settings-2200w-black-and-grey-c81237blk": {
+      "folder_name": "Carmen Hair Dryer with Concentrator Nozzle, Three Heat Settings, 2 Speed Settings, 2200W, Black and Grey, C81237BLK",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "colagate-360-max-white-sonic-power-medium-toothbrush": {
+      "folder_name": "Colagate 360 Max White Sonic Power Medium Toothbrush",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "colgate-360-sonic-kids-3-years-batman-battery-powered-toothbrush": {
+      "folder_name": "Colgate 360 Sonic Kids 3+ Years Batman Battery Powered Toothbrush",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "duracell-aa": {
+      "folder_name": "DURACELL AA",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "duracell-aaa-batteries-4-pack": {
+      "folder_name": "DURACELL AAA BATTERIES - 4 PACK",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "duracell-base-mn1500-pack-of-4x-aa-batteries": {
+      "folder_name": "Duracell Base MN1500 - Pack of 4x AA Batteries",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "duracell-mn2400-plus-power-alkaline-aaa-size-batteries-16-batteries-black": {
+      "folder_name": "Duracell MN2400 Plus Power Alkaline AAA Size Batteries, 16 Batteries, black",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "duracell-plus-c-alkaline-batteries-2-pack-1-5v-lr14": {
+      "folder_name": "DURACELL Plus C Alkaline Batteries (2 Pack) 1.5V, LR14",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "duracell-plus-d-alkaline-batteries-2-pack-1-5v-lr20": {
+      "folder_name": "DURACELL Plus D Alkaline Batteries (2 Pack) 1.5V, LR20",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "energizer-aa-batteries-pack-of-30-alkaline-1-5-v-storage-pack-durable-for-household-office-toy-remote-control": {
+      "folder_name": "Energizer AA Batteries Pack of 30 Alkaline 1.5 V Storage Pack Durable for Household Office Toy Remote Control",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "energizer-aaa-batteries-pack-of-30-alkaline-1-5-v-storage-pack-durable-for-household-office-toy-remote-control-large-pack-economy-set": {
+      "folder_name": "Energizer AAA Batteries Pack of 30 Alkaline 1.5 V Storage Pack Durable for Household Office Toy Remote Control Large Pack Economy Set",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "energizer-chargers-brand-model-cf16-max-alk-aaa-chp16": {
+      "folder_name": "ENERGIZER Chargers Brand Model CF16 MAX ALK AAA CHP16",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "eveready-silver-aa-batteries-4-pack": {
+      "folder_name": "Eveready Silver AA Batteries 4 Pack",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "eveready-super-heavy-duty-aa-battery-8-pack": {
+      "folder_name": "Eveready Super Heavy Duty AA Battery, 8 Pack",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "eveready-super-heavy-duty-aaa-zinc-batteries-4-each": {
+      "folder_name": "Eveready Super Heavy Duty AAA Zinc Batteries, 4 each",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "eveready-super-heavy-duty-carbon-zinc-aaa-8-pack": {
+      "folder_name": "Eveready Super Heavy Duty Carbon Zinc AAA, 8 Pack",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "6-x-charlie-black-perfumed-body-fragrance-75ml": {
+      "folder_name": "6 x Charlie Black Perfumed Body Fragrance 75ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "4711-real-cologne-water-shower-gel-from-the-fragrance-classic-4711-has-a-beneficial-effect-on-body-mind-and-soul-200-ml": {
+      "folder_name": "4711 Real Cologne Water Shower Gel from the Fragrance Classic 4711 – has a beneficial effect on body, mind and soul | 200 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "abercrombie-fitch-fierce-cologne-eau-de-cologne-200-ml": {
+      "folder_name": "ABERCROMBIE & FITCH Fierce Cologne Eau de Cologne 200 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "abercrombie-fitch-fierce-men-eau-de-cologne-30ml": {
+      "folder_name": "Abercrombie & Fitch Fierce Men Eau de Cologne 30ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "acqua-di-parma-back-in-stock-colonia-180ml-edc-spray": {
+      "folder_name": "Acqua di Parma Back In Stock: Colonia 180Ml Edc Spray",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "acqua-di-parma-colonia-edc-180-ml": {
+      "folder_name": "Acqua di Parma COLONIA EDC 180 ml.",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-eau-de-toilette-for-daily-use": {
+      "folder_name": "adidas Eau De Toilette for Daily Use",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-ice-dive-eau-de-toilette-citrus-fragrance-with-notes-of-peppermint-and-lavender-long-lasting-fresh-edt-100ml": {
+      "folder_name": "Adidas Ice Dive Eau de Toilette, Citrus Fragrance With Notes of Peppermint and Lavender, Long Lasting Fresh EDT, 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-pure-game-body-fragrance-for-men-2-5-fl-oz": {
+      "folder_name": "Adidas Pure Game Body Fragrance for Men, 2.5 fl oz",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-victory-league-eau-de-toilette-woody-fragrance-with-notes-of-mandarine-pear-and-cinnamon-long-lasting-fresh-edt-100ml": {
+      "folder_name": "Adidas Victory League Eau de Toilette, Woody Fragrance With Notes of Mandarine, Pear and Cinnamon, Long Lasting Fresh EDT 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "agent-provocateur-signature-edp-200-ml": {
+      "folder_name": "Agent Provocateur Signature Edp 200 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-large-candle-scented-gingerbread-fragrance-120-hour": {
+      "folder_name": "AIRPURE - Large Candle Scented, Gingerbread Fragrance - 120 Hour",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-air-o-matic-air-freshener-refill-250ml-automatic-spray-fragrance-for-home-office-kitchens-and-anywhere-for-a-burst-of-fresh-scent-citrus-zing-fragrance": {
+      "folder_name": "AIRPURE Air-O-Matic Air Freshener Refill, 250ml, Automatic Spray Fragrance for Home, Office, Kitchens and Anywhere for a Burst of Fresh Scent - Citrus ZING Fragrance",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-air-o-matic-air-freshener-refill-250ml-automatic-spray-fragrance-for-home-office-kitchens-and-anywhere-for-a-burst-of-fresh-scent-lavender-moments-fragrance": {
+      "folder_name": "AIRPURE Air-O-Matic Air Freshener Refill, 250ml, Automatic Spray Fragrance for Home, Office, Kitchens and Anywhere for a Burst of Fresh Scent - Lavender Moments Fragrance",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-air-o-matic-air-freshener-refill-250ml-automatic-spray-fragrance-for-home-office-kitchens-and-anywhere-for-a-burst-of-fresh-scent-sparkling-berry-fragrance": {
+      "folder_name": "airpure Air-O-Matic Air Freshener Refill, 250ml, Automatic Spray Fragrance for Home, Office, Kitchens and Anywhere for a Burst of Fresh Scent - Sparkling Berry Fragrance",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-air-o-matic-air-freshener-refill-250ml-automatic-spray-fragrance-for-home-office-kitchens-and-anywhere-for-a-burst-of-fresh-scent-true-romance-fragrance": {
+      "folder_name": "airpure Air-O-Matic Air Freshener Refill, 250ml, Automatic Spray Fragrance for Home, Office, Kitchens and Anywhere for a Burst of Fresh Scent - True Romance Fragrance",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-fabric-freshener-750ml-spray-pet-odour-eliminator-refresher-sprays-for-the-mattress-bed-linen-carpet-clothing-remove-cat-and-dog-smellsfrom-home-and-car-linen-room-fragrance": {
+      "folder_name": "airpure Fabric Freshener, 750ml Spray,Pet Odour Eliminator, Refresher Sprays for The Mattress, Bed, Linen, Carpet, Clothing, Remove Cat and Dog Smellsfrom Home and Car - Linen Room Fragrance",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-large-candle-scented-apple-cinnamon-fragrance-18oz-jar-120-hour-ornamental-candles-fill-the-room-with-a-warm-and-homey-fragrance-for-the-bedroom-bathroom-family-room-or-office": {
+      "folder_name": "AIRPURE Large Candle Scented, Apple Cinnamon Fragrance, 18oz Jar, 120 Hour Ornamental Candles, Fill The Room with a Warm and Homey Fragrance, for The Bedroom, Bathroom, Family Room or Office",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-large-candle-scented-raspberry-bliss-fragrance-18oz-jar-120-hour-ornamental-candles-fill-the-room-with-a-warm-and-homey-fragrance-for-the-bedroom-bathroom-family-room-or-office": {
+      "folder_name": "AIRPURE Large Candle Scented, Raspberry Bliss Fragrance, 18oz Jar, 120 Hour Ornamental Candles, Fill The Room with a Warm and Homey Fragrance, for The Bedroom, Bathroom, Family Room or Office",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "airpure-large-candle-scented-vanilla-cupcake-fragrance-18oz-jar-120-hour-ornamental-candles-fill-the-room-with-a-warm-and-homey-fragrance-for-the-bedroom-bathroom-family-room-of-office": {
+      "folder_name": "AIRPURE Large Candle Scented, Vanilla Cupcake Fragrance, 18oz Jar, 120 Hour Ornamental Candles, Fill The Room with a Warm and Homey Fragrance, for The Bedroom, Bathroom, Family Room of Office",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-juicy-green-apple-conditioner-300ml-with-pro-vitamin-b5-24hr-fragrance": {
+      "folder_name": "Alberto Balsam Juicy Green Apple Conditioner - 300ml - with Pro-Vitamin B5-24Hr Fragrance",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-juicy-green-apple-shampoo-300ml-24hr-fragrance-pro-vitamin-b5-all-hair-types": {
+      "folder_name": "Alberto Balsam Juicy Green Apple Shampoo - 300ml - 24HR Fragrance - Pro-Vitamin B5 - All Hair Types",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-sunkissed-raspberry-conditioner-300ml-24hr-fragrance-pro-vitamin-b5-silicone-free": {
+      "folder_name": "Alberto Balsam Sunkissed Raspberry Conditioner, 300ml - 24HR Fragrance - Pro-Vitamin B5 - Silicone Free",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-sunkissed-raspberry-shampoo-300ml-24hr-fragrance-pro-vitamin-b5-all-hair-types": {
+      "folder_name": "Alberto Balsam Sunkissed Raspberry Shampoo - 300ml - 24HR Fragrance - Pro-Vitamin B5 - All Hair Types",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "anais-anais-1-ounce-edt-by-cacharel": {
+      "folder_name": "Anais Anais 1 Ounce EDT By Cacharel",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "anais-anais-30ml-edt-spray": {
+      "folder_name": "Anais Anais 30ml EDT Spray",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "anna-sui-sky-eau-de-toilette-50ml": {
+      "folder_name": "ANNA SUI SKY Eau de toilette 50ML",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "armaf-club-de-nuit-intense-man-eau-de-parfum-200ml": {
+      "folder_name": "ARMAF Club De Nuit Intense Man Eau De Parfum 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "armaf-club-de-nuit-woman-105ml-eau-de-parfum": {
+      "folder_name": "ARMAF, Club De Nuit Woman 105ml Eau De Parfum",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "armani-code-giorgio-armani-edp-perfume-for-women": {
+      "folder_name": "Armani Code Giorgio Armani EDP Perfume for Women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "asevi-liquid-laundry-freshener-in-wash-scent-booster-laundry-perfume-laundry-scent-booster-720ml-36-washes-blue": {
+      "folder_name": "Asevi Liquid Laundry Freshener, In Wash Scent Booster, Laundry Perfume, Laundry Scent Booster, 720ml, 36 Washes, Blue",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "astonish-3-in-1-multi-purpose-super-concentrated-disinfectant-with-long-lasting-fragrance-linen-fresh-300ml": {
+      "folder_name": "Astonish 3 in 1 Multi-Purpose Super Concentrated Disinfectant with Long Lasting Fragrance, Linen Fresh, 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "billie-eilish-billie-eilish-no-2-for-women-3-4-oz-edp-spray": {
+      "folder_name": "Billie Eilish Billie Eilish No 2 for Women 3.4 oz EDP Spray",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "black-opium-edt-vapo-50-ml": {
+      "folder_name": "Black Opium Edt Vapo 50 Ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "black-orchid-by-tom-ford-eau-de-parfum-for-women-100ml": {
+      "folder_name": "Black Orchid by Tom Ford Eau De Parfum For Women 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "black-orchid-by-tom-ford-eau-de-parfum-for-women-30ml": {
+      "folder_name": "Black Orchid by Tom Ford Eau de Parfum For Women, 30ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-alive-eau-de-parfum-intense-for-her-woody-fragrance-with-notes-of-raspberry-vetiver-and-benzoin-high-longevity-30ml": {
+      "folder_name": "BOSS Alive - Eau de Parfum Intense for Her - Woody Fragrance with Notes of Raspberry, Vetiver and Benzoin - High Longevity - 30ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-alive-eau-de-parfum-intense-for-her-woody-fragrance-with-notes-of-raspberry-vetiver-and-benzoin-high-longevity-50ml": {
+      "folder_name": "BOSS Alive - Eau de Parfum Intense for Her - Woody Fragrance with Notes of Raspberry, Vetiver and Benzoin - High Longevity - 50ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-alive-absolu-intense-perfume-for-women": {
+      "folder_name": "Boss Alive Absolu Intense Perfume for Women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-alive-for-her-eau-de-toilette-50-ml": {
+      "folder_name": "BOSS ALIVE for Her Eau de Toilette, 50 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-bottled-aftershave-for-him-woody-scent-with-notes-of-apple-cinnamon-and-wood-light-longevity-100ml": {
+      "folder_name": "BOSS Bottled Aftershave for Him - Woody Scent with Notes of Apple, Cinnamon and Wood - Light Longevity - 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-bottled-infinite-eau-de-parfum-for-him-aromatic-fragrance-with-notes-of-apple-mandarin-and-sandalwood-high-longevity-50ml": {
+      "folder_name": "BOSS Bottled Infinite - Eau de Parfum for Him - Aromatic Fragrance with Notes of Apple, Mandarin and Sandalwood - High Longevity - 50ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-bottled-infinite-eau-de-parfum-100ml": {
+      "folder_name": "BOSS Bottled Infinite Eau de Parfum 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-femme-new-packaging-eau-de-parfum-for-her-woody-fragrance-with-notes-of-tangerine-oriental-lily-and-satinwood-long-lasting-fragrance-75ml": {
+      "folder_name": "BOSS Femme - New Packaging - Eau de Parfum for Her - Woody Fragrance with Notes of Tangerine, Oriental Lily and Satinwood - Long-Lasting Fragrance - 75ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-hugo-boss-woman-eau-de-parfum-spray-90ml": {
+      "folder_name": "BOSS HUGO BOSS WOMAN EAU DE PARFUM SPRAY - 90ML",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-iced-for-him-eau-de-toilette-75ml-fragrance-family-woody-top-notes-iced-mint-heart-notes-frozen-wild-tea-base-notes-masculine-vertiver": {
+      "folder_name": "Boss Iced For Him Eau de Toilette 75ml - Fragrance Family: Woody, Top Notes: Iced Mint, Heart Notes: Frozen Wild Tea, Base Notes: Masculine Vertiver",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-ma-vie-new-packaging-eau-de-parfum-for-her-floral-fragrance-with-notes-of-cactus-blossom-pink-floral-bouquet-with-rose-bud-and-cedarwood-long-lasting-fragrance-30ml": {
+      "folder_name": "BOSS Ma Vie - New Packaging - Eau de Parfum for Her - Floral Fragrance With Notes Of Cactus Blossom, Pink Floral Bouquet with Rose Bud and Cedarwood - Long-Lasting Fragrance - 30ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-man-eau-de-toilette-for-him-ambery-fragrance-with-notes-of-crispy-apple-frankincense-vanilla-bean-medium-longevity-100ml": {
+      "folder_name": "BOSS Man - Eau de Toilette for Him - Ambery Fragrance With Notes Of Crispy Apple, Frankincense, Vanilla Bean - Medium Longevity - 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-number-one-eau-de-toilette-for-him-ambery-fragrance-with-notes-of-nutmeg-patchouli-and-balsamic-accords-medium-longevity-100ml": {
+      "folder_name": "BOSS Number One - Eau de Toilette for Him - Ambery Fragrance with Notes of Nutmeg, Patchouli and Balsamic Accords - Medium Longevity - 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-selection-eau-de-toilette-for-him-aromatic-fougere-fragrance-with-notes-of-fresh-green-accord-petitgrain-cedarwood-medium-longevity-100ml": {
+      "folder_name": "BOSS Selection - Eau de Toilette For Him - Aromatic Fougere Fragrance With Notes Of Fresh Green Accord, Petitgrain, Cedarwood - Medium Longevity - 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-selection-eau-de-toilette-for-men-100-ml": {
+      "folder_name": "BOSS Selection Eau de Toilette for Men 100 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-the-scent-eau-de-parfum-for-her-ambery-fragrance-with-notes-of-honeyed-peach-osmanthus-flower-and-roasted-cocoa-high-longevity-50ml": {
+      "folder_name": "BOSS The Scent - Eau de Parfum for Her - Ambery Fragrance with Notes of Honeyed Peach, Osmanthus Flower and Roasted Cocoa - High Longevity - 50ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-woman-eau-de-toilette-for-her-ambery-fragrance-with-notes-of-crispy-apple-orange-flowers-creamy-vanilla-medium-longevity-75ml": {
+      "folder_name": "BOSS Woman - Eau de Toilette for Her - Ambery Fragrance With Notes Of Crispy Apple, Orange Flowers, Creamy Vanilla - Medium Longevity - 75ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-woman-by-hugo-boss-eau-de-parfum-spray-90ml": {
+      "folder_name": "Boss Woman by Hugo Boss Eau de Parfum Spray 90ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "boss-woman-perfume-by-hugo-boss-90-ml-eau-de-parfum-spray-for-women": {
+      "folder_name": "Boss Woman Perfume by Hugo Boss 90 ml Eau De Parfum Spray for Women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bourjois-la-formidable-mon-bourjois-eau-de-parfum-50-ml": {
+      "folder_name": "Bourjois - La Formidable Mon Bourjois Eau de Parfum 50 ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "britney-spears-curious-100-ml-eau-de-parfum-for-women": {
+      "folder_name": "Britney Spears Curious 100 ml, Eau de Parfum for Women",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "britney-spears-midnight-fantasy-eau-de-parfum-100ml": {
+      "folder_name": "Britney Spears Midnight Fantasy Eau De Parfum 100Ml",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "burberry-brit-for-him-eau-de-toilette-100ml": {
+      "folder_name": "Burberry Brit For Him Eau de Toilette 100ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "burberry-brit-rhythm-him-30ml": {
+      "folder_name": "Burberry Brit Rhythm Him 30ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "burberry-brit-sheer-for-her-eau-de-toilette-50-ml": {
+      "folder_name": "BURBERRY Brit Sheer for Her Eau de Toilette 50 ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "burberry-eau-de-toilette": {
+      "folder_name": "Burberry Eau De Toilette",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "burberry-for-women-eau-de-parfum-50-ml": {
+      "folder_name": "BURBERRY for Women Eau de Parfum 50 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "burberry-london-eau-de-parfum-50-ml": {
+      "folder_name": "Burberry London Eau de Parfum - 50 ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "burberry-london-for-men-eau-de-toilette-50-ml": {
+      "folder_name": "BURBERRY London for Men Eau de Toilette 50 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "burberry-weekend-for-men-eau-de-toilette-50-ml": {
+      "folder_name": "BURBERRY Weekend for Men Eau de Toilette 50 ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "burberry-50-mm-brit-edp-50-ml": {
+      "folder_name": "BURBERRY,50 mm Brit Edp 50 ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "cac-diesel-edp-donna-v-50": {
+      "folder_name": "CAC Diesel Edp Donna V.50",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "cachanel-noa": {
+      "folder_name": "Cachanel Noa",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "cacharel-noa-eau-de-toilette-spray-30-ml": {
+      "folder_name": "Cacharel – Noa Eau de Toilette Spray 30 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "cacharel-amor-amor-eau-de-toilette-captivating-fruity-floral-women-s-perfume-with-pink-grapefruit-blackcurrant-romantic-jasmine-delicate-rose-and-sensual-vanilla-long-lasting-scent": {
+      "folder_name": "Cacharel Amor Amor Eau de Toilette, Captivating Fruity Floral Women's Perfume with Pink Grapefruit, Blackcurrant, Romantic Jasmine, Delicate Rose and Sensual Vanilla, Long Lasting Scent",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "cacharel-anais-anais-eau-de-perfume-spray-50-ml": {
+      "folder_name": "Cacharel ANAIS ANAIS eau de perfume spray 50 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "cacharel-amor-amor-eau-de-toilette-women-s-floral-perfume-30ml": {
+      "folder_name": "Cacharel, Amor Amor Eau de Toilette, Women's Floral Perfume, 30ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "cacharel-amor-amor-eau-de-toilette-women-s-floral-perfume-100ml": {
+      "folder_name": "Cacharel, Amor Amor Eau de Toilette, Women's Floral Perfume, 100ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-ck-one-shock-for-men-100ml-edt": {
+      "folder_name": "Calvin Klein - Ck One Shock For Men 100ml EDT",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "calvin-klein-eau-de-toilette-ckin2u-calvin-klein-women-ladies-perfume-women-s-perfume-calvin-klein-perfume-calvin-klein-one-150-ml": {
+      "folder_name": "Calvin Klein - Eau De Toilette CKIN2U - Calvin Klein Women, Ladies Perfume, Women's Perfume, Calvin Klein Perfume, Calvin Klein One - 150 ml",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "calvin-klein-eternity-aqua-eau-de-toilette-100-ml-vaporizador": {
+      "folder_name": "Calvin Klein – Eternity Aqua Eau De Toilette 100 ml vaporizador",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "calvin-klein-be-eau-de-toilette-spray-100ml": {
+      "folder_name": "Calvin Klein Be Eau De Toilette Spray 100ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "calvin-klein-beauty-eau-de-parfum-for-women-floral-ambery-fragrance-with-notes-of-neo-lily-ambrette-seeds-and-cedarwood-high-longevity-100ml": {
+      "folder_name": "CALVIN KLEIN Beauty - Eau de Parfum for Women - Floral & Ambery Fragrance with Notes of Neo-Lily, Ambrette Seeds and Cedarwood - High Longevity - 100ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "calvin-klein-beauty-eau-de-parfum-30-ml": {
+      "folder_name": "Calvin Klein Beauty Eau de Parfum - 30 ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "calvin-klein-ck-all-eau-de-toilette-200-ml": {
+      "folder_name": "Calvin Klein CK All Eau de Toilette, 200 ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "calvin-klein-ck-be-unisex-eau-de-toilette-for-all-woody-fragrance-with-notes-of-juniper-berry-white-spices-and-sandalwood-medium-longevity-200ml": {
+      "folder_name": "CALVIN KLEIN CK Be - Unisex Eau de Toilette for All - Woody Fragrance with Notes of Juniper Berry, White Spices and Sandalwood - Medium Longevity - 200ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "calvin-klein-ck-be-et-50-vp-unisex-fragrance-black": {
+      "folder_name": "CALVIN KLEIN Ck Be Et 50 Vp - Unisex Fragrance - Black",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "calvin-klein-ck-one-unisex-eau-de-toilette-for-all-citrus-aromatic-fragrance-with-notes-of-green-tea-nutmeg-and-musk-medium-longevity-200ml": {
+      "folder_name": "CALVIN KLEIN CK One - Unisex Eau de Toilette for All - Citrus & Aromatic Fragrance with Notes of Green Tea, Nutmeg and Musk - Medium Longevity - 200ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-ck-one-gold-eau-de-toilette-for-all-woody-fragrance-of-bergamot-fig-sage-neroli-violet-jasmine-guaiac-patchouli-vetiver-medium-longevity-3-4oz": {
+      "folder_name": "CALVIN KLEIN CK One Gold - Eau de Toilette for All - Woody Fragrance Of Bergamot, Fig, Sage, Neroli, Violet, Jasmine, Guaiac, Patchouli, Vetiver - Medium Longevity - 3.4oz",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "calvin-klein-ck-one-shock-for-her-eau-de-toilette-100-ml": {
+      "folder_name": "Calvin Klein CK One shock for Her Eau de Toilette, 100 ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "calvin-klein-ck-one-shock-for-her-eau-de-toilette-200-ml": {
+      "folder_name": "Calvin Klein CK One shock for Her Eau de Toilette, 200 ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "calvin-klein-ck-one-unisex-deodorant-stick-citrus-aromatic-fragrance-with-notes-of-green-tea-nutmeg-75g": {
+      "folder_name": "Calvin Klein CK One Unisex Deodorant Stick, Citrus & Aromatic Fragrance with Notes of Green Tea, Nutmeg, 75g",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "calvin-klein-defy-perfume-for-men-50-ml": {
+      "folder_name": "Calvin Klein Defy Perfume for Men 50 ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "calvin-klein-eternity-eau-de-parfum-for-women-floral-fragrance-with-notes-of-bergamot-white-rose-and-sandalwood-high-longevity-30ml": {
+      "folder_name": "CALVIN KLEIN Eternity - Eau de Parfum for Women - Floral Fragrance with Notes of Bergamot, White Rose and Sandalwood - High Longevity - 30ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-eternity-air-for-men-eau-de-toilette-100-ml": {
+      "folder_name": "Calvin Klein Eternity Air for Men Eau de Toilette, 100 ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-eternity-aqua-eau-de-toilette-travel-for-men-20-ml": {
+      "folder_name": "Calvin Klein Eternity Aqua Eau de Toilette Travel for Men - 20 ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "calvin-klein-eternity-cologne-for-him-100ml": {
+      "folder_name": "Calvin Klein Eternity Cologne for Him 100ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "calvin-klein-eternity-moment-eau-de-parfum-for-women-floral-fragrance-with-notes-of-sweet-lychee-pink-peony-and-raspberry-cashmere-high-longevity-50-ml": {
+      "folder_name": "CALVIN KLEIN Eternity Moment - Eau de Parfum for Women - Floral Fragrance with Notes of Sweet Lychee, Pink peony and Raspberry Cashmere - High Longevity - 50 ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-eternity-moment-eau-de-parfum-for-women-30-ml": {
+      "folder_name": "Calvin Klein Eternity Moment Eau de Parfum for Women - 30 ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "calvin-klein-eternity-summer-woman-2019-100ml-edp-spray": {
+      "folder_name": "Calvin Klein Eternity Summer Woman 2019 100ML EDP Spray",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "calvin-klein-euphoria-eau-de-toilette-for-men-20-ml": {
+      "folder_name": "Calvin Klein Euphoria Eau de Toilette for Men 20 ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "calvin-klein-man-eau-de-toilette-for-him-100-ml-3-4-oz": {
+      "folder_name": "Calvin Klein Man Eau de Toilette for Him 100 ml (3.4 oz)",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "calvin-klein-obsession-eau-de-parfum-for-women-ambery-fragrance-with-notes-of-mandarin-jasmine-oakmoss-high-longevity-spray-1-7oz": {
+      "folder_name": "CALVIN KLEIN Obsession - Eau de Parfum for Women - Ambery Fragrance With Notes Of Mandarin, Jasmine, Oakmoss - High Longevity - Spray 1.7oz",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "calvin-klein-obsession-for-her-eau-de-parfum-fresh-bergamot-accord-with-notes-of-mandarin-lavender-and-sage-medium-longevity-30ml": {
+      "folder_name": "Calvin Klein Obsession for Her, Eau de Parfum, Fresh Bergamot accord with Notes of Mandarin, Lavender and Sage, Medium Longevity, 30ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "calvin-klein-obsession-for-men-body-spray-152-g": {
+      "folder_name": "Calvin Klein Obsession for Men Body Spray 152 G",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "calvin-klein-obsession-for-men-eau-de-toilette-75-ml": {
+      "folder_name": "Calvin Klein Obsession For Men Eau de Toilette - 75 ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-obsession-for-men-eau-de-toilette-fresh-bergamot-accord-with-notes-of-mandarin-lavender-and-sage-medium-longevity-125ml": {
+      "folder_name": "Calvin Klein Obsession for Men, Eau de Toilette, Fresh Bergamot accord With Notes of Mandarin, Lavender and Sage, Medium Longevity, 125ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "calvin-klein-obsession-men-night-eau-de-toilette-125ml-spray": {
+      "folder_name": "Calvin Klein Obsession Men Night Eau de Toilette 125ml spray",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "calvin-klein-obsession-night-for-women-edp-spray-100ml": {
+      "folder_name": "Calvin Klein Obsession Night For Women Edp Spray 100ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "carolina-herrera-good-girl-blush-for-women-eau-de-parfum-40-ml": {
+      "folder_name": "Carolina Herrera Good Girl Blush for Women - Eau de Parfum 40 ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "carolina-herrera-very-good-girl-eau-de-parfum-50ml": {
+      "folder_name": "Carolina Herrera Very Good Girl Eau De Parfum 50ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "cerruti-1881-pour-homme-eau-de-toilette-spray-25ml": {
+      "folder_name": "Cerruti 1881 Pour Homme, Eau De Toilette Spray, 25ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "cerruti-image-eau-de-toilette-for-women-75ml": {
+      "folder_name": "Cerruti Image Eau De Toilette for Women, 75ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "chantecaille-escada-magnetism-eau-de-parfum-75-ml": {
+      "folder_name": "Chantecaille Escada Magnetism Eau de Parfum, 75 ml",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "charlie-blue-for-women-by-revlon-100-ml-edt-spray": {
+      "folder_name": "Charlie Blue FOR WOMEN by Revlon - 100 ml EDT Spray",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "charlie-eau-de-toilette-white-100-ml": {
+      "folder_name": "Charlie Eau de Toilette, White, 100 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "charlie-gold-for-women-by-revlon-100-ml-edt-spray": {
+      "folder_name": "Charlie Gold FOR WOMEN by Revlon - 100 ml EDT Spray",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "charlie-red-eau-de-toilette-natural-spray-100ml": {
+      "folder_name": "Charlie Red Eau De Toilette Natural Spray 100ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-deep-moisture-mode-activated-gift-set-for-very-dry-sensitive-skin": {
+      "folder_name": "Aveeno Deep Moisture Mode: Activated Gift Set for Very Dry & Sensitive Skin",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "aveeno-dewy-days-ahead-gift-set-for-sensitive-skin": {
+      "folder_name": "Aveeno Dewy Days Ahead Gift Set for Sensitive Skin",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "babor-gift-set-with-various-serum-ampoules-for-moisture-regeneration-and-firmness-vegan-formula-the-white-collection-7-x-2-ml": {
+      "folder_name": "BABOR gift set with various serum ampoules, For moisture, regeneration and firmness, Vegan formula, The White Collection, 7 x 2 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-formulas-brightening-vitamin-c-bundle-brightening-facial-tonic-150ml-facial-wash-150ml-daily-moisturiser-100ml-3-pieces": {
+      "folder_name": "Beauty Formulas BRIGHTENING VITAMIN C Bundle BRIGHTENING Facial Tonic 150ml, Facial Wash 150ml, Daily Moisturiser 100ml, 3 Pieces",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "celebrations-hot-chocolate-sachets-25g-x-8-hot-chocolate-gift-set-featuring-galaxy-milkyway-twix-mars-bounty-maltesers-snickers-and-galaxy-caramel-pack-of-1": {
+      "folder_name": "Celebrations Hot Chocolate Sachets 25g x 8 | Hot Chocolate Gift Set Featuring Galaxy, MilkyWay, Twix, Mars, Bounty, Maltesers, Snickers and Galaxy Caramel (Pack of 1)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "collection-cosmetics-filter-finish-face-set-makeup-gift-set": {
+      "folder_name": "Collection Cosmetics Filter Finish Face Set- Makeup Gift Set",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "collection-cosmetics-lip-cheek-trio-soft-glow-blusher-cheek-and-lip-stain-gloss-me-up-lip-gloss-long-lasting-flush-makeup-gift-set": {
+      "folder_name": "Collection Cosmetics Lip & Cheek Trio, Soft Glow Blusher, Cheek and Lip Stain, Gloss Me Up Lip Gloss, Long Lasting Flush, Makeup Gift Set",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "collection-cosmetics-prep-and-set-duo-primed-ready-makeup-gift-set": {
+      "folder_name": "Collection Cosmetics Prep and Set Duo-Primed & Ready- Makeup Gift Set",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "disney-princess-lip-balm-set-5-flavored-lip-balms-for-kids-cherry-sugar-apple-strawberry-grape-ariel-cinderella-tiana-rapunzel-jasmine-fun-moisturizing-lip-care-gift-set-for-girls": {
+      "folder_name": "Disney Princess Lip Balm Set – 5 Flavored Lip Balms for Kids – Cherry, Sugar, Apple, Strawberry & Grape – Ariel, Cinderella, Tiana, Rapunzel & Jasmine – Fun Moisturizing Lip Care Gift Set for Girls",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "dkny-be-delicious-gift-set-30ml-be-delicious-edp-30ml-fresh-blossom-edp": {
+      "folder_name": "DKNY Be Delicious Gift Set 30ml Be Delicious EDP + 30ml Fresh Blossom EDP",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "dove-gift-packaging-beauty-routine-with-mousse-shower-200-ml-mousse-face-200-ml-dove-shower-foam-250-ml-body-cream-silky-300-ml-diary-dove": {
+      "folder_name": "Dove Gift Packaging Beauty Routine with Mousse Shower 200 ml, Mousse Face 200 ml, Dove Shower Foam 250 ml, Body Cream Silky 300 ml & Diary Dove",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "elizabeth-arden-green-tea-scent-spray-100ml-2-piece-gift-set-fragrance-gifting-for-women": {
+      "folder_name": "Elizabeth Arden GREEN TEA Scent Spray 100ml 2-piece Gift Set, fragrance gifting for women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "elizabeth-arden-moisture-rituals-eight-hour-2-piece-gift-set-daily-hydrating-nourishing-skincare-luxury-gifting-for-women": {
+      "folder_name": "Elizabeth Arden MOISTURE RITUALS Eight Hour 2-Piece Gift Set, daily hydrating & nourishing skincare, luxury gifting for women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "elizabeth-arden-red-door-edt-100ml-3-piece-gift-set-for-women": {
+      "folder_name": "Elizabeth Arden Red Door EDT 100ml 3-Piece Gift Set for Women",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "estuche-paco-rabanne-olympea-eau-de-parfum-80-ml-regalo": {
+      "folder_name": "Estuche Paco Rabanne Olympéa Eau de Parfum 80 ml + Regalo",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "john-frieda-frizz-ease-handbag-heroes-stocking-filler": {
+      "folder_name": "John Frieda Frizz Ease Handbag Heroes Stocking Filler",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "la-vie-est-belle-by-lancome-l-eau-de-parfum-spray-1-oz-duo-gift-set-eau-de-parfum-2-x-30ml": {
+      "folder_name": "La Vie Est Belle By Lancome L'eau De Parfum Spray 1 oz (Duo) Gift Set Eau de Parfum 2 X 30ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "lip-smacker-ariel-travel-ready-beauty-case-all-in-one-make-up-giftset-including-shimmer-creamy-palettes-lipsticks-and-nail-polishes-for-your-kids-princess-look-on-the-go-accessories-included": {
+      "folder_name": "Lip Smacker Ariel Travel-Ready Beauty Case, All-in-One Make-up Giftset Including Shimmer Creamy Palettes, Lipsticks and Nail Polishes for your Kids' Princess Look On-The-Go, Accessories Included",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "madonna-perfume-mega-bundle-5-x-50ml-edt-fragrance-gift-set": {
+      "folder_name": "Madonna Perfume Mega Bundle 5 x 50ml Edt Fragrance Gift Set",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "morny-hand-crafted-soaps-gift-set-6x50g-lavender-rose-jasmine-geranium-narcisse-carnation": {
+      "folder_name": "MORNY Hand Crafted Soaps Gift Set - 6x50g - Lavender, Rose, Jasmine, Geranium, Narcisse, Carnation",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "nivea-firmer-dual-action-solution-gift-pack-3-piece-collection": {
+      "folder_name": "NIVEA Firmer Dual Action Solution Gift Pack, 3-Piece Collection",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "nivea-men-feel-fully-sensitive-gift-set-8-piece-collection": {
+      "folder_name": "NIVEA MEN Feel Fully Sensitive Gift Set, 8-Piece Collection",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "nivea-men-feel-so-smooth-gift-set-3-piece-collection": {
+      "folder_name": "NIVEA MEN Feel So Smooth Gift Set, 3-Piece Collection",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "nivea-men-feel-xl-sooothed-sensitive-care-xl-duo": {
+      "folder_name": "Nivea Men Feel XL Sooothed Sensitive Care XL Duo",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "nivea-men-sensitive-face-skincare-gift-pack-2-piece-collection": {
+      "folder_name": "NIVEA MEN Sensitive Face Skincare Gift Pack, 2-Piece Collection",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "nivea-nourishing-moments-of-joy-gift-set-creme-care-shower-gel-rich-nourishing-body-lotion-intensive-moisture-hand-cream-skincare-collection-pack": {
+      "folder_name": "NIVEA Nourishing Moments of Joy Gift Set, Creme Care Shower Gel, Rich Nourishing Body Lotion, Intensive Moisture Hand Cream, Skincare Collection Pack",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "nivea-softening-moments-gift-set-rose-almond-oil-shower-cream-250ml-soft-moisturising-cream-75ml-rose-lip-balm-4-8g": {
+      "folder_name": "NIVEA Softening Moments Gift Set, Rose & Almond Oil Shower Cream 250ml, Soft Moisturising Cream 75ml, Rosé Lip Balm 4.8g",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "nuxe-infinite-rose-gold-glow-christmas-gift-set-3-piece-radiance-trio": {
+      "folder_name": "Nuxe Infinite Rose Gold Glow Christmas Gift Set, 3 Piece Radiance Trio",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "nuxe-the-iconics-gift-set-45-value-luxury-skincare-face-body-care-trio": {
+      "folder_name": "Nuxe The Iconics Gift Set (£45 Value) Luxury Skincare Face & Body Care Trio",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "sanctuary-spa-relax-calm-pamper-gifts-for-women-3-pcs-spa-gift-set-with-vitamimn-c-bath-crystals-body-scrub-bubble-bath-cruelty-free-mothers-day-gifts-gifts-for-women-gift-for-her": {
+      "folder_name": "Sanctuary Spa Relax & Calm Pamper Gifts for Women – 3 Pcs Spa Gift Set with Vitamimn C, Bath Crystals, Body Scrub & Bubble bath – Cruelty Free - Mothers day gifts, Gifts for Women, Gift for Her",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "ted-baker-floret-celeste-gift-set-celeste-fragrance-edt-with-aromatic-musk-scent-and-body-lotion-with-nourishing-olive-fruit-oil-and-vitamin-e-100ml": {
+      "folder_name": "Ted Baker Floret Celeste Gift Set, Celeste Fragrance EDT with Aromatic Musk Scent and Body Lotion with Nourishing Olive Fruit Oil and Vitamin E 100ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "weleda-skin-food-face-care-gift-set-with-cleansing-balm-wash-cloth": {
+      "folder_name": "Weleda Skin Food Face Care Gift Set with Cleansing Balm & Wash Cloth",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "weleda-skin-food-top-to-toe-gift-set-3-in-1-original-light-lip-balm": {
+      "folder_name": "Weleda Skin Food Top to Toe Gift Set 3-in-1 Original Light Lip Balm",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "wilkinson-sword-sensitive-shave-duo-gift-set-for-men-hydro-5-razor-sensitive-shave-gel-200ml-shave-regime-set-for-men": {
+      "folder_name": "Wilkinson Sword Sensitive Shave Duo Gift Set for Men. Hydro 5 Razor, Sensitive Shave Gel 200ml, Shave Regime Set for Men",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "1-x-elastic-knee-support-running-copressions-sleeves-sports-knee-injury": {
+      "folder_name": "1 x elastic knee support running copressions sleeves sports knee injury",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-kids-mosquito-insect-bands": {
+      "folder_name": "2 x Kids Mosquito&Insect Bands",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-tingle-stimulating-sex-lube-fun-time-play-lubrication-water-based-lube-75ml": {
+      "folder_name": "3 x Tingle Stimulating Sex Lube Fun Time Play Lubrication Water Based Lube 75ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3x-max-flush-5-lavender-toilet-rim-block-cleaner-twin-pack": {
+      "folder_name": "3X Max Flush 5 Lavender Toilet Rim Block Cleaner (Twin Pack)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "4-x-tubs-of-masterplast-freeze-gel-300ml-ideal-for-muscles-cools-soothes": {
+      "folder_name": "4 x Tubs Of Masterplast Freeze Gel 300ml ideal for muscles, cools soothes",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "10-x-clear-simple-test-kit": {
+      "folder_name": "10 x Clear&Simple Test Kit",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-x-deep-heat-patch-one-patch": {
+      "folder_name": "12 x Deep Heat Patch One Patch",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-x-freeze-gel-tubs-200ml": {
+      "folder_name": "12 x Freeze Gel Tubs 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-x-lil-lets-tampons-regular-16s": {
+      "folder_name": "12 x Lil-Lets Tampons Regular 16s",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-x-lil-lets-tampons-super-16s": {
+      "folder_name": "12 x Lil-Lets Tampons Super 16s",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "20-x-halls-soothers-strawberry-45g": {
+      "folder_name": "20 x Halls Soothers Strawberry 45g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "75-pack-dental-floss-sticks-d-shape-tooth-floss-picks-premium-polymer-threads-easy-to-use-durable-portable-flossing": {
+      "folder_name": "75 Pack Dental Floss Sticks D Shape Tooth Floss Picks Premium Polymer Threads Easy to Use, Durable & Portable Flossing",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "80-waterproof-mixed-palsters-washable-first-aid-dressing": {
+      "folder_name": "80 Waterproof Mixed palsters Washable First Aid Dressing.",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "150pk-dental-floss-sticks": {
+      "folder_name": "150pk Dental Floss Sticks",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "a-e-first-aid-travel-kits-15g": {
+      "folder_name": "A&E First AID Travel Kits 15g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "abs-foot-spray-150-ml": {
+      "folder_name": "ABS Foot Spray 150 Ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "abs-shoe-spray-150-ml": {
+      "folder_name": "ABS Shoe Spray 150 Ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "advanced-ceramide-capsules-daily-youth-restoring-serum-60-ud": {
+      "folder_name": "ADVANCED CERAMIDE CAPSULES daily youth restoring serum 60 ud",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-daily-protect-long-pantyliners-pack-of-48-0-fragrances-comfort-with-absorbent-core": {
+      "folder_name": "Always Daily Protect Long Pantyliners, Pack of 48, 0% Fragrances, Comfort with Absorbent Core",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-infinity-flex-protect-long-size-2-sanitary-towels-with-wings-11pk": {
+      "folder_name": "Always Infinity Flex Protect Long Size 2 Sanitary Towels with Wings 11pk",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-infinity-flexprotect-pads-long-size-2-wings-unscented-6x-11-sanitary-towels-up-to-zero-feel-up-to-zero-leaks-thin-and-flexible-protection-always-softest-toplayer": {
+      "folder_name": "Always Infinity FlexProtect Pads Long (Size 2) Wings, Unscented, 6X 11 Sanitary Towels, Up to Zero Feel, Up to Zero Leaks, Thin and Flexible Protection, Always' Softest Toplayer",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-infinity-long-size-2-sanitary-towels-with-wings-11-per-pack-pack-of-2": {
+      "folder_name": "Always Infinity Long (Size 2) Sanitary Towels with Wings, 11 per Pack (Pack of 2)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-infinity-long-size-2-sanitary-towels-with-wings-11-per-pack-pack-of-4": {
+      "folder_name": "Always Infinity Long (Size 2) Sanitary Towels with Wings, 11 per Pack (Pack of 4)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-infinity-long-size-2-sanitary-towels-with-wings-11-per-pack-pack-of-5": {
+      "folder_name": "Always Infinity Long (Size 2) Sanitary Towels with Wings, 11 per Pack (Pack of 5)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-infinity-long-plus-pads-with-wings-x-1": {
+      "folder_name": "Always Infinity Long Plus Pads with Wings x 1",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-maxi-night-pads-with-wings-size-3-pack-of-12-up-to-100-protection-individually-packed": {
+      "folder_name": "Always Maxi Night Pads with Wings (Size 3) Pack of 12 Up to 100% Protection Individually Packed",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-maxi-normal-pads-size-1-pack-of-9-soft-feel-individually-wrapped": {
+      "folder_name": "Always Maxi Normal Pads (Size 1) Pack of 9 Soft Feel Individually Wrapped",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-maxi-normal-pads-with-wings-size-1-pack-of-16-up-to-100-protection-individually-packed": {
+      "folder_name": "Always Maxi Normal Pads with Wings (Size 1) Pack of 16 Up to 100% Protection Individually Packed",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-platinum-night-sanitary-pads-pack-of-22": {
+      "folder_name": "Always Platinum Night Sanitary Pads - Pack of 22",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-ultra-day-night-10-sanitary-napkins-size-3": {
+      "folder_name": "Always Ultra Day & Night 10 Sanitary Napkins Size 3",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "always-ultra-sanitary-pads-women-s-size-3-day-night-28-sanitary-towels-with-wings-giga-pack-thin-and-super-absorbent-odour-neutralising-and-leakage-protection": {
+      "folder_name": "Always Ultra Sanitary Pads Women's Size 3, Day & Night (28 Sanitary Towels with Wings) Giga Pack, Thin and Super Absorbent, Odour-Neutralising and Leakage Protection",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "always-ultra-sanitary-pads-women-s-size-5-secure-night-extra-22-sanitary-towels-with-wings-giga-pack-thin-and-super-absorbent-odour-neutralising-and-leakage-protection": {
+      "folder_name": "Always Ultra Sanitary Pads Women's Size 5, Secure Night Extra (22 Sanitary Towels with Wings) Giga Pack, Thin and Super Absorbent, Odour-Neutralising and Leakage Protection",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "always-ultra-sanitary-towels-size-2-long-x26": {
+      "folder_name": "Always Ultra Sanitary Towels Size 2 Long x26",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "always-ultra-secure-night-extra-sanitary-pads-with-wings-size-5-7-pieces-super-absorbent-and-ultra-thin-odour-neutralising": {
+      "folder_name": "Always Ultra Secure Night Extra Sanitary Pads with Wings (Size 5) 7 Pieces, Super Absorbent and Ultra Thin, Odour Neutralising",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "astonish-foam-fresh-lemon-splash-3-x-48g": {
+      "folder_name": "Astonish Foam & Fresh Lemon Splash 3 x 48g",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "beauty-formula-vitamin-c-brightening-face-serum-30mi": {
+      "folder_name": "Beauty Formula Vitamin C Brightening Face Serum 30MI",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "beauty-formula-vitamin-c-brightening-facial-scrub-150mi": {
+      "folder_name": "Beauty Formula Vitamin C Brightening Facial Scrub 150MI",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "beauty-formulas-glowing-vitamin-c-serum-30ml": {
+      "folder_name": "Beauty Formulas Glowing Vitamin C Serum 30Ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "beauty-formulas-vitamin-c-brightening-facial-tonic": {
+      "folder_name": "BEAUTY FORMULAS Vitamin C BRIGHTENING Facial Tonic",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "beauty-formulas-vitamin-c-moisturiser": {
+      "folder_name": "BEAUTY Formulas Vitamin C MOISTURISER",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "beauty-of-joseon-glow-deep-serum-niacinamide-alpha-arbutin-rice-bran-water-daily-korean-skincare-for-dullness-dark-spots-radiance-and-hydration-30ml-1-01-fl-oz": {
+      "folder_name": "Beauty of Joseon Glow Deep Serum Niacinamide + Alpha Arbutin + Rice Bran Water | Daily Korean Skincare for Dullness, Dark Spots, Radiance, and Hydration, 30ml, 1.01 fl.oz",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "beauty-of-joseon-glow-serum-propolis-niacinamide-daily-korean-skincare-for-smoothing-redness-large-pores-and-hydration-30ml-1-01-fl-oz": {
+      "folder_name": "Beauty of Joseon Glow Serum Propolis + Niacinamide | Daily Korean Skincare for Smoothing, Redness, Large Pores, and Hydration, 30ml, 1.01 fl.oz",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "becodefence-hayfever-and-allergy-nasal-spray-20ml-120-sprays": {
+      "folder_name": "Becodefence Hayfever and Allergy Nasal Spray 20ml, 120 Sprays",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "becodefence-kids-hayfever-and-allergy-nasal-spray-20ml": {
+      "folder_name": "Becodefence Kids Hayfever and Allergy Nasal Spray 20ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "benadryl-allergy-relief-capsules-1-x-12-capsules-antihistamine-tablets-with-acrivastine": {
+      "folder_name": "Benadryl Allergy Relief Capsules (1 x 12 Capsules), Antihistamine Tablets with Acrivastine",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "benylin-chesty-coughs-non-drowsy-1x-150ml-non-drowsy-cough-syrup-for-deep-penetrating-relief-for-mucus-relief-and-reduces-chest-congestion-cough-syrup-soothes-your-cough-fast": {
+      "folder_name": "Benylin Chesty Coughs Non-Drowsy (1x 150ml), Non-Drowsy Cough Syrup for Deep Penetrating Relief, For Mucus Relief and Reduces Chest Congestion, Cough Syrup Soothes Your Cough Fast",
+      "succeeded": 11,
+      "failed": 0
+    },
+    "benylin-childrens-dry-cough-and-sore-throat-syrup-1x-125ml-relieves-sore-throat-cough-medicine-for-children-aged-1-year-suitable-for-day-and-night-use": {
+      "folder_name": "Benylin Children’s Dry Cough and Sore Throat Syrup (1x 125ml), Relieves Sore Throat, Cough Medicine For Children Aged 1 Year +, Suitable for Day and Night Use",
+      "succeeded": 11,
+      "failed": 0
+    },
+    "benylin-cold-flu-max-strength-capsules-16-each": {
+      "folder_name": "Benylin Cold & Flu Max Strength Capsules, 16 each",
+      "succeeded": 12,
+      "failed": 0
+    },
+    "benylin-dry-and-tickly-cough-syrup-1x-150ml-cough-medicine-for-adults-and-children-glycerol-and-sucrose-soothing-syrup-relieves-irritated-and-sore-throat": {
+      "folder_name": "Benylin Dry and Tickly Cough Syrup (1x 150ml), Cough Medicine for Adults and Children, Glycerol and Sucrose Soothing Syrup Relieves Irritated and Sore Throat",
+      "succeeded": 13,
+      "failed": 0
+    },
+    "benylin-herbal-chesty-coughs-sugar-free-syrup-100-ml-non-drowsy-herbal-cough-medicine-with-naturally-derived-ivy-leaf-dry-extract": {
+      "folder_name": "BENYLIN Herbal Chesty Coughs Sugar Free Syrup.100 ml, Non-Drowsy Herbal Cough Medicine, with Naturally Derived Ivy Leaf Dry Extract",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "benylin-herbal-cough-cold-sugar-free-syrup-1x-100ml-traditional-herbal-medicine-with-pelargonium-root-dry-extract-to-relieve-runny-and-blocked-noses-coughs-and-sore-throats": {
+      "folder_name": "BENYLIN® Herbal Cough & Cold Sugar Free Syrup (1x 100ml), Traditional Herbal Medicine, with Pelargonium Root Dry Extract to Relieve Runny and Blocked Noses, Coughs and Sore Throats",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "bepanthen-nappy-care-ointment-nappy-cream-with-provitamin-b5-suitable-for-newborns-skin-100-g-packing-may-vary": {
+      "folder_name": "Bepanthen Nappy Care Ointment | Nappy Cream with Provitamin B5 | Suitable for Newborns Skin, 100 g (Packing May Vary).",
+      "succeeded": 14,
+      "failed": 0
+    },
+    "bepanthen-tattoo-intense-care-ointment-formulated-with-provitamin-b5-50g": {
+      "folder_name": "Bepanthen Tattoo Intense Care Ointment, Formulated with Provitamin B5, 50g",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "berocca-mind-effervescent-tablets-including-b-vitamins-with-spanish-sage-to-support-memory-and-mental-performance-15-tablets-citrus-flavour": {
+      "folder_name": "Berocca Mind Effervescent Tablets Including B Vitamins, with Spanish Sage to Support Memory and Mental Performance - 15 Tablets - Citrus Flavour",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "bic-miss-sun-escape-maq-3-u": {
+      "folder_name": "Bic Miss Sun Escape Maq+3 U",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bodyform-ultra-goodnight-long": {
+      "folder_name": "BODYFORM - Ultra Goodnight Long",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bodyform-ultra-normal": {
+      "folder_name": "BODYFORM - ULTRA NORMAL",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bodyform-dailies-extra-long-panty-liners": {
+      "folder_name": "BODYFORM Dailies Extra Long Panty Liners",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bodyform-maxi-long-sanitary-towels-1-49-10-s-0-vat-pack-of-1": {
+      "folder_name": "BODYFORM Maxi Long Sanitary Towels £1.49 10'S (0% VAT), (Pack of 1)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bodyform-maxi-normal-sanitary-towels-12-s": {
+      "folder_name": "BODYFORM Maxi Normal Sanitary Towels 12'S",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "bonjela-junior-gel-15-g-packaging-may-vary": {
+      "folder_name": "Bonjela Junior Gel, 15 g, Packaging May Vary",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "bubble-t-cosmetics-jasmine-tea-bath-salts-1kg-relaxing-mineral-soak": {
+      "folder_name": "Bubble T Cosmetics Jasmine Tea Bath Salts, 1kg, Relaxing Mineral Soak",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "care-protect-discreet-incontinence-pads-for-women-4x-diamond-protection-dry-secure-odour-control-absorbent-core-anti-leakage-extra-plus-pack-of-8": {
+      "folder_name": "Care & Protect Discreet Incontinence Pads for Women - 4X Diamond Protection, Dry, Secure, Odour Control, Absorbent Core & Anti-Leakage - Extra Plus (Pack of 8)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "care-protect-discreet-incontinence-pads-for-women-4x-diamond-protection-dry-secure-odour-control-absorbent-core-anti-leakage-regular-pack-of-12": {
+      "folder_name": "Care & Protect Discreet Incontinence Pads for Women - 4X Diamond Protection, Dry, Secure, Odour Control, Absorbent Core & Anti-Leakage - Regular (Pack of 12)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "carefree-cotton-feel-normal-sanitary-napkins-56-pcs": {
+      "folder_name": "Carefree Cotton Feel Normal Sanitary Napkins, 56 pcs.",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "2-x-piz-buin-allergy-sun-sensitive-skin-lotion-spf30-200ml": {
+      "folder_name": "2 x Piz Buin Allergy Sun Sensitive Skin Lotion SPF30-200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-x-piz-buin-tan-protect-accelerating-oil-spray-spf15-150ml": {
+      "folder_name": "2 x Piz Buin Tan & Protect Accelerating Oil Spray SPF15-150ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-piz-buin-allergy-sun-sensitive-skin-lotion-spf30-200ml": {
+      "folder_name": "3 x Piz Buin Allergy Sun Sensitive Skin Lotion SPF30-200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-piz-buin-tan-protect-accelerating-oil-spray-spf15-150ml": {
+      "folder_name": "3 x Piz Buin Tan & Protect Accelerating Oil Spray SPF15-150ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "ambre-solaire-aftersun-spray": {
+      "folder_name": "AMBRE SOLAIRE - AFTERSUN SPRAY",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "ambre-solaire-kids-milk-spray-spf-50-150ml": {
+      "folder_name": "Ambre Solaire Kids Milk Spray SPF 50 150ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-of-joseon-matte-sun-stick-mugwort-camelia-18g-0-63fl-oz": {
+      "folder_name": "Beauty of Joseon Matte sun stick : Mugwort+Camelia(18g, 0.63fl.oz)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "beauty-of-joseon-relief-sun-rice-probiotics-spf-50-pa-50ml": {
+      "folder_name": "Beauty of Joseon Relief Sun : Rice + Probiotics SPF 50+ PA++++ 50ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bondi-sands-self-tanning-foam-light-medium-100-ml-self-tanning-mousse-for-body": {
+      "folder_name": "Bondi Sands Self Tanning Foam Light Medium 100 ml Self Tanning Mousse for Body",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "bondi-sands-technocolor-1-hour-express-caramel-self-tanning-foam-easy-application-streak-free-fake-tan-fast-acting-body-tan-for-natural-looking-glow-200ml": {
+      "folder_name": "Bondi Sands Technocolor 1-Hour Express Caramel Self-Tanning Foam Easy Application, Streak Free Fake Tan - Fast-Acting Body Tan for Natural-Looking Glow (200ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "byrokko-shine-brown-beta-carotene-tanning-accelerator-cream-fast-sunbed-outdoor-tan-enhancer-for-deep-bronze-glow-hydrating-with-natural-carrot-oil-vitamin-e-water-resistant-210-ml": {
+      "folder_name": "BYROKKO Shine Brown Beta Carotene Tanning Accelerator Cream - Fast Sunbed & Outdoor Tan Enhancer for Deep Bronze Glow - Hydrating with Natural Carrot Oil & Vitamin E - Water-Resistant, 210 ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "byrokko-shine-brown-tanning-oil-150-ml-xxl-sunbed-tanning-accelerator-for-outdoor-sun-or-indoor-tanning-bed-lotion-fast-bronzer-with-premium-natural-ingredients-for-deep-long-lasting-glow": {
+      "folder_name": "BYROKKO Shine Brown Tanning Oil (150 ml), XXL Sunbed Tanning Accelerator for Outdoor Sun or Indoor Tanning Bed Lotion, Fast Bronzer with Premium Natural Ingredients for Deep, Long-Lasting Glow",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "carmex-lip-balm-tube-set-strawberry-cherry-spf-15-protection-soothes-and-repairs-dry-cracked-lips-intensely-hydrating-flavoured-summer-lip-care-formula-set-of-2": {
+      "folder_name": "Carmex Lip Balm Tube Set | Strawberry & Cherry | SPF 15 Protection | Soothes and Repairs Dry, Cracked Lips | Intensely Hydrating Flavoured Summer Lip Care Formula (Set of 2)",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "cerave-am-spf-face-moisturiser-with-spf-50-for-normal-to-dry-skin-52ml": {
+      "folder_name": "CeraVe AM SPF Face Moisturiser with SPF 50 for Normal to Dry Skin, 52ml",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "clinique-moisture-surge-spf-25-sheer-hydrator-face-moisturiser-50-ml-with-hyaluronic-acid-aloe-vera-bioferment-provitamin-d-hydrating-glowing-safe-for-sensitive-skin": {
+      "folder_name": "Clinique Moisture Surge SPF 25 Sheer Hydrator Face Moisturiser, 50 ml. With Hyaluronic Acid + Aloe Vera Bioferment + Provitamin D, Hydrating + Glowing, Safe For Sensitive Skin",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "clinique-take-the-day-off-cleansing-balm-makeup-remover-dissolves-makeup-sunscreen-125-ml": {
+      "folder_name": "Clinique Take The Day Off Cleansing Balm Makeup Remover | Dissolves Makeup + Sunscreen, 125 ml.",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "coco-eve-sunny-honey-back-tan-applicator": {
+      "folder_name": "Coco & Eve Sunny Honey Back Tan Applicator",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "coco-eve-sunny-honey-bali-bronzing-deluxe-vegan-kabuki-self-tanner-brush": {
+      "folder_name": "Coco & Eve Sunny Honey Bali Bronzing Deluxe Vegan Kabuki Self Tanner Brush",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "collection-cosmetics-filter-finish-primer-illuminator-spf-30-fair-30ml": {
+      "folder_name": "Collection Cosmetics Filter Finish Primer & Illuminator-SPF 30- Fair- 30ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "collection-cosmetics-lasting-perfection-matte-foundation-full-coverage-anti-ageing-effect-24-hour-wear-spf-30-contains-niacinamide-27ml-beige-neutral": {
+      "folder_name": "Collection Cosmetics Lasting Perfection Matte Foundation, Full Coverage, Anti-Ageing Effect, 24 Hour Wear, SPF 30, Contains Niacinamide, 27ml, Beige Neutral",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "2-pack-lynx-africa-anti-perspirant-dry-48h-2-x-150ml": {
+      "folder_name": "(2 PACK)Lynx AFRICA Anti Perspirant DRY 48h (2 x 150ml)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-pack-right-guard-total-defence-5-clean-48h-anitperspirant-deodorant-x-250ml-despatched-within-double-wall-box": {
+      "folder_name": "(3 Pack) Right Guard Total Defence 5 Clean 48h Anitperspirant Deodorant x 250ml **Despatched Within Double Wall Box**",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-pack-toni-guy-men-2-in-1-anti-dandruff-shampoo-conditioner-2-x-250ml-toni-guy-men-deep-clean-shampoo-x-250ml": {
+      "folder_name": "(3 PACK) Toni & Guy Men 2 in 1 Anti Dandruff Shampoo & Conditioner 2 x 250ml & Toni & Guy Men Deep Clean Shampoo x 250ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "4-pack-right-guard-total-defence-5-clean-48h-anitperspirant-deodorant-x-250ml-despatched-within-double-wall-box": {
+      "folder_name": "(4 Pack) Right Guard Total Defence 5 Clean 48h Anitperspirant Deodorant x 250ml **Despatched Within Double Wall Box**",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-anti-yellow-cleanfudge-clean-blonde-violet-toning-shampoo-250-ml": {
+      "folder_name": "2 Anti Yellow CleanFudge Clean Blonde Violet Toning Shampoo 250 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-pack-anti-mosquito-insect-repellent-wipes-long-lasting-protection-50-wipes": {
+      "folder_name": "2 Pack Anti-Mosquito & Insect Repellent Wipes Long Lasting Protection 50 Wipes",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "2-pack-denture-toothbrushes-for-cleaning-care-soft-bristles-ergonomic-handle-ideal-for-dentures-partials": {
+      "folder_name": "2-Pack Denture Toothbrushes for Cleaning & Care – Soft Bristles, Ergonomic Handle, Ideal for Dentures & Partials",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-colgate-extra-clean-medium-tooth-brush": {
+      "folder_name": "3 colgate EXTRA CLEAN medium tooth brush",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-adidas-pre-sleep-calm-shower-gel-with-lavender-essential-oil-250-ml-each": {
+      "folder_name": "3 x adidas Pre-Sleep Calm Shower Gel with Lavender Essential Oil 250 ml Each",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3-x-old-spice-wolfthorn-after-shave-lotion-100-ml-shaving-water-for-man": {
+      "folder_name": "3 x Old Spice Wolfthorn After Shave Lotion 100 ml Shaving Water For Man",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3x-head-shoulders-cool-menthol-anti-dandruff-shampoo-400-ml": {
+      "folder_name": "3x Head & Shoulders: cool menthol, anti-dandruff shampoo 400 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "3x-umbro-energy-body-wash-400ml-with-a-free-fridge-magnet": {
+      "folder_name": "3x Umbro Energy Body Wash - 400ml - (With A Free Fridge Magnet)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "6-x-alpecin-caffeine-shampoo-250ml": {
+      "folder_name": "6 x Alpecin Caffeine Shampoo 250ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "6-x-gillette-series-shave-gel-conditioning-200ml": {
+      "folder_name": "6 x Gillette Series Shave Gel Conditioning 200ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "6-x-gillette-shaving-foam-regular": {
+      "folder_name": "6 x GILLETTE shaving foam regular",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "6-x-gillette-simply-venus-3-plus-disposable-razor-x4": {
+      "folder_name": "6 x Gillette® Simply Venus® 3 Plus Disposable Razor x4",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "10-x-gillette-fusion-power-4-cartridges": {
+      "folder_name": "10 x Gillette Fusion Power 4 Cartridges",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "10-x-where-liquid-soap-fresh-touch-refill-500-ml": {
+      "folder_name": "10 x WHERE Liquid Soap Fresh Touch Refill 500 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-pack-aqua-clean-baby-wet-wipes-72-wipes-99-water-100-biodegradable-plastic-free": {
+      "folder_name": "12 Pack Aqua Clean Baby Wet Wipes (72 Wipes) 99% Water 100% Biodegradable Plastic Free",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-x-colgate-zig-zag-medium": {
+      "folder_name": "12 x Colgate Zig Zag Medium",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12-x-eucryl-toothpowder-freshmint-flavour-50g": {
+      "folder_name": "12 x Eucryl Toothpowder Freshmint Flavour 50g",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "12x-dove-go-fresh-deo-deodorant-spray-with-pomegranate-250l-48h": {
+      "folder_name": "12x Dove Go Fresh Deo Deodorant Spray with Pomegranate 250l 48h!",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "40-x-bic-1-sensitive-shaver-pack-5": {
+      "folder_name": "40 x BIC 1 Sensitive Shaver Pack 5",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "80-shave-bic-three-bic-pure-3-lady-women-usa-blades-shaver-razor-blades-and-gette": {
+      "folder_name": "80 Shave Bic Three Bic Pure 3 Lady Women USA BLADES Shaver Razor Blades and GETTE",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "absolute-ice-coolmint-mouthwash-500-ml": {
+      "folder_name": "Absolute - Ice Coolmint mouthwash - 500 ML",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "absolute-ice-freshmint-mouthwash-500-ml": {
+      "folder_name": "Absolute - Ice Freshmint mouthwash - 500 Ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "absolute-ice-whitening-mouthwash-500-ml": {
+      "folder_name": "Absolute - Ice Whitening mouthwash - 500 ML",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "absolute-bamboo-kids-toothbrush-soft-bristles-sustainable-biodegradable-aqua": {
+      "folder_name": "Absolute Bamboo Kids Toothbrush Soft Bristles Sustainable Biodegradable (Aqua)",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-active-skin-mind-energy-deodorant-spray-for-men-and-women-24-hours-of-protection-100-ml-unisex": {
+      "folder_name": "Adidas Active Skin & Mind, Energy Deodorant Spray for Men and Women 24 Hours of Protection, 100 ml - Unisex",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-deep-care-shower-gel-refill-nourishing-moisturising-complex-400ml": {
+      "folder_name": "adidas Deep Care Shower Gel Refill Nourishing Moisturising Complex 400ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-energy-kick-roll-on-deodorant-for-her-with-mandarin-oil-and-24-hour-freshness-with-skin-friendly-formula-50-ml": {
+      "folder_name": "adidas Energy Kick Roll-On Deodorant for Her, with Mandarin Oil and 24 Hour Freshness with Skin-Friendly Formula, 50 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-engergy-kick-refill-shower-gel-women-400-ml": {
+      "folder_name": "Adidas Engergy Kick Refill Shower Gel Women 400 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-instant-cool-roll-on-deodorant-for-her-with-mint-oil-and-24-hour-freshness-with-skin-friendly-formula-50-ml": {
+      "folder_name": "adidas Instant Cool Roll-On Deodorant for Her, with Mint Oil and 24 Hour Freshness with Skin-Friendly Formula, 50 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "adidas-pure-fresh-roll-on-deodorant-for-her-with-eucalyptus-oil-and-24-hour-freshness-with-skin-friendly-formula-50-ml": {
+      "folder_name": "adidas Pure Fresh Roll-On Deodorant for Her, with Eucalyptus Oil and 24 Hour Freshness with Skin-Friendly Formula, 50 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-coconut-lychee-hair-conditioner-300ml": {
+      "folder_name": "Alberto Balsam Coconut & Lychee Hair Conditioner, 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-coconut-lychee-nourishing-hair-shampoo-300ml": {
+      "folder_name": "Alberto Balsam Coconut & Lychee Nourishing Hair Shampoo, 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-mint-conditioner-300ml": {
+      "folder_name": "Alberto Balsam Mint Conditioner 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-balsam-mint-shampoo-300ml": {
+      "folder_name": "Alberto Balsam Mint Shampoo 300ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-vo5-give-me-moisture-conditioner-250ml": {
+      "folder_name": "Alberto VO5 Give Me Moisture Conditioner 250ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alberto-vo5-give-me-moisture-shampoo-infused-with-5-vital-oils-for-all-hair-types-and-colours-250ml": {
+      "folder_name": "Alberto VO5 Give Me Moisture Shampoo Infused with 5 Vital Oils for All Hair Types and Colours, 250ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-lisse-design-kt-deep-cl-shampoo-500ml": {
+      "folder_name": "ALFAPARF Lisse Design KT DEEP CL Shampoo 500ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-keratin-therapy-lisse-design-rehydrating-mask-200ml-rehydrating-mask": {
+      "folder_name": "Alfaparf Milano Keratin Therapy Lisse Design Rehydrating Mask 200ml - rehydrating mask",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-brunette-intense-anti-orange-low-shampoo-1000ml-intense-anti-orange-mild-shampoo": {
+      "folder_name": "Alfaparf Milano Semi di Lino Brunette Intense Anti-Orange Low Shampoo 1000ml - intense anti-orange mild shampoo",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-curls-enhancing-mask-for-wavy-and-curly-hair-reduces-frizz-protects-against-humidity-and-nourishes-hair-16-89-oz": {
+      "folder_name": "Alfaparf Milano Semi di Lino Curls Enhancing Mask - for Wavy and Curly Hair - Reduces Frizz, Protects Against Humidity, and Nourishes Hair - 16.89 oz",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-diamond-illuminating-low-shampoo-250-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Diamond Illuminating Low Shampoo, 250 ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-diamond-illuminating-mask-500-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Diamond Illuminating Mask, 500 ml",
+      "succeeded": 11,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-moisture-nutritive-detangling-fluid-125ml-no-rinse-detangling-fluid": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Moisture Nutritive Detangling Fluid 125ml - no-rinse detangling fluid",
+      "succeeded": 10,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-reconstruction-reparative-mask-500ml-maschera-ristrutturante-capelli-da-medi-a-spessi": {
+      "folder_name": "Alfaparf Milano Semi di Lino Reconstruction Reparative Mask 500ml - maschera ristrutturante capelli da medi a spessi",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-scalp-rebalance-balancing-low-shampoo-250-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Scalp Rebalance Balancing Low Shampoo, 250 ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-scalp-rebalance-purifying-low-shampoo-250-ml-8022297095899": {
+      "folder_name": "Alfaparf Milano Semi di Lino Scalp Rebalance Purifying Low Shampoo, 250 ml, 8022297095899",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-scalp-relief-calming-micellar-low-shampoo-250-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Scalp Relief Calming Micellar Low Shampoo, 250 ml",
+      "succeeded": 13,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-scalp-renew-energizing-low-shampoo-250-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Scalp Renew Energizing Low Shampoo, 250 ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-style-care-texturizing-dry-shampoo-300ml-shampoo-secco-texturizzante": {
+      "folder_name": "Alfaparf Milano Semi Di Lino Style&Care Texturizing Dry Shampoo 300ml - shampoo secco texturizzante",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-sublime-detoxifying-mud-500-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Sublime Detoxifying Mud, 500 ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-volume-volumizing-low-shampoo-250-ml-8022297104362": {
+      "folder_name": "Alfaparf Milano Semi di Lino Volume Volumizing Low Shampoo, 250 ml, 8022297104362",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "alfaparf-milano-semi-di-lino-volume-volumizing-mousse-conditioner-200-ml": {
+      "folder_name": "Alfaparf Milano Semi di Lino Volume Volumizing Mousse Conditioner, 200 ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "alfaparf-semi-di-lino-curls-enhancing-mask-200ml": {
+      "folder_name": "Alfaparf Semi di Lino Curls Enhancing Mask 200ml",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "alfaparf-semi-di-lino-curls-hydrating-co-wash-200ml": {
+      "folder_name": "Alfaparf Semi di LIno Curls Hydrating Co-Wash 200ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "alfaparf-semi-di-lino-smoothing-delicate-smoothing-shampoo-1000-ml-unruly-hair": {
+      "folder_name": "Alfaparf Semi di Lino Smoothing Delicate Smoothing Shampoo 1000 ml - Unruly Hair",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "alfaparf-semi-di-lino-smoothing-smoothing-mask-200-ml-unruly-hair": {
+      "folder_name": "Alfaparf Semi di Lino Smoothing Smoothing Mask 200 ml - Unruly Hair",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "all-soft-mega-curls-shampoo-1000-ml": {
+      "folder_name": "All Soft MEGA Curls Shampoo 1000 ml",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "alpecin-caffeine-shampoo-sport-250ml": {
+      "folder_name": "Alpecin Caffeine Shampoo Sport 250ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "alpecin-hybrid-shampoo-250ml-natural-hair-growth-shampoo-for-sensitive-and-dry-scalps-energizer-for-strong-hair-hair-care-for-men-made-in-germany": {
+      "folder_name": "Alpecin Hybrid Shampoo 250ml | Natural Hair Growth Shampoo for Sensitive and Dry Scalps | Energizer for Strong Hair | Hair Care for Men Made in Germany",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "andrex-classic-clean-washlets-moist-toilet-tissue-plastic-free-biodegradable": {
+      "folder_name": "Andrex Classic Clean Washlets Moist Toilet Tissue, Plastic Free & Biodegradable",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "animology-dapper-dog-deodorising-shampoo-250ml-tutti-frutti": {
+      "folder_name": "Animology Dapper Dog Deodorising Shampoo 250ml - Tutti Frutti",
+      "succeeded": 4,
+      "failed": 0
+    },
+    "animology-essentials-honey-shea-deodorising-dog-shampoo-250ml": {
+      "folder_name": "Animology Essentials Honey & Shea Deodorising Dog Shampoo 250ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "animology-essentials-olive-walnut-deodorising-dog-shampoo-250ml": {
+      "folder_name": "Animology Essentials Olive & Walnut Deodorising Dog Shampoo 250ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "animology-essentials-olive-and-walnut-dog-shampoo-500ml-gentle-daily-cleanser-with-conditioner-for-all-breeds": {
+      "folder_name": "Animology Essentials Olive and Walnut Dog Shampoo 500ml, Gentle Daily Cleanser with Conditioner for All Breeds",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "animology-essentials-tutti-frutti-dog-shampoo-500ml-fruity-scented-gentle-cleanser-with-conditioner": {
+      "folder_name": "Animology Essentials Tutti Frutti Dog Shampoo 500ml, Fruity Scented, Gentle Cleanser with Conditioner",
+      "succeeded": 3,
+      "failed": 0
+    },
+    "aquafresh-active-fresh-toothpaste-100ml-long-lasting-fresh-breath-daily-oral-care-protection": {
+      "folder_name": "Aquafresh Active Fresh Toothpaste 100ml – Long-Lasting Fresh Breath & Daily Oral Care Protection",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "aquafresh-fresh-minty-fluoride-toothpaste-triple-protection-rebuilds-enamel-strength-helps-protect-gums-and-refreshes-breath-100ml": {
+      "folder_name": "Aquafresh Fresh & Minty Fluoride Toothpaste, Triple Protection, Rebuilds Enamel Strength, Helps Protect Gums* and Refreshes Breath, 100ml",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "aquafresh-milk-teeth-0-2-years-toothpaste-bundle-with-extra-soft-toothbrush-0-3-years": {
+      "folder_name": "Aquafresh Milk Teeth 0-2 Years Toothpaste Bundle with Extra Soft Toothbrush 0-3 Years",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "argan-oil-moroccan-argan-oil-extract-conditioner-300ml": {
+      "folder_name": "Argan Oil - Moroccan Argan Oil Extract Conditioner - 300ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "argan-oil-shampoo-300ml": {
+      "folder_name": "Argan Oil - Shampoo - 300ml",
+      "succeeded": 2,
+      "failed": 0
+    },
+    "asevi-colonia-concentrated-fabric-conditioner-intense-freshness-liquid-1-litre-60-washes-per-bottle-3-pack": {
+      "folder_name": "Asevi Colonia Concentrated Fabric Conditioner, Intense Freshness, Liquid, 1 Litre, 60 Washes Per Bottle, 3 Pack",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "asevi-laundry-detergent-washing-liquid-detergent-laundry-cleanser-2376-ml-44-washes-marseille-soap": {
+      "folder_name": "Asevi Laundry Detergent, Washing Liquid Detergent, Laundry Cleanser, 2376 ml, 44 Washes, Marseille Soap",
+      "succeeded": 6,
+      "failed": 0
+    },
+    "asevi-sensations-fabric-conditioner-laundry-conditioner-liquid-fabric-conditioner-1320ml-60-washes-dreams": {
+      "folder_name": "Asevi Sensations Fabric Conditioner, Laundry Conditioner, Liquid Fabric Conditioner, 1320ml, 60 Washes, Dreams",
+      "succeeded": 8,
+      "failed": 0
+    },
+    "asevi-sensations-fabric-conditioner-laundry-conditioner-liquid-fabric-conditioner-1320ml-60-washes-passion": {
+      "folder_name": "Asevi Sensations Fabric Conditioner, Laundry Conditioner, Liquid Fabric Conditioner, 1320ML, 60 Washes, Passion",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "asevi-sensations-fabric-conditioner-laundry-conditioner-liquid-fabric-conditioner-1320ml-60-washes-zen": {
+      "folder_name": "Asevi Sensations Fabric Conditioner, Laundry Conditioner, Liquid Fabric Conditioner, 1320ML, 60 Washes, Zen",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "asevi-sensations-laundry-conditioner-concentrated-liquid-fabric-softener-energy-1320ml-60-washes": {
+      "folder_name": "Asevi Sensations Laundry Conditioner, Concentrated Liquid Fabric Softener, Energy, 1320ML, 60 Washes",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "astonish-anti-bacterial-handwash-protect-care-soothing-moisturiser-with-vitamin-e-600ml": {
+      "folder_name": "Astonish Anti-Bacterial Handwash Protect & Care Soothing Moisturiser with Vitamin E 600ml",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "astonish-apple-fresh-conditioner-with-argan-oil-375ml-green": {
+      "folder_name": "Astonish Apple Fresh Conditioner with Argan Oil, 375ml, Green",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "astonish-berry-burst-conditioner-375ml": {
+      "folder_name": "Astonish Berry Burst Conditioner 375ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "astonish-coconut-bliss-conditioner-with-argan-oil-375ml": {
+      "folder_name": "Astonish Coconut Bliss Conditioner with Argan Oil, 375ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "astonish-foam-fresh-ocean-3pk": {
+      "folder_name": "Astonish Foam & Fresh Ocean 3pk",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "astonish-hair-shampoo-berry-400ml": {
+      "folder_name": "Astonish Hair Shampoo Berry 400ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "astonish-hand-wash-limited-edition-600ml": {
+      "folder_name": "Astonish Hand Wash Limited Edition 600ml",
+      "succeeded": 1,
+      "failed": 0
+    },
+    "astonish-protect-and-care-kind-to-skin-moisturising-anti-bacterial-hand-wash-soap-600ml-milk-and-honey": {
+      "folder_name": "Astonish Protect and Care Kind to Skin Moisturising Anti-Bacterial Hand Wash Soap, 600ml, Milk and Honey",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "astonish-protect-and-care-kind-to-skin-moisturising-anti-bacterial-hand-wash-soap-600ml-original": {
+      "folder_name": "Astonish Protect and Care Kind to Skin Moisturising Anti-Bacterial Hand Wash Soap, 600ml, Original",
+      "succeeded": 7,
+      "failed": 0
+    },
+    "astonish-protect-and-care-kind-to-skin-moisturising-anti-bacterial-hand-wash-soap-peony-bloom-600ml": {
+      "folder_name": "Astonish Protect and Care Kind to Skin Moisturising Anti-Bacterial Hand Wash Soap, Peony Bloom, 600ml",
+      "succeeded": 5,
+      "failed": 0
+    },
+    "astonish-shower-creme-cosy-cashmere-cleanses-and-moisturises-jasmine-and-ylang-ylang-scented-400ml": {
+      "folder_name": "Astonish Shower Crème, Cosy Cashmere, Cleanses and Moisturises, Jasmine and Ylang Ylang Scented, 400ml",
+      "succeeded": 9,
+      "failed": 0
+    },
+    "astonish-shower-creme-exotic-coconut-cleanses-and-moisturises-coconut-bamboo-and-melon-scented-400ml": {
+      "folder_name": "Astonish Shower Crème, Exotic Coconut, Cleanses and Moisturises, Coconut, Bamboo and Melon Scented, 400ml",
+      "succeeded": 0,
+      "failed": 0
+    },
+    "astonish-shower-creme-silky-rose-cleanses-and-moisturises-rose-peony-and-magnolia-scented-400ml": {
+      "folder_name": "Astonish Shower Crème, Silky Rose, Cleanses and Moisturises, Rose, Peony and Magnolia Scented, 400ml",
+      "succeeded": 0,
+      "failed": 0
+    }
+  },
+  "failures": [],
+  "manifest_path": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/new-250-image-manifest.dry-run.json",
+  "manifest_csv_path": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/new-250-image-manifest.dry-run.csv",
+  "exclude_manifest_path": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/image-import-manifest.json",
+  "excluded_existing_images": 0,
+  "include_folder_slugs_path": "/Users/sherazkhalid/Documents/Apps/savzix-store/data/new-250-accepted-folder-slugs.json",
+  "excluded_unselected_images": 1176
+}

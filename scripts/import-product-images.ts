@@ -18,6 +18,8 @@ type CliOptions = {
   manifestPath: string;
   summaryPath: string;
   csvPath: string;
+  excludeManifestPath: string | null;
+  includeFolderSlugsPath: string | null;
 };
 
 type DiscoveryStats = {
@@ -89,6 +91,10 @@ type SummaryRow = {
   failures: FailureRow[];
   manifest_path: string;
   manifest_csv_path: string;
+  exclude_manifest_path: string | null;
+  excluded_existing_images: number;
+  include_folder_slugs_path: string | null;
+  excluded_unselected_images: number;
 };
 
 const DEFAULT_SOURCE =
@@ -156,6 +162,8 @@ function parseArgs(argv: string[]): CliOptions {
     manifestPath: path.join(process.cwd(), "data", "image-import-manifest.json"),
     summaryPath: path.join(process.cwd(), "data", "image-import-summary.json"),
     csvPath: path.join(process.cwd(), "data", "image-import-manifest.csv"),
+    excludeManifestPath: null,
+    includeFolderSlugsPath: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -209,6 +217,14 @@ function parseArgs(argv: string[]): CliOptions {
       case "--csv-path":
         index += 1;
         options.csvPath = normalizePath(argv[index] ?? "");
+        break;
+      case "--exclude-manifest":
+        index += 1;
+        options.excludeManifestPath = normalizePath(argv[index] ?? "");
+        break;
+      case "--include-folder-slugs":
+        index += 1;
+        options.includeFolderSlugsPath = normalizePath(argv[index] ?? "");
         break;
       default:
         if (!arg.startsWith("--")) {
@@ -500,11 +516,45 @@ async function main() {
   const folders = await listProductFolders(sourceRoot);
   const sourceImages: SourceImage[] = [];
   const pathSet = new Set<string>();
+  const excludedSourcePaths = new Set<string>();
+  let includedFolderSlugs: Set<string> | null = null;
+
+  if (options.excludeManifestPath) {
+    await fs.access(options.excludeManifestPath);
+    const excludedManifest = JSON.parse(
+      await fs.readFile(options.excludeManifestPath, "utf8"),
+    ) as Array<Pick<ManifestRow, "source_path">>;
+    for (const row of excludedManifest) {
+      if (row.source_path) {
+        excludedSourcePaths.add(path.normalize(row.source_path));
+      }
+    }
+  }
+  if (options.includeFolderSlugsPath) {
+    await fs.access(options.includeFolderSlugsPath);
+    const parsed = JSON.parse(
+      await fs.readFile(options.includeFolderSlugsPath, "utf8"),
+    ) as unknown;
+    if (!Array.isArray(parsed) || parsed.some((value) => typeof value !== "string")) {
+      throw new Error("include-folder-slugs must be a JSON array of folder slugs.");
+    }
+    includedFolderSlugs = new Set(parsed);
+  }
+  let excludedExistingImages = 0;
+  let excludedUnselectedImages = 0;
 
   for (const folder of folders) {
+    if (includedFolderSlugs && !includedFolderSlugs.has(folder.folderSlug)) {
+      excludedUnselectedImages += (await collectImageFiles(folder.folderPath, discoveryStats)).length;
+      continue;
+    }
     const files = await collectImageFiles(folder.folderPath, discoveryStats);
 
     for (const [index, filePath] of files.entries()) {
+      if (excludedSourcePaths.has(path.normalize(filePath))) {
+        excludedExistingImages += 1;
+        continue;
+      }
       const sequence = toSequence(index);
       const storagePath = `${options.prefix}/${folder.categorySlug}/${folder.folderSlug}/${folder.folderSlug}-${sequence}.webp`;
 
@@ -620,6 +670,10 @@ async function main() {
     failures,
     manifest_path: options.manifestPath,
     manifest_csv_path: options.csvPath,
+    exclude_manifest_path: options.excludeManifestPath,
+    excluded_existing_images: excludedExistingImages,
+    include_folder_slugs_path: options.includeFolderSlugsPath,
+    excluded_unselected_images: excludedUnselectedImages,
   };
 
   await fs.writeFile(
