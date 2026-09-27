@@ -6,6 +6,12 @@
 
 ## Completed
 
+- Balanced shared footer columns with equal outer edges and even desktop spacing, preserving the existing left-aligned content.
+- Added a quantity selector to every available product page, allowing shoppers to add their selected number of units to the basket in one action.
+- Corrected the Frequently Bought Together tablet grid so four products render as a complete 2 × 2 layout before switching to four columns on desktop.
+- Added Frequently Bought Together to every product page, showing up to four other active, in-stock products from the current product's category with the existing Add to basket controls.
+- Removed trailing verified EAN barcodes from the two affected Alfaparf product titles while preserving their existing URLs, barcode data, prices, stock, status, images, and category assignments.
+- Deployed SAVZIX commit `0389774` to Hostinger and verified HTTP 200 responses for the live homepage and an Ingredients-enabled product page without changing production environment variables or catalogue data.
 - Backfilled 253 source-supplied ingredient lists using exact EAN matches only, preserving the existing Giorgio Armani Sì ingredient list and holding 65 unresolved source records for review.
 - Replaced the duplicated lower Product Information area with a verified Ingredients section, retaining EAN and delivery details and leaving products without verified ingredients blank.
 - Updated `$savzix-catalogue-import` to cover the approved path through Supabase upload, product creation, barcode and taxonomy writes, and public SAVZIX product-page verification.

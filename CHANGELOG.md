@@ -2,6 +2,48 @@
 
 ## 2026-09-27
 
+- Task: Balance shared footer spacing.
+- Files changed: `src/components/layout/Footer.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Changed the desktop footer grid to intrinsic-width columns distributed with equal left and right edges. Content remains left-aligned and the responsive one- and two-column layouts are unchanged.
+- Validation/tests: `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy storefront enhancements when requested.
+
+## 2026-09-27
+
+- Task: Add a quantity selector to product pages.
+- Files changed: `src/components/products/AddToCartButton.tsx`, `src/context/CartContext.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added accessible minus and plus controls to the shared product-detail purchase action. The selector is capped at the product's available stock and passes the chosen quantity to the basket in one action.
+- Validation/tests: `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy storefront enhancements when requested.
+
+## 2026-09-27
+
+- Task: Balance the tablet Frequently Bought Together product grid.
+- Files changed: `src/components/products/FrequentlyBoughtTogether.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Removed the tablet three-column breakpoint so four recommendations render as a complete 2 × 2 grid on tablet and remain four columns at desktop.
+- Validation/tests: `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy storefront enhancements when requested.
+
+## 2026-09-27
+
+- Task: Add Frequently Bought Together recommendations to product pages.
+- Files changed: `src/app/products/[id]/page.tsx`, `src/components/products/FrequentlyBoughtTogether.tsx`, `src/lib/products-store.ts`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a reusable product-detail recommendation section that displays up to four different Active, in-stock products from the viewed item's category. It reuses the established product card, product links, price formatting, image treatment, and Add to basket control.
+- Validation/tests: Local product-page HTML confirmed the section and four accompanying recommendation cards render below the product details without including the viewed item. `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy this storefront enhancement when requested.
+
+- Task: Remove verified barcode suffixes from catalogue product titles.
+- Files changed: `scripts/remove-title-barcodes.ts`, `package.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; two Supabase `products.name` values.
+- Summary: Added a repeatable, barcode-led title cleanup command that removes a trailing number only when it exactly matches that product's stored 8- to 14-digit EAN/GTIN/UPC value. Applied it to two Alfaparf shampoo titles. Slugs, stored EANs, prices, stock, status, descriptions, images, and category assignments were not changed.
+- Validation/tests: Dry run scanned 502 products, found two matching title suffixes, and found no title conflicts. The live run updated and re-read both names successfully. `npm run lint -- scripts/remove-title-barcodes.ts` and `git diff --check` passed.
+- Next task: Continue launch-priority catalogue and source-evidence review.
+
+- Task: Deploy the latest SAVZIX product-detail and ingredient release to Hostinger.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Hostinger `savzix.com` deployment archive and Node.js build.
+- Summary: Deployed the tracked source archive for commit `0389774` to the existing Hostinger Node.js application, using the established Next.js build settings. No Hostinger environment variables, Supabase configuration, Stripe configuration, or catalogue data was changed.
+- Validation/tests: Hostinger installed dependencies and completed `next build --webpack`, including TypeScript and route generation. The Node.js restart was accepted. Live HTTPS checks returned HTTP 200 for `/` and the Collection Cosmetics Gloss Me Up product page; the latter rendered the new Ingredients section.
+- Next task: Continue independent source verification for the remaining held ingredient and catalogue records.
+
 - Task: Backfill product ingredients from local source packages.
 - Files changed: `scripts/backfill-product-ingredients.ts`, `package.json`, `data/import-reports/ingredient-backfill-2026-09-27-*.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Supabase `products.ingredients` values.
 - Summary: Added a repeatable, barcode-led ingredient backfill that reads only `Ingredients:` or `Verified ingredients:` fields from local `product-details.txt` records. It matches canonical EANs to one existing catalogue product, does not use title matching, preserves existing ingredient lists, and captures unmatched or conflicting evidence for review. Corrected the parser to stop before package image notes, then safely refreshed only the records created by the earlier run.

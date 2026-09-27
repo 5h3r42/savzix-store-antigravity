@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 export function Footer() {
   return (
     <footer className="bg-muted text-card-foreground py-14 border-t border-border">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 gap-12 px-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 sm:grid-cols-2 lg:grid-cols-[repeat(4,max-content)] lg:justify-between">
         <div>
           <h3 className="mb-5 font-bold text-foreground">Company</h3>
           <div className="space-y-4 text-sm leading-6 text-muted-foreground">

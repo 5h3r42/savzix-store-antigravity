@@ -20,6 +20,7 @@
     "sync:catalog": "tsx scripts/sync-catalog-from-xlsx.ts",
     "sync:keepa-catalogue": "tsx scripts/sync-keepa-catalogue.ts",
     "refresh:keepa-titles": "tsx scripts/refresh-keepa-product-titles.ts",
+    "remove:title-barcodes": "tsx scripts/remove-title-barcodes.ts",
     "prepare:keepa-pricecheck": "tsx scripts/prepare-keepa-pricecheck-staging.ts",
     "prepare:staged-product-packages": "tsx scripts/prepare-staged-product-packages.ts",
     "prepare:final-product-images": "tsx scripts/finalize-approved-package-images.ts",

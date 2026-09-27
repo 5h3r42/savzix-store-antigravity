@@ -3,9 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronDown, PackageCheck, RotateCcw, Truck } from "lucide-react";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
+import { FrequentlyBoughtTogether } from "@/components/products/FrequentlyBoughtTogether";
 import { siteConfig } from "@/config/site";
 import { formatPrice } from "@/lib/formatPrice"; // CHANGED: use shared GBP formatter.
-import { getProductBySlug } from "@/lib/products-store";
+import {
+  getFrequentlyBoughtTogetherProducts,
+  getProductBySlug,
+} from "@/lib/products-store";
 import { cleanDescription, cleanTitle } from "@/lib/productText"; // ADDED: retail-safe product copy helpers.
 
 export const dynamic = "force-dynamic";
@@ -21,6 +25,8 @@ export default async function ProductDetail({
   if (!product) {
     notFound();
   }
+
+  const frequentlyBoughtTogether = await getFrequentlyBoughtTogetherProducts(product);
 
   const productTitle = cleanTitle(product.name); // CHANGED: remove trailing pack/quantity title noise.
   const productDescription = cleanDescription(product.description, {
@@ -162,6 +168,8 @@ export default async function ProductDetail({
             </div>
           </div>
         </div>
+
+        <FrequentlyBoughtTogether products={frequentlyBoughtTogether} />
       </div>
     </section>
   );

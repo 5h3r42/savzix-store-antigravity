@@ -13,6 +13,12 @@ UI Polish + Pre-Launch Fixes
 
 ## Completed Work
 
+- Balanced the shared footer's desktop layout with equal left and right edges and evenly distributed column spacing, while preserving its left-aligned text and responsive tablet/mobile grid.
+- Added an accessible stock-capped quantity selector to the shared product-detail purchase control. Shoppers can select the number of units before adding them to the basket on every available product page.
+- Corrected the tablet Frequently Bought Together layout: four recommendations now use a balanced two-column grid until the desktop four-column breakpoint, preventing empty tablet positions.
+- Added a responsive Frequently Bought Together section to product detail pages. It shows up to four other Active, in-stock products from the current product's category, uses the existing product-card and basket controls, and excludes the viewed product.
+- Removed trailing verified EANs from the two affected Alfaparf product titles in Supabase. Product URLs/slugs, barcode records, prices, stock, status, images, descriptions, and category links were preserved.
+- Deployed commit `0389774` to the existing Hostinger `savzix.com` Node.js application. Hostinger completed the Next.js production build, accepted the application restart, and live HTTP checks returned 200 for both the homepage and the Ingredients-enabled product page. Environment variables, Supabase, Stripe, and catalogue data were not changed.
 - Backfilled source-supplied ingredient lists to 253 existing products using exact stored EAN matches only, without overwriting the pre-existing Giorgio Armani Sì list. The catalogue now has 254 products with ingredients; 65 ambiguous, conflicting, missing-EAN, or unmatched source records remain unchanged and are recorded for review.
 - Replaced the duplicated lower product-information content with a centred Ingredients section that appears only for products with verified ingredient data. Added the backwards-compatible `ingredients` product column and stored the manufacturer/packaging-verified ingredient list for Giorgio Armani Sì Eau de Parfum Spray 30ml; EAN and delivery information remain available below it.
 - Updated the SAVZIX catalogue-import skill with the full controlled route from approved package to public website: scoped dry runs, live duplicate recheck, image-first Supabase upload, product creation, EAN and taxonomy assignment, database verification, and live product-page verification.

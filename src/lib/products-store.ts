@@ -157,6 +157,29 @@ export async function getProductBySlug(slug: string): Promise<Product | undefine
   return data ? mapProductRow(data) : undefined;
 }
 
+export async function getFrequentlyBoughtTogetherProducts(
+  product: Pick<Product, "id" | "category">,
+  limit = 4,
+): Promise<Product[]> {
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("status", "Active")
+    .gt("stock", 0)
+    .eq("category", product.category)
+    .neq("id", product.id)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error("Failed to load frequently bought together products.", error);
+    return [];
+  }
+
+  return ((data ?? []) as ProductRow[]).map(mapProductRow);
+}
+
 export async function addProduct(input: NewProductInput): Promise<Product> {
   const name = input.name.trim();
   const description = input.description.trim();
