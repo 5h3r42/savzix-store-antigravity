@@ -6,6 +6,16 @@
 
 ## Completed
 
+- Backfilled 253 source-supplied ingredient lists using exact EAN matches only, preserving the existing Giorgio Armani Sì ingredient list and holding 65 unresolved source records for review.
+- Replaced the duplicated lower Product Information area with a verified Ingredients section, retaining EAN and delivery details and leaving products without verified ingredients blank.
+- Updated `$savzix-catalogue-import` to cover the approved path through Supabase upload, product creation, barcode and taxonomy writes, and public SAVZIX product-page verification.
+- Added Giorgio Armani Sì Eau de Parfum Spray 30ml to the live catalogue with its approved WebP, verified £55.00 RSP, stock 10, EAN `3605521816511`, and primary Fragrance taxonomy assignment. The live product page returned HTTP 200.
+- Updated the `savzix-catalogue-import` skill with a barcode-led Keepa/Pricecheck staging phase, report review gate, required local product-package structure, and approval-only Supabase import workflow.
+- Prepared the 27 September Keepa/Pricecheck catalogue staging reports with strict EAN/GTIN/UPC matching and no Supabase writes. The 133 automated candidates remain held pending manufacturer/packaging and exact image verification.
+- Finalised the 132 user-approved staged source images as preserved-source, 1200 × 1200 white-canvas `01.webp` local package assets. The scoped image-import dry run accepted all 132 with no failures; no image upload or Supabase write occurred.
+- Fixed the staging duplicate guard so repeated identical Keepa rows are excluded before product-package creation.
+- Fixed the SAVZIX tablet homepage: compact navigation and search now replace the clipped category rail, the hero is shorter, and product collections fill two three-card rows at tablet width.
+- Added verified EAN barcode details to product pages, including a source-backed Supabase backfill of 730 EANs across 491 catalogue products. Ten products without source EAN evidence remain intentionally blank.
 - Added the SAVZIX About Us page and its Legal-footer link, with UK trading-since-2023 and product-range information.
 - Replaced the static home-page hero with an accessible four-slide Beauty & Skincare, Fragrance, Gift Sets, and Toiletries category carousel using approved assets, matching CTAs, dot navigation, six-second rotation, and reduced-motion support. The original Beauty artwork keeps its copy-safe contained layout while wide category artwork fills the remaining slides.
 - Centred the home-page hero carousel dots at the bottom of the image area.
@@ -65,6 +75,8 @@
 - Add legal pages
 - Add SEO basics
 - Improve homepage
+- Continue preparing the remaining 132 staged Keepa/Pricecheck candidates using the approved image-cleanup rule; keep all further image and Supabase uploads pending final approval.
+- Verify manufacturer or packaging evidence for the 132 final-image packages, especially descriptions and ingredients, before any Supabase import.
 
 ## Backlog
 

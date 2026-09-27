@@ -131,13 +131,13 @@ export function Hero() {
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/35 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[1440px] items-center px-6 py-10 sm:py-12 lg:min-h-[25rem] lg:px-10 lg:py-14">
-          <div className="max-w-[34rem] space-y-5 text-left lg:space-y-6">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1440px] items-center px-6 py-8 sm:py-10 lg:min-h-[25rem] lg:px-10 lg:py-14">
+          <div className="max-w-[34rem] space-y-4 text-left lg:space-y-6">
             <p className="sr-only">{activeSlide.alt}</p>
             <span className="text-primary text-xs font-bold uppercase tracking-[0.18em]">
               {activeSlide.eyebrow}
             </span>
-            <h1 className="text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-5xl lg:text-5xl">
+            <h1 className="text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-[2.75rem] lg:text-5xl">
               {activeSlide.heading}
             </h1>
             <p className="max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">
@@ -161,7 +161,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div aria-hidden="true" className="relative h-60 w-full sm:h-80 lg:hidden">
+        <div aria-hidden="true" className="relative h-60 w-full sm:h-72 lg:hidden">
           {heroSlides.map((slide, index) => (
             <div
               key={slide.name}

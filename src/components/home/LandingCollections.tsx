@@ -55,9 +55,11 @@ function ProductSection({
         </div>
 
         {products.length > 0 ? (
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            {products.map((product, index) => (
+              <div key={product.id} className={index >= 4 ? "lg:hidden" : undefined}>
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         ) : (

@@ -11,6 +11,8 @@ export interface Product {
   stock: number;
   status: ProductStatus;
   image: string;
+  eanBarcodes: string[];
+  ingredients: string | null;
   createdAt: string;
 }
 
@@ -23,4 +25,6 @@ export type NewProductInput = {
   stock: number;
   status?: ProductStatus;
   image?: string;
+  eanBarcodes?: string[];
+  ingredients?: string;
 };

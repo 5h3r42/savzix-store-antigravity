@@ -13,6 +13,17 @@ UI Polish + Pre-Launch Fixes
 
 ## Completed Work
 
+- Backfilled source-supplied ingredient lists to 253 existing products using exact stored EAN matches only, without overwriting the pre-existing Giorgio Armani Sì list. The catalogue now has 254 products with ingredients; 65 ambiguous, conflicting, missing-EAN, or unmatched source records remain unchanged and are recorded for review.
+- Replaced the duplicated lower product-information content with a centred Ingredients section that appears only for products with verified ingredient data. Added the backwards-compatible `ingredients` product column and stored the manufacturer/packaging-verified ingredient list for Giorgio Armani Sì Eau de Parfum Spray 30ml; EAN and delivery information remain available below it.
+- Updated the SAVZIX catalogue-import skill with the full controlled route from approved package to public website: scoped dry runs, live duplicate recheck, image-first Supabase upload, product creation, EAN and taxonomy assignment, database verification, and live product-page verification.
+- Added Giorgio Armani Sì Eau de Parfum Spray 30ml to the live SAVZIX catalogue after user approval. Its 1200 × 1200 white-background WebP is uploaded to Supabase Storage; the product is Active at the barcode-matched £55.00 RSP with stock 10, EAN `3605521816511`, and Fragrance taxonomy links.
+- Confirmed the SAVZIX image-cleanup rule: assess every source individually, retain already-compliant packshots unchanged, and use the image-editing tool only for sources needing background, composition, prop, reflection, or shadow cleanup. Any AI-assisted candidate must preserve the exact visible package and be compared against the retained original before it can enter a local package.
+- Prepared the remaining 132 duplicate-safe Keepa/Pricecheck candidates as local source packages. Each has a category/slug folder, original image and traceable `product-details.txt`; they remain ineligible for import until their descriptions and ingredients have independent source verification.
+- Finalised the 132 user-approved source packshots as local `01.webp` files. Each is a 1200 × 1200 lossless WebP with a white canvas and preserved original source image; the image-import dry run accepted all 132 with no failures. Product copy and ingredients remain on hold for independent verification before catalogue creation.
+- Confirmed supplier RSP is the default SAVZIX website price whenever it is supported by an exact barcode match; supplier cost is retained only as margin evidence.
+- Expanded the `savzix-catalogue-import` skill with a mandatory two-sheet Keepa/Pricecheck staging phase, barcode-only price matching, conflict reports, package-folder requirements, source-verification holds, and the explicit approval gate before Supabase writes.
+- Prepared a read-only Keepa/Pricecheck import staging batch from the 27 September 2026 files. The batch uses canonical EAN/GTIN/UPC matching only, reads 501 existing Supabase products for exact conflict detection, and produces duplicate, unmatched-barcode, missing-data, image-validation, staging, and dry-run reports without uploading images or changing catalogue data. The current review result is 133 automated candidates held pending source and image verification.
+- Strengthened the Keepa/Pricecheck staging duplicate guard so repeated identical candidate rows are excluded as internal barcode and slug conflicts before package creation.
 - Storefront pages (PDP, PLP)
 - Cart + checkout
 - Cart now clears only after Stripe marks payment as paid
@@ -68,11 +79,14 @@ UI Polish + Pre-Launch Fixes
 - Positioned the carousel dot navigation at the centre bottom edge of the home-page hero image area, separating it from the CTAs while keeping it keyboard accessible.
 - Added stable daily product rotation to the New Arrivals, Offers, and Bestsellers home-page collections. Each section now selects four products from its leading twelve eligible products using the Europe/London calendar date, so selections remain consistent throughout a day and update automatically the next day.
 - Added an About Us page describing SAVZIX as a UK retailer trading since 2023 for beauty, skincare, fragrance, gift sets, toiletries, health and wellness, and everyday essentials. Linked it from the shared footer's Legal column.
+- Added source-verified EAN barcode display to Product Information. Applied the additive `ean_barcodes` schema migration and backfilled 730 EANs across 491 products; 10 products remain blank because their source records contain no safe EAN evidence.
+- Refined the 768px tablet storefront: the shared navigation now switches to its accessible category menu and separate search field below desktop, the home hero is shorter with a more measured heading scale, and New arrivals, Offers, and Bestsellers fill two three-card rows without empty tablet slots.
 
 ## In Progress
 
 - UI polish
 - Review the 108 unresolved catalogue prices; 392 verified-price products are active with stock 10 each
+- Review the remaining 132 Keepa/Pricecheck staging candidates before authorising any further image or Supabase import.
 
 ## Locked Decisions
 

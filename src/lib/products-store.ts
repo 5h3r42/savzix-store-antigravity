@@ -38,6 +38,8 @@ export function mapProductRow(row: ProductRow): Product {
     stock: row.stock,
     status: row.status,
     image: row.image,
+    eanBarcodes: row.ean_barcodes ?? [],
+    ingredients: row.ingredients,
     createdAt: row.created_at,
   };
 }
@@ -161,6 +163,8 @@ export async function addProduct(input: NewProductInput): Promise<Product> {
   const brand = input.brand?.trim() || "Brand";
   const category = input.category.trim() || "General";
   const image = input.image?.trim() || "/product_bottle.png";
+  const eanBarcodes = input.eanBarcodes ?? [];
+  const ingredients = input.ingredients?.trim() || null;
 
   const price = Number(input.price);
   const stock = Number(input.stock);
@@ -201,6 +205,8 @@ export async function addProduct(input: NewProductInput): Promise<Product> {
       stock,
       status,
       image,
+      ean_barcodes: eanBarcodes,
+      ingredients,
     })
     .select("*")
     .single();

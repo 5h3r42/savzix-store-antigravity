@@ -282,7 +282,7 @@ export function Navbar() {
     <>
       <nav className="fixed z-50 w-full border-b border-border bg-white shadow-sm">
         <div className="hidden bg-foreground px-4 py-2 text-center text-xs font-semibold text-white sm:block">Free UK delivery on orders over £50 <span className="mx-2">•</span> Secure checkout <span className="mx-2">•</span> Easy returns</div>
-        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 md:grid-cols-[auto_minmax(18rem,42rem)_auto] md:gap-6">
+        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 lg:grid-cols-[auto_minmax(18rem,42rem)_auto] lg:gap-6">
           <Link
             href="/"
             aria-label="SAVZIX home"
@@ -291,13 +291,13 @@ export function Navbar() {
             <BrandLogo
               variant="horizontal"
               priority
-              className="h-8 w-auto md:h-9"
+              className="h-8 w-auto lg:h-9"
             />
           </Link>
 
           <div
             ref={desktopMenuRef}
-            className="relative hidden w-full max-w-xl justify-self-center md:block"
+            className="relative hidden w-full max-w-xl justify-self-center lg:block"
           >
             <form action="/shop" className="flex h-11 w-full items-center gap-3 rounded-lg border border-transparent bg-muted px-4 focus-within:border-primary">
               <Search className="h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
@@ -498,7 +498,7 @@ export function Navbar() {
                 setDesktopMenuOpen(false);
                 setMobileMenuOpen(true);
               }}
-              className="inline-flex rounded-full border border-border p-2 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:hidden"
+              className="inline-flex rounded-full border border-border p-2 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -547,7 +547,7 @@ export function Navbar() {
           </div>
         </div>
 
-        <form action="/shop" className="flex border-t border-border bg-white px-4 py-3 md:hidden">
+        <form action="/shop" className="flex border-t border-border bg-white px-4 py-3 lg:hidden">
           <div className="flex h-11 w-full items-center gap-3 rounded-lg bg-muted px-4 focus-within:ring-2 focus-within:ring-primary/30">
             <Search className="h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
             <input
@@ -560,8 +560,8 @@ export function Navbar() {
           </div>
         </form>
 
-        <div className="hidden overflow-x-auto border-t border-border bg-white scrollbar-none md:block">
-          <div className="mx-auto flex w-max min-w-full max-w-7xl px-4 md:justify-center md:px-6">
+        <div className="hidden overflow-x-auto border-t border-border bg-white scrollbar-none lg:block">
+          <div className="mx-auto flex w-max min-w-full max-w-7xl px-4 lg:justify-center lg:px-6">
             {categories.map((category) => (
               <Link key={category.slug} href={category.href} className="whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary">
                 {category.name}
@@ -573,7 +573,7 @@ export function Navbar() {
       </nav>
 
       {mobileMenuOpen ? (
-      <div className="fixed inset-0 z-[70] md:hidden">
+      <div className="fixed inset-0 z-[70] lg:hidden">
         <button
           type="button"
           aria-label="Close menu backdrop"

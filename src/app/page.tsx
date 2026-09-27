@@ -8,7 +8,7 @@ import { mapProductsToShopProducts } from "@/lib/shop-products";
 
 export const dynamic = "force-dynamic";
 
-const LANDING_COLLECTION_SIZE = 4;
+const LANDING_COLLECTION_SIZE = 6;
 const LANDING_COLLECTION_CANDIDATE_LIMIT = 12;
 
 export default async function Home() {

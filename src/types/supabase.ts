@@ -140,6 +140,8 @@ export type Database = {
           reserved_quantity: number;
           status: ProductStatus;
           image: string;
+          ean_barcodes: string[];
+          ingredients: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -155,6 +157,8 @@ export type Database = {
           reserved_quantity?: number;
           status?: ProductStatus;
           image?: string;
+          ean_barcodes?: string[];
+          ingredients?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -170,6 +174,8 @@ export type Database = {
           reserved_quantity?: number;
           status?: ProductStatus;
           image?: string;
+          ean_barcodes?: string[];
+          ingredients?: string | null;
           created_at?: string;
           updated_at?: string;
         };

@@ -1,6 +1,98 @@
 # Changelog
 
+## 2026-09-27
+
+- Task: Backfill product ingredients from local source packages.
+- Files changed: `scripts/backfill-product-ingredients.ts`, `package.json`, `data/import-reports/ingredient-backfill-2026-09-27-*.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Supabase `products.ingredients` values.
+- Summary: Added a repeatable, barcode-led ingredient backfill that reads only `Ingredients:` or `Verified ingredients:` fields from local `product-details.txt` records. It matches canonical EANs to one existing catalogue product, does not use title matching, preserves existing ingredient lists, and captures unmatched or conflicting evidence for review. Corrected the parser to stop before package image notes, then safely refreshed only the records created by the earlier run.
+- Validation/tests: Initial and refresh dry runs each prepared 253 exact matches. The final run updated 253 records; Supabase now reports 254 products with ingredient lists. Local product-page inspection confirmed the cleaned Ingredients disclosure contains no source-image notes. `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Independently review the 65 unresolved source records before adding their ingredients, and deploy the product-detail presentation if a production deployment is requested.
+
+- Task: Replace the duplicated product-information area with verified ingredients.
+- Files changed: `supabase/migrations/007_add_product_ingredients.sql`, `src/types/supabase.ts`, `src/types/product.ts`, `src/lib/products-store.ts`, `src/app/products/[id]/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Supabase `products` schema and the Giorgio Armani Sì product record.
+- Summary: Added a nullable `ingredients` field so existing products remain compatible while only source-verified ingredient lists render on the product page. Removed the lower generic Product Information heading and duplicate product description. The lower detail area now shows Ingredients when present, then the existing EAN barcode and delivery/returns information.
+- Validation/tests: Applied and queried the production schema and Giorgio Armani Sì ingredient value. Local browser verification confirmed the product page shows the complete Ingredients disclosure and EAN without the generic duplicate section. `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy this presentation change when a SAVZIX production deployment is requested; backfill ingredients only from verified manufacturer or packaging sources.
+
+- Task: Extend the SAVZIX catalogue-import skill through live website verification.
+- Files changed: `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/SKILL.md`, `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/references/savzix-pipeline.md`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added the controlled post-approval import route: scoped slug selection, dry runs, live duplicate check, image-first Supabase upload, product creation, EAN persistence, primary and parent taxonomy assignment, post-write database checks, and an HTTP 200 public product-page check. It also documents that this visibility check is not a deployment action.
+- Validation/tests: `quick_validate.py` confirmed the skill is valid. `git diff --check` passed.
+- Next task: Use the updated skill only for independently verified packages, starting with a dry run and explicit approval before each further import.
+
+- Task: Add one approved, barcode-verified product to the live SAVZIX catalogue.
+- Files changed: `data/import-reports/keepa-pricecheck-2026-09-27/approved-giorgio-armani-si-catalogue.xlsx`, `data/import-reports/keepa-pricecheck-2026-09-27/giorgio-armani-si-*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Supabase Storage, `products`, and `product_categories`.
+- Summary: Uploaded the final 1200 × 1200 WebP and created Giorgio Armani Sì Eau de Parfum Spray 30ml (`PROD-502`) as an Active product. Set its user-approved exact barcode RSP of `55.00`, stock to `10`, EAN to `3605521816511`, and primary taxonomy path to `fragrance/womens-mass-market-fragrance` with Fragrance as a supporting parent link.
+- Validation/tests: Image-import and catalogue-sync dry runs each prepared exactly one item with zero failures or missing primary images. Post-write Supabase verification confirmed title, price, stock, status, EAN, Supabase image URL, and both category links. `npm run lint`, `npx tsc --noEmit`, and `git diff --check` passed. The live product URL returned HTTP 200 and rendered the product, price, image, stock state, and EAN.
+- Next task: Verify manufacturer or packaging evidence for the remaining 132 packages before authorising another import.
+
+- Task: Finalise locally approved staging packshots for the Keepa/Pricecheck batch.
+- Files changed: `scripts/finalize-approved-package-images.ts`, `package.json`, `data/product images/<category>/<slug>/01.webp`, `data/import-reports/keepa-pricecheck-2026-09-27/final-image-preparation-*.json`, `data/import-reports/keepa-pricecheck-2026-09-27/image-import-*-dry-run.*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a local-only final-image preparation command. Using the user's visual approval, it preserved every original image and created 132 1200 × 1200 lossless WebP primary images with a white canvas and consistent whitespace. No AI packaging changes, uploads, product records, or Supabase writes occurred.
+- Validation/tests: `npx tsc --noEmit` passed. All 132 final images are square with white corners. The scoped product-image import dry run discovered 132 images and completed with 132 successes and zero failures.
+- Next task: Verify product descriptions and ingredients against manufacturer or packaging evidence before authorising a Supabase import.
+
+- Task: Set the supplier RSP as the standard SAVZIX website price.
+- Files changed: `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/SKILL.md`, `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/references/savzix-pipeline.md`, `PROJECT_STATUS.md`, `CHANGELOG.md`.
+- Summary: Clarified that a supplier RSP from an exact EAN/GTIN/UPC match is the default website selling price. Supplier cost remains recorded for margin review and must not be used as the storefront price.
+- Validation/tests: Policy update only; no package, price, product, or Supabase data was changed.
+- Next task: Continue source-package review and final image preparation before any import.
+
+- Task: Prepare local source packages for the staged Keepa/Pricecheck candidates.
+- Files changed: `scripts/prepare-staged-product-packages.ts`, `package.json`, `data/product images/<category>/<slug>/*`, `data/import-reports/keepa-pricecheck-2026-09-27/local-package-preparation-*.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a repeatable local-only preparation command and used it to create 132 new category/slug folders. Each folder contains an original source image and `product-details.txt` with barcode, ASIN, supplier cost/RSP, proposed price, category, source description, ingredients and links. These records remain expressly on hold; no final numbered WebP files, image uploads, products, or Supabase writes were created.
+- Validation/tests: Dry run reported 132 packages to prepare and one existing package to skip. Live local run completed with 132 prepared, one skipped and zero failed. Verified all 132 new folders contain both `product-details.txt` and a retained source image. `npx tsc --noEmit` and `git diff --check` passed.
+- Next task: Verify product copy and ingredients against manufacturer/packaging evidence, then create final white-background WebP candidates only for sources that need cleanup.
+
+- Task: Record the approved product-image cleanup standard.
+- Files changed: `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/SKILL.md`, `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/references/savzix-pipeline.md`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: The catalogue workflow now requires an image-by-image decision: retain compliant source packshots unchanged and use the image-editing tool only when background/composition cleanup is needed. It permits removal of non-product scene elements, props, reflections, and shadows, provided the exact visible packaging is preserved and the edited candidate is compared with the original before local packaging.
+- Validation/tests: Policy update only; no product package, image upload, or Supabase data was changed.
+- Next task: Apply the updated review standard to the staged candidates and prepare local packages only after product-identity verification.
+
+- Task: Begin local package preparation from the verified staging candidates.
+- Files changed: `data/product images/fragrance/giorgio-armani-si-eau-de-parfum-spray-30ml/*`, `data/import-reports/keepa-pricecheck-2026-09-27/approved-*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Created one local-only package for Giorgio Armani Sì Eau de Parfum Spray 30ml after exact barcode, manufacturer product, ingredient, and primary-image checks. The final image is a visually reviewed, lossless 1200 × 1200 WebP with a pure white canvas; its original source is retained outside the upload candidate name. The image source has not received an independent reproduction-rights confirmation, so the package is intentionally excluded from upload.
+- Validation/tests: Verified all four output-corner pixels are `#FFFFFF`, inspected the final WebP visually, and ran a one-package image-import dry run with one success and zero failures. No image was uploaded and no Supabase data changed.
+- Next task: Continue source and packshot review for the remaining staged candidates, creating local packages only where every required check passes.
+
+- Task: Exclude repeated identical rows from Keepa/Pricecheck staging.
+- Files changed: `scripts/prepare-keepa-pricecheck-staging.ts`, `data/import-reports/keepa-pricecheck-2026-09-27/*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Corrected the internal duplicate guard to reject any repeated canonical barcode or generated slug within the incoming Keepa batch, including rows with identical titles. The refreshed reports now exclude all repeated candidate rows before package creation.
+- Validation/tests: Re-ran staging against the supplied workbooks and the existing 501-product catalogue. The batch now reports 484 duplicate findings across 205 candidate rows and 133 automated candidates held for manual verification. `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Verify source content and primary-image identity for the 133 held candidates before building local product packages.
+
+- Task: Expand the SAVZIX catalogue-import skill for the Keepa/Pricecheck workflow.
+- Files changed: `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/SKILL.md`, `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/references/savzix-pipeline.md`, `/Users/sherazkhalid/.codex/skills/savzix-catalogue-import/agents/openai.yaml`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a required preparation phase for supplier-workbook imports: canonical EAN/GTIN/UPC matching only, exact conflict reporting, explicit handling of missing ASIN/SKU schema support, source-evidence holds, and the staged-report approval gate. Documented the product-package layout, required `product-details.txt` evidence, and the correct catalogue-sync path when final SEO titles differ from raw Keepa titles.
+- Validation/tests: `quick_validate.py` confirmed the updated skill is valid. Confirmed the image importer discovers only category/product folders containing `product-details.txt` and uploads only numbered WebP candidates that do not include `-original`. `git diff --check` passed.
+- Next task: Review the Keepa/Pricecheck staging outputs and resolve only the safe candidates before creating local product packages.
+
+- Task: Prepare the Keepa/Pricecheck catalogue staging batch.
+- Files changed: `scripts/prepare-keepa-pricecheck-staging.ts`, `package.json`, `data/import-reports/keepa-pricecheck-2026-09-27/*`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a read-only staging command for the supplied Keepa and Pricecheck exports. It matches canonical EAN/GTIN/UPC values only, reads the existing catalogue for exact barcode, slug, title and internal candidate conflicts, and writes the requested duplicate, unmatched-barcode, missing-data, image-validation, staging-catalogue and dry-run reports. It does not upload images, modify Supabase, reuse existing products, or use title matching for price approval. The staged records retain Keepa description/ingredient evidence and supplier cost/RSP values but remain on hold until manufacturer/packaging and exact image verification are complete.
+- Validation/tests: The initial dry run read 384 Keepa rows, 288 supplier rows and 501 existing products; it found 301 barcode matches and 296 usable supplier RSP values. A later staging-guard correction superseded its preliminary 201-conflict/136-candidate figures; see the newer duplicate-guard entry above. `npm run lint`, `npx tsc --noEmit`, and `npm run build` passed.
+- Next task: Review the generated reports, resolve the held source/image/category issues, then explicitly authorise only the approved package upload and catalogue creation.
+
+- Task: Fill the SAVZIX tablet product collections.
+- Files changed: `src/app/page.tsx`, `src/components/home/LandingCollections.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Increased each daily home collection to six selected products. Tablet now fills two complete rows of three cards, while the fifth and sixth cards are intentionally hidden at the desktop breakpoint to retain the existing four-card desktop presentation.
+- Validation/tests: Verified the local New arrivals collection renders six product cards at tablet width. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
+- Task: Fix the SAVZIX tablet homepage layout.
+- Files changed: `src/components/layout/Navbar.tsx`, `src/components/home/Hero.tsx`, `src/components/home/LandingCollections.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Moved the compact navigation and dedicated search presentation through the tablet breakpoint so category links no longer overflow horizontally. Reduced the tablet hero's copy and artwork height while retaining the approved slide imagery, copy, CTAs, dots, and carousel behaviour. Home product collections now render three readable cards per row at tablet width and four at desktop width.
+- Validation/tests: Verified the 768 × 1024 local homepage in the in-app browser: compact menu, search, hero image/dots, trust strip, and a three-column New arrivals grid all render without horizontal overflow. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Continue launch-priority SEO and production checkout verification.
+
 ## 2026-09-26
+
+- Task: Add source-verified EAN barcode details to product pages.
+- Files changed: `supabase/migrations/006_add_product_barcodes.sql`, `scripts/backfill-product-barcodes.ts`, `package.json`, `src/types/product.ts`, `src/types/supabase.ts`, `src/lib/products-store.ts`, `src/app/products/[id]/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added the additive `ean_barcodes` product field and a repeatable Keepa-source backfill workflow. Product Information now displays each product's verified EAN barcode or barcodes. The live backfill saved 730 EANs for 491 of 501 products; ten products without unambiguous source EAN data remain blank instead of receiving guessed values. Set the production build command to the existing Webpack fallback after Hostinger's Turbopack CSS-worker process failed before application compilation.
+- Validation/tests: Ran the backfill dry run and live run; queried Supabase to confirm 501 products, 491 with stored EANs, 10 without, and 730 EANs total. Verified a local product-detail page displays EAN `5054805060450`. `npm run lint`, `npm run build`, and `git diff --check` passed.
+- Next task: Research and validate EAN source evidence for the remaining ten products before adding them.
 
 - Task: Add the SAVZIX About Us page.
 - Files changed: `src/app/about/page.tsx`, `src/components/layout/Footer.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.

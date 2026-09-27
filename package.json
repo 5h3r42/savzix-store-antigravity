@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "dev:webpack": "next dev --webpack",
     "build:webpack": "next build --webpack",
     "start": "next start",
@@ -20,6 +20,11 @@
     "sync:catalog": "tsx scripts/sync-catalog-from-xlsx.ts",
     "sync:keepa-catalogue": "tsx scripts/sync-keepa-catalogue.ts",
     "refresh:keepa-titles": "tsx scripts/refresh-keepa-product-titles.ts",
+    "prepare:keepa-pricecheck": "tsx scripts/prepare-keepa-pricecheck-staging.ts",
+    "prepare:staged-product-packages": "tsx scripts/prepare-staged-product-packages.ts",
+    "prepare:final-product-images": "tsx scripts/finalize-approved-package-images.ts",
+    "backfill:product-barcodes": "tsx scripts/backfill-product-barcodes.ts",
+    "backfill:product-ingredients": "tsx scripts/backfill-product-ingredients.ts",
     "sync:keepa-prices": "tsx scripts/sync-keepa-prices-and-categories.ts",
     "seed:categories": "tsx scripts/seed-categories-taxonomy.ts",
     "backfill:product-categories": "tsx scripts/backfill-product-categories.ts"

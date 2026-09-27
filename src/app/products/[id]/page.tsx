@@ -118,21 +118,27 @@ export default async function ProductDetail({
           </div>
         </div>
 
-        <div className="mt-12 grid gap-8 border-t border-border pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.88fr)]">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Product information</h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
-              Everything you need to know before adding this item to your basket.
-            </p>
-          </div>
-          <div className="divide-y divide-border border-y border-border">
-            <details open className="group py-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                Product details
-                <ChevronDown aria-hidden="true" className="h-5 w-5 transition-transform group-open:rotate-180" />
-              </summary>
-              <p className="pt-4 text-sm leading-7 text-muted-foreground">{productDescription}</p>
-            </details>
+        <div className="mt-12 border-t border-border pt-10">
+          <div className="mx-auto max-w-3xl divide-y divide-border border-y border-border">
+            {product.ingredients ? (
+              <details open className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                  Ingredients
+                  <ChevronDown aria-hidden="true" className="h-5 w-5 transition-transform group-open:rotate-180" />
+                </summary>
+                <p className="pt-4 text-sm leading-7 text-muted-foreground">{product.ingredients}</p>
+              </details>
+            ) : null}
+            {product.eanBarcodes.length > 0 ? (
+              <dl className="py-5 text-sm leading-7 text-muted-foreground">
+                <div className="flex flex-wrap gap-x-2">
+                  <dt className="font-semibold text-foreground">
+                    {product.eanBarcodes.length === 1 ? "EAN barcode:" : "EAN barcodes:"}
+                  </dt>
+                  <dd>{product.eanBarcodes.join(", ")}</dd>
+                </div>
+              </dl>
+            ) : null}
             <details className="group py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                 Delivery & returns
