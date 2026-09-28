@@ -2,10 +2,20 @@
 
 ## Today
 
-- Review the next launch-priority task
+- Obtain the outstanding delivery, cancellation-postage, refund, privacy-retention, and processor details in `docs/LEGAL_LAUNCH_REVIEW.md` for business/legal sign-off.
+- Resolve the 31 product-identity blockers in `data/catalogue-quality-report.json` before activating or importing the next catalogue batch.
+- Complete the production password-recovery and Stripe-payment checks using the launch runbook.
 
 ## Completed
 
+- Set the registered business address as the provisional public returns address and clarified that support contact for return instructions does not limit statutory cancellation rights.
+- Rebalanced the three-column footer into a centred, equal-width layout with consistent desktop spacing and a more compact lower copyright area.
+- Moved the registered company details from the shared footer to the bottom of the About Us page and simplified the footer to its three navigation columns.
+- Added a repeatable, read-only catalogue identity-triage report in JSON and Excel-ready CSV form. It places each of the 31 audit blockers alongside its exact Keepa barcode or title candidates; no product, image, or Supabase data was changed.
+- Added the SEO launch foundation: canonical metadata, route metadata, sitemap, robots rules, organisation/product structured data, and noindex protections for private checkout/account flows. Added safe password recovery, strengthened policy pages, a launch-verification runbook, and a read-only live-catalogue audit. Local build and route checks passed; production account checks and commercial/legal sign-off remain outstanding.
+- Corrected six visible Collection Cosmetics catalogue titles and added source-spelling protection to the Keepa title normaliser; product URLs and commercial data were retained.
+- Audited the live SAVZIX home, category, and product-detail journey; prioritised production checkout confirmation, catalogue copy correction, SEO/legal work, and mobile category-page refinement.
+- Deployed commit `c622b01` to Hostinger and verified the live SAVZIX category shop returns HTTP 200 with rendered storefront content.
 - Added desktop category-rail dropdown navigation with hover and keyboard access to each category's subcategories.
 - Retired the Alcohol and Home Appliances subcategories, reassigned the two affected products to Gift Sets, and preserved the retired records as inactive database categories.
 - Deployed SAVZIX commit `81da4d9` to Hostinger and verified HTTP 200 responses for the live homepage and a current product page, including the new quantity and Frequently Bought Together controls, without changing production environment variables or catalogue data.
@@ -81,8 +91,6 @@
 
 ## This Week
 
-- Add legal pages
-- Add SEO basics
 - Improve homepage
 - Continue preparing the remaining 132 staged Keepa/Pricecheck candidates using the approved image-cleanup rule; keep all further image and Supabase uploads pending final approval.
 - Verify manufacturer or packaging evidence for the 132 final-image packages, especially descriptions and ingredients, before any Supabase import.

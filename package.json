@@ -26,6 +26,8 @@
     "prepare:final-product-images": "tsx scripts/finalize-approved-package-images.ts",
     "backfill:product-barcodes": "tsx scripts/backfill-product-barcodes.ts",
     "backfill:product-ingredients": "tsx scripts/backfill-product-ingredients.ts",
+    "audit:catalogue": "tsx scripts/audit-live-catalogue.ts",
+    "triage:catalogue-identities": "tsx scripts/triage-catalogue-identity-blockers.ts",
     "sync:keepa-prices": "tsx scripts/sync-keepa-prices-and-categories.ts",
     "seed:categories": "tsx scripts/seed-categories-taxonomy.ts",
     "backfill:product-categories": "tsx scripts/backfill-product-categories.ts"

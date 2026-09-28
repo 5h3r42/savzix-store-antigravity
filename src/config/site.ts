@@ -1,5 +1,6 @@
 export type SiteConfig = {
   siteName: string;
+  siteUrl: string;
   legalCompanyName: string;
   companyNumber: string;
   registeredAddress: string;
@@ -13,6 +14,7 @@ export type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   siteName: "SAVZIX",
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://savzix.com").replace(/\/$/, ""),
   legalCompanyName: "AITECH INNOVATIONS LTD",
   companyNumber: "15076403",
   registeredAddress: "483 Green Lanes, London N13 4BS, England",

@@ -13,6 +13,14 @@ UI Polish + Pre-Launch Fixes
 
 ## Completed Work
 
+- Set the provisional public returns address to AITECH INNOVATIONS LTD, 483 Green Lanes, London N13 4BS, England. The Returns page asks customers to contact support for item-specific instructions without making that contact a condition of their statutory cancellation rights.
+- Moved the registered company name, address, company number, and VAT registration from the shared footer to a dedicated Company details card at the bottom of the About Us page. The shared footer now contains only the Shop, Support, and Legal navigation columns.
+- Tightened the shared footer’s desktop layout into a centred, equal-width three-column grid with consistent gaps and reduced excess vertical spacing; mobile and tablet layouts remain responsive.
+- Added a read-only identity-triage report for every catalogue audit blocker. It connects 31 live blocker groups to 4,451 Keepa source rows and exposes source barcode conflicts without modifying Supabase products. Run `npm run triage:catalogue-identities` to refresh the JSON and Excel-ready CSV reports before human product-evidence review.
+- Completed the repository-backed launch-readiness implementation: added canonical route metadata, sitemap and robots routes, organisation and product structured data, a safe password-recovery flow, strengthened public policy wording, a Stripe/Auth launch verification runbook, and a repeatable read-only catalogue audit. The audit read 502 catalogue records (394 Active), found 31 identity blockers and 441 copy/ingredients warnings, and made no Supabase writes. `npm run lint`, `npm run build`, local route checks, and `git diff --check` passed.
+- Corrected six Collection Cosmetics product titles in Supabase, including the visible “Cosmectics” and “Rasberry” spelling errors. Product slugs, prices, stock, status, images, descriptions, and taxonomy assignments were preserved. The shared Keepa title normaliser now corrects both source spellings before future imports.
+- Completed a screenshot-led live storefront audit of the home page, Beauty & Skincare category page, and a product page. The core hierarchy, product presentation, delivery reassurance, and ingredients presentation are coherent; launch priorities are controlled production checkout verification, catalogue-copy corrections, SEO/legal completion, and a focused mobile category-page refinement.
+- Deployed commit `c622b01` to the existing Hostinger `savzix.com` Node.js application. Hostinger completed production build `01a0e720-d99c-710d-bfc7-bf6e754e9208`, and the live category shop returned HTTP 200 with rendered SAVZIX content. No environment variables, Supabase, Stripe, or catalogue data changed.
 - Added accessible desktop category-rail dropdowns: hovering or keyboard focusing a category exposes its existing subcategories and a View all link without clipping, while tablet and mobile navigation remain unchanged.
 - Retired the Alcohol and Home Appliances subcategories from the SAVZIX taxonomy. The two misclassified Alcohol products now use Gift Sets as their primary category; both retired database category records are inactive, preserving historical data without public category visibility.
 - Deployed commit `81da4d9` to the existing Hostinger `savzix.com` Node.js application. Hostinger completed the Next.js production build, and live HTTP checks returned 200 for the homepage and current product page, which rendered the new quantity and Frequently Bought Together controls. Environment variables, Supabase, Stripe, and catalogue data were not changed.
@@ -79,7 +87,6 @@ UI Polish + Pre-Launch Fixes
 - Fixed the three checkout-path accessibility findings: basket quantity controls now have product-specific accessible names, the closed mobile navigation is removed from the accessibility tree, and checkout fields use persistent visible labels with appropriate autocomplete metadata.
 - Completed the Keepa-to-Supabase product-title cleanup across the full 251-product catalogue. The final pass updated 128 remaining titles in place, capped retail names at 90 characters, preserved pack counts and supported variants, and left every product ID, slug, price, stock, and status unchanged.
 - Added an accessible, responsive Contact Us form for product information, order support, delivery, returns, account help, and general enquiries. Submissions prepare a structured email to `support@savzix.com` for the customer to review and send from their email app.
-- Added the registered business identity as the leading left-hand column in the shared site footer: AITECH INNOVATIONS LTD, registered address, company number `15076403`, and VAT registration `GB498138444`.
 - Replaced the legacy browser favicon with the supplied SAVZIX blue “A” PNG and made `/icon.png` the sole primary favicon metadata entry.
 - Deployed the current SAVZIX Next.js storefront to the existing Hostinger `savzix.com` Node.js application, configured the production Supabase and Stripe environment variables, and verified the live homepage and shop load the active catalogue.
 - Created the reusable `savzix-catalogue-import` skill for the validated local-package-to-Supabase workflow. It enforces final white-background packshot review, SEO title and evidence-backed description checks, GBP pricing, taxonomy assignment, dry-run-first imports, post-write verification, and safe stopping conditions for uncertain products.
@@ -96,6 +103,7 @@ UI Polish + Pre-Launch Fixes
 - UI polish
 - Review the 108 unresolved catalogue prices; 392 verified-price products are active with stock 10 each
 - Review the remaining 132 Keepa/Pricecheck staging candidates before authorising any further image or Supabase import.
+- Resolve the 31 catalogue identity blockers reported in `data/catalogue-quality-report.json` before the next catalogue release.
 
 ## Locked Decisions
 
@@ -103,8 +111,10 @@ UI Polish + Pre-Launch Fixes
 
 ## Known Issues
 
-- Missing SEO
-- Missing legal pages
+- The SEO foundation is implemented but has not yet been deployed to the production site.
+- Legal policy pages require business or legal sign-off for delivery times, cancellation return postage, the remaining returns process, data-retention criteria, and processor/international-transfer details. The exact decisions required are recorded in `docs/LEGAL_LAUNCH_REVIEW.md`.
+- A live production Stripe payment, webhook confirmation, password-recovery email, and Supabase redirect-allowlist check still require access to the production accounts.
+- The read-only catalogue audit reports 31 identity blockers: 21 duplicated barcode groups and 10 Active products without a stored verified barcode. It also reports 441 copy/ingredients warnings for human review.
 
 ## Notes From Light Audit
 
@@ -116,8 +126,8 @@ UI Polish + Pre-Launch Fixes
 
 ## Next 5 Tasks
 
-1. Create legal pages (privacy, terms)
-2. Add basic SEO (metadata, sitemap)
-3. Complete the remaining shop and product-detail page visual alignment
-4. Verify production authentication and the deployed Stripe checkout handoff
-5. Complete an authorised production payment and webhook confirmation before launch
+1. Obtain business/legal approval for the open policy decisions in `docs/LEGAL_LAUNCH_REVIEW.md`, then publish the approved delivery and returns wording.
+2. Resolve the 31 catalogue identity blockers in `data/catalogue-quality-report.json` without guessing barcode-to-product matches.
+3. Configure and test the production Supabase password-recovery redirect allowlist and sender settings.
+4. Perform one explicitly authorised production Stripe payment and verify the webhook, stock, order confirmation, and account-history results.
+5. Deploy the validated SEO, recovery, policy, and catalogue-audit changes, then repeat the public route checks on `savzix.com`.

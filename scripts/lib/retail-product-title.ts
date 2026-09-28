@@ -119,6 +119,8 @@ function normalizeSourceErrors(value: string, brand: string): string {
     .replace(/\bpalsters\b/gi, "plasters")
     .replace(/\banitperspirant\b/gi, "antiperspirant")
     .replace(/\bcolagate\b/gi, "Colgate")
+    .replace(/\bcosmectics\b/gi, "Cosmetics")
+    .replace(/\brasberry\b/gi, "Raspberry")
     .replace(/\bEngergy\b/g, "Energy")
     .replace(/\bVertiver\b/g, "Vetiver")
     .replace(/\*{2}Despatched Within Double Wall Box\*{2}/gi, "")

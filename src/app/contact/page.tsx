@@ -1,13 +1,14 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { StaticContentPage } from "@/components/content/StaticContentPage";
 import { ContactForm } from "@/components/content/ContactForm";
 import { siteConfig } from "@/config/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: `Contact | ${siteConfig.siteName}`,
   description: `Contact ${siteConfig.siteName} support.`,
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

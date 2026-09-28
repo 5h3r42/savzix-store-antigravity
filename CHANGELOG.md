@@ -2,6 +2,54 @@
 
 ## 2026-09-28
 
+- Task: Set the provisional public returns address.
+- Files changed: `src/app/returns/page.tsx`, `docs/LEGAL_LAUNCH_REVIEW.md`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Published AITECH INNOVATIONS LTD's registered address as the current return destination. The public Returns page now directs customers to contact support for item-specific instructions, while making clear that doing so does not limit statutory cancellation rights.
+- Validation/tests: `npm run lint`, `npm run build`, `git diff --check`, and a local `/returns` response check passed; the rendered page includes the return-address and statutory-rights wording.
+- Next task: Confirm delivery timing, cancellation-postage, refund, data-retention, and processor-location decisions before legal launch sign-off.
+
+- Task: Centre and rebalance the shared footer.
+- Files changed: `src/components/layout/Footer.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Replaced the full-width distributed desktop columns with a centred three-column grid using equal tracks and consistent gaps. Reduced the footer and copyright spacing so the navigation reads as one cohesive group while preserving its responsive mobile and tablet layouts.
+- Validation/tests: `npm run lint`, `npm run build`, local browser review, and `git diff --check` passed.
+- Next task: Deploy the validated storefront changes when requested.
+
+- Task: Move registered company details to About Us.
+- Files changed: `src/components/layout/Footer.tsx`, `src/app/about/page.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Removed the registered company identity block from the shared site footer and added the same legal name, registered address, company number, and VAT registration in a dedicated final card on the About Us page. The footer now retains only Shop, Support, and Legal navigation with balanced responsive spacing.
+- Validation/tests: `npm run lint`, `npm run build`, and `git diff --check` passed. Local HTTP checks returned 200 for `/` and `/about`; the company details rendered on About Us and were absent from the shared footer.
+- Next task: Deploy the validated storefront changes when requested.
+
+- Task: Add catalogue identity triage for launch blockers.
+- Files changed: `scripts/triage-catalogue-identity-blockers.ts`, `package.json`, `data/catalogue-identity-triage-report.json`, `data/catalogue-identity-triage-report.csv`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added `npm run triage:catalogue-identities`, a read-only JSON and Excel-ready CSV report that combines the 31 catalogue audit blockers with the live product identity fields and 4,451 Keepa source rows. It deliberately reports candidate evidence rather than changing a barcode, title, or record. The output exposes conflicting source assignments such as the same barcode appearing on distinct Elizabeth Arden serum and makeup-remover records.
+- Validation/tests: Generated the report successfully, then passed `npm run lint`, `npm run build`, and `git diff --check`.
+- Next task: Resolve each source conflict with physical-pack or manufacturer evidence, then deploy the previously validated SEO and account-recovery release when authorised.
+
+- Task: Implement launch readiness steps 1–5 in the repository.
+- Files changed: `src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`, page metadata routes, `src/lib/seo.ts`, `src/app/products/[id]/page.tsx`, `src/app/login/page.tsx`, `src/app/reset-password/*`, `src/components/auth/PasswordResetForm.tsx`, legal policy pages, `scripts/audit-live-catalogue.ts`, `docs/LAUNCH_WEEK.md`, `docs/LEGAL_LAUNCH_REVIEW.md`, `package.json`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added a production-ready SEO baseline with canonical URLs, sitemap, robots rules, organisation/product JSON-LD, and route-specific metadata. Added safe account password recovery with protected redirect handling. Strengthened the public Privacy, Terms, and Returns wording using the actual storefront behaviour, while documenting unresolved business/legal decisions instead of inventing policy. Added a read-only `npm run audit:catalogue` command; its first run found 502 products, 394 Active products, 31 identity blockers, and 441 copy/ingredients warnings without changing Supabase data.
+- Validation/tests: `npm run audit:catalogue`, `npm run lint`, `npm run build`, `git diff --check`, and local HTTP checks for `/`, `/shop`, a product page, legal pages, `/reset-password`, `/sitemap.xml`, and `/robots.txt` passed. Product HTML contained a canonical URL and Product/GTIN structured data.
+- Next task: Obtain policy decisions and production-account verification, then resolve the catalog identity blockers before the next deployment or catalogue release.
+
+- Task: Correct visible catalogue title spelling errors.
+- Files changed: `scripts/lib/retail-product-title.ts`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; six Supabase `products.name` values.
+- Summary: Corrected “Cosmectics” to “Cosmetics” for six Collection products and “Rasberry” to “Raspberry” for the affected product. Existing slugs, prices, stock, status, descriptions, images, barcodes, and taxonomy links were preserved. Future Keepa title processing now normalises the same source spelling errors.
+- Validation/tests: Re-read and verified all six Supabase titles, scanned all 502 current catalogue titles for the known source-error patterns with zero matches, and passed `npm run lint` and `npm run build`.
+- Next task: Add basic SEO launch essentials.
+
+- Task: Audit the live SAVZIX storefront and define next steps.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Reviewed the production home, Beauty & Skincare category, and Giorgio Armani Sì product-detail views. The current visual system and core shopping hierarchy are consistent; the recommended work is targeted launch readiness rather than a redesign.
+- Validation/tests: Captured and inspected live viewport evidence for the three pages. Interaction, keyboard, screen-reader, performance, and live-payment behaviour require dedicated follow-up testing.
+- Next task: Complete the highest-priority launch-readiness items from the audit.
+
+- Task: Deploy current SAVZIX storefront release to Hostinger.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Hostinger `savzix.com` deployment archive and Node.js build.
+- Summary: Deployed source commit `c622b01` to the existing Hostinger Next.js application. The source-only archive excluded local data folders, build output, dependencies, and environment files. No environment variables, Supabase configuration, Stripe configuration, or catalogue data changed.
+- Validation/tests: Hostinger production build `01a0e720-d99c-710d-bfc7-bf6e754e9208` completed successfully. Live HTTPS check for `/shop?categoryPath=%2Fc%2Fbeauty-skincare` returned HTTP 200 with rendered SAVZIX storefront content.
+- Next task: Review the live category navigation and continue launch-priority catalogue work.
+
 - Task: Add desktop category dropdown navigation.
 - Files changed: `src/components/layout/Navbar.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
 - Summary: Added compact category-rail dropdowns that reveal the existing subcategories and a View all link on hover or keyboard focus. The desktop rail permits vertical overflow so menus are visible rather than clipped; the parent category remains a normal link, Escape closes an open menu, and tablet/mobile navigation is unchanged.

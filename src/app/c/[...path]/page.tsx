@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import {
   getTaxonomyNodeByPath,
   normalizeTaxonomyPath,
   toCategoryHref,
 } from "@/config/category-taxonomy";
+import { createPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -28,23 +28,26 @@ function buildShopHref(categoryHref: string) {
 
 export async function generateMetadata({
   params,
-}: CategoryPageProps): Promise<Metadata> {
+}: CategoryPageProps) {
   const { path } = await params;
   const categoryPath = buildCategoryPath(path);
   const category = getTaxonomyNodeByPath(categoryPath);
 
   if (!category) {
-    return {
+    return createPageMetadata({
       title: "Category | SAVZIX",
       description: "Browse product categories at SAVZIX.",
-    };
+      path: "/shop",
+      index: false,
+    });
   }
 
-  return {
+  return createPageMetadata({
     title: `${category.name} | SAVZIX`,
     description:
       category.description ?? `Browse ${category.name.toLowerCase()} at SAVZIX.`,
-  };
+    path: buildShopHref(toCategoryHref(category.path)),
+  });
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {

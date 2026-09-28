@@ -79,6 +79,23 @@ stripe listen --forward-to http://localhost:3000/api/stripe/webhook
 - stock is decremented after payment confirmation
 - the order is visible in `/account` and `/admin/orders`
 
+## Password-recovery test
+
+1. In Supabase Auth, add the production site URL and `https://savzix.com/auth/callback` to the allowed redirect URLs. Include the equivalent local URL only for local testing.
+2. On `/login`, select **Forgot password?** and request a reset for a test account.
+3. Open the recovery link, set a new password on `/reset-password`, then sign in with the new password.
+4. Confirm that the recovery email uses the intended sender and that the callback does not redirect to an external URL.
+
+## Catalogue quality audit
+
+Run the read-only audit before a catalogue release:
+
+```bash
+npm run audit:catalogue
+```
+
+The command reads the current Supabase catalogue and writes `data/catalogue-quality-report.json`. It does not upload images or update product records. Review all blockers before publishing or activating a new batch; warnings identify copy, barcode, and ingredients checks that need human review.
+
 ## Launch Checklist
 
 - `npm run lint` passes
@@ -86,8 +103,10 @@ stripe listen --forward-to http://localhost:3000/api/stripe/webhook
 - legal/support routes are live and linked from the footer
 - admin bootstrap has been run for the production admin user
 - Stripe production webhook points to `/api/stripe/webhook`
+- production Supabase redirect URLs include the password-recovery callback
 - taxonomy seed/backfill has been run after migrations
 - checkout succeeds with a live test order in the target environment
+- `npm run audit:catalogue` has no unresolved blockers for the intended release
 
 ## Current Deferrals
 

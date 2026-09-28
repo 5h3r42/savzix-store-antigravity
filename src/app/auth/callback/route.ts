@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 function getSafeRedirect(nextPath: string | null, fallback: string) {
-  if (!nextPath || !nextPath.startsWith("/")) {
+  if (!nextPath || !nextPath.startsWith("/") || nextPath.startsWith("//")) {
     return fallback;
   }
 

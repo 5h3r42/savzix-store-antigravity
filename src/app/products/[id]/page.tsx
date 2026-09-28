@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,6 +7,7 @@ import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { FrequentlyBoughtTogether } from "@/components/products/FrequentlyBoughtTogether";
 import { siteConfig } from "@/config/site";
 import { formatPrice } from "@/lib/formatPrice"; // CHANGED: use shared GBP formatter.
+import { absoluteUrl } from "@/lib/seo";
 import {
   getFrequentlyBoughtTogetherProducts,
   getProductBySlug,
@@ -14,11 +16,69 @@ import { cleanDescription, cleanTitle } from "@/lib/productText"; // ADDED: reta
 
 export const dynamic = "force-dynamic";
 
+type ProductDetailProps = {
+  params: Promise<{ id: string }>;
+};
+
+function getProductImageUrl(image: string) {
+  return image.startsWith("http") ? image : absoluteUrl(image || "/product_bottle.png");
+}
+
+function getGtinSchemaProperty(barcodes: string[]) {
+  const barcode = barcodes.find((value) => /^\d{8}$|^\d{12,14}$/.test(value));
+
+  if (!barcode) {
+    return {};
+  }
+
+  return { [`gtin${barcode.length}`]: barcode };
+}
+
+export async function generateMetadata({ params }: ProductDetailProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = await getProductBySlug(id);
+
+  if (!product || product.status !== "Active" || product.stock <= 0) {
+    return {
+      title: `Product unavailable | ${siteConfig.siteName}`,
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const title = cleanTitle(product.name);
+  const description = cleanDescription(product.description, {
+    title: product.name,
+    brand: product.brand,
+    category: product.category,
+  });
+  const url = absoluteUrl(`/products/${encodeURIComponent(product.slug)}`);
+  const image = getProductImageUrl(product.image);
+
+  return {
+    title: `${title} | ${siteConfig.siteName}`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      siteName: siteConfig.siteName,
+      title,
+      description,
+      url,
+      images: [{ url: image, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+    robots: { index: true, follow: true },
+  };
+}
+
 export default async function ProductDetail({
   params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+}: ProductDetailProps) {
   const { id } = await params;
   const product = await getProductBySlug(id);
 
@@ -35,9 +95,43 @@ export default async function ProductDetail({
     category: product.category,
   }); // CHANGED: hide ASIN/Amazon/FBA artifacts in PDP copy.
   const isAvailable = product.status === "Active" && product.stock > 0;
+  const productUrl = absoluteUrl(`/products/${encodeURIComponent(product.slug)}`);
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: productTitle,
+    description: productDescription,
+    image: [getProductImageUrl(product.image)],
+    sku: product.id,
+    brand: {
+      "@type": "Brand",
+      name: product.brand,
+    },
+    ...getGtinSchemaProperty(product.eanBarcodes),
+    offers: {
+      "@type": "Offer",
+      url: productUrl,
+      priceCurrency: siteConfig.currency,
+      price: product.price.toFixed(2),
+      availability: isAvailable
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: {
+        "@type": "Organization",
+        name: siteConfig.legalCompanyName,
+      },
+    },
+  };
 
   return (
     <section className="px-4 py-8 md:px-6 md:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="mx-auto max-w-[1280px]">
         <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-primary hover:underline">

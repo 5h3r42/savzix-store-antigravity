@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { StaticContentPage } from "@/components/content/StaticContentPage";
 import { siteConfig } from "@/config/site";
+import { createPageMetadata } from "@/lib/seo";
 
 function formatPrice(value: number) {
   return new Intl.NumberFormat("en-GB", {
@@ -9,10 +9,11 @@ function formatPrice(value: number) {
   }).format(value);
 }
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: `FAQ | ${siteConfig.siteName}`,
   description: `Frequently asked questions for ${siteConfig.siteName}.`,
-};
+  path: "/faq",
+});
 
 export default function FaqPage() {
   return (

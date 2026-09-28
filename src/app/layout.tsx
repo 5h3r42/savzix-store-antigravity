@@ -9,8 +9,28 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
   title: siteConfig.siteName,
   description: `${siteConfig.siteName} premium skincare and wellness products.`,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.siteName,
+    title: siteConfig.siteName,
+    description: `${siteConfig.siteName} premium skincare and wellness products.`,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.siteName,
+    description: `${siteConfig.siteName} premium skincare and wellness products.`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
@@ -30,11 +50,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.legalCompanyName,
+    alternateName: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    logo: `${siteConfig.siteUrl}/icon.png`,
+    email: siteConfig.supportEmail,
+    vatID: siteConfig.vatNumber,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "483 Green Lanes",
+      addressLocality: "London",
+      postalCode: "N13 4BS",
+      addressCountry: "GB",
+    },
+  };
+
   return (
     <html lang="en">
       <body
         className={`${spaceGrotesk.variable} antialiased bg-background text-foreground flex flex-col min-h-screen`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c"),
+          }}
+        />
         <CartProvider>
           <Navbar />
           <CartDrawer />

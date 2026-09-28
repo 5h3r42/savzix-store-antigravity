@@ -1,28 +1,9 @@
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="bg-muted text-card-foreground py-14 border-t border-border">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 sm:grid-cols-2 lg:grid-cols-[repeat(4,max-content)] lg:justify-between">
-        <div>
-          <h3 className="mb-5 font-bold text-foreground">Company</h3>
-          <div className="space-y-4 text-sm leading-6 text-muted-foreground">
-            <p className="font-semibold text-foreground">{siteConfig.legalCompanyName}</p>
-            <address className="not-italic">{siteConfig.registeredAddress}</address>
-            <dl className="space-y-2">
-              <div>
-                <dt className="inline font-medium text-foreground">Company number:</dt>{" "}
-                <dd className="inline">{siteConfig.companyNumber}</dd>
-              </div>
-              <div>
-                <dt className="inline font-medium text-foreground">VAT registration:</dt>{" "}
-                <dd className="inline">{siteConfig.vatNumber}</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-
+    <footer className="border-t border-border bg-muted py-12 text-card-foreground">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 sm:grid-cols-3 lg:gap-24">
         <div>
           <h3 className="mb-5 font-bold text-foreground">Shop</h3>
           <ul className="space-y-4 text-muted-foreground text-sm">
@@ -102,7 +83,7 @@ export function Footer() {
         </div>
 
       </div>
-      <div className="max-w-7xl mx-auto mt-12 border-t border-border px-6 pt-8 text-center text-xs text-muted-foreground">
+      <div className="mx-auto mt-10 max-w-5xl border-t border-border px-6 pt-6 text-center text-xs text-muted-foreground">
         <p>&copy; {new Date().getFullYear()} SAVZIX. All rights reserved.</p>
       </div>
     </footer>

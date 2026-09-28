@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { StaticContentPage } from "@/components/content/StaticContentPage";
 import { siteConfig } from "@/config/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `About Us | ${siteConfig.siteName}`,
+export const metadata = createPageMetadata({
+  title: "About Us | SAVZIX",
   description:
     "Learn about SAVZIX, a UK retailer trading since 2023 for beauty, skincare, fragrance, toiletries and everyday essentials.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -34,6 +35,27 @@ export default function AboutPage() {
           ],
         },
       ]}
+      footer={
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            Company details
+          </h2>
+          <div className="mt-4 space-y-4 text-sm leading-7 text-muted-foreground md:text-base">
+            <p className="font-semibold text-foreground">{siteConfig.legalCompanyName}</p>
+            <address className="not-italic">{siteConfig.registeredAddress}</address>
+            <dl className="space-y-2">
+              <div>
+                <dt className="inline font-medium text-foreground">Company number:</dt>{" "}
+                <dd className="inline">{siteConfig.companyNumber}</dd>
+              </div>
+              <div>
+                <dt className="inline font-medium text-foreground">VAT registration:</dt>{" "}
+                <dd className="inline">{siteConfig.vatNumber}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      }
     />
   );
 }

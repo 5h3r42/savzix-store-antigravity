@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { StaticContentPage } from "@/components/content/StaticContentPage";
 import { siteConfig } from "@/config/site";
+import { createPageMetadata } from "@/lib/seo";
 
 function formatPrice(value: number) {
   return new Intl.NumberFormat("en-GB", {
@@ -9,10 +9,11 @@ function formatPrice(value: number) {
   }).format(value);
 }
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: `Shipping | ${siteConfig.siteName}`,
   description: `Shipping information for ${siteConfig.siteName}.`,
-};
+  path: "/shipping",
+});
 
 export default function ShippingPage() {
   return (

@@ -12,11 +12,17 @@
  * - src/lib/normalizeText.ts
  */
 
+import type { Metadata } from "next";
 import { ShopLayout } from "@/components/shop/ShopLayout"; // CHANGED: switch /shop to the new retail PLP layout.
-import { isKnownCategoryPath, normalizeCategoryPath } from "@/config/categories";
+import {
+  getCategoryNameForPath,
+  isKnownCategoryPath,
+  normalizeCategoryPath,
+} from "@/config/categories";
 import { getProductsForCategoryPath } from "@/lib/category-taxonomy";
 import { mapProductsToShopProducts } from "@/lib/shop-products";
 import { getPublicProducts } from "@/lib/products-store";
+import { createPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +32,43 @@ type ShopPageProps = {
     q?: string;
   }>;
 };
+
+function buildShopPath(categoryPath: string | null) {
+  if (!categoryPath) {
+    return "/shop";
+  }
+
+  return `/shop?${new URLSearchParams({ categoryPath }).toString()}`;
+}
+
+export async function generateMetadata({ searchParams }: ShopPageProps): Promise<Metadata> {
+  const { categoryPath, q } = await searchParams;
+  const normalizedCategoryPath = categoryPath ? normalizeCategoryPath(categoryPath) : null;
+  const routeCategoryPath =
+    normalizedCategoryPath && isKnownCategoryPath(normalizedCategoryPath)
+      ? normalizedCategoryPath
+      : null;
+  const searchQuery = q?.trim();
+
+  if (searchQuery) {
+    return createPageMetadata({
+      title: "Product search | SAVZIX",
+      description: "Search results from the SAVZIX catalogue.",
+      path: "/shop",
+      index: false,
+    });
+  }
+
+  const categoryName = routeCategoryPath ? getCategoryNameForPath(routeCategoryPath) : null;
+
+  return createPageMetadata({
+    title: categoryName ? `${categoryName} | SAVZIX` : "Shop | SAVZIX",
+    description: categoryName
+      ? `Shop ${categoryName.toLowerCase()} at SAVZIX.`
+      : "Shop beauty, fragrance, wellness, toiletries, gifts and everyday essentials at SAVZIX.",
+    path: buildShopPath(routeCategoryPath),
+  });
+}
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const { categoryPath, q } = await searchParams;

@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { StaticContentPage } from "@/components/content/StaticContentPage";
 import { siteConfig } from "@/config/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: `Cookie Policy | ${siteConfig.siteName}`,
   description: `Cookie and storage information for ${siteConfig.siteName}.`,
-};
+  path: "/cookies",
+});
 
 export default function CookiesPage() {
   return (

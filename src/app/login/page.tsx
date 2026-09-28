@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Loader2, ArrowRight } from "lucide-react";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
@@ -8,7 +9,7 @@ import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 type AuthMode = "login" | "signup";
 
 function getSafeRedirect(nextPath: string | null, fallback: string) {
-  if (!nextPath || !nextPath.startsWith("/")) {
+  if (!nextPath || !nextPath.startsWith("/") || nextPath.startsWith("//")) {
     return fallback;
   }
 
@@ -212,6 +213,14 @@ export default function CustomerLoginPage() {
                 >
                   Password
                 </label>
+                {mode === "login" ? (
+                  <Link
+                    href="/reset-password"
+                    className="text-xs font-semibold text-primary hover:underline"
+                  >
+                    Forgot password?
+                  </Link>
+                ) : null}
               </div>
               <input
                 id="password"
