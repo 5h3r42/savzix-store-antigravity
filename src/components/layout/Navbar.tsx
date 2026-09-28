@@ -65,6 +65,9 @@ export function Navbar() {
   const [activeDesktopChildSlug, setActiveDesktopChildSlug] = useState(
     defaultDesktopCategory?.children?.[0]?.slug ?? "",
   );
+  const [openDesktopRailCategorySlug, setOpenDesktopRailCategorySlug] = useState<
+    string | null
+  >(null);
   const [openMobileSections, setOpenMobileSections] = useState<
     Record<string, boolean>
   >({});
@@ -560,13 +563,87 @@ export function Navbar() {
           </div>
         </form>
 
-        <div className="hidden overflow-x-auto border-t border-border bg-white scrollbar-none lg:block">
+        <div className="hidden overflow-x-auto border-t border-border bg-white scrollbar-none lg:block lg:overflow-visible">
           <div className="mx-auto flex w-max min-w-full max-w-7xl px-4 lg:justify-center lg:px-6">
-            {categories.map((category) => (
-              <Link key={category.slug} href={category.href} className="whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary">
-                {category.name}
-              </Link>
-            ))}
+            {categories.map((category) => {
+              const hasChildren = Boolean(category.children?.length);
+              const isOpen = openDesktopRailCategorySlug === category.slug;
+              const menuId = `desktop-rail-menu-${category.slug}`;
+
+              return (
+                <div
+                  key={category.slug}
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (hasChildren) {
+                      setOpenDesktopRailCategorySlug(category.slug);
+                    }
+                  }}
+                  onMouseLeave={() => setOpenDesktopRailCategorySlug(null)}
+                  onFocus={() => {
+                    if (hasChildren) {
+                      setOpenDesktopRailCategorySlug(category.slug);
+                    }
+                  }}
+                  onBlur={(event) => {
+                    const nextTarget = event.relatedTarget;
+
+                    if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+                      setOpenDesktopRailCategorySlug(null);
+                    }
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key !== "Escape") {
+                      return;
+                    }
+
+                    event.preventDefault();
+                    setOpenDesktopRailCategorySlug(null);
+                    event.currentTarget.querySelector<HTMLElement>("a[href]")?.focus();
+                  }}
+                >
+                  <Link
+                    href={category.href}
+                    aria-haspopup={hasChildren ? "menu" : undefined}
+                    aria-expanded={hasChildren ? isOpen : undefined}
+                    aria-controls={hasChildren ? menuId : undefined}
+                    className="inline-flex whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:border-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+                  >
+                    {category.name}
+                  </Link>
+
+                  {hasChildren && isOpen ? (
+                    <div
+                      id={menuId}
+                      role="menu"
+                      aria-label={`${category.name} subcategories`}
+                      className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 rounded-b-xl border border-border bg-white p-2 shadow-[0_16px_32px_rgba(15,42,70,0.18)]"
+                    >
+                      <Link
+                        href={category.href}
+                        role="menuitem"
+                        className="mb-1 flex items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        View all {category.name}
+                        <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                      <div className="border-t border-border pt-1">
+                        {category.children?.map((subcategory) => (
+                          <Link
+                            key={subcategory.slug}
+                            href={subcategory.href}
+                            role="menuitem"
+                            className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                          >
+                            {subcategory.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
             <Link href="/shop" className="whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-primary transition-colors hover:border-primary">Offers</Link>
           </div>
         </div>

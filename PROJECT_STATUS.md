@@ -13,6 +13,9 @@ UI Polish + Pre-Launch Fixes
 
 ## Completed Work
 
+- Added accessible desktop category-rail dropdowns: hovering or keyboard focusing a category exposes its existing subcategories and a View all link without clipping, while tablet and mobile navigation remain unchanged.
+- Retired the Alcohol and Home Appliances subcategories from the SAVZIX taxonomy. The two misclassified Alcohol products now use Gift Sets as their primary category; both retired database category records are inactive, preserving historical data without public category visibility.
+- Deployed commit `81da4d9` to the existing Hostinger `savzix.com` Node.js application. Hostinger completed the Next.js production build, and live HTTP checks returned 200 for the homepage and current product page, which rendered the new quantity and Frequently Bought Together controls. Environment variables, Supabase, Stripe, and catalogue data were not changed.
 - Balanced the shared footer's desktop layout with equal left and right edges and evenly distributed column spacing, while preserving its left-aligned text and responsive tablet/mobile grid.
 - Added an accessible stock-capped quantity selector to the shared product-detail purchase control. Shoppers can select the number of units before adding them to the basket on every available product page.
 - Corrected the tablet Frequently Bought Together layout: four recommendations now use a balanced two-column grid until the desktop four-column breakpoint, preventing empty tablet positions.

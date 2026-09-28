@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-09-28
+
+- Task: Add desktop category dropdown navigation.
+- Files changed: `src/components/layout/Navbar.tsx`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`.
+- Summary: Added compact category-rail dropdowns that reveal the existing subcategories and a View all link on hover or keyboard focus. The desktop rail permits vertical overflow so menus are visible rather than clipped; the parent category remains a normal link, Escape closes an open menu, and tablet/mobile navigation is unchanged.
+- Validation/tests: Local browser verification confirmed the Beauty & Skincare menu exposes View all, Cosmetics, Nails, and Skin Care. `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy the navigation enhancement when requested.
+
+## 2026-09-28
+
+- Task: Retire Alcohol and Home Appliances taxonomy subcategories.
+- Files changed: `src/config/category-taxonomy.ts`, `supabase/migrations/008_retire_alcohol_and_home_appliances_categories.sql`, `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; live Supabase category and product-category records.
+- Summary: Removed both subcategories from the source taxonomy and marked their existing Supabase records inactive. Reassigned the two incorrectly classified Alcohol products to their already-linked Gift Sets parent category and removed only the obsolete Alcohol links.
+- Validation/tests: Verified both retired categories are inactive and both affected products have Gift Sets as their primary category. `npm run lint`, `npx tsc --noEmit`, `npm run build`, and `git diff --check` passed.
+- Next task: Deploy the taxonomy change when requested.
+
+## 2026-09-28
+
+- Task: Deploy the latest SAVZIX storefront release to Hostinger.
+- Files changed: `PROJECT_STATUS.md`, `TASKS.md`, `CHANGELOG.md`; Hostinger `savzix.com` deployment archive and Node.js build.
+- Summary: Deployed tracked source commit `81da4d9` to the existing Hostinger Node.js application. The source-only archive excluded local data folders, build output, and dependencies. No environment variables, Supabase configuration, Stripe configuration, or catalogue data was changed.
+- Validation/tests: Hostinger completed deployment `01a0e6f8-e75e-7150-8309-9fcb1a22a820` successfully. Live HTTPS checks returned HTTP 200 for `/` and the current Collection Cosmetics product page; the product page rendered `Quantity` and `Frequently Bought Together`.
+- Next task: Continue launch-priority catalogue and storefront review.
+
 ## 2026-09-27
 
 - Task: Balance shared footer spacing.

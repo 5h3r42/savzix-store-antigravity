@@ -195,12 +195,6 @@ export const taxonomyTree: TaxonomyNode[] = [
         description: "Toiletry gift sets for travel, care, and practical gifting.",
         sortOrder: 2,
       },
-      {
-        name: "Alcohol",
-        slug: "alcohol",
-        description: "Alcohol gift sets for celebrations and occasions.",
-        sortOrder: 3,
-      },
     ],
   },
   {
@@ -290,12 +284,6 @@ export const taxonomyTree: TaxonomyNode[] = [
         slug: "batteries",
         description: "Everyday batteries and portable power essentials.",
         sortOrder: 0,
-      },
-      {
-        name: "Home Appliances",
-        slug: "home-appliances",
-        description: "Electrical appliances for home convenience and everyday use.",
-        sortOrder: 1,
       },
       {
         name: "Health & Personal Appliances",

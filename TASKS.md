@@ -6,6 +6,9 @@
 
 ## Completed
 
+- Added desktop category-rail dropdown navigation with hover and keyboard access to each category's subcategories.
+- Retired the Alcohol and Home Appliances subcategories, reassigned the two affected products to Gift Sets, and preserved the retired records as inactive database categories.
+- Deployed SAVZIX commit `81da4d9` to Hostinger and verified HTTP 200 responses for the live homepage and a current product page, including the new quantity and Frequently Bought Together controls, without changing production environment variables or catalogue data.
 - Balanced shared footer columns with equal outer edges and even desktop spacing, preserving the existing left-aligned content.
 - Added a quantity selector to every available product page, allowing shoppers to add their selected number of units to the basket in one action.
 - Corrected the Frequently Bought Together tablet grid so four products render as a complete 2 × 2 layout before switching to four columns on desktop.
